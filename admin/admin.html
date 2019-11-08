@@ -17,7 +17,7 @@
             <div id="deconnexion">
                 <a href="admin.php?action=deconnecter">Se déconnecter</a>
             </div>
-        </nav>
+        
     </header>
     <nav id="menu">
         <ul>
@@ -25,7 +25,7 @@
                 <a href="admin.php?action=recette">Gestion des recettes</a>
             </li>
             <li>
-                <a href="admin.php?action=ingrédient">Gestion des recettes</a>
+                <a href="admin.php?action=ingrédient">Gestion des ingrédients</a>
             </li>
             <li>
                 <a href="admin.php?action=article">Gestion des articles</a>
@@ -34,5 +34,9 @@
                 <a href="admin.php?action=image">Gestion des images</a>
             </li>				
         </ul>
+    </nav>
+    <section>
+        <?php if (isset($contenu)){include($contenu);} ?>
+    </section>
 </body>
 </html>

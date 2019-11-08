@@ -5,29 +5,48 @@ require_once("../tools/fonctions.php");
 //établit la connexion avec la base de données
 $connexion=connexion();
 
-if(isset($_GET)){
-    switch ($_GET['action']) {
-        case 'déconnecter':
+if(isset($_GET['action'])){
+    switch ($_GET["action"]){
+        case "déconnecter":
             # code...
-        break;
+        break; // fin case déconnecter
         
-        case 'recette':
-            # code...
-        break;
+        case "recette":
+
+            //contenu à afficher
+            $contenu="form_recette.html";
+            if(isset($_GET["cas"])){
+                switch ($_GET["cas"]) {
+                    case "ajouter":
+                        if(isset($_POST['submit'])){
+                            
+                        }
+                    break;//fin case ajouter
+                    
+                    case "modifier":
+                        # code...
+                    break;//fin case modifier
+
+                    case "supprimer":
+                        # code...
+                    break;//fin case supprimer
+                }
+            }
+        break;//fin case recette
         
-        case 'ingredient':
+        case "ingredient":
             # code...
-        break;
+        break;//fin case ingredient
 
-        case 'article':
+        case "article":
             # code...
-        break;
+        break;//fin case article
 
-        case 'image':
+        case "image":
             # code...
-        break;
-    }
-}
+        break;//fin case image
+    }//fin switch
+}// fin if isset
 
 //on referme la connexion à la base
 mysqli_close($connexion);

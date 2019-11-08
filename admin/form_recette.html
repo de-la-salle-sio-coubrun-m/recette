@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +7,51 @@
     <title>Document</title>
 </head>
 <body>
+    <form enctype="multipart/form-data" action="admin.php?action=recette&cas=ajouter" method="POST">
+
+        <label for="nomRecette">Nom de la recette</label>
+        <input id="nomRecette" type="text" name="nomRecette" value="<?php if(isset($_POST['nomRecette'])){echo $_POST['nomRecette'];} ?>" />
+        
+        <label for="descriptionRecette">Description de la recette</label>
+        <textarea id="descriptionRecette" name="descriptionRecette"><?php if(isset($_POST['descriptionRecette'])){echo $_POST['descriptionRecette'];} ?></textarea>
+        
+        <label for="dureeCuisson">Durée de la cuisson</label>
+        <input id="dureeCuisson" type="text" name="dureeCuisson" value="<?php if(isset($_POST['dureeCuisson'])){echo $_POST['dureeCuisson'];} ?>" />
+        
+        <label for="dureePreparation">Durée de la préparation</label>
+        <input id="dureePreparation" type="text" name="dureePreparation" value="<?php if(isset($_POST['dureePreparation'])){echo $_POST['dureePreparation'];} ?>" />
+
+        <label for="recetteRecette">La recette</label>
+        <input id="recetteRecette" type="text" name="recetteRecette" value="<?php if(isset($_POST['recetteRecette'])){echo $_POST['recetteRecette'];} ?>" />
+
+        <label for="effetsRecette">Les effets de la recette</label>
+        <input id="effetsRecette" type="text" name="effetsRecette" value="<?php if(isset($_POST['effetsRecette'])){echo $_POST['effetsRecette'];} ?>" />
+
+        <!-- mettre en forme de liste liée à la bdd -->
+        <label for="idCategorie">La catégorie</label> 
+        <input id="idCategorie" type="text" name="idCategorie" value="<?php if(isset($_POST['idCategorie'])){echo $_POST['idCategorie'];} ?>" />
+
+        <label for="idIgrédient1">Igrédient n°1</label>
+        <input id="idIgrédient1" type="text" name="idIgrédient1" value="<?php if(isset($_POST['idIgrédient1'])){echo $_POST['idIgrédient1'];} ?>" />
+
+        <label for="idIgrédient2">Igrédient n°2</label>
+        <input id="idIgrédient2" type="text" name="idIgrédient2" value="<?php if(isset($_POST['idIgrédient2'])){echo $_POST['idIgrédient2'];} ?>" />
+3
+        <label for="idIgrédient3">Igrédient n°3</label>
+        <input id="idIgrédient3" type="text" name="idIgrédient3" value="<?php if(isset($_POST['idIgrédient3'])){echo $_POST['idIgrédient3'];} ?>" />
+
+        <label for="idIgrédient4">Igrédient n°4</label>
+        <input id="idIgrédient4" type="text" name="idIgrédient4" value="<?php if(isset($_POST['idIgrédient4'])){echo $_POST['idIgrédient4'];} ?>" />
+
+        <label for="idIgrédient5">Igrédient n°5</label>
+        <input id="idIgrédient5" type="text" name="idIgrédient5" value="<?php if(isset($_POST['idIgrédient5'])){echo $_POST['idIgrédient5'];} ?>" />
+        
+        <?php if(isset($message)){echo $message;} ?>
     
+        <div id="boutons">
+            <input type="submit" name="submit" value="ENREGISTRER" />
+            <input type="reset" name="reset" value="ANNULER" />
+        </div>
+    </form>
 </body>
 </html>
