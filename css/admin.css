@@ -1,0 +1,13 @@
+@charset "UTF-8";
+/* CSS Document */
+/*on fait un reset pour éliminer les espacements intrinseques produits par certaines balises*/
+*{
+	margin:0;
+	padding:0;
+	box-sizing:border-box;
+}
+/*permet de retirer les bordures mises en automatique par le
+navigateur lors d'un clic*/
+a,input, textarea{
+	outline:none;
+}
