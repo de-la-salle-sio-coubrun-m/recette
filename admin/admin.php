@@ -45,6 +45,9 @@ if(isset($_GET['action'])){
         case "image":
             # code...
         break;//fin case image
+        case "compte":
+            # code...
+        break;//fin case compte
     }//fin switch
 }// fin if isset
 
