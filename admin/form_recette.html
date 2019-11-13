@@ -8,7 +8,7 @@
 </head>
 <body>
     <form enctype="multipart/form-data" action="admin.php?action=recette&cas=ajouter" method="POST">
-
+        <!-- tableau avec les entrées dans la table recette de la base de données -->
         <label for="nomRecette">Nom de la recette</label>
         <input id="nomRecette" type="text" name="nomRecette" value="<?php if(isset($_POST['nomRecette'])){echo $_POST['nomRecette'];} ?>" />
         
