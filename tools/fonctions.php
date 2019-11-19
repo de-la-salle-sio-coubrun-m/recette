@@ -197,11 +197,11 @@ function connexion()
     $liste.="<th>La recette</th>";
     $liste.="<th>Les effets de la recette</th>";
     $liste.="<th>La catégorie</th>";
-    $liste.="<th>Igrédient n°1</th>";
-    $liste.="<th>Igrédient n°2</th>";
-    $liste.="<th>Igrédient n°3</th>";
-    $liste.="<th>Igrédient n°4</th>";
-    $liste.="<th>Igrédient n°5</th>";
+    $liste.="<th>Ingrédient n°1</th>";
+    $liste.="<th>Ingrédient n°2</th>";
+    $liste.="<th>Ingrédient n°3</th>";
+    $liste.="<th>Ingrédient n°4</th>";
+    $liste.="<th>Ingrédient n°5</th>";
     $liste.="<th>Aperçu</th>";
     $liste.="<th>Actions</th>";
     $liste.="</tr>";
@@ -221,7 +221,7 @@ function connexion()
       $liste.="<td>" . $ligne->idIngredient3 . "</td>";
       $liste.="<td>" . $ligne->idIngredient4 . "</td>";
       $liste.="<td>" . $ligne->idIngredient5 . "</td>";
-      $liste.="<td><img src=\"" . $ligne->idImage . "\"alt=\"". $ligne->nom_produit . "\" /></td>";
+      $liste.="<td><img src=\"" . $ligne->idImage . "\"alt=\"". $ligne->nomRecette . "\" /></td>";
       $liste.="<td><a href=\"admin.php?action=recette&cas=modifier&idRecette=".$ligne->idRecette."\">modifier</a>&nbsp;
       &nbsp;<a href=\"admin.php?action=recette&cas=supprimer&idRecette=".$ligne->idRecette."\">supprimer</a></td>";
       $liste.="</tr>";

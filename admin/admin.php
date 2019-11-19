@@ -52,23 +52,23 @@ if(isset($_GET['action'])){
                             {
                                 $message="<label id =\"warning\">veuillez entrer l'identifiant de la catégorie de la recette s'il-vous-plaît</label>";
                             }
-                            elseif(empty($_POST['idIgrédient1']))
+                            elseif(empty($_POST['idIngredient1']))
                             {
                                 $message="<label id =\"warning\">veuillez entrer l'identifiant d'un ingrédient de la recette s'il-vous-plaît</label>";
                             }
-                            elseif(empty($_POST['idIgrédient2']))
+                            elseif(empty($_POST['idIngredient2']))
                             {
                                 $message="<label id =\"warning\">veuillez entrer l'identifiant d'un ingrédient de la recette s'il-vous-plaît</label>";
                             }
-                            elseif(empty($_POST['idIgrédient3']))
+                            elseif(empty($_POST['idIngredient3']))
                             {
                                 $message="<label id =\"warning\">veuillez entrer l'identifiant d'un ingrédient de la recette s'il-vous-plaît</label>";
                             }
-                            elseif(empty($_POST['idIgrédient4']))
+                            elseif(empty($_POST['idIngredient4']))
                             {
                                 $message="<label id =\"warning\">veuillez entrer l'identifiant d'un ingrédient de la recette s'il-vous-plaît</label>";
                             }
-                            elseif(empty($_POST['idIgrédient5']))
+                            elseif(empty($_POST['idIngredient5']))
                             {
                                 $message="<label id =\"warning\">veuillez entrer l'identifiant d'un ingrédient de la recette s'il-vous-plaît</label>";
                             }
@@ -77,8 +77,8 @@ if(isset($_GET['action'])){
                                 //on insert dans la table produits les valeurs des champs nom et description
                                 //addslashes permet de mettre des \ en cas de  '  .
                                 $requete="  INSERT INTO recette 
-                                SET idOrigine='".addslashes($_POST['idOrigine'])."', nomRecette='".addslashes($_POST['nomRecette'])."', descriptionRecette='".addslashes($_POST['descriptionRecette'])."',dureeCuisson='".($_POST['dureeCuisson'])."', dureePreparation='".($_POST['dureePreparation'])."', recetteRecette='".addslashes($_POST['recetteRecette'])."', effetsRecette='".addslashes($_POST['effetsRecette'])."', idCategorie='".($_POST['idCategorie'])."', idIgrédient1='".($_POST['idIgrédient1'])."', idIgrédient2='".($_POST['idIgrédient2'])."', idIgrédient3='".($_POST['idIgrédient3'])."', idIgrédient4='".($_POST['idIgrédient4'])."', idIgrédient5='".($_POST['idIgrédient5'])."', idImage='".($_POST['idImage'])."'";
-                
+                                SET idOrigine='".addslashes($_POST['idOrigine'])."', nomRecette='".addslashes($_POST['nomRecette'])."', descriptionRecette='".addslashes($_POST['descriptionRecette'])."',dureeCuisson='".($_POST['dureeCuisson'])."', dureePreparation='".($_POST['dureePreparation'])."', recetteRecette='".addslashes($_POST['recetteRecette'])."', effetsRecette='".addslashes($_POST['effetsRecette'])."', idCategorie='".($_POST['idCategorie'])."', idIngredient1='".($_POST['idIngredient1'])."', idIngredient2='".($_POST['idIngredient2'])."', idIngredient3='".($_POST['idIngredient3'])."', idIngredient4='".($_POST['idIngredient4'])."', idIngredient5='".($_POST['idIngredient5'])."', idImage='".($_POST['idImage'])."'";
+                                echo $requete;
                                 //execution de la requete dans la BDD
                                 $resultat=mysqli_query($connexion,$requete);
                             }
@@ -129,23 +129,23 @@ if(isset($_GET['action'])){
                                 {
                                     $message="<label id =\"warning\">veuillez entrer l'identifiant de la catégorie de la recette s'il-vous-plaît</label>";
                                 }
-                                elseif(empty($_POST['idIgrédient1']))
+                                elseif(empty($_POST['idIngredient1']))
                                 {
                                     $message="<label id =\"warning\">veuillez entrer l'identifiant d'un ingrédient de la recette s'il-vous-plaît</label>";
                                 }
-                                elseif(empty($_POST['idIgrédient2']))
+                                elseif(empty($_POST['idIngredient2']))
                                 {
                                     $message="<label id =\"warning\">veuillez entrer l'identifiant d'un ingrédient de la recette s'il-vous-plaît</label>";
                                 }
-                                elseif(empty($_POST['idIgrédient3']))
+                                elseif(empty($_POST['idIngredient3']))
                                 {
                                     $message="<label id =\"warning\">veuillez entrer l'identifiant d'un ingrédient de la recette s'il-vous-plaît</label>";
                                 }
-                                elseif(empty($_POST['idIgrédient4']))
+                                elseif(empty($_POST['idIngredient4']))
                                 {
                                     $message="<label id =\"warning\">veuillez entrer l'identifiant d'un ingrédient de la recette s'il-vous-plaît</label>";
                                 }
-                                elseif(empty($_POST['idIgrédient5']))
+                                elseif(empty($_POST['idIngredient5']))
                                 {
                                     $message="<label id =\"warning\">veuillez entrer l'identifiant d'un ingrédient de la recette s'il-vous-plaît</label>";
                                 }
@@ -156,7 +156,7 @@ if(isset($_GET['action'])){
                                 else
                                 {
                                     //met à jour la ligne de la table produit
-                                    $requete="UPDATE recette SET idOrigine='".addslashes($_POST['idOrigine'])."', nomRecette='".addslashes($_POST['nomRecette'])."', descriptionRecette='".addslashes($_POST['descriptionRecette'])."',dureeCuisson='".($_POST['dureeCuisson'])."', dureePreparation='".($_POST['dureePreparation'])."', recetteRecette='".addslashes($_POST['recetteRecette'])."', effetsRecette='".addslashes($_POST['effetsRecette'])."', idCategorie='".($_POST['idCategorie'])."', idIgrédient1='".($_POST['idIgrédient1'])."', idIgrédient1='".($_POST['idIgrédient2'])."', idIgrédient1='".($_POST['idIgrédient3'])."', idIgrédient1='".($_POST['idIgrédient4'])."', idIgrédient1='".($_POST['idIgrédient5'])."', idImage='".($_POST['idImage'])."'";
+                                    $requete="UPDATE recette SET idOrigine='".addslashes($_POST['idOrigine'])."', nomRecette='".addslashes($_POST['nomRecette'])."', descriptionRecette='".addslashes($_POST['descriptionRecette'])."',dureeCuisson='".($_POST['dureeCuisson'])."', dureePreparation='".($_POST['dureePreparation'])."', recetteRecette='".addslashes($_POST['recetteRecette'])."', effetsRecette='".addslashes($_POST['effetsRecette'])."', idCategorie='".($_POST['idCategorie'])."', idIngredient='".($_POST['idIngredient1'])."', idIngredient1='".($_POST['idIngredient2'])."', idIngredient3='".($_POST['idIngredient3'])."', idIngredient4='".($_POST['idIngredient4'])."', idIngredient5='".($_POST['idIngredient5'])."', idImage='".($_POST['idImage'])."'";
                                     $resultat=mysqli_query($connexion,$requete);
                                 }
                             }
@@ -174,11 +174,11 @@ if(isset($_GET['action'])){
                                 $_POST['recetteRecette']=stripslashes($ligne->recetteRecette); 
                                 $_POST['effetsRecette']=stripslashes($ligne->effetsRecette); 
                                 $_POST['idCategorie']=$ligne->idCategorie; 
-                                $_POST['idIgrédient1']=$ligne->idIgrédient1;
-                                $_POST['idIgrédient2']=$ligne->idIgrédient2;
-                                $_POST['idIgrédient3']=$ligne->idIgrédient3;
-                                $_POST['idIgrédient4']=$ligne->idIgrédient4;
-                                $_POST['idIgrédient5']=$ligne->idIgrédient5;
+                                $_POST['idIngredient1']=$ligne->idIngredient1;
+                                $_POST['idIngredient2']=$ligne->idIngredient2;
+                                $_POST['idIngredient3']=$ligne->idIngredient3;
+                                $_POST['idIngredient4']=$ligne->idIngredient4;
+                                $_POST['idIngredient5']=$ligne->idIngredient5;
                                 $_POST['idImage']=$ligne->idImage;
                             }
                         }   
@@ -203,6 +203,7 @@ if(isset($_GET['action'])){
                 }
             }
             $liste=afficher_recettes();
+            
         break;//fin case recette
         
         case "ingredient":
