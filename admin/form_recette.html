@@ -4,11 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Les recettes</title>
 </head>
 <body>
     <form enctype="multipart/form-data" action="admin.php?action=recette&cas=ajouter" method="POST">
         <!-- tableau avec les entrées dans la table recette de la base de données -->
+        <label for="idOrigine">Origine de la recette</label>
+        <input id="idOrigine" type="text" name="idOrigine" value="<?php if(isset($_POST['idOrigine'])){echo $_POST['idOrigine'];} ?>" />
+
         <label for="nomRecette">Nom de la recette</label>
         <input id="nomRecette" type="text" name="nomRecette" value="<?php if(isset($_POST['nomRecette'])){echo $_POST['nomRecette'];} ?>" />
         
@@ -22,7 +25,7 @@
         <input id="dureePreparation" type="text" name="dureePreparation" value="<?php if(isset($_POST['dureePreparation'])){echo $_POST['dureePreparation'];} ?>" />
 
         <label for="recetteRecette">La recette</label>
-        <input id="recetteRecette" type="text" name="recetteRecette" value="<?php if(isset($_POST['recetteRecette'])){echo $_POST['recetteRecette'];} ?>" />
+        <textarea id="recetteRecette" type="text" name="recetteRecette" ><?php if(isset($_POST['recetteRecette'])){echo $_POST['recetteRecette'];} ?></textarea>
 
         <label for="effetsRecette">Les effets de la recette</label>
         <input id="effetsRecette" type="text" name="effetsRecette" value="<?php if(isset($_POST['effetsRecette'])){echo $_POST['effetsRecette'];} ?>" />
@@ -45,6 +48,9 @@
 
         <label for="idIgrédient5">Igrédient n°5</label>
         <input id="idIgrédient5" type="text" name="idIgrédient5" value="<?php if(isset($_POST['idIgrédient5'])){echo $_POST['idIgrédient5'];} ?>" />
+
+        <label for="idImage">Image de la recette</label>
+	    <input id="idImage" type="text" name="idImage" value="" />
         
         <?php if(isset($message)){echo $message;} ?>
     

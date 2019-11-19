@@ -181,29 +181,49 @@ function connexion()
   mail($destinataire,$sujet,$message,$header);  
   }    
 
-  //==============
-  function afficher_produits(){
+  //============== affichage listes
+  function afficher_recettes(){
     $connexion=connexion();
-    $requete="SELECT * FROM produits ORDER BY nom_produit";
+    $requete="SELECT * FROM recette ORDER BY nomRecette";
     $resultat=mysqli_query($connexion, $requete);
     
     $liste="<table id=\"liste\">\n";
     $liste.="<tr>";
-    $liste.="<th>Nom du produit</th>";
+    $liste.="<th>Origine de la recette</th>";
+    $liste.="<th>Nom de la recette</th>";
     $liste.="<th>Description</th>";
-    $liste.="<th>Prix</th>";
+    $liste.="<th>Durée de cuisson</th>";
+    $liste.="<th>Durée de préparation</th>";
+    $liste.="<th>La recette</th>";
+    $liste.="<th>Les effets de la recette</th>";
+    $liste.="<th>La catégorie</th>";
+    $liste.="<th>Igrédient n°1</th>";
+    $liste.="<th>Igrédient n°2</th>";
+    $liste.="<th>Igrédient n°3</th>";
+    $liste.="<th>Igrédient n°4</th>";
+    $liste.="<th>Igrédient n°5</th>";
     $liste.="<th>Aperçu</th>";
     $liste.="<th>Actions</th>";
     $liste.="</tr>";
     
     while($ligne=mysqli_fetch_object($resultat)){
       $liste.="<tr>";
-      $liste.="<td>" . $ligne->nom_produit . "</td>";
-      $liste.="<td>" . $ligne->description_produit . "</td>";
-      $liste.="<td>" . $ligne->prix_produit . "</td>";
-      $liste.="<td><img src=\"" . $ligne->photo_produit . "\"alt=\"". $ligne->nom_produit . "\" /></td>";
-      $liste.="<td><a href=\"admin.php?action=produit&cas=modifier&id_produit=".$ligne->id_produit."\">modifier</a>&nbsp;
-      &nbsp;<a href=\"admin.php?action=produit&cas=supprimer&id_produit=".$ligne->id_produit."\">supprimer</a></td>";
+      $liste.="<td>" . $ligne->idOrigine . "</td>";
+      $liste.="<td>" . $ligne->nomRecette . "</td>";
+      $liste.="<td>" . $ligne->descriptionRecette . "</td>";
+      $liste.="<td>" . $ligne->dureeCuisson . "</td>";
+      $liste.="<td>" . $ligne->dureePreparation . "</td>";
+      $liste.="<td>" . $ligne->recetteRecette . "</td>";
+      $liste.="<td>" . $ligne->effetsRecette . "</td>";
+      $liste.="<td>" . $ligne->idCategorie . "</td>";
+      $liste.="<td>" . $ligne->idIngredient1 . "</td>";
+      $liste.="<td>" . $ligne->idIngredient2 . "</td>";
+      $liste.="<td>" . $ligne->idIngredient3 . "</td>";
+      $liste.="<td>" . $ligne->idIngredient4 . "</td>";
+      $liste.="<td>" . $ligne->idIngredient5 . "</td>";
+      $liste.="<td><img src=\"" . $ligne->idImage . "\"alt=\"". $ligne->nom_produit . "\" /></td>";
+      $liste.="<td><a href=\"admin.php?action=recette&cas=modifier&idRecette=".$ligne->idRecette."\">modifier</a>&nbsp;
+      &nbsp;<a href=\"admin.php?action=recette&cas=supprimer&idRecette=".$ligne->idRecette."\">supprimer</a></td>";
       $liste.="</tr>";
     }
     
