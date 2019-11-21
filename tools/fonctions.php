@@ -208,19 +208,19 @@ function connexion()
     
     while($ligne=mysqli_fetch_object($resultat)){
       $liste.="<tr>";
-      $liste.="<td>" . $ligne->idOrigine . "</td>";
+      $liste.="<td>" . utf8_encode($ligne->idOrigine) . "</td>";
       $liste.="<td>" . utf8_encode($ligne->nomRecette) . "</td>";
       $liste.="<td>" . utf8_encode($ligne->descriptionRecette) . "</td>";
-      $liste.="<td>" . $ligne->dureeCuisson . "</td>";
-      $liste.="<td>" . $ligne->dureePreparation . "</td>";
+      $liste.="<td>" . utf8_encode($ligne->dureeCuisson) . "</td>";
+      $liste.="<td>" . utf8_encode($ligne->dureePreparation) . "</td>";
       $liste.="<td>" . utf8_encode($ligne->recetteRecette) . "</td>";
       $liste.="<td>" . utf8_encode($ligne->effetsRecette) . "</td>";
-      $liste.="<td>" . $ligne->idCategorie . "</td>";
-      $liste.="<td>" . $ligne->idIngredient1 . "</td>";
-      $liste.="<td>" . $ligne->idIngredient2 . "</td>";
-      $liste.="<td>" . $ligne->idIngredient3 . "</td>";
-      $liste.="<td>" . $ligne->idIngredient4 . "</td>";
-      $liste.="<td>" . $ligne->idIngredient5 . "</td>";
+      $liste.="<td>" . utf8_encode($ligne->idCategorie) . "</td>";
+      $liste.="<td>" . utf8_encode($ligne->idIngredient1) . "</td>";
+      $liste.="<td>" . utf8_encode($ligne->idIngredient2) . "</td>";
+      $liste.="<td>" . utf8_encode($ligne->idIngredient3) . "</td>";
+      $liste.="<td>" . utf8_encode($ligne->idIngredient4) . "</td>";
+      $liste.="<td>" . utf8_encode($ligne->idIngredient5) . "</td>";
       $liste.="<td><img src=\"" . $ligne->idImage . "\"alt=\"". $ligne->nomRecette . "\" /></td>";
       $liste.="<td><a href=\"admin.php?action=recette&cas=modifier&idRecette=".$ligne->idRecette."\">modifier</a>&nbsp;
       &nbsp;<a href=\"admin.php?action=recette&cas=supprimer&idRecette=".$ligne->idRecette."\">supprimer</a></td>";
