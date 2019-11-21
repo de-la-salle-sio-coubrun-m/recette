@@ -36,3 +36,21 @@ form{
 form>div{
 	margin: 0 2vw;
 }
+
+
+/****************************************************************/
+
+#hugeList {
+  display: none;
+  width: 100%;
+  margin-top: -2px;
+  color:  #FFFFFF;
+}
+#hugeList option{
+width: 100%;
+padding: 20px 15px;
+border-right: 2px solid rgba(255, 255, 255, .6);
+border-bottom: 2px solid rgba(255, 255, 255, .6);
+border-left: 2px solid rgba(255, 255, 255, .6);
+
+}

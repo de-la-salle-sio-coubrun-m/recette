@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  ven. 08 nov. 2019 à 15:09
+-- Généré le :  jeu. 21 nov. 2019 à 11:31
 -- Version du serveur :  5.7.24
 -- Version de PHP :  7.2.14
 
@@ -34,10 +34,11 @@ CREATE TABLE IF NOT EXISTS `article` (
   `titreArticle` varchar(50) DEFAULT NULL,
   `contenuArticle` varchar(500) DEFAULT NULL,
   `dateArticle` date DEFAULT NULL,
-  `auteurArticle` varchar(50) DEFAULT NULL,
+  `idMembre` int(4) NOT NULL,
   `idRecette` int(4) NOT NULL,
   PRIMARY KEY (`idArticle`),
-  UNIQUE KEY `fkRecette` (`idRecette`) USING BTREE
+  KEY `fkMembre` (`idMembre`),
+  KEY `fkRecetteArticle` (`idRecette`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -65,6 +66,19 @@ INSERT INTO `categorie` (`idCategorie`, `nomCategorie`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `etat`
+--
+
+DROP TABLE IF EXISTS `etat`;
+CREATE TABLE IF NOT EXISTS `etat` (
+  `idEtat` int(4) NOT NULL AUTO_INCREMENT,
+  `labelEtat` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`idEtat`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `image`
 --
 
@@ -74,7 +88,14 @@ CREATE TABLE IF NOT EXISTS `image` (
   `nomImage` varchar(50) DEFAULT NULL,
   `urlImage` varchar(500) DEFAULT NULL,
   PRIMARY KEY (`idImage`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+--
+-- Déchargement des données de la table `image`
+--
+
+INSERT INTO `image` (`idImage`, `nomImage`, `urlImage`) VALUES
+(1, 'test1', 'test1');
 
 -- --------------------------------------------------------
 
@@ -89,7 +110,7 @@ CREATE TABLE IF NOT EXISTS `ingredient` (
   `recolteIngredient` varchar(200) DEFAULT NULL,
   `lieuIngredient` varchar(500) DEFAULT NULL,
   PRIMARY KEY (`idIngredient`)
-) ENGINE=InnoDB AUTO_INCREMENT=69 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=78 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `ingredient`
@@ -163,7 +184,45 @@ INSERT INTO `ingredient` (`idIngredient`, `nomIngredient`, `recolteIngredient`, 
 (65, 'Petit Pois Eosien', 'Au sol', 'Région de Leide'),
 (66, 'Fungus', 'Magasin // Au sol // Quête annexe', 'Station-Service de Hammerhead, Bazar JM de l\'aire de Repos des Chasseurs/Vieux Lestallum, Épicerie du Relais de Chocobos, Mets du Météore (Lestallum) // A proximité de la Baie de Galdina // Un Coursier Princier (Takka)'),
 (67, 'Truffe de Vesper', 'Magasin // Au sol', 'Bazar JM Vieux Lestallum // A proximité du Siège de Meldacio'),
-(68, 'Girolle de Malmalam', 'Magasin // Au sol', 'Bric à Brac de Prissock (Lestallum), Bazar JM Vieux Lestallum // Fourré de Malmalam');
+(68, 'Girolle de Malmalam', 'Magasin // Au sol', 'Bric à Brac de Prissock (Lestallum), Bazar JM Vieux Lestallum // Fourré de Malmalam'),
+(69, 'Farine pour gyoza', 'Magasin', 'Grande Surface'),
+(70, 'Pistaches décortiquées', 'Magasin', 'Grande Surface'),
+(71, 'Fraises fraîches', 'Magasin', 'Grande Surface'),
+(72, 'Confiture de fraises', 'Magasin', 'Grande Surface'),
+(73, 'Oeufs', 'Magasin', 'Grande surface'),
+(74, 'Sucre', 'Magasin', 'Grande surface'),
+(75, 'Cannelle moulue', 'Magasin', 'Grande surface'),
+(76, 'Miel liquide', 'Magasin', 'Grande surface'),
+(77, 'Semoule de blé fine', 'Magasin', 'Grande surface');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `ingredientrecette`
+--
+
+DROP TABLE IF EXISTS `ingredientrecette`;
+CREATE TABLE IF NOT EXISTS `ingredientrecette` (
+  `idRecette` int(4) NOT NULL,
+  `idIngredient` int(4) NOT NULL,
+  PRIMARY KEY (`idRecette`,`idIngredient`),
+  KEY `fkIngredient` (`idIngredient`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `membre`
+--
+
+DROP TABLE IF EXISTS `membre`;
+CREATE TABLE IF NOT EXISTS `membre` (
+  `idMembre` int(4) NOT NULL AUTO_INCREMENT,
+  `nomMembre` varchar(50) DEFAULT NULL,
+  `idPrivilege` int(4) DEFAULT NULL,
+  PRIMARY KEY (`idMembre`),
+  KEY `fkPrivilege` (`idPrivilege`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -177,14 +236,29 @@ CREATE TABLE IF NOT EXISTS `origine` (
   `nomOrigine` varchar(50) DEFAULT NULL,
   `descriptionOrigine` varchar(500) DEFAULT NULL,
   PRIMARY KEY (`idOrigine`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `origine`
 --
 
 INSERT INTO `origine` (`idOrigine`, `nomOrigine`, `descriptionOrigine`) VALUES
-(1, 'final fantasy XV', 'Final Fantasy XV, annoncé originellement sous le titre Final Fantasy Versus XIII, est un jeu vidéo de la célèbre série Final Fantasy, développé et édité par Square Enix, sorti le 29 novembre 2016 sur les consoles PlayStation 4 et Xbox One. Une Windows Edition et une Royal Edition sont sorties le 6 mars 2018.');
+(1, 'final fantasy XV', 'Final Fantasy XV, annoncé originellement sous le titre Final Fantasy Versus XIII, est un jeu vidéo de la célèbre série Final Fantasy, développé et édité par Square Enix, sorti le 29 novembre 2016 sur les consoles PlayStation 4 et Xbox One. Une Windows Edition et une Royal Edition sont sorties le 6 mars 2018.'),
+(2, 'firefly', 'Firefly est une série télévisée de space western américaine en 14 épisodes, créée par le scénariste et réalisateur Joss Whedon avec sa société de production Mutant Enemy.'),
+(3, 'dune', 'Initié par les romans de Frank Herbert, l\'univers de Dune est à la base d\'une franchise ayant généré un grand nombre d’œuvres dans des domaines très variés.');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `privilege`
+--
+
+DROP TABLE IF EXISTS `privilege`;
+CREATE TABLE IF NOT EXISTS `privilege` (
+  `idPrivilege` int(4) NOT NULL AUTO_INCREMENT,
+  `labelPrivilege` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`idPrivilege`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -198,27 +272,19 @@ CREATE TABLE IF NOT EXISTS `recette` (
   `idOrigine` int(4) NOT NULL,
   `nomRecette` varchar(100) NOT NULL,
   `descriptionRecette` varchar(500) DEFAULT NULL,
-  `dureeCuisson` varchar(10) DEFAULT NULL,
-  `dureePreparation` varchar(10) DEFAULT NULL,
-  `recetteRecette` varchar(500) DEFAULT NULL,
+  `dureeCuisson` varchar(100) DEFAULT NULL,
+  `dureePreparation` varchar(100) DEFAULT NULL,
+  `recetteRecette` varchar(5000) DEFAULT NULL,
   `effetsRecette` varchar(500) DEFAULT NULL,
   `idCategorie` int(4) NOT NULL,
-  `idIngredient1` int(4) DEFAULT NULL,
-  `idIngredient2` int(4) DEFAULT NULL,
-  `idIngredient3` int(4) DEFAULT NULL,
-  `idIngredient4` int(4) DEFAULT NULL,
-  `idIngredient5` int(4) DEFAULT NULL,
   `idImage` int(4) DEFAULT NULL,
+  `idEtat` int(4) DEFAULT NULL,
   PRIMARY KEY (`idRecette`),
   KEY `fkOrigine` (`idOrigine`),
   KEY `fkCategorie` (`idCategorie`),
-  KEY `fkIngredient1` (`idIngredient1`),
-  KEY `fkIngredient2` (`idIngredient2`),
-  KEY `fkIngredient3` (`idIngredient3`),
-  KEY `fkIngredient4` (`idIngredient4`),
-  KEY `fkIngredient5` (`idIngredient5`),
-  KEY `fkImage` (`idImage`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  KEY `fkImage` (`idImage`),
+  KEY `fkEtat` (`idEtat`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 --
 -- Contraintes pour les tables déchargées
@@ -228,20 +294,30 @@ CREATE TABLE IF NOT EXISTS `recette` (
 -- Contraintes pour la table `article`
 --
 ALTER TABLE `article`
-  ADD CONSTRAINT `article_ibfk_1` FOREIGN KEY (`idRecette`) REFERENCES `recette` (`idRecette`);
+  ADD CONSTRAINT `fkMembre` FOREIGN KEY (`idMembre`) REFERENCES `membre` (`idMembre`),
+  ADD CONSTRAINT `fkRecetteArticle` FOREIGN KEY (`idRecette`) REFERENCES `recette` (`idRecette`);
+
+--
+-- Contraintes pour la table `ingredientrecette`
+--
+ALTER TABLE `ingredientrecette`
+  ADD CONSTRAINT `fkIngredient` FOREIGN KEY (`idIngredient`) REFERENCES `ingredient` (`idIngredient`),
+  ADD CONSTRAINT `fkRecette` FOREIGN KEY (`idRecette`) REFERENCES `recette` (`idRecette`);
+
+--
+-- Contraintes pour la table `membre`
+--
+ALTER TABLE `membre`
+  ADD CONSTRAINT `fkPrivilege` FOREIGN KEY (`idPrivilege`) REFERENCES `privilege` (`idPrivilege`);
 
 --
 -- Contraintes pour la table `recette`
 --
 ALTER TABLE `recette`
-  ADD CONSTRAINT `fkCategorie` FOREIGN KEY (`idCategorie`) REFERENCES `categorie` (`idCategorie`),
-  ADD CONSTRAINT `fkImage` FOREIGN KEY (`idImage`) REFERENCES `image` (`idImage`),
-  ADD CONSTRAINT `fkIngredient1` FOREIGN KEY (`idIngredient1`) REFERENCES `ingredient` (`idIngredient`),
-  ADD CONSTRAINT `fkIngredient2` FOREIGN KEY (`idIngredient2`) REFERENCES `ingredient` (`idIngredient`),
-  ADD CONSTRAINT `fkIngredient3` FOREIGN KEY (`idIngredient3`) REFERENCES `ingredient` (`idIngredient`),
-  ADD CONSTRAINT `fkIngredient4` FOREIGN KEY (`idIngredient4`) REFERENCES `ingredient` (`idIngredient`),
-  ADD CONSTRAINT `fkIngredient5` FOREIGN KEY (`idIngredient5`) REFERENCES `ingredient` (`idIngredient`),
-  ADD CONSTRAINT `fkOrigine` FOREIGN KEY (`idOrigine`) REFERENCES `origine` (`idOrigine`);
+  ADD CONSTRAINT `fkEtat` FOREIGN KEY (`idEtat`) REFERENCES `etat` (`idEtat`),
+  ADD CONSTRAINT `recette_ibfk_1` FOREIGN KEY (`idOrigine`) REFERENCES `origine` (`idOrigine`),
+  ADD CONSTRAINT `recette_ibfk_2` FOREIGN KEY (`idCategorie`) REFERENCES `categorie` (`idCategorie`),
+  ADD CONSTRAINT `recette_ibfk_3` FOREIGN KEY (`idImage`) REFERENCES `image` (`idImage`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
