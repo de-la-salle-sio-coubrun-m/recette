@@ -175,7 +175,105 @@ if(isset($_GET['action'])){
         break;//fin case recette
         
         case "ingredient":
-            # code...
+            //contenu à afficher
+            $contenu="form_ingredient.html";
+
+            if(isset($_GET["cas"])){
+                switch ($_GET["cas"]) {
+                    case "ajouter":
+                        $action_form="ajouter";
+                        //si le bouton créer a été activé
+                        if(isset($_POST['submit'])){
+                            if(empty($_POST['nomIngredient']))
+                            {
+                                $message="<label id =\"warning\">veuillez entrer le nom de l'ingrédient s'il-vous-plaît</label>";
+                            }
+                            elseif(empty($_POST['recolteIngredient']))
+                            {
+                                $message="<label id =\"warning\">veuillez entrer la (ou les) méthode(s) d'obtention de l'ingrédients s'il-vous-plaît</label>";
+                            }
+                            elseif(empty($_POST['lieuIngredient']))
+                            {
+                                $message="<label id =\"warning\">veuillez entrer le (ou les) lieu(x) ou l'ingredient peut être obtenu s'il-vous-plaît</label>";
+                            }
+                            else
+                            {
+                                //on insert dans la table recette les valeurs des champs nom et description
+                                //addslashes permet de mettre des \ en cas de  '  .
+                                $requete="  INSERT INTO ingredient 
+                                SET nomIngredient='".addslashes($_POST['nomIngredient'])."', 	recolteIngredient='".addslashes($_POST['	recolteIngredient'])."', lieuIngredient='".addslashes($_POST['lieuIngredient'])."'";
+                                echo $requete;
+                                //execution de la requete dans la BDD
+                                $resultat=mysqli_query($connexion,$requete);
+                            }
+                        }
+                        else
+                        {
+
+                        }
+                    break;//fin case ajouter
+                    
+                    case "modifier":
+                        if(isset($_GET['idIngredient']))
+                        {
+                            //si le bouton enregistrer du formulaire n'a pas été activé
+                            $action_form="modifier&idIngredient=".$_GET['idIngredient']."";
+                            
+                            //si on appuie sur le bouton enregistrer du formulaire
+                            if(isset($_POST['submit'])){
+                                if(empty($_POST['nomIngredient']))
+                            {
+                                $message="<label id =\"warning\">veuillez entrer le nom de l'ingrédient s'il-vous-plaît</label>";
+                            }
+                            elseif(empty($_POST['recolteIngredient']))
+                            {
+                                $message="<label id =\"warning\">veuillez entrer la (ou les) méthode(s) d'obtention de l'ingrédients s'il-vous-plaît</label>";
+                            }
+                            elseif(empty($_POST['lieuIngredient']))
+                            {
+                                $message="<label id =\"warning\">veuillez entrer le (ou les) lieu(x) ou l'ingredient peut être obtenu s'il-vous-plaît</label>";
+                            }
+                                else
+                                {
+                                    //met à jour la ligne de la table recette
+                                    $requete="UPDATE ingredient SET nomIngredient='".addslashes($_POST['nomIngredient'])."', 	recolteIngredient='".addslashes($_POST['	recolteIngredient'])."', lieuIngredient='".addslashes($_POST['lieuIngredient'])."'";
+                                    $resultat=mysqli_query($connexion,$requete);
+                                }
+                            }
+                            else
+                            {
+                                //on recharge le formulaire avec les données
+                                $requete="SELECT * FROM ingredient WHERE idIngredient='".$_GET['idIngredient']."'";
+                                $resultat=mysqli_query($connexion,$requete);
+                                $ligne=mysqli_fetch_object($resultat);
+                                $_POST['nomIngredient']=stripslashes($ligne->nomIngredient);
+                                $_POST['recolteIngredient']=stripslashes($ligne->recolteIngredient);
+                                $_POST['lieuIngredient']=stripslashes($ligne->lieuIngredient);
+                            }
+                        }   
+                    break;//fin case modifier
+
+                    case "supprimer":
+                        $action_form="ajouter";
+
+                        if(isset($_GET['idIngredient']))
+                        {
+                            
+                            $message="<label id=\"confirme\">Voulez-vous vraiment supprimer l'ingredient ?<a href=\"admin.php?action=ingredient&cas=supprimer&idIngredient=".$_GET['idIngredient']."&confirme=oui\">OUI</a>&nbsp;&nbsp;<a href=\"admin.php?action=ingredient\">NON</a></label>";
+
+                            if(isset($_GET['confirme']) && $_GET['confirme']=="oui")
+                            {
+                                $requete2="DELETE FROM ingredient WHERE idIngredient='".$_GET['idIngredient']."'";
+                                echo $requete2;
+                                $resultat2=mysqli_query($connexion,$requete2);
+                                echo $resultat2;
+                                $message="<label id=\"bravo\">L'ingredient a bien été supprimée</label>";
+                            }
+                        }
+                    break;//fin case supprimer
+                }
+            }
+            $liste=afficher_Ingredient();
         break;//fin case ingredient
 
         case "article":
