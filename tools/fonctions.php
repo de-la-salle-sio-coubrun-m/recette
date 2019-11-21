@@ -313,4 +313,56 @@ function afficher_Ingredient(){
   return $liste;
 }
 
+//============== affichage membres
+function afficher_membres(){
+  $connexion=connexion();
+  $requete="SELECT * FROM membre ORDER BY nomMembre";
+  $resultat=mysqli_query($connexion, $requete);
+  
+  $liste="<table id=\"liste\">\n";
+  $liste.="<tr>";
+  $liste.="<th>Nom du membre</th>";
+  $liste.="<th>Privilèges du membre</th>";
+  $liste.="<th>Actions</th>";
+  $liste.="</tr>";
+  
+  while($ligne=mysqli_fetch_object($resultat)){
+    $liste.="<tr>";
+    $liste.="<td>" . $ligne->nomMembre . "</td>";
+    $liste.="<td>" . $ligne->idPrivilege . "</td>";
+    $liste.="<td><a href=\"admin.php?action=membre&cas=modifier&idMembre=".$ligne->idMembre."\">modifier</a>&nbsp;
+    &nbsp;<a href=\"admin.php?action=membre&cas=supprimer&idMembre=".$ligne->idMembre."\">supprimer</a></td>";
+    $liste.="</tr>";
+  }
+  
+  $liste.="</table>\n";
+  mysqli_close($connexion);
+  return $liste;
+}
+
+//============== affichage catégories
+function afficher_categories(){
+  $connexion=connexion();
+  $requete="SELECT * FROM categorie ORDER BY nomCategorie";
+  $resultat=mysqli_query($connexion, $requete);
+  
+  $liste="<table id=\"liste\">\n";
+  $liste.="<tr>";
+  $liste.="<th>Nom de la catégorie</th>";
+  $liste.="<th>Actions</th>";
+  $liste.="</tr>";
+  
+  while($ligne=mysqli_fetch_object($resultat)){
+    $liste.="<tr>";
+    $liste.="<td>" . $ligne->nomCategorie . "</td>";
+    $liste.="<td><a href=\"admin.php?action=categorie&cas=modifier&idCategorie=".$ligne->idCategorie."\">modifier</a>&nbsp;
+    &nbsp;<a href=\"admin.php?action=membre&cas=supprimer&idCategorie=".$ligne->idCategorie."\">supprimer</a></td>";
+    $liste.="</tr>";
+  }
+  
+  $liste.="</table>\n";
+  mysqli_close($connexion);
+  return $liste;
+}
+
 ?>

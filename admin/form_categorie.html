@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Les Catégories</title>
+</head>
+<body>
+    <form enctype="multipart/form-data" action="admin.php?action=categorie&cas=<?php if(isset($action_form)){echo $action_form;} ?>" method="POST">
+        <!-- tableau avec les entrées dans la table categorie de la base de données -->
+        <div>
+            <label for="nomCategorie">Nom de la catégorie</label>
+            <input id="nomCategorie" list="hugeList" type="text" name="nomCategorie" value="<?php if(isset($_POST['nomCategorie'])){echo $_POST['nomCategorie'];} ?>" />
+            <datalist id="hugeList">
+            </datalist>
+        </div>
+        
+        <?php if(isset($message)){echo $message;} ?>
+    
+        <div id="boutons">
+            <input type="submit" name="submit" value="ENREGISTRER" />
+            <input type="reset" name="reset" value="ANNULER" />
+        </div>
+    </form>
+</body>
+</html>
