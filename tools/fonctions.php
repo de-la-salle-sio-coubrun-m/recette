@@ -224,4 +224,93 @@ function connexion()
     return $liste;
   }
 
+  //============== affichage articles
+  function afficher_articles(){
+    $connexion=connexion();
+    $requete="SELECT * FROM article ORDER BY titreArticle";
+    $resultat=mysqli_query($connexion, $requete);
+    
+    $liste="<table id=\"liste\">\n";
+    $liste.="<tr>";
+    $liste.="<th>Titre de l'article</th>";
+    $liste.="<th>Contenu de l'article</th>";
+    $liste.="<th>Date de l'article</th>";
+    $liste.="<th>Auteur</th>";
+    $liste.="<th>Recette de l'article</th>";
+    $liste.="<th>Actions</th>";
+    $liste.="</tr>";
+    
+    while($ligne=mysqli_fetch_object($resultat)){
+      $liste.="<tr>";
+      $liste.="<td>" . $ligne->titreArticle . "</td>";
+      $liste.="<td>" . $ligne->contenuArticle . "</td>";
+      $liste.="<td>" . $ligne->dateArticle . "</td>";
+      $liste.="<td>" . $ligne->idMembre . "</td>";
+      $liste.="<td>" . $ligne->idRecette . "</td>";
+      $liste.="<td><a href=\"admin.php?action=article&cas=modifier&idArticle=".$ligne->idArticle."\">modifier</a>&nbsp;
+      &nbsp;<a href=\"admin.php?action=article&cas=supprimer&idArticle=".$ligne->idArticle."\">supprimer</a></td>";
+      $liste.="</tr>";
+    }
+    
+    $liste.="</table>\n";
+    mysqli_close($connexion);
+    return $liste;
+  }
+
+//============== affichage images
+function afficher_images(){
+  $connexion=connexion();
+  $requete="SELECT * FROM image ORDER BY nomImage";
+  $resultat=mysqli_query($connexion, $requete);
+  
+  $liste="<table id=\"liste\">\n";
+  $liste.="<tr>";
+  $liste.="<th>Nom de l'image</th>";
+  $liste.="<th>URL de l'image</th>";
+  $liste.="<th>Actions</th>";
+  $liste.="</tr>";
+  
+  while($ligne=mysqli_fetch_object($resultat)){
+    $liste.="<tr>";
+    $liste.="<td>" . $ligne->nomImage . "</td>";
+    $liste.="<td>" . $ligne->urlImage . "</td>";
+    $liste.="<td><a href=\"admin.php?action=image&cas=modifier&idImage=".$ligne->idImage."\">modifier</a>&nbsp;
+    &nbsp;<a href=\"admin.php?action=image&cas=supprimer&idImage=".$ligne->idImage."\">supprimer</a></td>";
+    $liste.="</tr>";
+  }
+  
+  $liste.="</table>\n";
+  mysqli_close($connexion);
+  return $liste;
+}
+
+//============== affichage ingrédients
+function afficher_ingredients(){
+  $connexion=connexion();
+  $requete="SELECT * FROM ingredient ORDER BY nomIngredient";
+  $resultat=mysqli_query($connexion, $requete);
+  
+  $liste="<table id=\"liste\">\n";
+  $liste.="<tr>";
+  $liste.="<th>Nom de l'ingrédient</th>";
+  $liste.="<th>Méthode de récolte de l'ingrédient</th>";
+  $liste.="<th>Lieu où trouver l'ingrédient</th>";
+  $liste.="<th>Actions</th>";
+  $liste.="</tr>";
+  
+  while($ligne=mysqli_fetch_object($resultat)){
+    $liste.="<tr>";
+    $liste.="<td>" . $ligne->nomIngredient . "</td>";
+    $liste.="<td>" . $ligne->recolteIngredient . "</td>";
+    $liste.="<td>" . $ligne->lieuIngredient . "</td>";
+    $liste.="<td><a href=\"admin.php?action=ingredient&cas=modifier&idIngredient=".$ligne->idIngredient."\">modifier</a>&nbsp;
+    &nbsp;<a href=\"admin.php?action=ingredient&cas=supprimer&idIngredient=".$ligne->idIngredient."\">supprimer</a></td>";
+    $liste.="</tr>";
+  }
+  
+  $liste.="</table>\n";
+  mysqli_close($connexion);
+  return $liste;
+}
+
 ?>

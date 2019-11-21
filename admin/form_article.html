@@ -1,12 +1,47 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Les articles</title>
 </head>
 <body>
+        <form enctype="multipart/form-data" action="admin.php?action=article&cas=<?php if(isset($action_form)){echo $action_form;} ?>" method="POST">
+            <!-- tableau avec les entrées dans la table article de la base de données -->
+            <div>
+                <label for="titreArticle">Titre de l'article</label>
+                <input id="titreArticle" list="hugeList" type="text" name="titreArticle" value="<?php if(isset($_POST['titreArticle'])){echo $_POST['titreArticle'];} ?>" />
+                <datalist id="hugeList">
+                </datalist>
+            </div>
     
-</body>
+            <div>
+                <label for="contenuArticle">Contenu de l'article</label>
+                <input id="contenuArticle" type="text" name="contenuArticle" value="<?php if(isset($_POST['contenuArticle'])){echo $_POST['contenuArticle'];} ?>" />
+            </div>
+            
+            <div>
+                <label for="dateArticle">Date de l'article</label>
+                <textarea id="dateArticle" name="dateArticle"><?php if(isset($_POST['dateArticle'])){echo $_POST['dateArticle'];} ?></textarea>
+            </div>
+            
+            <div>
+                <label for="idMembre">Auteur de l'article</label>
+                <input id="idMembre" type="text" name="idMembre" value="<?php if(isset($_POST['idMembre'])){echo $_POST['idMembre'];} ?>" />
+            </div>
+            
+            <div>
+                <label for="idRecette">Recette de l'article</label>
+                <input id="idRecette" type="text" name="idRecette" value="<?php if(isset($_POST['idRecette'])){echo $_POST['idRecette'];} ?>" />
+            </div>
+            
+            <?php if(isset($message)){echo $message;} ?>
+        
+            <div id="boutons">
+                <input type="submit" name="submit" value="ENREGISTRER" />
+                <input type="reset" name="reset" value="ANNULER" />
+            </div>
+        </form>
+    </body>
 </html>

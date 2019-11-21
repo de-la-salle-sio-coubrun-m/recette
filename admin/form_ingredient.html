@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Les ingrédients</title>
+</head>
+<body>
+    <form enctype="multipart/form-data" action="admin.php?action=ingredient&cas=<?php if(isset($action_form)){echo $action_form;} ?>" method="POST">
+        <!-- tableau avec les entrées dans la table ingredient de la base de données -->
+        <div>
+            <label for="nomIngredient">Nom de l'ingrédient</label>
+            <input id="nomIngredient" list="hugeList" type="text" name="nomIngredient" value="<?php if(isset($_POST['nomIngredient'])){echo $_POST['nomIngredient'];} ?>" />
+            <datalist id="hugeList">
+            </datalist>
+        </div>
+
+        <div>
+            <label for="recolteIngredient">Comment se récolte l'ingrédient</label>
+            <input id="recolteIngredient" type="text" name="recolteIngredient" value="<?php if(isset($_POST['recolteIngredient'])){echo $_POST['recolteIngredient'];} ?>" />
+        </div>
+        
+        <div>
+            <label for="lieuIngredient">Lieu où trouver l'ingrédient</label>
+            <textarea id="lieuIngredient" name="lieuIngredient"><?php if(isset($_POST['lieuIngredient'])){echo $_POST['lieuIngredient'];} ?></textarea>
+        </div>
+        
+        <?php if(isset($message)){echo $message;} ?>
+    
+        <div id="boutons">
+            <input type="submit" name="submit" value="ENREGISTRER" />
+            <input type="reset" name="reset" value="ANNULER" />
+        </div>
+    </form>
+</body>
+</html>
