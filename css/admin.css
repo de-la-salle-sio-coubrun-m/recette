@@ -16,12 +16,34 @@ header{
 	display: flex;
 	justify-content: space-between;
 	margin-top: 3vh;
+	padding: 0 5px;
+}
+
+table {
+  border: 2px solid #555;
+  border-collapse: collapse;
+}
+
+th, td {
+  border: 1px solid #000;
+	border-collapse: collapse;
+	justify-content: center;
+	padding-left: 5px;
+}
+
+th {
+	background-color: lightgray;
 }
 
 nav>ul{
 	display: flex;
 	justify-content: space-around;
 	margin: 3vh 20vh;
+	list-style: none;
+}
+
+nav>ul>li{
+	padding: 2vw;
 }
 
 form{

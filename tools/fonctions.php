@@ -215,7 +215,7 @@ function connexion()
       $liste.="<td>" . utf8_decode(utf8_encode($ligne->idIngredient)) . "</td>";
       $liste.="<td><img src=\"" . $ligne->idImage . "\"alt=\"". $ligne->nomRecette . "\" /></td>";
       $liste.="<td><a href=\"admin.php?action=recette&cas=modifier&idRecette=".$ligne->idRecette."\">modifier</a>&nbsp;
-      &nbsp;<a href=\"admin.php?action=recette&cas=supprimer&idRecette=".$ligne->idRecette."\">supprimer</a></td>";
+      <a href=\"admin.php?action=recette&cas=supprimer&idRecette=".$ligne->idRecette."\">supprimer</a>&nbsp;</td>";
       $liste.="</tr>";
     }
     
@@ -248,7 +248,7 @@ function connexion()
       $liste.="<td>" . $ligne->idMembre . "</td>";
       $liste.="<td>" . $ligne->idRecette . "</td>";
       $liste.="<td><a href=\"admin.php?action=article&cas=modifier&idArticle=".$ligne->idArticle."\">modifier</a>&nbsp;
-      &nbsp;<a href=\"admin.php?action=article&cas=supprimer&idArticle=".$ligne->idArticle."\">supprimer</a></td>";
+      <a href=\"admin.php?action=article&cas=supprimer&idArticle=".$ligne->idArticle."\">supprimer</a>&nbsp;</td>";
       $liste.="</tr>";
     }
     
@@ -275,7 +275,7 @@ function afficher_images(){
     $liste.="<td>" . $ligne->nomImage . "</td>";
     $liste.="<td>" . $ligne->urlImage . "</td>";
     $liste.="<td><a href=\"admin.php?action=image&cas=modifier&idImage=".$ligne->idImage."\">modifier</a>&nbsp;
-    &nbsp;<a href=\"admin.php?action=image&cas=supprimer&idImage=".$ligne->idImage."\">supprimer</a></td>";
+    <a href=\"admin.php?action=image&cas=supprimer&idImage=".$ligne->idImage."\">supprimer</a>&nbsp;</td>";
     $liste.="</tr>";
   }
   
@@ -304,7 +304,7 @@ function afficher_Ingredient(){
     $liste.="<td>" . $ligne->recolteIngredient . "</td>";
     $liste.="<td>" . $ligne->lieuIngredient . "</td>";
     $liste.="<td><a href=\"admin.php?action=ingredient&cas=modifier&idIngredient=".$ligne->idIngredient."\">modifier</a>&nbsp;
-    &nbsp;<a href=\"admin.php?action=ingredient&cas=supprimer&idIngredient=".$ligne->idIngredient."\">supprimer</a></td>";
+    <a href=\"admin.php?action=ingredient&cas=supprimer&idIngredient=".$ligne->idIngredient."\">supprimer</a>&nbsp;</td>";
     $liste.="</tr>";
   }
   
@@ -331,7 +331,7 @@ function afficher_membres(){
     $liste.="<td>" . $ligne->nomMembre . "</td>";
     $liste.="<td>" . $ligne->idPrivilege . "</td>";
     $liste.="<td><a href=\"admin.php?action=membre&cas=modifier&idMembre=".$ligne->idMembre."\">modifier</a>&nbsp;
-    &nbsp;<a href=\"admin.php?action=membre&cas=supprimer&idMembre=".$ligne->idMembre."\">supprimer</a></td>";
+    <a href=\"admin.php?action=membre&cas=supprimer&idMembre=".$ligne->idMembre."\">supprimer</a>&nbsp;</td>";
     $liste.="</tr>";
   }
   
@@ -356,7 +356,7 @@ function afficher_categories(){
     $liste.="<tr>";
     $liste.="<td>" . $ligne->nomCategorie . "</td>";
     $liste.="<td><a href=\"admin.php?action=categorie&cas=modifier&idCategorie=".$ligne->idCategorie."\">modifier</a>&nbsp;
-    &nbsp;<a href=\"admin.php?action=membre&cas=supprimer&idCategorie=".$ligne->idCategorie."\">supprimer</a></td>";
+    <a href=\"admin.php?action=membre&cas=supprimer&idCategorie=".$ligne->idCategorie."\">supprimer</a>&nbsp;</td>";
     $liste.="</tr>";
   }
   

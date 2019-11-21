@@ -18,12 +18,12 @@
     
             <div>
                 <label for="contenuArticle">Contenu de l'article</label>
-                <input id="contenuArticle" type="text" name="contenuArticle" value="<?php if(isset($_POST['contenuArticle'])){echo $_POST['contenuArticle'];} ?>" />
+                <textarea id="contenuArticle" type="text" name="contenuArticle"><?php if(isset($_POST['contenuArticle'])){echo $_POST['contenuArticle'];} ?> </textarea>
             </div>
             
             <div>
                 <label for="dateArticle">Date de l'article</label>
-                <textarea id="dateArticle" name="dateArticle"><?php if(isset($_POST['dateArticle'])){echo $_POST['dateArticle'];} ?></textarea>
+                <input id="dateArticle" name="dateArticle" value="<?php if(isset($_POST['dateArticle'])){echo $_POST['dateArticle'];} ?>"/>
             </div>
             
             <div>

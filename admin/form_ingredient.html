@@ -23,7 +23,7 @@
         
         <div>
             <label for="lieuIngredient">Lieu où trouver l'ingrédient</label>
-            <textarea id="lieuIngredient" name="lieuIngredient"><?php if(isset($_POST['lieuIngredient'])){echo $_POST['lieuIngredient'];} ?></textarea>
+            <input id="lieuIngredient" name="lieuIngredient" value="<?php if(isset($_POST['lieuIngredient'])){echo $_POST['lieuIngredient'];} ?>"/>
         </div>
         
         <?php if(isset($message)){echo $message;} ?>
