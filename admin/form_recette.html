@@ -11,7 +11,9 @@
         <!-- tableau avec les entrées dans la table recette de la base de données -->
         <div>
             <label for="idOrigine">Origine de la recette</label>
-            <input id="idOrigine" type="text" name="idOrigine" value="<?php if(isset($_POST['idOrigine'])){echo $_POST['idOrigine'];} ?>" />
+            <input id="idOrigine" list="hugeList" type="text" name="idOrigine" value="<?php if(isset($_POST['idOrigine'])){echo $_POST['idOrigine'];} ?>" />
+            <datalist id="hugeList">
+            </datalist>
         </div>
 
         <div>
