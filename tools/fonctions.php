@@ -197,11 +197,7 @@ function connexion()
     $liste.="<th>La recette</th>";
     $liste.="<th>Les effets de la recette</th>";
     $liste.="<th>La catégorie</th>";
-    $liste.="<th>Ingrédient n°1</th>";
-    $liste.="<th>Ingrédient n°2</th>";
-    $liste.="<th>Ingrédient n°3</th>";
-    $liste.="<th>Ingrédient n°4</th>";
-    $liste.="<th>Ingrédient n°5</th>";
+    $liste.="<th>Ingrédients</th>";
     $liste.="<th>Aperçu</th>";
     $liste.="<th>Actions</th>";
     $liste.="</tr>";
@@ -216,11 +212,7 @@ function connexion()
       $liste.="<td>" . utf8_decode(utf8_encode($ligne->recetteRecette)) . "</td>";
       $liste.="<td>" . utf8_decode(utf8_encode($ligne->effetsRecette)) . "</td>";
       $liste.="<td>" . utf8_decode(utf8_encode($ligne->idCategorie)) . "</td>";
-      $liste.="<td>" . utf8_decode(utf8_encode($ligne->idIngredient1)) . "</td>";
-      $liste.="<td>" . utf8_decode(utf8_encode($ligne->idIngredient2)) . "</td>";
-      $liste.="<td>" . utf8_decode(utf8_encode($ligne->idIngredient3)) . "</td>";
-      $liste.="<td>" . utf8_decode(utf8_encode($ligne->idIngredient4)) . "</td>";
-      $liste.="<td>" . utf8_decode(utf8_encode($ligne->idIngredient5)) . "</td>";
+      $liste.="<td>" . utf8_decode(utf8_encode($ligne->idIngredient)) . "</td>";
       $liste.="<td><img src=\"" . $ligne->idImage . "\"alt=\"". $ligne->nomRecette . "\" /></td>";
       $liste.="<td><a href=\"admin.php?action=recette&cas=modifier&idRecette=".$ligne->idRecette."\">modifier</a>&nbsp;
       &nbsp;<a href=\"admin.php?action=recette&cas=supprimer&idRecette=".$ligne->idRecette."\">supprimer</a></td>";
