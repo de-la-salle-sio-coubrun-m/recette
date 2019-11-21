@@ -14,7 +14,7 @@ if(isset($_GET['action'])){
         case "recette":
 
             //contenu à afficher
-            include('auto_compete.php');
+            include('auto_complete.php');
 
             if(isset($_GET["cas"])){
                 switch ($_GET["cas"]) {
