@@ -401,7 +401,87 @@ if(isset($_GET['action'])){
         break;//fin case image
 
         case "categorie":
-            # code...
+           //contenu à afficher
+           $contenu="form_categorie.html";
+
+           if(isset($_GET["cas"])){
+               switch ($_GET["cas"]) {
+                   case "ajouter":
+                       $action_form="ajouter";
+                       //si le bouton créer a été activé
+                       if(isset($_POST['submit'])){
+                           if(empty($_POST['nomCategorie']))
+                           {
+                               $message="<label id =\"warning\">veuillez entrer le nom de la catégorie s'il-vous-plaît</label>";
+                           }
+                           else
+                           {
+                               //on insert dans la table categorie les valeurs des champs nom et description
+                               //addslashes permet de mettre des \ en cas de  '  .
+                               $requete="  INSERT INTO categorie 
+                               SET nomCategorie='".addslashes($_POST['nomCategorie'])."', 	contenuArticle='".addslashes($_POST['	contenuArticle'])."', dateArticle='".addslashes($_POST['dateArticle'])."', idMembre='".addslashes($_POST['idMembre'])."', idRecette='".addslashes($_POST['idRecette'])."'";
+                               echo $requete;
+                               //execution de la requete dans la BDD
+                               $resultat=mysqli_query($connexion,$requete);
+                           }
+                       }
+                       else
+                       {
+
+                       }
+                   break;//fin case ajouter
+                   
+                   case "modifier":
+                       if(isset($_GET['idCategorie']))
+                       {
+                           //si le bouton enregistrer du formulaire n'a pas été activé
+                           $action_form="modifier&idCategorie=".$_GET['idCategorie']."";
+                           
+                           //si on appuie sur le bouton enregistrer du formulaire
+                           if(isset($_POST['submit'])){
+                               if(empty($_POST['nomCategorie']))
+                           {
+                               $message="<label id =\"warning\">veuillez entrer le nom de la catégorie s'il-vous-plaît</label>";
+                           }
+                               else
+                               {
+                                   //met à jour la ligne de la table recette
+                                   $requete="UPDATE categorie SET nomCategorie='".addslashes($_POST['nomCategorie'])."'";
+                                   $resultat=mysqli_query($connexion,$requete);
+                               }
+                           }
+                           else
+                           {
+                               //on recharge le formulaire avec les données
+                               $requete="SELECT * FROM categorie WHERE idCategorie='".$_GET['idCategorie']."'";
+                               $resultat=mysqli_query($connexion,$requete);
+                               $ligne=mysqli_fetch_object($resultat);
+                               $_POST['nomCategorie']=stripslashes($ligne->nomCategorie);
+                           }
+                       }   
+                   break;//fin case modifier
+
+                   case "supprimer":
+                       $action_form="ajouter";
+
+                       if(isset($_GET['idCategorie']))
+                       {
+                           
+                           $message="<label id=\"confirme\">Voulez-vous vraiment supprimer la categorie ?<a href=\"admin.php?action=categorie&cas=supprimer&idCategorie=".$_GET['idCategorie']."&confirme=oui\">OUI</a>&nbsp;&nbsp;<a href=\"admin.php?action=categorie\">NON</a></label>";
+
+                           if(isset($_GET['confirme']) && $_GET['confirme']=="oui")
+                           {
+                               $requete2="DELETE FROM categorie WHERE idCategorie='".$_GET['idCategorie']."'";
+                               echo $requete2;
+                               $resultat2=mysqli_query($connexion,$requete2);
+                               echo $resultat2;
+                               $message="<label id=\"bravo\">La catégorie a bien été supprimée</label>";
+                           }
+                       }
+                   break;//fin case supprimer
+               }
+           }
+           $liste=afficher_categories();
         break;//fin case categorie
 
         case "membre":
