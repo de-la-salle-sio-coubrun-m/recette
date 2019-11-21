@@ -285,7 +285,7 @@ function afficher_images(){
 }
 
 //============== affichage ingrédients
-function afficher_ingredients(){
+function afficher_Ingredient(){
   $connexion=connexion();
   $requete="SELECT * FROM ingredient ORDER BY nomIngredient";
   $resultat=mysqli_query($connexion, $requete);
