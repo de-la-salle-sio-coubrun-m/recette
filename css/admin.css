@@ -11,3 +11,28 @@ navigateur lors d'un clic*/
 a,input, textarea{
 	outline:none;
 }
+
+header{
+	display: flex;
+	justify-content: space-between;
+	margin-top: 3vh;
+}
+
+nav>ul{
+	display: flex;
+	justify-content: space-around;
+	margin: 3vh 20vh;
+}
+
+form{
+	display: flex;
+	justify-content: space-between;
+	padding-left: 1vw;
+	padding-right: 1vw;
+	margin: 0 1vw;
+	flex-wrap: wrap;
+}
+
+form>div{
+	margin: 0 2vw;
+}
