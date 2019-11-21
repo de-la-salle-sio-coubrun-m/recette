@@ -348,12 +348,14 @@ function afficher_categories(){
   
   $liste="<table id=\"liste\">\n";
   $liste.="<tr>";
+  $liste.="<th>identifiant de la catégorie</th>";
   $liste.="<th>Nom de la catégorie</th>";
   $liste.="<th>Actions</th>";
   $liste.="</tr>";
   
   while($ligne=mysqli_fetch_object($resultat)){
     $liste.="<tr>";
+    $liste.="<td>" . $ligne->idCategorie . "</td>";
     $liste.="<td>" . $ligne->nomCategorie . "</td>";
     $liste.="<td><a href=\"admin.php?action=categorie&cas=modifier&idCategorie=".$ligne->idCategorie."\">modifier</a>&nbsp;
     <a href=\"admin.php?action=membre&cas=supprimer&idCategorie=".$ligne->idCategorie."\">supprimer</a>&nbsp;</td>";

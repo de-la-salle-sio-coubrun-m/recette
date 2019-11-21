@@ -67,6 +67,8 @@ if(isset($_GET['action'])){
                                 echo $requete;
                                 //execution de la requete dans la BDD
                                 $resultat=mysqli_query($connexion,$requete);
+                                //on récupere le dernier id_produit créé
+						    //$dernier_id_cree=mysqli_insert_id($connexion);
                             }
                         }
                         else
@@ -126,7 +128,7 @@ if(isset($_GET['action'])){
                                 else
                                 {
                                     //met à jour la ligne de la table recette
-                                    $requete="UPDATE recette SET idOrigine='".addslashes($_POST['idOrigine'])."', nomRecette='".addslashes($_POST['nomRecette'])."', descriptionRecette='".addslashes($_POST['descriptionRecette'])."',dureeCuisson='".($_POST['dureeCuisson'])."', dureePreparation='".($_POST['dureePreparation'])."', recetteRecette='".addslashes($_POST['recetteRecette'])."', effetsRecette='".addslashes($_POST['effetsRecette'])."', idCategorie='".($_POST['idCategorie'])."', idIngredient='".($_POST['idIngredient'])."', idImage='".($_POST['idImage'])."'";
+                                    $requete="UPDATE recette SET idOrigine='".addslashes($_POST['idOrigine'])."', nomRecette='".addslashes($_POST['nomRecette'])."', descriptionRecette='".addslashes($_POST['descriptionRecette'])."',dureeCuisson='".($_POST['dureeCuisson'])."', dureePreparation='".($_POST['dureePreparation'])."', recetteRecette='".addslashes($_POST['recetteRecette'])."', effetsRecette='".addslashes($_POST['effetsRecette'])."', idCategorie='".($_POST['idCategorie'])."', idIngredient='".($_POST['idIngredient'])."', idImage='".($_POST['idImage'])."'WHERE idRecette='".$_GET['idRecette']."'";
                                     $resultat=mysqli_query($connexion,$requete);
                                 }
                             }
@@ -163,6 +165,7 @@ if(isset($_GET['action'])){
                                 $requete2="DELETE FROM recette WHERE idRecette='".$_GET['idRecette']."'";
                                 echo $requete2;
                                 $resultat2=mysqli_query($connexion,$requete2);
+                                $ligne=mysqli_fetch_object($resultat);
                                 echo $resultat2;
                                 $message="<label id=\"bravo\">La recette a bien été supprimée</label>";
                             }
@@ -236,7 +239,7 @@ if(isset($_GET['action'])){
                                 else
                                 {
                                     //met à jour la ligne de la table ingredient
-                                    $requete="UPDATE ingredient SET nomIngredient='".addslashes($_POST['nomIngredient'])."', 	recolteIngredient='".addslashes($_POST['	recolteIngredient'])."', lieuIngredient='".addslashes($_POST['lieuIngredient'])."'";
+                                    $requete="UPDATE ingredient SET nomIngredient='".addslashes($_POST['nomIngredient'])."', 	recolteIngredient='".addslashes($_POST['	recolteIngredient'])."', lieuIngredient='".addslashes($_POST['lieuIngredient'])."'WHERE idIngredient='".$_GET['idIngredient']."'";
                                     $resultat=mysqli_query($connexion,$requete);
                                 }
                             }
@@ -266,6 +269,7 @@ if(isset($_GET['action'])){
                                 $requete2="DELETE FROM ingredient WHERE idIngredient='".$_GET['idIngredient']."'";
                                 echo $requete2;
                                 $resultat2=mysqli_query($connexion,$requete2);
+                                $ligne=mysqli_fetch_object($resultat);
                                 echo $resultat2;
                                 $message="<label id=\"bravo\">L'ingredient a bien été supprimé</label>";
                             }
@@ -354,7 +358,7 @@ if(isset($_GET['action'])){
                                 else
                                 {
                                     //met à jour la ligne de la table recette
-                                    $requete="UPDATE article SET titreArticle='".addslashes($_POST['titreArticle'])."', 	contenuArticle='".addslashes($_POST['	contenuArticle'])."', dateArticle='".addslashes($_POST['dateArticle'])."', idMembre='".addslashes($_POST['idMembre'])."', idRecette='".addslashes($_POST['idRecette'])."'";
+                                    $requete="UPDATE article SET titreArticle='".addslashes($_POST['titreArticle'])."', 	contenuArticle='".addslashes($_POST['	contenuArticle'])."', dateArticle='".addslashes($_POST['dateArticle'])."', idMembre='".addslashes($_POST['idMembre'])."', idRecette='".addslashes($_POST['idRecette'])."'WHERE idArticle='".$_GET['idRecette']."'";
                                     $resultat=mysqli_query($connexion,$requete);
                                 }
                             }
@@ -386,6 +390,7 @@ if(isset($_GET['action'])){
                                 $requete2="DELETE FROM article WHERE idArticle='".$_GET['idArticle']."'";
                                 echo $requete2;
                                 $resultat2=mysqli_query($connexion,$requete2);
+                                $ligne=mysqli_fetch_object($resultat);
                                 echo $resultat2;
                                 $message="<label id=\"bravo\">L'article a bien été supprimé</label>";
                             }
@@ -446,7 +451,7 @@ if(isset($_GET['action'])){
                                else
                                {
                                    //met à jour la ligne de la table recette
-                                   $requete="UPDATE categorie SET nomCategorie='".addslashes($_POST['nomCategorie'])."'";
+                                   $requete="UPDATE categorie SET nomCategorie='".addslashes($_POST['nomCategorie'])."'WHERE idCategorie='".$_GET['idCategorie']."'";
                                    $resultat=mysqli_query($connexion,$requete);
                                }
                            }
@@ -467,13 +472,14 @@ if(isset($_GET['action'])){
                        if(isset($_GET['idCategorie']))
                        {
                            
-                           $message="<label id=\"confirme\">Voulez-vous vraiment supprimer la categorie ?<a href=\"admin.php?action=categorie&cas=supprimer&idCategorie=".$_GET['idCategorie']."&confirme=oui\">OUI</a>&nbsp;&nbsp;<a href=\"admin.php?action=categorie\">NON</a></label>";
+                           $message="<label id=\"confirme\">Voulez-vous vraiment supprimer la catégorie ?<a href=\"admin.php?action=categorie&cas=supprimer&idCategorie=".$_GET['idCategorie']."&confirme=oui\">OUI</a>&nbsp;&nbsp;<a href=\"admin.php?action=categorie\">NON</a></label>";
 
                            if(isset($_GET['confirme']) && $_GET['confirme']=="oui")
                            {
                                $requete2="DELETE FROM categorie WHERE idCategorie='".$_GET['idCategorie']."'";
                                echo $requete2;
                                $resultat2=mysqli_query($connexion,$requete2);
+                               $ligne=mysqli_fetch_object($resultat);
                                echo $resultat2;
                                $message="<label id=\"bravo\">La catégorie a bien été supprimée</label>";
                            }
