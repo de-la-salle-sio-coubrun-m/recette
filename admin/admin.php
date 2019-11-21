@@ -19,6 +19,8 @@ if(isset($_GET['action'])){
             if(isset($_GET["cas"])){
                 switch ($_GET["cas"]) {
                     case "ajouter":
+                        $action_form="ajouter";
+                        //si le bouton créer a été activé
                         if(isset($_POST['submit'])){
                             if(empty($_POST['idOrigine']))
                             {
@@ -74,7 +76,7 @@ if(isset($_GET['action'])){
                             }
                             else
                             {
-                                //on insert dans la table produits les valeurs des champs nom et description
+                                //on insert dans la table recette les valeurs des champs nom et description
                                 //addslashes permet de mettre des \ en cas de  '  .
                                 $requete="  INSERT INTO recette 
                                 SET idOrigine='".addslashes($_POST['idOrigine'])."', nomRecette='".addslashes($_POST['nomRecette'])."', descriptionRecette='".addslashes($_POST['descriptionRecette'])."',dureeCuisson='".($_POST['dureeCuisson'])."', dureePreparation='".($_POST['dureePreparation'])."', recetteRecette='".addslashes($_POST['recetteRecette'])."', effetsRecette='".addslashes($_POST['effetsRecette'])."', idCategorie='".($_POST['idCategorie'])."', idIngredient1='".($_POST['idIngredient1'])."', idIngredient2='".($_POST['idIngredient2'])."', idIngredient3='".($_POST['idIngredient3'])."', idIngredient4='".($_POST['idIngredient4'])."', idIngredient5='".($_POST['idIngredient5'])."', idImage='".($_POST['idImage'])."'";
@@ -93,7 +95,7 @@ if(isset($_GET['action'])){
                         if(isset($_GET['idRecette']))
                         {
                             //si le bouton enregistrer du formulaire n'a pas été activé
-                            $action_form="modifier&id_produit=".$_GET['id_produit']."";
+                            $action_form="modifier&idRecette=".$_GET['idRecette']."";
                             
                             //si on appuie sur le bouton enregistrer du formulaire
                             if(isset($_POST['submit'])){
@@ -155,7 +157,7 @@ if(isset($_GET['action'])){
                                 }
                                 else
                                 {
-                                    //met à jour la ligne de la table produit
+                                    //met à jour la ligne de la table recette
                                     $requete="UPDATE recette SET idOrigine='".addslashes($_POST['idOrigine'])."', nomRecette='".addslashes($_POST['nomRecette'])."', descriptionRecette='".addslashes($_POST['descriptionRecette'])."',dureeCuisson='".($_POST['dureeCuisson'])."', dureePreparation='".($_POST['dureePreparation'])."', recetteRecette='".addslashes($_POST['recetteRecette'])."', effetsRecette='".addslashes($_POST['effetsRecette'])."', idCategorie='".($_POST['idCategorie'])."', idIngredient='".($_POST['idIngredient1'])."', idIngredient1='".($_POST['idIngredient2'])."', idIngredient3='".($_POST['idIngredient3'])."', idIngredient4='".($_POST['idIngredient4'])."', idIngredient5='".($_POST['idIngredient5'])."', idImage='".($_POST['idImage'])."'";
                                     $resultat=mysqli_query($connexion,$requete);
                                 }
@@ -190,12 +192,14 @@ if(isset($_GET['action'])){
                         if(isset($_GET['idRecette']))
                         {
                             
-                            $message="<label id=\"confirme\">Voulez-vous vraiment supprimer la recette ?<a href=\"admin.php?action=produit&cas=supprimer&id_produit=".$_GET['idRecette']."&confirme=oui\">OUI</a>&nbsp;&nbsp;<a href=\"admin.php?action=produit\">NON</a></label>";
+                            $message="<label id=\"confirme\">Voulez-vous vraiment supprimer la recette ?<a href=\"admin.php?action=recette&cas=supprimer&idRecette=".$_GET['idRecette']."&confirme=oui\">OUI</a>&nbsp;&nbsp;<a href=\"admin.php?action=recette\">NON</a></label>";
 
                             if(isset($_GET['confirme']) && $_GET['confirme']=="oui")
                             {
-                                $requete2="DELETE FROM produits WHERE idRecette='".$_GET['idRecette']."'";
+                                $requete2="DELETE FROM recette WHERE idRecette='".$_GET['idRecette']."'";
+                                echo $requete2;
                                 $resultat2=mysqli_query($connexion,$requete2);
+                                echo $resultat2;
                                 $message="<label id=\"bravo\">La recette a bien été supprimée</label>";
                             }
                         }
