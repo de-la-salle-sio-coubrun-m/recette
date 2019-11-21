@@ -49,7 +49,9 @@
         <!-- mettre en forme de liste liée à la bdd -->
         <div>
             <label for="idCategorie">La catégorie</label> 
-            <input id="idCategorie" type="text" name="idCategorie" value="<?php if(isset($_POST['idCategorie'])){echo $_POST['idCategorie'];} ?>" />
+            <input id="idCategorie" list="hugeList" type="text" name="idCategorie" value="<?php if(isset($_POST['idCategorie'])){echo $_POST['idCategorie'];} ?>" />
+            <datalist id="hugeList">
+            </datalist>
         </div>
 
         <div>
