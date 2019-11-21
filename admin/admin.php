@@ -283,12 +283,14 @@ if(isset($_GET['action'])){
         case "image":
             # code...
         break;//fin case image
+
         case "categorie":
             # code...
         break;//fin case categorie
-        case "compte":
+        
+        case "membre":
             # code...
-        break;//fin case compte
+        break;//fin case membre
     }//fin switch
 }// fin if isset
 
