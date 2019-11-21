@@ -209,12 +209,12 @@ function connexion()
     while($ligne=mysqli_fetch_object($resultat)){
       $liste.="<tr>";
       $liste.="<td>" . $ligne->idOrigine . "</td>";
-      $liste.="<td>" . $ligne->nomRecette . "</td>";
-      $liste.="<td>" . $ligne->descriptionRecette . "</td>";
+      $liste.="<td>" . utf8_encode($ligne->nomRecette) . "</td>";
+      $liste.="<td>" . utf8_encode($ligne->descriptionRecette) . "</td>";
       $liste.="<td>" . $ligne->dureeCuisson . "</td>";
       $liste.="<td>" . $ligne->dureePreparation . "</td>";
-      $liste.="<td>" . $ligne->recetteRecette . "</td>";
-      $liste.="<td>" . $ligne->effetsRecette . "</td>";
+      $liste.="<td>" . utf8_encode($ligne->recetteRecette) . "</td>";
+      $liste.="<td>" . utf8_encode($ligne->effetsRecette) . "</td>";
       $liste.="<td>" . $ligne->idCategorie . "</td>";
       $liste.="<td>" . $ligne->idIngredient1 . "</td>";
       $liste.="<td>" . $ligne->idIngredient2 . "</td>";
