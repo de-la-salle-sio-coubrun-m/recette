@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Gestion des ingrédients des recettes</title>
+</head>
+<body>
+    <form enctype="multipart/form-data" action="admin.php?action=ingredientRecette&cas=<?php if(isset($action_form)){echo $action_form;} ?>" method="POST">
+
+        <div>
+            <label for="nomRecette">Nom de la recette</label>
+            <input id="nomRecette" list="hugeList" type="text" name="nomRecette" value="<?php if(isset($_POST['nomRecette'])){echo $_POST['nomRecette'];} ?>" />
+            <datalist id="hugeList_nomRecette">
+            </datalist>
+        </div>
+
+        <div>
+            <label for="nomIngredient">Nom de l'ingrédients</label>
+            <input id="nomIngredient" list="hugeList" type="text" name="nomIngredient" value="<?php if(isset($_POST['nomIngredient'])){echo $_POST['nomIngredient'];} ?>" />
+            <datalist id="hugeList_nomIngredient">
+            </datalist>
+        </div>
+        
+        <?php if(isset($message)){echo $message;} ?>
+
+        <div id="boutons">
+            <input type="submit" name="submit" value="ENREGISTRER" />
+            <input type="reset" name="reset" value="ANNULER" />
+        </div>
+    </form>
+</body>
+</html>
