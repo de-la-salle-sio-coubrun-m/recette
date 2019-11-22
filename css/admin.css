@@ -62,13 +62,13 @@ form>div{
 
 /****************************************************************/
 
-#hugeList {
+.hugeList {
   display: none;
   width: 100%;
   margin-top: -2px;
-  color:  #FFFFFF;
+  color:  #000;
 }
-#hugeList option{
+.hugeList option{
 width: 100%;
 padding: 20px 15px;
 border-right: 2px solid rgba(255, 255, 255, .6);
