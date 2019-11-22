@@ -358,7 +358,7 @@ function afficher_categories(){
     $liste.="<td>" . $ligne->idCategorie . "</td>";
     $liste.="<td>" . $ligne->nomCategorie . "</td>";
     $liste.="<td><a href=\"admin.php?action=categorie&cas=modifier&idCategorie=".$ligne->idCategorie."\">modifier</a>&nbsp;
-    <a href=\"admin.php?action=membre&cas=supprimer&idCategorie=".$ligne->idCategorie."\">supprimer</a>&nbsp;</td>";
+    <a href=\"admin.php?action=categorie&cas=supprimer&idCategorie=".$ligne->idCategorie."\">supprimer</a>&nbsp;</td>";
     $liste.="</tr>";
   }
   
