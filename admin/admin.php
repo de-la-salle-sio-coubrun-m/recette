@@ -289,9 +289,10 @@ if(isset($_GET['action'])){
             if(isset($_GET["cas"])){
                 switch ($_GET["cas"]) {
                     case "ajouter":
-                        $action_form="ajouter";
+                        
                         //si le bouton créer a été activé
                         if(isset($_POST['submit'])){
+                            $action_form="ajouter";
                             if(empty($_POST['titreArticle']))
                             {
                                 $message="<label id =\"warning\">veuillez entrer le titre de l'article s'il-vous-plaît</label>";
@@ -316,8 +317,17 @@ if(isset($_GET['action'])){
                             {
                                 //on insert dans la table article les valeurs des champs nom et description
                                 //addslashes permet de mettre des \ en cas de  '  .
-                                $requete="  INSERT INTO article 
-                                SET titreArticle='".addslashes($_POST['titreArticle'])."', 	contenuArticle='".addslashes($_POST['	contenuArticle'])."', dateArticle='".addslashes($_POST['dateArticle'])."', idMembre='".addslashes($_POST['idMembre'])."', idRecette='".addslashes($_POST['idRecette'])."'";
+                                $requete="  INSERT INTO article SET titreArticle='"
+                                .addslashes($_POST['titreArticle'])
+                                ."', 	contenuArticle='"
+                                .addslashes($_POST['contenuArticle'])
+                                ."', dateArticle='"
+                                .addslashes($_POST['dateArticle'])
+                                ."', idMembre='"
+                                .addslashes($_POST['idMembre'])
+                                ."', idRecette='"
+                                .addslashes($_POST['idRecette'])
+                                ."'";
                                 echo $requete;
                                 //execution de la requete dans la BDD
                                 $resultat=mysqli_query($connexion,$requete);
