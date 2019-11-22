@@ -12,7 +12,8 @@
         
         <div>
             <label for="nomCategorie">Nom de la catégorie</label>
-            <input id="nomCategorie" list="hugeList" type="text" name="nomCategorie" value="<?php if(isset($_POST['nomCategorie'])){echo $_POST['nomCategorie'];} ?>" />
+            <input id="nomCategorie" list="hugeList" type="text" name="nomCategorie" data-tab="categorie" value="<?php if(isset($_POST['nomCategorie'])){echo $_POST['nomCategorie'];} ?>" /> <datalist id="hugeList_categorie" class="hugeList">
+            </datalist>
         </div>
 
         <?php if(isset($message)){echo $message;} ?>

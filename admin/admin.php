@@ -410,6 +410,7 @@ if(isset($_GET['action'])){
 
         case "categorie":
            //contenu à afficher
+           include('auto_complete.php');
            $contenu="form_categorie.html";
 
            if(isset($_GET["cas"]))

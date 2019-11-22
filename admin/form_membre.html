@@ -11,14 +11,16 @@
         <!-- tableau avec les entrées dans la table membre de la base de données -->
         <div>
             <label for="nomMembre">Nom du membre</label>
-            <input id="nomMembre" list="hugeList" type="text" name="nomMembre" value="<?php if(isset($_POST['nomMembre'])){echo $_POST['nomMembre'];} ?>" />
-            <datalist id="hugeList">
+            <input id="nomMembre" list="hugeList" type="text" name="nomMembre" data-tab="membre" value="<?php if(isset($_POST['nomMembre'])){echo $_POST['nomMembre'];} ?>" />            
+            <datalist id="hugeList_membre" class="hugeList">
             </datalist>
         </div>
 
         <div>
             <label for="idPrivilege">Privilèges du membre</label>
-            <input id="idPrivilege" type="text" name="idPrivilege" value="<?php if(isset($_POST['idPrivilege'])){echo $_POST['idPrivilege'];} ?>" />
+            <input id="idPrivilege" type="text" name="labelPrivilege" data-tab="privilege" value="<?php if(isset($_POST['idPrivilege'])){echo $_POST['idPrivilege'];} ?>" />
+            <datalist id="hugeList_membre" class="hugeList">
+            </datalist>
         </div>
         
         <?php if(isset($message)){echo $message;} ?>

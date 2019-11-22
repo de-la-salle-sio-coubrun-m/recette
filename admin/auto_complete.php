@@ -15,5 +15,5 @@ if (isset($_GET['nomTable']) && isset($_GET['nomChamps'])) {
     die;
 }
 
-$contenu = "form_recette.html";
+$contenu = "form_".$_GET['action'].".html";
 ?>
