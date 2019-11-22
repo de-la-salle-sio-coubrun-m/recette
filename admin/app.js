@@ -14,7 +14,7 @@ for (var input of inputs ){
                 return response.json();
             }).then(function (liste) {
                 console.log(liste);
-                autocomplete_results = document.getElementById("hugeList_"+inputTab);
+                autocomplete_results = document.getElementById("hugeList_"+inputName);
                 autocomplete_results.innerHTML = '';
                 for (i = 0; i < liste.length; i++) {
                     autocomplete_results.innerHTML += '<option>' + liste[i] + '</option>';
