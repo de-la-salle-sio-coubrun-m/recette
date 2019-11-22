@@ -197,7 +197,6 @@ function connexion()
     $liste.="<th>La recette</th>";
     $liste.="<th>Les effets de la recette</th>";
     $liste.="<th>La catégorie</th>";
-    $liste.="<th>Ingrédients</th>";
     $liste.="<th>Aperçu</th>";
     $liste.="<th>Actions</th>";
     $liste.="</tr>";
@@ -212,7 +211,6 @@ function connexion()
       $liste.="<td>" . utf8_decode(utf8_encode($ligne->recetteRecette)) . "</td>";
       $liste.="<td>" . utf8_decode(utf8_encode($ligne->effetsRecette)) . "</td>";
       $liste.="<td>" . utf8_decode(utf8_encode($ligne->idCategorie)) . "</td>";
-      $liste.="<td>" . utf8_decode(utf8_encode($ligne->idIngredient)) . "</td>";
       $liste.="<td><img src=\"" . $ligne->idImage . "\"alt=\"". $ligne->nomRecette . "\" /></td>";
       $liste.="<td><a href=\"admin.php?action=recette&cas=modifier&idRecette=".$ligne->idRecette."\">modifier</a>&nbsp;
       <a href=\"admin.php?action=recette&cas=supprimer&idRecette=".$ligne->idRecette."\">supprimer</a>&nbsp;</td>";
@@ -322,6 +320,7 @@ function afficher_membres(){
   $liste="<table id=\"liste\">\n";
   $liste.="<tr>";
   $liste.="<th>Nom du membre</th>";
+  $liste.="<th>Mdp du membre</th>";
   $liste.="<th>Privilèges du membre</th>";
   $liste.="<th>Actions</th>";
   $liste.="</tr>";
@@ -329,6 +328,7 @@ function afficher_membres(){
   while($ligne=mysqli_fetch_object($resultat)){
     $liste.="<tr>";
     $liste.="<td>" . $ligne->nomMembre . "</td>";
+    $liste.="<td>" . $ligne->mdpMembre . "</td>";
     $liste.="<td>" . $ligne->idPrivilege . "</td>";
     $liste.="<td><a href=\"admin.php?action=membre&cas=modifier&idMembre=".$ligne->idMembre."\">modifier</a>&nbsp;
     <a href=\"admin.php?action=membre&cas=supprimer&idMembre=".$ligne->idMembre."\">supprimer</a>&nbsp;</td>";

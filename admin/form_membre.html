@@ -17,6 +17,13 @@
         </div>
 
         <div>
+            <label for="mdpMembre">Mdp du membre</label>
+            <input id="mdpMembre" list="hugeList" type="text" name="mdpMembre" value="<?php if(isset($_POST['mdpMembre'])){echo $_POST['mdpMembre'];} ?>" />
+            <datalist id="hugeList">
+            </datalist>
+        </div>
+
+        <div>
             <label for="idPrivilege">Privilèges du membre</label>
             <input id="idPrivilege" type="text" name="labelPrivilege" data-tab="privilege" value="<?php if(isset($_POST['idPrivilege'])){echo $_POST['idPrivilege'];} ?>" />
             <datalist id="hugeList_membre" class="hugeList">

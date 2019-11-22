@@ -54,16 +54,12 @@ if(isset($_GET['action'])){
                             {
                                 $message="<label id =\"warning\">veuillez entrer l'identifiant de la catégorie de la recette s'il-vous-plaît</label>";
                             }
-                            elseif(empty($_POST['idIngredient']))
-                            {
-                                $message="<label id =\"warning\">veuillez entrer l'identifiant d'un ingrédient de la recette s'il-vous-plaît</label>";
-                            }
                             else
                             {
                                 //on insert dans la table recette les valeurs des champs nom et description
                                 //addslashes permet de mettre des \ en cas de  '  .
                                 $requete="  INSERT INTO recette 
-                                SET idOrigine='".addslashes($_POST['idOrigine'])."', nomRecette='".addslashes($_POST['nomRecette'])."', descriptionRecette='".addslashes($_POST['descriptionRecette'])."',dureeCuisson='".($_POST['dureeCuisson'])."', dureePreparation='".($_POST['dureePreparation'])."', recetteRecette='".addslashes($_POST['recetteRecette'])."', effetsRecette='".addslashes($_POST['effetsRecette'])."', idCategorie='".($_POST['idCategorie'])."', idIngredient='".($_POST['idIngredient'])."', idImage='".($_POST['idImage'])."'";
+                                SET idOrigine='".addslashes($_POST['idOrigine'])."', nomRecette='".addslashes($_POST['nomRecette'])."', descriptionRecette='".addslashes($_POST['descriptionRecette'])."',dureeCuisson='".($_POST['dureeCuisson'])."', dureePreparation='".($_POST['dureePreparation'])."', recetteRecette='".addslashes($_POST['recetteRecette'])."', effetsRecette='".addslashes($_POST['effetsRecette'])."', idCategorie='".($_POST['idCategorie'])."', idImage='".($_POST['idImage'])."'";
                                 echo $requete;
                                 //execution de la requete dans la BDD
                                 $resultat=mysqli_query($connexion,$requete);
@@ -117,10 +113,6 @@ if(isset($_GET['action'])){
                                 {
                                     $message="<label id =\"warning\">veuillez entrer l'identifiant de la catégorie de la recette s'il-vous-plaît</label>";
                                 }
-                                elseif(empty($_POST['idIngredient1']))
-                                {
-                                    $message="<label id =\"warning\">veuillez entrer l'identifiant d'un ingrédient de la recette s'il-vous-plaît</label>";
-                                }
                                 elseif(empty($_POST['idImage']))
                                 {
                                     $message="<label id =\"warning\">veuillez entrer l'identifiant de l'image de la recette s'il-vous-plaît</label>";
@@ -128,7 +120,7 @@ if(isset($_GET['action'])){
                                 else
                                 {
                                     //met à jour la ligne de la table recette
-                                    $requete="UPDATE recette SET idOrigine='".addslashes($_POST['idOrigine'])."', nomRecette='".addslashes($_POST['nomRecette'])."', descriptionRecette='".addslashes($_POST['descriptionRecette'])."',dureeCuisson='".($_POST['dureeCuisson'])."', dureePreparation='".($_POST['dureePreparation'])."', recetteRecette='".addslashes($_POST['recetteRecette'])."', effetsRecette='".addslashes($_POST['effetsRecette'])."', idCategorie='".($_POST['idCategorie'])."', idIngredient='".($_POST['idIngredient'])."', idImage='".($_POST['idImage'])."'WHERE idRecette='".$_GET['idRecette']."'";
+                                    $requete="UPDATE recette SET idOrigine='".addslashes($_POST['idOrigine'])."', nomRecette='".addslashes($_POST['nomRecette'])."', descriptionRecette='".addslashes($_POST['descriptionRecette'])."',dureeCuisson='".($_POST['dureeCuisson'])."', dureePreparation='".($_POST['dureePreparation'])."', recetteRecette='".addslashes($_POST['recetteRecette'])."', effetsRecette='".addslashes($_POST['effetsRecette'])."', idCategorie='".($_POST['idCategorie'])."', idImage='".($_POST['idImage'])."'WHERE idRecette='".$_GET['idRecette']."'";
                                     $resultat=mysqli_query($connexion,$requete);
                                 }
                             }
@@ -145,8 +137,7 @@ if(isset($_GET['action'])){
                                 $_POST['dureePreparation']=$ligne->dureePreparation; 
                                 $_POST['recetteRecette']=stripslashes($ligne->recetteRecette); 
                                 $_POST['effetsRecette']=stripslashes($ligne->effetsRecette); 
-                                $_POST['idCategorie']=$ligne->idCategorie; 
-                                $_POST['idIngredient']=$ligne->idIngredient;
+                                $_POST['idCategorie']=$ligne->idCategorie;
                                 $_POST['idImage']=$ligne->idImage;
                             }
                         }   
@@ -205,7 +196,7 @@ if(isset($_GET['action'])){
                                 //on insert dans la table ingredient les valeurs des champs nom et description
                                 //addslashes permet de mettre des \ en cas de  '  .
                                 $requete="  INSERT INTO ingredient 
-                                SET nomIngredient='".addslashes($_POST['nomIngredient'])."', 	recolteIngredient='".addslashes($_POST['	recolteIngredient'])."', lieuIngredient='".addslashes($_POST['lieuIngredient'])."'";
+                                SET nomIngredient='".addslashes($_POST['nomIngredient'])."', 	recolteIngredient='".addslashes($_POST['recolteIngredient'])."', lieuIngredient='".addslashes($_POST['lieuIngredient'])."'";
                                 echo $requete;
                                 //execution de la requete dans la BDD
                                 $resultat=mysqli_query($connexion,$requete);
@@ -240,7 +231,7 @@ if(isset($_GET['action'])){
                                 else
                                 {
                                     //met à jour la ligne de la table ingredient
-                                    $requete="UPDATE ingredient SET nomIngredient='".addslashes($_POST['nomIngredient'])."', 	recolteIngredient='".addslashes($_POST['	recolteIngredient'])."', lieuIngredient='".addslashes($_POST['lieuIngredient'])."'WHERE idIngredient='".$_GET['idIngredient']."'";
+                                    $requete="UPDATE ingredient SET nomIngredient='".addslashes($_POST['nomIngredient'])."', 	recolteIngredient='".addslashes($_POST['recolteIngredient'])."', lieuIngredient='".addslashes($_POST['lieuIngredient'])."'WHERE idIngredient='".$_GET['idIngredient']."'";
                                     $resultat=mysqli_query($connexion,$requete);
                                 }
                             }
@@ -405,7 +396,101 @@ if(isset($_GET['action'])){
         break;//fin case article
 
         case "image":
-            # code...
+            $contenu="form_image.html";
+
+            if(isset($_GET["cas"]))
+            {
+                switch ($_GET["cas"])
+                {
+                    case "ajouter":
+                        $action_form="ajouter";
+                        //si le bouton créer a été activé
+                        if(isset($_POST['submit']))
+                        {
+                            if(empty($_POST['nomImage']))
+                            {
+                                $message="<label id =\"warning\">veuillez entrer le nom de l'image' s'il-vous-plaît</label>";
+                            }
+                            else if(empty($_POST['urlImage']))
+                            {
+                                $message="<label id =\"warning\">veuillez entrer l'url de l'image' s'il-vous-plaît</label>";
+                            }
+                            else
+                            {
+                                //on insert dans la table image les valeurs des champs nom et description
+                                //addslashes permet de mettre des \ en cas de  '  .
+                                $requete="INSERT INTO image 
+                                SET nomImage='".addslashes($_POST['nomImage'])."',
+                                urlImage='".addslashes($_POST['urlImage'])."'";
+                                echo $requete;
+                                //execution de la requete dans la BDD
+                                $resultat=mysqli_query($connexion,$requete);
+                            }
+                        }
+                        else
+                        {
+ 
+                        }
+                    break;//fin case ajouter
+                    
+                    case "modifier":
+                        if(isset($_GET['nomImage']))
+                        {
+                            //si le bouton enregistrer du formulaire n'a pas été activé
+                            $action_form="modifier&idImage=".$_GET['idImage']."";
+                            
+                            //si on appuie sur le bouton enregistrer du formulaire
+                            if(isset($_POST['submit'])){
+                                if(empty($_POST['nomImage']))
+                                {
+                                    $message="<label id =\"warning\">veuillez entrer le nom de l'image s'il-vous-plaît</label>";
+                                }
+                                else if(empty($_POST['urlImage']))
+                                {
+                                    $message="<label id =\"warning\">veuillez entrer l'url de l'image s'il-vous-plaît</label>";
+                                }
+                                else
+                                {
+                                    //met à jour la ligne de la table recette
+                                    $requete="UPDATE image SET nomImage='".addslashes($_POST['nomImage'])."', urlImage='".addslashes($_POST['urlImage'])."' WHERE idImage='".$_GET['idImage']."'";
+                                    $resultat=mysqli_query($connexion,$requete);
+                                }
+                            }
+                            else
+                            {
+                                //on recharge le formulaire avec les données
+                                $requete="SELECT * FROM image WHERE idImage='".$_GET['idImage']."'";
+                                $resultat=mysqli_query($connexion,$requete);
+                                $ligne=mysqli_fetch_object($resultat);
+                                $_POST['nomImage']=stripslashes($ligne->nomImage);
+                                $_POST['urlImage']=stripslashes($ligne->urlImage);
+                            }
+                        }   
+                    break;//fin case modifier
+ 
+                    case "supprimer":
+                        $action_form="ajouter";
+ 
+                        if(isset($_GET['idImage']))
+                        {
+                            
+                            $message="<label id=\"confirme\">Voulez-vous vraiment supprimer l'image' ?<a href=\"admin.php?action=image&cas=supprimer&idImage=".$_GET['idImage']."&confirme=oui\">OUI</a>&nbsp;&nbsp;<a href=\"admin.php?action=image\">NON</a></label>";
+ 
+                            if(isset($_GET['confirme']) && $_GET['confirme']=="oui")
+                            {
+                                 $requete="SELECT * FROM image WHERE idImage='".$_GET['idImage']."'";
+                                 $resultat=mysqli_query($connexion,$requete);
+                                 $ligne=mysqli_fetch_object($resultat);
+ 
+                                 $requete2="DELETE FROM image WHERE idImage='".$_GET['idImage']."'";
+                                 $resultat2=mysqli_query($connexion,$requete2);
+                                 $message="<label id=\"bravo\">L'image a bien été supprimée</label>";
+                            }
+                        }
+                    break;//fin case supprimer
+                }
+            }
+        $liste=afficher_images();
         break;//fin case image
 
         case "categorie":
@@ -430,17 +515,16 @@ if(isset($_GET['action'])){
                            {
                                //on insert dans la table categorie les valeurs des champs nom et description
                                //addslashes permet de mettre des \ en cas de  '  .
-                               $requete="  INSERT INTO categorie 
+                               $requete="INSERT INTO categorie 
                                SET nomCategorie='".addslashes($_POST['nomCategorie'])."'";
-                               echo $requete;
+                               //echo $requete;
                                //execution de la requete dans la BDD
                                $resultat=mysqli_query($connexion,$requete);
+                               //echo $requete;
+                               $message="<label id=\"bravo\">Le produit a bien été ajouté</label>";
                            }
                        }
-                       else
-                       {
-
-                       }
+                       
                    break;//fin case ajouter
                    
                    case "modifier":
@@ -499,7 +583,111 @@ if(isset($_GET['action'])){
         break;//fin case categorie
 
         case "membre":
-            # code...
+            $contenu="form_membre.html";
+
+            if(isset($_GET["cas"]))
+            {
+                switch ($_GET["cas"])
+                {
+                    case "ajouter":
+                        $action_form="ajouter";
+                        //si le bouton créer a été activé
+                        if(isset($_POST['submit']))
+                        {
+                            if(empty($_POST['nomMembre']))
+                            {
+                                $message="<label id =\"warning\">veuillez entrer le nom du membre s'il-vous-plaît</label>";
+                            }
+                            else if(empty($_POST['mdpMembre']))
+                            {
+                                $message="<label id =\"warning\">veuillez entrer le mdp du membre s'il-vous-plaît</label>";
+                            }
+                            else if(empty($_POST['idPrivilege']))
+                            {
+                                $message="<label id =\"warning\">veuillez entrer le privilege du membre s'il-vous-plaît</label>";
+                            }
+                            else
+                            {
+                                //on insert dans la table membre les valeurs des champs nom et description
+                                //addslashes permet de mettre des \ en cas de  '  .
+                                $requete="INSERT INTO membre 
+                                SET nomMembre='".addslashes($_POST['nomMembre'])."',
+                                mdpMembre='".addslashes($_POST['mdpMembre'])."',
+                                idPrivilege='".addslashes($_POST['idPrivilege'])."'";
+                                echo $requete;
+                                //execution de la requete dans la BDD
+                                $resultat=mysqli_query($connexion,$requete);
+                            }
+                        }
+                        else
+                        {
+ 
+                        }
+                    break;//fin case ajouter
+                    
+                    case "modifier":
+                        if(isset($_GET['idMembre']))
+                        {
+                            //si le bouton enregistrer du formulaire n'a pas été activé
+                            $action_form="modifier&idMembre=".$_GET['idMembre']."";
+                            
+                            //si on appuie sur le bouton enregistrer du formulaire
+                            if(isset($_POST['submit'])){
+                                if(empty($_POST['nomMembre']))
+                                {
+                                    $message="<label id =\"warning\">veuillez entrer le nom du membre s'il-vous-plaît</label>";
+                                }
+                                else if(empty($_POST['mdpMembre']))
+                                {
+                                    $message="<label id =\"warning\">veuillez entrer le mdp du membre s'il-vous-plaît</label>";
+                                }
+                                else if(empty($_POST['idPrivilege']))
+                                {
+                                    $message="<label id =\"warning\">veuillez entrer le privilege du membre s'il-vous-plaît</label>";
+                                }
+                                else
+                                {
+                                    //met à jour la ligne de la table recette
+                                    $requete="UPDATE membre SET nomMembre='".addslashes($_POST['nomMembre'])."', mdpMembre='".addslashes($_POST['mdpMembre'])."', idPrivilege='".addslashes($_POST['idPrivilege'])."' WHERE idMembre='".$_GET['idMembre']."'";
+                                    $resultat=mysqli_query($connexion,$requete);
+                                }
+                            }
+                            else
+                            {
+                                //on recharge le formulaire avec les données
+                                $requete="SELECT * FROM membre WHERE idMembre='".$_GET['idMembre']."'";
+                                $resultat=mysqli_query($connexion,$requete);
+                                $ligne=mysqli_fetch_object($resultat);
+                                $_POST['nomMembre']=stripslashes($ligne->nomMembre);
+                                $_POST['mdpMembre']=stripslashes($ligne->mdpMembre);
+                                $_POST['idPrivilege']=stripslashes($ligne->idPrivilege);
+                            }
+                        }   
+                    break;//fin case modifier
+ 
+                    case "supprimer":
+                        $action_form="ajouter";
+ 
+                        if(isset($_GET['idMembre']))
+                        {
+                            
+                            $message="<label id=\"confirme\">Voulez-vous vraiment supprimer le membre' ?<a href=\"admin.php?action=membre&cas=supprimer&idMembre=".$_GET['idMembre']."&confirme=oui\">OUI</a>&nbsp;&nbsp;<a href=\"admin.php?action=membre\">NON</a></label>";
+ 
+                            if(isset($_GET['confirme']) && $_GET['confirme']=="oui")
+                            {
+                                $requete="SELECT * FROM membre WHERE idMembre='".$_GET['idMembre']."'";
+                                $resultat=mysqli_query($connexion,$requete);
+                                $ligne=mysqli_fetch_object($resultat);
+
+                                $requete2="DELETE FROM membre WHERE idMembre='".$_GET['idMembre']."'";
+                                $resultat2=mysqli_query($connexion,$requete2);
+                                $message="<label id=\"bravo\">Le membre a bien été supprimé</label>";
+                            }
+                        }
+                    break;//fin case supprimer
+                }
+            }
+        $liste=afficher_membres();
         break;//fin case membre
     }//fin switch
 }// fin if isset
