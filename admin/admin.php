@@ -525,15 +525,14 @@ if(isset($_GET['action'])){
                                //addslashes permet de mettre des \ en cas de  '  .
                                $requete="INSERT INTO categorie 
                                SET nomCategorie='".addslashes($_POST['nomCategorie'])."'";
-                               echo $requete;
+                               //echo $requete;
                                //execution de la requete dans la BDD
                                $resultat=mysqli_query($connexion,$requete);
+                               //echo $requete;
+                               $message="<label id=\"bravo\">Le produit a bien été ajouté</label>";
                            }
                        }
-                       else
-                       {
-
-                       }
+                       
                    break;//fin case ajouter
                    
                    case "modifier":
