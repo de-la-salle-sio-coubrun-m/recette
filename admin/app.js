@@ -6,7 +6,8 @@ for (var input of inputs ){
         inputName = this.name;
         inputTab = this.getAttribute('data-tab');
         inputVal = this.value; // updates the variable on each ocurrence
-        //let nomChamp = 'nom'+input_name[0].toUpperCase()+input_name.substr(1);
+        var content = this.parentElement.querySelector('.hugeList');
+        content.innerHTML = '';
         if (inputVal.length > 0) {
             fetch('http://localhost/recette/admin/admin.php?action=recette&nomTable='+inputTab+'&nomChamps='+inputName+'&search='+inputVal)
             .then(function (response) {
