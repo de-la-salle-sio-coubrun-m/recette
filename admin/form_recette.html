@@ -1,82 +1,76 @@
+<form enctype="multipart/form-data" action="admin.php?action=recette&cas=<?php if(isset($action_form)){echo $action_form;} ?>" method="POST">
+    <!-- tableau avec les entrées dans la table recette de la base de données -->
+    <div>
+        <label for="id_origine">Origine de la recette</label>
+        <input id="id_origine" list="hugeListOrigine" type="text" name="nomOrigine" data-tab="origine" value="<?php if(isset($_POST['idOrigine'])){echo $_POST['idOrigine'];} ?>"/>
+        <datalist id="hugeList_origine" class="hugeList">
+        </datalist>
+    </div>
 
-        <script>
-            window.dataList = <?php echo $array ?>;
-        </script>
+    <div>
+        <label for="nomRecette">Nom de la recette</label>
+        <input id="nomRecette" type="text" name="nomRecette" data-tab="recette" value="<?php if(isset($_POST['nomRecette'])){echo $_POST['nomRecette'];} ?>" />
+        <datalist id="hugeList_recette" class="hugeList">
+        </datalist>
+    </div>
     
-        
-    <form enctype="multipart/form-data" action="admin.php?action=recette&cas=<?php if(isset($action_form)){echo $action_form;} ?>" method="POST">
-        <!-- tableau avec les entrées dans la table recette de la base de données -->
-        <div>
-            <label for="id_origine">Origine de la recette</label>
-            <input id="id_origine" list="hugeListOrigine" type="text" name="origine" value="<?php if(isset($_POST['idOrigine'])){echo $_POST['idOrigine'];} ?>" />
-            <datalist id="hugeList_origine" class="hugeList">
-            </datalist>
-        </div>
-
-        <div>
-            <label for="nomRecette">Nom de la recette</label>
-            <input id="nomRecette" type="text" name="recette" value="<?php if(isset($_POST['nomRecette'])){echo $_POST['nomRecette'];} ?>" />
-            <datalist id="hugeList_recette" class="hugeList">
-            </datalist>
-        </div>
-        
-        <div>
-            <label for="descriptionRecette">Description de la recette</label>
-            <textarea id="descriptionRecette" name="recette"><?php if(isset($_POST['descriptionRecette'])){echo $_POST['descriptionRecette'];} ?></textarea>
-        </div>
-        
-        <div>
-            <label for="dureeCuisson">Durée de la cuisson</label>
-            <input id="dureeCuisson" type="text" name="recette" value="<?php if(isset($_POST['dureeCuisson'])){echo $_POST['dureeCuisson'];} ?>" />
-            <datalist id="hugeList_recette" class="hugeList">
-            </datalist>
-        </div>
-        
-        <div>
-            <label for="dureePreparation">Durée de la préparation</label>
-            <input id="dureePreparation" type="text" name="recette" value="<?php if(isset($_POST['dureePreparation'])){echo $_POST['dureePreparation'];} ?>" />
-            <datalist id="hugeList_recette" class="hugeList">
-            </datalist>
-        </div>
-
-        <div>
-            <label for="recetteRecette">La recette</label>
-            <textarea id="recetteRecette" type="text" name="recette" ><?php if(isset($_POST['recetteRecette'])){echo $_POST['recetteRecette'];} ?></textarea>
-        </div>
-
-        <div>
-            <label for="effetsRecette">Les effets de la recette</label>
-            <input id="effetsRecette" type="text" name="recette" value="<?php if(isset($_POST['effetsRecette'])){echo $_POST['effetsRecette'];} ?>" />
-            <datalist id="hugeList_recette" class="hugeList">
-            </datalist>
-        </div>
-
-        <!-- mettre en forme de liste liée à la bdd -->
-        <div>
-            <label for="idCategorie">La catégorie</label> 
-            <input id="idCategorie" list="hugeList" type="text" name="categorie" value="<?php if(isset($_POST['idCategorie'])){echo $_POST['idCategorie'];} ?>" />
-            <datalist id="hugeList_categorie" class="hugeList">
-            </datalist>
-        </div>
-
-        <div>
-            <label for="idIngredient">Ingrédients</label>
-            <input id="idIngredient" type="text" name="ingredient" value="<?php if(isset($_POST['idIngredient'])){echo $_POST['idIngredient'];} ?>" />
-            <datalist id="hugeList_ingredient" class="hugeList">
-            </datalist>
-        </div>
-
-        
-
-        <div>
-            <label for="idImage">Image de la recette</label>
-            <input id="idImage" type="text" name="idImage" value="" />
-        </div>
-        
-        <?php if(isset($message)){echo $message;} ?>
+    <div>
+        <label for="descriptionRecette">Description de la recette</label>
+        <textarea id="descriptionRecette" name="descriptionRecette" data-tab="recette"><?php if(isset($_POST['descriptionRecette'])){echo $_POST['descriptionRecette'];} ?></textarea>
+    </div>
     
-        <div id="boutons">
-            <input type="submit" name="submit" value="ENREGISTRER" />
-            <input type="reset" name="reset" value="ANNULER" />
-        </div>
-    </form>
+    <div>
+        <label for="dureeCuisson">Durée de la cuisson</label>
+        <input id="dureeCuisson" type="text" name="dureeCuisson" data-tab="recette" value="<?php if(isset($_POST['dureeCuisson'])){echo $_POST['dureeCuisson'];} ?>" />
+        <datalist id="hugeList_recette" class="hugeList">
+        </datalist>
+    </div>
+    
+    <div>
+        <label for="dureePreparation">Durée de la préparation</label>
+        <input id="dureePreparation" type="text" name="dureePreparation" data-tab="recette" value="<?php if(isset($_POST['dureePreparation'])){echo $_POST['dureePreparation'];} ?>" />
+        <datalist id="hugeList_recette" class="hugeList">
+        </datalist>
+    </div>
+
+    <div>
+        <label for="recetteRecette">La recette</label>
+        <textarea id="recetteRecette" type="text" name="recette" ><?php if(isset($_POST['recetteRecette'])){echo $_POST['recetteRecette'];} ?></textarea>
+    </div>
+
+    <div>
+        <label for="effetsRecette">Les effets de la recette</label>
+        <input id="effetsRecette" type="text" name="effetsRecette" data-tab="recette" value="<?php if(isset($_POST['effetsRecette'])){echo $_POST['effetsRecette'];} ?>" />
+        <datalist id="hugeList_recette" class="hugeList">
+        </datalist>
+    </div>
+
+    <!-- mettre en forme de liste liée à la bdd -->
+    <div>
+        <label for="idCategorie">La catégorie</label> 
+        <input id="idCategorie" list="hugeList" type="text" name="nomCategorie" data-tab="categorie" value="<?php if(isset($_POST['idCategorie'])){echo $_POST['idCategorie'];} ?>" />
+        <datalist id="hugeList_categorie" class="hugeList">
+        </datalist>
+    </div>
+
+    <div>
+        <label for="idIngredient">Ingrédients</label>
+        <input id="idIngredient" type="text" name="nomIngredient" data-tab="ingredient" value="<?php if(isset($_POST['idIngredient'])){echo $_POST['idIngredient'];} ?>" />
+        <datalist id="hugeList_ingredient" class="hugeList">
+        </datalist>
+    </div>
+
+    
+
+    <div>
+        <label for="idImage">Image de la recette</label>
+        <input id="idImage" type="text" name="idImage" value="" />
+    </div>
+    
+    <?php if(isset($message)){echo $message;} ?>
+
+    <div id="boutons">
+        <input type="submit" name="submit" value="ENREGISTRER" />
+        <input type="reset" name="reset" value="ANNULER" />
+    </div>
+</form>
