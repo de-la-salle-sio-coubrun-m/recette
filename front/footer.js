@@ -1,0 +1,1 @@
+document.write("<footer><div id=\"reseauxSociaux\"><a href=\"#\"><span class=\"fab fa-facebook-square\"></span></a><a href=\"#\"><span class=\"fab fa-twitter-square\"></span></a></div><p><a href=\"contact.html\">Contact</a></p><p><a href=\"mentionslegales.html\">Mentions légales</a></p></footer>");

@@ -367,4 +367,35 @@ function afficher_categories(){
   return $liste;
 }
 
+//============== affichage catégories
+function afficher_ingredientrecette(){
+  $connexion=connexion();
+  $requete="SELECT nomRecette, nomIngredient, idRecette, idIngredient FROM recette, ingredient, ingredientrecette WHERE recette.idRecette = ingredientrecette.idRecette AND ingredientrecette.idIngredient = ingredient.idIngredient ORDER BY nomRecette";
+  $resultat=mysqli_query($connexion, $requete);
+  
+  $liste="<table id=\"liste\">\n";
+  $liste.="<tr>";
+  $liste.="<th>id de la recette</th>";
+  $liste.="<th>id de l'ingrédient</th>";
+  $liste.="<th>Nom de la recette</th>";
+  $liste.="<th>Nom de l'ingrédient</th>";
+  $liste.="<th>Actions</th>";
+  $liste.="</tr>";
+  
+  while($ligne=mysqli_fetch_object($resultat)){
+    $liste.="<tr>";
+    $liste.="<td>" . $ligne->idRecette . "</td>";
+    $liste.="<td>" . $ligne->idIngredient . "</td>";
+    $liste.="<td>" . $ligne->nomRecette . "</td>";
+    $liste.="<td>" . $ligne->nomIngredient . "</td>";
+    $liste.="<td><a href=\"admin.php?action=ingredientRecette&cas=modifier&idRecette=".$ligne->idRecette."&idIngredient=".$ligne->idIngredient."\">modifier</a>&nbsp;
+    <a href=\"admin.php?action=ingredientRecette&cas=supprimer&idRecette=".$ligne->idRecette."&idIngredient=".$ligne->idIngredient."\">supprimer</a>&nbsp;</td>";
+    $liste.="</tr>";
+  }
+  
+  $liste.="</table>\n";
+  mysqli_close($connexion);
+  return $liste;
+}
+
 ?>

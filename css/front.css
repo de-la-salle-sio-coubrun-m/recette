@@ -164,3 +164,20 @@ footer{
 footer a{
 	color: #fff;
 }
+
+/*/////   Q U I   S O M M E S   N O U S   /////*/
+#photoEquipe{
+	margin-right: 10px;
+	width: 50%;
+}
+
+#photoLieu{
+	margin-left: 10px;
+	width: 50%;
+}
+
+#part1, #part2{
+	display: flex;
+	height: 33vh;
+	margin : 0;
+}

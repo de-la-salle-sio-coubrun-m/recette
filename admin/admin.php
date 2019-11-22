@@ -702,6 +702,105 @@ if(isset($_GET['action'])){
             }
         $liste=afficher_membres();
         break;//fin case membre
+
+        case "ingredientRecette":
+            $contenu="form_ingredientrecette.html";
+
+            if(isset($_GET["cas"]))
+            {
+                switch ($_GET["cas"])
+                {
+                    case "ajouter":
+                        $action_form="ajouter";
+                        //si le bouton créer a été activé
+                        if(isset($_POST['submit']))
+                        {
+                            if(empty($_POST['nomRecette']))
+                            {
+                                $message="<label id =\"warning\">veuillez entrer le nom de la recette s'il-vous-plaît</label>";
+                            }
+                            else if(empty($_POST['nomIngredient']))
+                            {
+                                $message="<label id =\"warning\">veuillez entrer le nom du l'ingrédient s'il-vous-plaît</label>";
+                            }
+                            else
+                            {
+                                //on insert dans la table membre les valeurs des champs nom et description
+                                //addslashes permet de mettre des \ en cas de  '  .
+                                $requete="INSERT INTO ingredientrecette 
+                                SET idRecette=(SELECT recette.idRecette FROM recette WHERE nomRecette ='".addslashes($_POST['nomRecette'])."'),
+                                idIngredient=(SELECT ingredient.idIngredient FROM ingredient WHERE nomIngredient ='".addslashes($_POST['nomIngredient'])."')";
+                                echo $requete;
+                                //execution de la requete dans la BDD
+                                $resultat=mysqli_query($connexion,$requete);
+                            }
+                        }
+                        else
+                        {
+ 
+                        }
+                    break;//fin case ajouter
+                    
+                    case "modifier":
+                        if(isset($_GET['nomRecette']))
+                        {
+                            //si le bouton enregistrer du formulaire n'a pas été activé
+                            $action_form="modifier&nomRecette=".$_GET['nomRecette']."";
+                            
+                            //si on appuie sur le bouton enregistrer du formulaire
+                            if(isset($_POST['submit'])){
+                                if(empty($_POST['nomRecette']))
+                                {
+                                    $message="<label id =\"warning\">veuillez entrer le nom de la recette s'il-vous-plaît</label>";
+                                }
+                                else if(empty($_POST['nomIngredient']))
+                                {
+                                    $message="<label id =\"warning\">veuillez entrer le nom du l'ingrédient s'il-vous-plaît</label>";
+                                }
+                                else
+                                {
+                                    //met à jour la ligne de la table recette
+                                    $requete="UPDATE ingredientrecette SET idRecette=(SELECT recette.idRecette FROM recette WHERE nomRecette ='".addslashes($_POST['nomRecette'])."'),
+                                    idIngredient=(SELECT ingredient.idIngredient FROM ingredient WHERE nomIngredient ='".addslashes($_POST['nomIngredient'])."')";
+                                    $resultat=mysqli_query($connexion,$requete);
+                                }
+                            }
+                            else
+                            {
+                                //on recharge le formulaire avec les données
+                                $requete="SELECT * FROM ingredientrecette WHERE idRecette=(SELECT idRecette FROM recette WHERE nomRecette='".$_GET['nomRecette']."')";
+                                $resultat=mysqli_query($connexion,$requete);
+                                $ligne=mysqli_fetch_object($resultat);
+                                $_POST['nomRecette']=stripslashes($ligne->nomMembre);
+                                $_POST['nomIngredient']=stripslashes($ligne->mdpMembre);
+                            }
+                        }   
+                    break;//fin case modifier
+ 
+                    case "supprimer":
+                        $action_form="ajouter";
+ 
+                        if(isset($_GET['nomRecette']))
+                        {
+                            
+                            $message="<label id=\"confirme\">Voulez-vous vraiment supprimer l'ingrédient de la recette ?<a href=\"admin.php?action=ingredientRecette&cas=supprimer&nomRecette".$_GET['nomRecette']."&nomIngredient=".$_GET['nomIngredient']."&confirme=oui\">OUI</a>&nbsp;&nbsp;<a href=\"admin.php?action=ingredientRecette\">NON</a></label>";
+ 
+                            if(isset($_GET['confirme']) && $_GET['confirme']=="oui")
+                            {
+                                $requete="SELECT * FROM ingredientrecette WHERE idRecette=(SELECT idRecette FROM recette WHERE nomRecette='".$_GET['nomRecette']."') AND idIngredient=(SELECT idIngredient FROM ingredient WHERE nomIngredient='".$_GET['nomIngredient']."')";
+                                $resultat=mysqli_query($connexion,$requete);
+                                $ligne=mysqli_fetch_object($resultat);
+
+                                $requete2="DELETE FROM ingredientrecette WHERE idRecette=(SELECT idRecette FROM recette WHERE nomRecette='".$_GET['nomRecette']."') AND idIngredient=(SELECT idIngredient FROM ingredient WHERE nomIngredient='".$_GET['nomIngredient']."')";
+                                $resultat2=mysqli_query($connexion,$requete2);
+                                $message="<label id=\"bravo\">L'ingrédient a bien été supprimé</label>";
+                            }
+                        }
+                    break;//fin case supprimer
+                }
+            }
+        $liste=afficher_ingredientrecette();
+        break;//fin case ingredientrecette
     }//fin switch
 }// fin if isset
 
