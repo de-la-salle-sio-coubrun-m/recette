@@ -7,8 +7,10 @@
     <title>Les articles</title>
 </head>
 <body>
+    
         <form enctype="multipart/form-data" action="admin.php?action=article&cas=<?php if(isset($action_form)){echo $action_form;} ?>" method="POST">
             <!-- tableau avec les entrées dans la table article de la base de données -->
+            
             <div>
                 <label for="titreArticle">Titre de l'article</label>
                 <input id="titreArticle" list="hugeList" type="text" name="titreArticle" data-tab="article" value="<?php if(isset($_POST['titreArticle'])){echo $_POST['titreArticle'];} ?>" />

@@ -627,7 +627,7 @@ if(isset($_GET['action'])){
                                 SET nomMembre='".addslashes($_POST['nomMembre'])."',
                                 mdpMembre='".addslashes($_POST['mdpMembre'])."',
                                 idPrivilege='".addslashes($_POST['idPrivilege'])."'";
-                                echo $requete;
+                                //echo $requete;
                                 //execution de la requete dans la BDD
                                 $resultat=mysqli_query($connexion,$requete);
                             }

@@ -10,6 +10,11 @@
     <form enctype="multipart/form-data" action="admin.php?action=membre&cas=<?php if(isset($action_form)){echo $action_form;} ?>" method="POST">
         <!-- tableau avec les entrées dans la table membre de la base de données -->
         <div>
+            <h2>Les codes des privilèges sont :</h2>
+            <p>1 = administrateur</p>
+            <p>2 = auteur </p>
+        </div>
+        <div>
             <label for="nomMembre">Nom du membre</label>
             <input id="nomMembre" list="hugeList" type="text" name="nomMembre" data-tab="membre" value="<?php if(isset($_POST['nomMembre'])){echo $_POST['nomMembre'];} ?>" />            
             <datalist id="hugeList_nomMembre" class="hugeList">
@@ -25,7 +30,7 @@
 
         <div>
             <label for="idPrivilege">Privilèges du membre</label>
-            <input id="idPrivilege" type="text" name="labelPrivilege" data-tab="privilege" value="<?php if(isset($_POST['idPrivilege'])){echo $_POST['idPrivilege'];} ?>" />
+            <input id="idPrivilege" type="text" name="idPrivilege" data-tab="privilege" value="<?php if(isset($_POST['idPrivilege'])){echo $_POST['idPrivilege'];} ?>" />
             <datalist id="hugeList_privilegeMembre" class="hugeList">
             </datalist>
         </div>
