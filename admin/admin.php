@@ -361,7 +361,7 @@ if(isset($_GET['action'])){
                                 else
                                 {
                                     //met à jour la ligne de la table recette
-                                    $requete="UPDATE article SET titreArticle='".addslashes($_POST['titreArticle'])."', 	contenuArticle='".addslashes($_POST['	contenuArticle'])."', dateArticle='".addslashes($_POST['dateArticle'])."', idMembre='".addslashes($_POST['idMembre'])."', idRecette='".addslashes($_POST['idRecette'])."'WHERE idArticle='".$_GET['idArticle']."'";
+                                    $requete="UPDATE article SET titreArticle='".addslashes($_POST['titreArticle'])."', contenuArticle='".addslashes($_POST['contenuArticle'])."', dateArticle='".addslashes($_POST['dateArticle'])."', idMembre='".addslashes($_POST['idMembre'])."', idRecette='".addslashes($_POST['idRecette'])."'WHERE idArticle='".$_GET['idArticle']."'";
                                     $resultat=mysqli_query($connexion,$requete);
                                 }
                             }
