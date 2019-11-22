@@ -4,7 +4,7 @@ session_start();
 require_once("../tools/fonctions.php");
 //établit la connexion avec la base de données
 $connexion=connexion();
-
+$action_form="ajouter";
 if(isset($_GET['action'])){
     switch ($_GET["action"]){
         case "déconnecter":
@@ -18,7 +18,10 @@ if(isset($_GET['action'])){
 
             if(isset($_GET["cas"])){
                 switch ($_GET["cas"]) {
+
+
                     case "ajouter":
+                        
                         $action_form="ajouter";
                         //si le bouton créer a été activé
                         if(isset($_POST['submit'])){

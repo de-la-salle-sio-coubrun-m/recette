@@ -23,7 +23,7 @@
             
             <div>
                 <label for="dateArticle">Date de l'article</label>
-                <input id="dateArticle" name="dateArticle" data-tab="article" value="<?php if(isset($_POST['dateArticle'])){echo $_POST['dateArticle'];} ?>"/> 
+                <input id="dateArticle" name="dateArticle" data-tab="article" type="date" value="<?php if(isset($_POST['dateArticle'])){echo $_POST['dateArticle'];} ?>"/> 
                 <datalist id="hugeList_article" class="hugeList">
                 </datalist>
             </div>
