@@ -12,7 +12,7 @@
             <div>
                 <label for="titreArticle">Titre de l'article</label>
                 <input id="titreArticle" list="hugeList" type="text" name="titreArticle" data-tab="article" value="<?php if(isset($_POST['titreArticle'])){echo $_POST['titreArticle'];} ?>" />
-                <datalist id="hugeList_article" class="hugeList">
+                <datalist id="hugeList_titreArticle" class="hugeList">
                 </datalist>
             </div>
     
@@ -24,21 +24,21 @@
             <div>
                 <label for="dateArticle">Date de l'article</label>
                 <input id="dateArticle" name="dateArticle" data-tab="article" type="date" value="<?php if(isset($_POST['dateArticle'])){echo $_POST['dateArticle'];} ?>"/> 
-                <datalist id="hugeList_article" class="hugeList">
+                <datalist id="hugeList_dateArticle" class="hugeList">
                 </datalist>
             </div>
             
             <div>
                 <label for="idMembre">Auteur de l'article</label>
                 <input id="idMembre" type="text" name="nomMembre" data-tab="membre" value="<?php if(isset($_POST['idMembre'])){echo $_POST['idMembre'];} ?>" />
-                <datalist id="hugeList_membre" class="hugeList">
+                <datalist id="hugeList_idMembre" class="hugeList">
                 </datalist>
             </div>
             
             <div>
                 <label for="idRecette">Recette de l'article</label>
                 <input id="idRecette" type="text" name="nomRecette" data-tab="recette" value="<?php if(isset($_POST['idRecette'])){echo $_POST['idRecette'];} ?>" />
-                <datalist id="hugeList_recette" class="hugeList">
+                <datalist id="hugeList_idRecette" class="hugeList">
                 </datalist>
             </div>
             

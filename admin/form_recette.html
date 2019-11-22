@@ -3,14 +3,14 @@
     <div>
         <label for="id_origine">Origine de la recette</label>
         <input id="id_origine" list="hugeListOrigine" type="text" name="nomOrigine" data-tab="origine" value="<?php if(isset($_POST['idOrigine'])){echo $_POST['idOrigine'];} ?>"/>
-        <datalist id="hugeList_origine" class="hugeList">
+        <datalist id="hugeList_origineRecette" class="hugeList">
         </datalist>
     </div>
 
     <div>
         <label for="nomRecette">Nom de la recette</label>
         <input id="nomRecette" type="text" name="nomRecette" data-tab="recette" value="<?php if(isset($_POST['nomRecette'])){echo $_POST['nomRecette'];} ?>" />
-        <datalist id="hugeList_recette" class="hugeList">
+        <datalist id="hugeList_nomRecette" class="hugeList">
         </datalist>
     </div>
     
@@ -22,14 +22,14 @@
     <div>
         <label for="dureeCuisson">Durée de la cuisson</label>
         <input id="dureeCuisson" type="text" name="dureeCuisson" data-tab="recette" value="<?php if(isset($_POST['dureeCuisson'])){echo $_POST['dureeCuisson'];} ?>" />
-        <datalist id="hugeList_recette" class="hugeList">
+        <datalist id="hugeList_dureeCuisson" class="hugeList">
         </datalist>
     </div>
     
     <div>
         <label for="dureePreparation">Durée de la préparation</label>
         <input id="dureePreparation" type="text" name="dureePreparation" data-tab="recette" value="<?php if(isset($_POST['dureePreparation'])){echo $_POST['dureePreparation'];} ?>" />
-        <datalist id="hugeList_recette" class="hugeList">
+        <datalist id="hugeList_dureePreparation" class="hugeList">
         </datalist>
     </div>
 
@@ -41,7 +41,7 @@
     <div>
         <label for="effetsRecette">Les effets de la recette</label>
         <input id="effetsRecette" type="text" name="effetsRecette" data-tab="recette" value="<?php if(isset($_POST['effetsRecette'])){echo $_POST['effetsRecette'];} ?>" />
-        <datalist id="hugeList_recette" class="hugeList">
+        <datalist id="hugeList_effetsRecette" class="hugeList">
         </datalist>
     </div>
 
@@ -49,7 +49,7 @@
     <div>
         <label for="idCategorie">La catégorie</label> 
         <input id="idCategorie" list="hugeList" type="text" name="nomCategorie" data-tab="categorie" value="<?php if(isset($_POST['idCategorie'])){echo $_POST['idCategorie'];} ?>" />
-        <datalist id="hugeList_categorie" class="hugeList">
+        <datalist id="hugeList_idCategorie" class="hugeList">
         </datalist>
     </div>
 

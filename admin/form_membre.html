@@ -12,7 +12,7 @@
         <div>
             <label for="nomMembre">Nom du membre</label>
             <input id="nomMembre" list="hugeList" type="text" name="nomMembre" data-tab="membre" value="<?php if(isset($_POST['nomMembre'])){echo $_POST['nomMembre'];} ?>" />            
-            <datalist id="hugeList_membre" class="hugeList">
+            <datalist id="hugeList_nomMembre" class="hugeList">
             </datalist>
         </div>
 
@@ -26,7 +26,7 @@
         <div>
             <label for="idPrivilege">Privilèges du membre</label>
             <input id="idPrivilege" type="text" name="labelPrivilege" data-tab="privilege" value="<?php if(isset($_POST['idPrivilege'])){echo $_POST['idPrivilege'];} ?>" />
-            <datalist id="hugeList_membre" class="hugeList">
+            <datalist id="hugeList_privilegeMembre" class="hugeList">
             </datalist>
         </div>
         
