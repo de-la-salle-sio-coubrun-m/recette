@@ -1,10 +1,10 @@
 <?php
-//permet l'usage des variables de session
+
 session_start();
-require_once("../tools/fonctions.php");
-//établit la connexion avec la base de données
-$connexion=connexion();
+include "../tools/fonctions.php";
+$base = connect();
 $action_form="ajouter";
+
 if(isset($_GET['action'])){
     switch ($_GET["action"]){
         case "déconnecter":
@@ -182,27 +182,28 @@ if(isset($_GET['action'])){
                         $action_form="ajouter";
                         //si le bouton créer a été activé
                         if(isset($_POST['submit'])){
-                            if(empty($_POST['nomIngredient']))
+                            if(empty($_POST[':nomIngredient']))
                             {
                                 $message="<label id =\"warning\">veuillez entrer le nom de l'ingrédient s'il-vous-plaît</label>";
                             }
-                            elseif(empty($_POST['recolteIngredient']))
+                            elseif(empty($_POST[':recolteIngredient']))
                             {
                                 $message="<label id =\"warning\">veuillez entrer la (ou les) méthode(s) d'obtention de l'ingrédients s'il-vous-plaît</label>";
                             }
-                            elseif(empty($_POST['lieuIngredient']))
+                            elseif(empty($_POST[':lieuIngredient']))
                             {
                                 $message="<label id =\"warning\">veuillez entrer le (ou les) lieu(x) ou l'ingredient peut être obtenu s'il-vous-plaît</label>";
                             }
                             else
                             {
-                                //on insert dans la table ingredient les valeurs des champs nom et description
-                                //addslashes permet de mettre des \ en cas de  '  .
-                                $requete="  INSERT INTO ingredient 
-                                SET nomIngredient='".addslashes($_POST['nomIngredient'])."', 	recolteIngredient='".addslashes($_POST['recolteIngredient'])."', lieuIngredient='".addslashes($_POST['lieuIngredient'])."'";
-                                echo $requete;
-                                //execution de la requete dans la BDD
-                                $resultat=mysqli_query($connexion,$requete);
+                                array_pop($_POST);
+                                array_slice($_POST, -1);
+                                $requete= $base->prepare("INSERT INTO ingredient 
+                                (nomIngredient, recolteIngredient, lieuIngredient) VALUE (:nomIngredient, :recolteIngredient, :lieuIngredient)");
+                                
+                                var_dump($_POST);
+                                echo "<hr>";
+                                $requete->execute($_POST);
                             }
                         }
                         else
@@ -234,19 +235,16 @@ if(isset($_GET['action'])){
                                 else
                                 {
                                     //met à jour la ligne de la table ingredient
-                                    $requete="UPDATE ingredient SET nomIngredient='".addslashes($_POST['nomIngredient'])."', 	recolteIngredient='".addslashes($_POST['recolteIngredient'])."', lieuIngredient='".addslashes($_POST['lieuIngredient'])."'WHERE idIngredient='".$_GET['idIngredient']."'";
-                                    $resultat=mysqli_query($connexion,$requete);
+                                    $requete= $base->exec("UPDATE ingredient SET nomIngredient='".addslashes($_POST['nomIngredient'])."', 	recolteIngredient='".addslashes($_POST['recolteIngredient'])."', lieuIngredient='".addslashes($_POST['lieuIngredient'])."'WHERE idIngredient='".$_GET['idIngredient']."'");
                                 }
                             }
                             else
                             {
                                 //on recharge le formulaire avec les données
-                                $requete="SELECT * FROM ingredient WHERE idIngredient='".$_GET['idIngredient']."'";
-                                $resultat=mysqli_query($connexion,$requete);
-                                $ligne=mysqli_fetch_object($resultat);
-                                $_POST['nomIngredient']=stripslashes($ligne->nomIngredient);
-                                $_POST['recolteIngredient']=stripslashes($ligne->recolteIngredient);
-                                $_POST['lieuIngredient']=stripslashes($ligne->lieuIngredient);
+                                $requete= $base->query("SELECT * FROM ingredient WHERE idIngredient='".$_GET['idIngredient']."'")->fetch(PDO::FETCH_OBJ);
+                                $_POST['nomIngredient']=stripslashes($requete->nomIngredient);
+                                $_POST['recolteIngredient']=stripslashes($requete->recolteIngredient);
+                                $_POST['lieuIngredient']=stripslashes($requete->lieuIngredient);
                             }
                         }   
                     break;//fin case modifier
@@ -261,12 +259,7 @@ if(isset($_GET['action'])){
 
                             if(isset($_GET['confirme']) && $_GET['confirme']=="oui")
                             {
-                                $requete="SELECT * FROM ingredient WHERE idIngredient='".$_GET['idIngredient']."'";
-                                $resultat=mysqli_query($connexion,$requete);
-                                $ligne=mysqli_fetch_object($resultat);
-
-                                $requete2="DELETE FROM ingredient WHERE idIngredient='".$_GET['idIngredient']."'";
-                                $resultat2=mysqli_query($connexion,$requete2);
+                                $requete2=$base->exec("DELETE FROM ingredient WHERE idIngredient='".$_GET['idIngredient']."'");
                                 $message="<label id=\"bravo\">L'ingredient a bien été supprimé</label>";
                             }
                         }
@@ -804,7 +797,5 @@ if(isset($_GET['action'])){
     }//fin switch
 }// fin if isset
 
-//on referme la connexion à la base
-mysqli_close($connexion);
 include("admin.html");
 ?>

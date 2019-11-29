@@ -1,8 +1,8 @@
 <?php
-	
+
 //================================
 function security($chaine){
-	$connexion=connexion();
+	 $base = connect();
 	$security=addcslashes(mysqli_real_escape_string($connexion,$chaine), "%_");
 	mysqli_close($connexion);
 	return $security;
@@ -123,69 +123,22 @@ if(!isset($quality))
 // la fonction connecter() permet de choisir une
 // base de données et de s'y connecter.
 
-function connexion()
-{
-  require_once("connect.php");
-  //avec numéro de port
-  //$connexion = mysqli_connect(SERVEUR,LOGIN,PASSE,BASE,PORT) or die("Error " . mysqli_error($connexion));
- 
-   //sans numéro de port
-  $connexion = mysqli_connect(SERVEUR,LOGIN,PASSE,BASE) or die("Error " . mysqli_error($connexion));
+function connect () {
+  try {      
+      $base = new PDO('mysql:host=localhost;dbname=recette;charset=utf8', 'root', '');
 
-  return $connexion;
-}
+  } catch(exception $error){
 
-//===============================================
-
- function envoi_mel($destinataire,$sujet,$message_txt, $message_html,$expediteur)
-  {
-  if (!preg_match("#^[a-z0-9._-]+@(hotmail|live|msn).[a-z]{2,4}$#", $destinataire)) // On filtre les serveurs qui rencontrent des bogues.
-    {
-  	$passage_ligne = "\r\n";
-    }
-  else
-    {
-  	$passage_ligne = "\n";
-    }
-   
-  //=====Création de la boundary
-  $boundary = "-----=" . md5(rand());
-  //==========
-   
-  //=====Création du header de l'email
-  $header = "From: \"" . $_SESSION['expediteur'] . "\"<" . $expediteur . ">" . $passage_ligne;
-  $header.= "Reply-to: \"" . $_SESSION['expediteur'] . "\" <" . $expediteur . ">" . $passage_ligne;
-  $header.= "MIME-Version: 1.0" . $passage_ligne;
-  $header.= "X-Priority: 3" . $passage_ligne;//1 : max et 5 : min
-  $header.= "Content-Type: multipart/alternative;" . $passage_ligne . " boundary=\"" . $boundary . "\"" . $passage_ligne;
-  //==========
-   
-  //=====Création du message
-  $message = $passage_ligne . "--" . $boundary. $passage_ligne;
-  //=====Ajout du message au format texte
-  $message.= "Content-Type: text/plain; charset=\"UTF-8\"" . $passage_ligne;
-  $message.= "Content-Transfer-Encoding: 8bit" . $passage_ligne;
-  $message.= $passage_ligne . $message_txt . $passage_ligne;
-  //==========
-  $message.= $passage_ligne . "--" . $boundary . $passage_ligne;
-  //=====Ajout du message au format HTML
-  $message.= "Content-Type: text/html; charset=\"UTF-8\"" . $passage_ligne;
-  $message.= "Content-Transfer-Encoding: 8bit" . $passage_ligne;
-  $message.= $passage_ligne . $message_html . $passage_ligne;
-  //==========
-  $message.= $passage_ligne . "--" . $boundary."--" . $passage_ligne;
-  $message.= $passage_ligne . "--" . $boundary."--" . $passage_ligne;
-  //==========
-   
-  //=====Envoi de l'email
-  mail($destinataire,$sujet,$message,$header);  
-  }    
+      die( 'error' .$error->getMessage());
+  }
+  return $base;
+} 
 
   //============== affichage listes
   function afficher_recettes(){
-    $connexion=connexion();
-    $requete="SELECT * FROM recette ORDER BY nomRecette";
-    $resultat=mysqli_query($connexion, $requete);
+     $base = connect();
+    $requete= $base->query("SELECT * FROM recette ORDER BY nomRecette");
+    
     
     $liste="<table id=\"liste\">\n";
     $liste.="<tr>";
@@ -201,7 +154,7 @@ function connexion()
     $liste.="<th>Actions</th>";
     $liste.="</tr>";
     
-    while($ligne=mysqli_fetch_object($resultat)){
+   while($ligne= $requete->fetch(PDO::FETCH_OBJ)){
       $liste.="<tr>";
       $liste.="<td>" . utf8_decode(utf8_encode($ligne->idOrigine)) . "</td>";
       $liste.="<td>" . utf8_decode(utf8_encode($ligne->nomRecette)) . "</td>";
@@ -218,15 +171,14 @@ function connexion()
     }
     
     $liste.="</table>\n";
-    mysqli_close($connexion);
     return $liste;
   }
 
   //============== affichage articles
   function afficher_articles(){
-    $connexion=connexion();
-    $requete="SELECT * FROM article ORDER BY titreArticle";
-    $resultat=mysqli_query($connexion, $requete);
+     $base = connect();
+    $requete= $base->query("SELECT * FROM article ORDER BY titreArticle");
+    
     
     $liste="<table id=\"liste\">\n";
     $liste.="<tr>";
@@ -238,7 +190,7 @@ function connexion()
     $liste.="<th>Actions</th>";
     $liste.="</tr>";
     
-    while($ligne=mysqli_fetch_object($resultat)){
+   while($ligne= $requete->fetch(PDO::FETCH_OBJ)){
       $liste.="<tr>";
       $liste.="<td>" . $ligne->titreArticle . "</td>";
       $liste.="<td>" . $ligne->contenuArticle . "</td>";
@@ -251,15 +203,14 @@ function connexion()
     }
     
     $liste.="</table>\n";
-    mysqli_close($connexion);
+    
     return $liste;
   }
 
 //============== affichage images
 function afficher_images(){
-  $connexion=connexion();
-  $requete="SELECT * FROM image ORDER BY nomImage";
-  $resultat=mysqli_query($connexion, $requete);
+   $base = connect();
+  $requete= $base->query("SELECT * FROM image ORDER BY nomImage");
   
   $liste="<table id=\"liste\">\n";
   $liste.="<tr>";
@@ -268,7 +219,7 @@ function afficher_images(){
   $liste.="<th>Actions</th>";
   $liste.="</tr>";
   
-  while($ligne=mysqli_fetch_object($resultat)){
+ while($ligne= $requete->fetch(PDO::FETCH_OBJ)){
     $liste.="<tr>";
     $liste.="<td>" . $ligne->nomImage . "</td>";
     $liste.="<td>" . $ligne->urlImage . "</td>";
@@ -278,15 +229,14 @@ function afficher_images(){
   }
   
   $liste.="</table>\n";
-  mysqli_close($connexion);
+  
   return $liste;
 }
 
 //============== affichage ingrédients
 function afficher_Ingredient(){
-  $connexion=connexion();
-  $requete="SELECT * FROM ingredient ORDER BY nomIngredient";
-  $resultat=mysqli_query($connexion, $requete);
+  $base = connect();
+  $requete= $base->query("SELECT * FROM ingredient ORDER BY nomIngredient");
   
   $liste="<table id=\"liste\">\n";
   $liste.="<tr>";
@@ -296,7 +246,7 @@ function afficher_Ingredient(){
   $liste.="<th>Actions</th>";
   $liste.="</tr>";
   
-  while($ligne=mysqli_fetch_object($resultat)){
+  while($ligne= $requete->fetch(PDO::FETCH_OBJ)){
     $liste.="<tr>";
     $liste.="<td>" . $ligne->nomIngredient . "</td>";
     $liste.="<td>" . $ligne->recolteIngredient . "</td>";
@@ -307,15 +257,14 @@ function afficher_Ingredient(){
   }
   
   $liste.="</table>\n";
-  mysqli_close($connexion);
   return $liste;
 }
 
 //============== affichage membres
 function afficher_membres(){
-  $connexion=connexion();
-  $requete="SELECT * FROM membre ORDER BY nomMembre";
-  $resultat=mysqli_query($connexion, $requete);
+   $base = connect();
+  $requete= $base->query("SELECT * FROM membre ORDER BY nomMembre");
+  
   
   $liste="<table id=\"liste\">\n";
   $liste.="<tr>";
@@ -325,7 +274,7 @@ function afficher_membres(){
   $liste.="<th>Actions</th>";
   $liste.="</tr>";
   
-  while($ligne=mysqli_fetch_object($resultat)){
+ while($ligne= $requete->fetch(PDO::FETCH_OBJ)){
     $liste.="<tr>";
     $liste.="<td>" . $ligne->nomMembre . "</td>";
     $liste.="<td>" . $ligne->mdpMembre . "</td>";
@@ -336,15 +285,15 @@ function afficher_membres(){
   }
   
   $liste.="</table>\n";
-  mysqli_close($connexion);
+  
   return $liste;
 }
 
 //============== affichage catégories
 function afficher_categories(){
-  $connexion=connexion();
-  $requete="SELECT * FROM categorie ORDER BY nomCategorie";
-  $resultat=mysqli_query($connexion, $requete);
+   $base = connect();
+  $requete= $base->query("SELECT * FROM categorie ORDER BY nomCategorie");
+  
   
   $liste="<table id=\"liste\">\n";
   $liste.="<tr>";
@@ -353,7 +302,7 @@ function afficher_categories(){
   $liste.="<th>Actions</th>";
   $liste.="</tr>";
   
-  while($ligne=mysqli_fetch_object($resultat)){
+ while($ligne= $requete->fetch(PDO::FETCH_OBJ)){
     $liste.="<tr>";
     $liste.="<td>" . $ligne->idCategorie . "</td>";
     $liste.="<td>" . $ligne->nomCategorie . "</td>";
@@ -363,16 +312,15 @@ function afficher_categories(){
   }
   
   $liste.="</table>\n";
-  mysqli_close($connexion);
+  
   return $liste;
 }
 
 //============== affichage catégories
 function afficher_ingredientrecette(){
-  $connexion=connexion();
-  $requete="SELECT nomRecette, nomIngredient, idRecette, idIngredient FROM recette, ingredient, ingredientrecette WHERE recette.idRecette = ingredientrecette.idRecette AND ingredientrecette.idIngredient = ingredient.idIngredient ORDER BY nomRecette";
-  $resultat=mysqli_query($connexion, $requete);
-  
+   $base = connect();
+  $requete = $base->query("SELECT nomRecette, nomIngredient, recette.idRecette, ingredient.idIngredient FROM recette, ingredient, ingredientrecette WHERE recette.idRecette = ingredientrecette.idRecette AND ingredientrecette.idIngredient = ingredient.idIngredient ORDER BY nomRecette");
+    
   $liste="<table id=\"liste\">\n";
   $liste.="<tr>";
   $liste.="<th>id de la recette</th>";
@@ -382,7 +330,7 @@ function afficher_ingredientrecette(){
   $liste.="<th>Actions</th>";
   $liste.="</tr>";
   
-  while($ligne=mysqli_fetch_object($resultat)){
+ while($ligne= $requete->fetch(PDO::FETCH_OBJ)){
     $liste.="<tr>";
     $liste.="<td>" . $ligne->idRecette . "</td>";
     $liste.="<td>" . $ligne->idIngredient . "</td>";
@@ -394,8 +342,7 @@ function afficher_ingredientrecette(){
   }
   
   $liste.="</table>\n";
-  mysqli_close($connexion);
   return $liste;
 }
 
-?>
+// ?>
