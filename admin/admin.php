@@ -421,6 +421,10 @@ if(isset($_GET['action'])){
                             {
                                 $message="<label id =\"warning\">veuillez entrer l'url de l'image' s'il-vous-plaît</label>";
                             }
+                            else if(empty($_POST['imageRecette']))
+                            {
+                                $message="<label id =\"warning\">veuillez enregistrer une image' s'il-vous-plaît</label>";
+                            }
                             else
                             {
                                 //on insert dans la table image les valeurs des champs nom et description
@@ -431,6 +435,54 @@ if(isset($_GET['action'])){
                                 echo $requete;
                                 //execution de la requete dans la BDD
                                 $resultat=mysqli_query($connexion,$requete);
+
+                                $resultat=mysqli_query($connexion,$requete);
+						
+                            //on récupere le dernier id_produit créé
+                            $dernier_id_cree=mysqli_insert_id($connexion);
+                            
+                            //si le type du fichier photo est valide
+                            if(fichier_type($_FILES['imageRecette']['name'])=="jpg" ||
+                            fichier_type($_FILES['imageRecette']['name'])=="png" || 
+                            fichier_type($_FILES['imageRecette']['name'])=="gif")
+                                { 
+                                $extension=fichier_type($_FILES['imageRecette']['name']);
+                                $chemin_image= $_GET['urlImage'] . $dernier_id_cree . "_g." . $extension;
+                                $chemin_image2= $_GET['urlImage'] . $dernier_id_cree . "_p." . $extension; 
+
+                                if(is_uploaded_file($_FILES['imageRecette']['tmp_name']))
+                                    {  							
+                                    if(copy($_FILES['imageRecette']['tmp_name'], $chemin_image))
+                                        { 			
+                                        $size=GetImageSize($chemin_image);
+                                        $width = $size[0];
+                                        $height = $size[1];
+                                        $rapport=$width/$height;
+                                        
+                                        //format paysage
+                                        if($rapport>1)
+                                            {
+                                            $new_width=200;
+                                            $new_height=200/$rapport;
+                                            }
+                                        //format portrait
+                                        elseif($rapport<1)
+                                            {
+                                            $new_width=200*$rapport;
+                                            $new_height=200;
+                                            }
+                                        else{
+                                            $new_width=200;
+                                            $new_height=200;
+                                            }	
+                                        //redimage(image origine,miniature,
+                                        //largeur miniature,hauteur miniature,qualité de la miniature)
+                                        redimage($chemin_image,$chemin_image2,$new_width,$new_height,"70");
+                                        
+                                        }
+                                    }	
+
+                                }
                             }
                         }
                         else
@@ -455,11 +507,61 @@ if(isset($_GET['action'])){
                                 {
                                     $message="<label id =\"warning\">veuillez entrer l'url de l'image s'il-vous-plaît</label>";
                                 }
+                                else if(empty($_POST['imageRecette']))
+                                {
+                                    $message="<label id =\"warning\">veuillez enregistrer une image' s'il-vous-plaît</label>";
+                                }
                                 else
                                 {
                                     //met à jour la ligne de la table recette
                                     $requete="UPDATE image SET nomImage='".addslashes($_POST['nomImage'])."', urlImage='".addslashes($_POST['urlImage'])."' WHERE idImage='".$_GET['idImage']."'";
                                     $resultat=mysqli_query($connexion,$requete);
+
+                                    //on récupere le dernier id_produit créé
+                            $dernier_id_cree=mysqli_insert_id($connexion);
+                            
+                            //si le type du fichier photo est valide
+                            if(fichier_type($_FILES['imageRecette']['name'])=="jpg" ||
+                            fichier_type($_FILES['imageRecette']['name'])=="png" || 
+                            fichier_type($_FILES['imageRecette']['name'])=="gif")
+                                { 
+                                $extension=fichier_type($_FILES['imageRecette']['name']);
+                                $chemin_image= $_GET['urlImage'] . $dernier_id_cree . "_g." . $extension;
+                                $chemin_image2= $_GET['urlImage'] . $dernier_id_cree . "_p." . $extension; 
+
+                                if(is_uploaded_file($_FILES['imageRecette']['tmp_name']))
+                                    {  							
+                                    if(copy($_FILES['imageRecette']['tmp_name'], $chemin_image))
+                                        { 			
+                                        $size=GetImageSize($chemin_image);
+                                        $width = $size[0];
+                                        $height = $size[1];
+                                        $rapport=$width/$height;
+                                        
+                                        //format paysage
+                                        if($rapport>1)
+                                            {
+                                            $new_width=200;
+                                            $new_height=200/$rapport;
+                                            }
+                                        //format portrait
+                                        elseif($rapport<1)
+                                            {
+                                            $new_width=200*$rapport;
+                                            $new_height=200;
+                                            }
+                                        else{
+                                            $new_width=200;
+                                            $new_height=200;
+                                            }	
+                                        //redimage(image origine,miniature,
+                                        //largeur miniature,hauteur miniature,qualité de la miniature)
+                                        redimage($chemin_image,$chemin_image2,$new_width,$new_height,"70");
+                                        
+                                        }
+                                    }	
+
+                                }
                                 }
                             }
                             else
@@ -487,6 +589,17 @@ if(isset($_GET['action'])){
                                  $requete="SELECT * FROM image WHERE idImage='".$_GET['idImage']."'";
                                  $resultat=mysqli_query($connexion,$requete);
                                  $ligne=mysqli_fetch_object($resultat);
+
+                                 if(isset($ligne->imageRecette))
+                                {
+                                //on calcule le lien vers la grande photo
+                                $miniature=$ligne->imageRecette;
+                                $lien_image_g=str_replace("_p","_g",$miniature);
+
+                                //on supprime les 2 photos (le @ permet d'éviter un warning si fichier manquant)
+                                @unlink($lien_image_g);
+                                @unlink($miniature);							
+                                }
  
                                  $requete2="DELETE FROM image WHERE idImage='".$_GET['idImage']."'";
                                  $resultat2=mysqli_query($connexion,$requete2);
