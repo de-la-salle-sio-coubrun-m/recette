@@ -65,9 +65,11 @@ if(isset($_GET['action'])){
                                 SET idOrigine='".addslashes($_POST['idOrigine'])."', nomRecette='".addslashes($_POST['nomRecette'])."', descriptionRecette='".addslashes($_POST['descriptionRecette'])."',dureeCuisson='".($_POST['dureeCuisson'])."', dureePreparation='".($_POST['dureePreparation'])."', recetteRecette='".addslashes($_POST['recetteRecette'])."', effetsRecette='".addslashes($_POST['effetsRecette'])."', idCategorie='".($_POST['idCategorie'])."', idImage='".($_POST['idImage'])."'";
                                 echo $requete;
                                 //execution de la requete dans la BDD
-                                $resultat=mysqli_query($connexion,$requete);
+                                // $resultat=mysqli_query($base,$requete);
+                                $resultat=$base->prepare($requete);
+                                $resultat->execute();
                                 //on récupere le dernier id_produit créé
-						    //$dernier_id_cree=mysqli_insert_id($connexion);
+						    //$dernier_id_cree=mysqli_insert_id($base);
                             }
                         }
                         else
@@ -124,15 +126,19 @@ if(isset($_GET['action'])){
                                 {
                                     //met à jour la ligne de la table recette
                                     $requete="UPDATE recette SET idOrigine='".addslashes($_POST['idOrigine'])."', nomRecette='".addslashes($_POST['nomRecette'])."', descriptionRecette='".addslashes($_POST['descriptionRecette'])."',dureeCuisson='".($_POST['dureeCuisson'])."', dureePreparation='".($_POST['dureePreparation'])."', recetteRecette='".addslashes($_POST['recetteRecette'])."', effetsRecette='".addslashes($_POST['effetsRecette'])."', idCategorie='".($_POST['idCategorie'])."', idImage='".($_POST['idImage'])."'WHERE idRecette='".$_GET['idRecette']."'";
-                                    $resultat=mysqli_query($connexion,$requete);
+                                    // $resultat=mysqli_query($base,$requete);
+                                    $resultat=$base->prepare($requete);
+                                    $resultat->execute();
                                 }
                             }
                             else
                             {
                                 //on recharge le formulaire avec les données
                                 $requete="SELECT * FROM recette WHERE idRecette='".$_GET['idRecette']."'";
-                                $resultat=mysqli_query($connexion,$requete);
-                                $ligne=mysqli_fetch_object($resultat);
+                                // $resultat=mysqli_query($base,$requete);
+                                $resultat=$base->prepare($requete);
+                                $resultat->execute();
+                                $ligne=PDO::FETCH_OBJ($resultat);
                                 $_POST['idOrigine']=stripslashes($ligne->idOrigine);
                                 $_POST['nomRecette']=stripslashes($ligne->nomRecette);
                                 $_POST['descriptionRecette']=stripslashes($ligne->descriptionRecette);
@@ -157,11 +163,15 @@ if(isset($_GET['action'])){
                             if(isset($_GET['confirme']) && $_GET['confirme']=="oui")
                             {
                                 $requete="SELECT * FROM recette WHERE idRecette='".$_GET['idRecette']."'";
-                                $resultat=mysqli_query($connexion,$requete);
-                                $ligne=mysqli_fetch_object($resultat);
+                                // $resultat=mysqli_query($base,$requete);
+                                $resultat=$base->prepare($requete);
+                                $resultat->execute();
+                                $ligne=PDO::FETCH_OBJ($resultat);
                         
                                 $requete2="DELETE FROM recette WHERE idRecette='".$_GET['idRecette']."'";
-                                $resultat2=mysqli_query($connexion,$requete2);
+                                // $resultat2=mysqli_query($base,$requete2);
+                                $resultat2=$base->prepare($requete2);
+                                $resultat2->execute();
                                 $message="<label id=\"bravo\">La recette a bien été supprimée</label>";
                             }
                         }
@@ -317,7 +327,9 @@ if(isset($_GET['action'])){
                                 ."'";
                                 echo $requete;
                                 //execution de la requete dans la BDD
-                                $resultat=mysqli_query($connexion,$requete);
+                                // $resultat=mysqli_query($base,$requete);
+                                $resultat=$base->prepare($requete);
+                                $resultat->execute();
                             }
                         }
                         else
@@ -358,15 +370,20 @@ if(isset($_GET['action'])){
                                 {
                                     //met à jour la ligne de la table recette
                                     $requete="UPDATE article SET titreArticle='".addslashes($_POST['titreArticle'])."', contenuArticle='".addslashes($_POST['contenuArticle'])."', dateArticle='".addslashes($_POST['dateArticle'])."', idMembre='".addslashes($_POST['idMembre'])."', idRecette='".addslashes($_POST['idRecette'])."'WHERE idArticle='".$_GET['idArticle']."'";
-                                    $resultat=mysqli_query($connexion,$requete);
+                                    // $resultat=mysqli_query($base,$requete);
+                                    $resultat=$base->prepare($requete);
+                                    $resultat->execute();
                                 }
                             }
                             else
                             {
                                 //on recharge le formulaire avec les données
                                 $requete="SELECT * FROM article WHERE idArticle='".$_GET['idArticle']."'";
-                                $resultat=mysqli_query($connexion,$requete);
-                                $ligne=mysqli_fetch_object($resultat);
+                                // $resultat=mysqli_query($base,$requete);
+                                $resultat=$base->prepare($requete);
+                                $resultat->execute();
+                                // $ligne=mysqli_fetch_object($resultat);
+                                $ligne=PDO::FETCH_OBJ($resultat);
                                 $_POST['titreArticle']=stripslashes($ligne->titreArticle);
                                 $_POST['contenuArticle']=stripslashes($ligne->contenuArticle);
                                 $_POST['dateArticle']=stripslashes($ligne->dateArticle);
@@ -387,11 +404,16 @@ if(isset($_GET['action'])){
                             if(isset($_GET['confirme']) && $_GET['confirme']=="oui")
                             {
                                 $requete="SELECT * FROM article WHERE idArticle='".$_GET['idArticle']."'";
-                                $resultat=mysqli_query($connexion,$requete);
-                                $ligne=mysqli_fetch_object($resultat);
+                                // $resultat=mysqli_query($base,$requete);
+                                $resultat=$base->prepare($requete);
+                                $resultat->execute();
+                                // $ligne=mysqli_fetch_object($resultat);
+                                $ligne=PDO::FETCH_OBJ($resultat);
                                 
                                 $requete2="DELETE FROM article WHERE idArticle='".$_GET['idArticle']."'";
-                                $resultat2=mysqli_query($connexion,$requete2);
+                                // $resultat2=mysqli_query($base,$requete2);
+                                $resultat2=$base->prepare($requete2);
+                                $resultat2->execute();
                                 $message="<label id=\"bravo\">L'article a bien été supprimé</label>";
                             }
                         }
@@ -434,13 +456,14 @@ if(isset($_GET['action'])){
                                 urlImage='".addslashes($_POST['urlImage'])."'";
                                 echo $requete;
                                 //execution de la requete dans la BDD
-                                $resultat=mysqli_query($connexion,$requete);
-
-                                $resultat=mysqli_query($connexion,$requete);
+                                // $resultat=mysqli_query($base,$requete);
+                                $resultat=$base->prepare($requete);
+                                $resultat->execute();
 						
                             //on récupere le dernier id_produit créé
-                            $dernier_id_cree=mysqli_insert_id($connexion);
-                            
+                            // $dernier_id_cree=mysqli_insert_id($base);
+                            $dernier_id_cree=$base->lastinsertID();
+
                             //si le type du fichier photo est valide
                             if(fichier_type($_FILES['imageRecette']['name'])=="jpg" ||
                             fichier_type($_FILES['imageRecette']['name'])=="png" || 
@@ -515,10 +538,13 @@ if(isset($_GET['action'])){
                                 {
                                     //met à jour la ligne de la table recette
                                     $requete="UPDATE image SET nomImage='".addslashes($_POST['nomImage'])."', urlImage='".addslashes($_POST['urlImage'])."' WHERE idImage='".$_GET['idImage']."'";
-                                    $resultat=mysqli_query($connexion,$requete);
+                                    // $resultat=mysqli_query($base,$requete);
+                                    $resultat=$base->prepare($requete);
+                                    $resultat->execute();
 
                                     //on récupere le dernier id_produit créé
-                            $dernier_id_cree=mysqli_insert_id($connexion);
+                            // $dernier_id_cree=mysqli_insert_id($base);
+                            $dernier_id_cree=$base->lastinsertID();
                             
                             //si le type du fichier photo est valide
                             if(fichier_type($_FILES['imageRecette']['name'])=="jpg" ||
@@ -568,8 +594,11 @@ if(isset($_GET['action'])){
                             {
                                 //on recharge le formulaire avec les données
                                 $requete="SELECT * FROM image WHERE idImage='".$_GET['idImage']."'";
-                                $resultat=mysqli_query($connexion,$requete);
-                                $ligne=mysqli_fetch_object($resultat);
+                                // $resultat=mysqli_query($base,$requete);
+                                $resultat=$base->prepare($requete);
+                                $resultat->execute();
+                                // $ligne=mysqli_fetch_object($resultat);
+                                $ligne=PDO::FETCH_OBJ($resultat);
                                 $_POST['nomImage']=stripslashes($ligne->nomImage);
                                 $_POST['urlImage']=stripslashes($ligne->urlImage);
                             }
@@ -587,8 +616,11 @@ if(isset($_GET['action'])){
                             if(isset($_GET['confirme']) && $_GET['confirme']=="oui")
                             {
                                  $requete="SELECT * FROM image WHERE idImage='".$_GET['idImage']."'";
-                                 $resultat=mysqli_query($connexion,$requete);
-                                 $ligne=mysqli_fetch_object($resultat);
+                                //  $resultat=mysqli_query($base,$requete);
+                                $resultat=$base->prepare($requete);
+                                $resultat->execute();
+                                //  $ligne=mysqli_fetch_object($resultat);
+                                $ligne=PDO::FETCH_OBJ($resultat);
 
                                  if(isset($ligne->imageRecette))
                                 {
@@ -602,7 +634,9 @@ if(isset($_GET['action'])){
                                 }
  
                                  $requete2="DELETE FROM image WHERE idImage='".$_GET['idImage']."'";
-                                 $resultat2=mysqli_query($connexion,$requete2);
+                                //  $resultat2=mysqli_query($base,$requete2);
+                                $resultat2=$base->prepare($requete2);
+                                $resultat2->execute();
                                  $message="<label id=\"bravo\">L'image a bien été supprimée</label>";
                             }
                         }
@@ -638,7 +672,8 @@ if(isset($_GET['action'])){
                                SET nomCategorie='".addslashes($_POST['nomCategorie'])."'";
                                //echo $requete;
                                //execution de la requete dans la BDD
-                               $resultat=mysqli_query($connexion,$requete);
+                               $resultat=$base->prepare($requete);
+                               $resultat->execute();
                                //echo $requete;
                                $message="<label id=\"bravo\">Le produit a bien été ajouté</label>";
                            }
@@ -662,15 +697,20 @@ if(isset($_GET['action'])){
                                {
                                    //met à jour la ligne de la table recette
                                    $requete="UPDATE categorie SET nomCategorie='".addslashes($_POST['nomCategorie'])."'WHERE idCategorie='".$_GET['idCategorie']."'";
-                                   $resultat=mysqli_query($connexion,$requete);
+                                    //    $resultat=mysqli_query($base,$requete);
+                                    $resultat=$base->prepare($requete);
+                                    $resultat->execute();
                                }
                            }
                            else
                            {
                                //on recharge le formulaire avec les données
                                $requete="SELECT * FROM categorie WHERE idCategorie='".$_GET['idCategorie']."'";
-                               $resultat=mysqli_query($connexion,$requete);
-                               $ligne=mysqli_fetch_object($resultat);
+                            //    $resultat=mysqli_query($base,$requete);
+                                $resultat=$base->prepare($requete);
+                                $resultat->execute();
+                            //    $ligne=mysqli_fetch_object($resultat);
+                                $ligne=PDO::FETCH_OBJ($resultat);
                                $_POST['nomCategorie']=stripslashes($ligne->nomCategorie);
                            }
                        }   
@@ -687,11 +727,16 @@ if(isset($_GET['action'])){
                            if(isset($_GET['confirme']) && $_GET['confirme']=="oui")
                            {
                                 $requete="SELECT * FROM categorie WHERE idCategorie='".$_GET['idCategorie']."'";
-                                $resultat=mysqli_query($connexion,$requete);
-                                $ligne=mysqli_fetch_object($resultat);
+                                // $resultat=mysqli_query($base,$requete);
+                                $resultat=$base->prepare($requete);
+                                $resultat->execute();
+                                // $ligne=mysqli_fetch_object($resultat);
+                                $ligne=PDO::FETCH_OBJ($resultat);
 
                                 $requete2="DELETE FROM categorie WHERE idCategorie='".$_GET['idCategorie']."'";
-                                $resultat2=mysqli_query($connexion,$requete2);
+                                // $resultat2=mysqli_query($base,$requete2);
+                                $resultat2=$base->prepare($requete2);
+                                $resultat2->execute();
                                 $message="<label id=\"bravo\">La catégorie a bien été supprimée</label>";
                            }
                        }
@@ -735,7 +780,9 @@ if(isset($_GET['action'])){
                                 idPrivilege='".addslashes($_POST['idPrivilege'])."'";
                                 //echo $requete;
                                 //execution de la requete dans la BDD
-                                $resultat=mysqli_query($connexion,$requete);
+                                // $resultat=mysqli_query($base,$requete);
+                                $resultat=$base->prepare($requete);
+                                $resultat->execute();
                             }
                         }
                         else
@@ -768,15 +815,20 @@ if(isset($_GET['action'])){
                                 {
                                     //met à jour la ligne de la table recette
                                     $requete="UPDATE membre SET nomMembre='".addslashes($_POST['nomMembre'])."', mdpMembre='".addslashes($_POST['mdpMembre'])."', idPrivilege='".addslashes($_POST['idPrivilege'])."' WHERE idMembre='".$_GET['idMembre']."'";
-                                    $resultat=mysqli_query($connexion,$requete);
+                                    // $resultat=mysqli_query($base,$requete);
+                                    $resultat=$base->prepare($requete);
+                                    $resultat->execute();
                                 }
                             }
                             else
                             {
                                 //on recharge le formulaire avec les données
                                 $requete="SELECT * FROM membre WHERE idMembre='".$_GET['idMembre']."'";
-                                $resultat=mysqli_query($connexion,$requete);
-                                $ligne=mysqli_fetch_object($resultat);
+                                // $resultat=mysqli_query($base,$requete);
+                                $resultat=$base->prepare($requete);
+                                $resultat->execute();
+                                // $ligne=mysqli_fetch_object($resultat);
+                                $ligne=PDO::FETCH_OBJ($resultat);
                                 $_POST['nomMembre']=stripslashes($ligne->nomMembre);
                                 $_POST['mdpMembre']=stripslashes($ligne->mdpMembre);
                                 $_POST['idPrivilege']=stripslashes($ligne->idPrivilege);
@@ -795,11 +847,16 @@ if(isset($_GET['action'])){
                             if(isset($_GET['confirme']) && $_GET['confirme']=="oui")
                             {
                                 $requete="SELECT * FROM membre WHERE idMembre='".$_GET['idMembre']."'";
-                                $resultat=mysqli_query($connexion,$requete);
-                                $ligne=mysqli_fetch_object($resultat);
+                                // $resultat=mysqli_query($base,$requete);
+                                $resultat=$base->prepare($requete);
+                                $resultat->execute();
+                                // $ligne=mysqli_fetch_object($resultat);
+                                $ligne=PDO::FETCH_OBJ($resultat);
 
                                 $requete2="DELETE FROM membre WHERE idMembre='".$_GET['idMembre']."'";
-                                $resultat2=mysqli_query($connexion,$requete2);
+                                // $resultat2=mysqli_query($base,$requete2);
+                                $resultat2=$base->prepare($requete2);
+                                $resultat2->execute();
                                 $message="<label id=\"bravo\">Le membre a bien été supprimé</label>";
                             }
                         }
@@ -838,7 +895,9 @@ if(isset($_GET['action'])){
                                 idIngredient=(SELECT ingredient.idIngredient FROM ingredient WHERE nomIngredient ='".addslashes($_POST['nomIngredient'])."')";
                                 echo $requete;
                                 //execution de la requete dans la BDD
-                                $resultat=mysqli_query($connexion,$requete);
+                                // $resultat=mysqli_query($base,$requete);
+                                $resultat=$base->prepare($requete);
+                                $resultat->execute();
                             }
                         }
                         else
@@ -868,15 +927,20 @@ if(isset($_GET['action'])){
                                     //met à jour la ligne de la table recette
                                     $requete="UPDATE ingredientrecette SET idRecette=(SELECT recette.idRecette FROM recette WHERE nomRecette ='".addslashes($_POST['nomRecette'])."'),
                                     idIngredient=(SELECT ingredient.idIngredient FROM ingredient WHERE nomIngredient ='".addslashes($_POST['nomIngredient'])."')";
-                                    $resultat=mysqli_query($connexion,$requete);
+                                    // $resultat=mysqli_query($base,$requete);
+                                    $resultat=$base->prepare($requete);
+                                    $resultat->execute();
                                 }
                             }
                             else
                             {
                                 //on recharge le formulaire avec les données
                                 $requete="SELECT * FROM ingredientrecette WHERE idRecette=(SELECT idRecette FROM recette WHERE nomRecette='".$_GET['nomRecette']."')";
-                                $resultat=mysqli_query($connexion,$requete);
-                                $ligne=mysqli_fetch_object($resultat);
+                                // $resultat=mysqli_query($base,$requete);
+                                $resultat=$base->prepare($requete);
+                                $resultat->execute();
+                                // $ligne=mysqli_fetch_object($resultat);
+                                $ligne=PDO::FETCH_OBJ($resultat);
                                 $_POST['nomRecette']=stripslashes($ligne->nomMembre);
                                 $_POST['nomIngredient']=stripslashes($ligne->mdpMembre);
                             }
@@ -894,11 +958,16 @@ if(isset($_GET['action'])){
                             if(isset($_GET['confirme']) && $_GET['confirme']=="oui")
                             {
                                 $requete="SELECT * FROM ingredientrecette WHERE idRecette=(SELECT idRecette FROM recette WHERE nomRecette='".$_GET['nomRecette']."') AND idIngredient=(SELECT idIngredient FROM ingredient WHERE nomIngredient='".$_GET['nomIngredient']."')";
-                                $resultat=mysqli_query($connexion,$requete);
-                                $ligne=mysqli_fetch_object($resultat);
+                                // $resultat=mysqli_query($base,$requete);
+                                $resultat=$base->prepare($requete);
+                                $resultat->execute();
+                                // $ligne=mysqli_fetch_object($resultat);
+                                $ligne=PDO::FETCH_OBJ($resultat);
 
                                 $requete2="DELETE FROM ingredientrecette WHERE idRecette=(SELECT idRecette FROM recette WHERE nomRecette='".$_GET['nomRecette']."') AND idIngredient=(SELECT idIngredient FROM ingredient WHERE nomIngredient='".$_GET['nomIngredient']."')";
-                                $resultat2=mysqli_query($connexion,$requete2);
+                                // $resultat2=mysqli_query($base,$requete2);
+                                $resultat2=$base->prepare($requete2);
+                                $resultat2->execute();
                                 $message="<label id=\"bravo\">L'ingrédient a bien été supprimé</label>";
                             }
                         }
