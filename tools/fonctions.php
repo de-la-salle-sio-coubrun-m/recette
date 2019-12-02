@@ -262,7 +262,7 @@ function afficher_Ingredient(){
 
 //============== affichage membres
 function afficher_membres(){
-   $base = connect();
+  $base = connect();
   $requete= $base->query("SELECT * FROM membre ORDER BY nomMembre");
   
   
@@ -342,6 +342,32 @@ function afficher_ingredientrecette(){
   }
   
   $liste.="</table>\n";
+  return $liste;
+}
+
+function afficher_origines(){
+  $base = connect();
+  $requete= $base->query("SELECT * FROM origine ORDER BY nomOrigine");
+  
+  
+  $liste="<table id=\"liste\">\n";
+  $liste.="<tr>";
+  $liste.="<th>Nom de l'origine</th>";
+  $liste.="<th>Description de l'origine</th>";
+  $liste.="<th>Actions</th>";
+  $liste.="</tr>";
+  
+ while($ligne= $requete->fetch(PDO::FETCH_OBJ)){
+    $liste.="<tr>";
+    $liste.="<td>" . $ligne->nomOrigine . "</td>";
+    $liste.="<td>" . $ligne->descriptionOrigine . "</td>";
+    $liste.="<td><a href=\"admin.php?action=origine&cas=modifier&idOrigine=".$ligne->idOrigine."\">modifier</a>&nbsp;
+    <a href=\"admin.php?action=origine&cas=supprimer&idOrigine=".$ligne->idOrigine."\">supprimer</a>&nbsp;</td>";
+    $liste.="</tr>";
+  }
+  
+  $liste.="</table>\n";
+  
   return $liste;
 }
 

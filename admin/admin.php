@@ -27,7 +27,7 @@ if(isset($_GET['action'])){
                         if(isset($_POST['submit'])){
                             if(empty($_POST['idOrigine']))
                             {
-                                $message="<label id =\"warning\">veuillez entrer le nom de l'origine de la recette s'il-vous-plaît</label>";
+                                $message="<label id =\"warning\">veuillez entrer l'id de l'origine de la recette s'il-vous-plaît</label>";
                             }
                             elseif(empty($_POST['nomRecette']))
                             {
@@ -138,7 +138,7 @@ if(isset($_GET['action'])){
                                 // $resultat=mysqli_query($base,$requete);
                                 $resultat=$base->prepare($requete);
                                 $resultat->execute();
-                                $ligne=PDO::FETCH_OBJ($resultat);
+                                $ligne = $resultat->fetch(PDO::FETCH_OBJ);
                                 $_POST['idOrigine']=stripslashes($ligne->idOrigine);
                                 $_POST['nomRecette']=stripslashes($ligne->nomRecette);
                                 $_POST['descriptionRecette']=stripslashes($ligne->descriptionRecette);
@@ -166,7 +166,7 @@ if(isset($_GET['action'])){
                                 // $resultat=mysqli_query($base,$requete);
                                 $resultat=$base->prepare($requete);
                                 $resultat->execute();
-                                $ligne=PDO::FETCH_OBJ($resultat);
+                                $ligne = $resultat->fetch(PDO::FETCH_OBJ);
                         
                                 $requete2="DELETE FROM recette WHERE idRecette='".$_GET['idRecette']."'";
                                 // $resultat2=mysqli_query($base,$requete2);
@@ -383,7 +383,7 @@ if(isset($_GET['action'])){
                                 $resultat=$base->prepare($requete);
                                 $resultat->execute();
                                 // $ligne=mysqli_fetch_object($resultat);
-                                $ligne=PDO::FETCH_OBJ($resultat);
+                                $ligne = $resultat->fetch(PDO::FETCH_OBJ);
                                 $_POST['titreArticle']=stripslashes($ligne->titreArticle);
                                 $_POST['contenuArticle']=stripslashes($ligne->contenuArticle);
                                 $_POST['dateArticle']=stripslashes($ligne->dateArticle);
@@ -408,7 +408,7 @@ if(isset($_GET['action'])){
                                 $resultat=$base->prepare($requete);
                                 $resultat->execute();
                                 // $ligne=mysqli_fetch_object($resultat);
-                                $ligne=PDO::FETCH_OBJ($resultat);
+                                $ligne = $resultat->fetch(PDO::FETCH_OBJ);
                                 
                                 $requete2="DELETE FROM article WHERE idArticle='".$_GET['idArticle']."'";
                                 // $resultat2=mysqli_query($base,$requete2);
@@ -598,7 +598,7 @@ if(isset($_GET['action'])){
                                 $resultat=$base->prepare($requete);
                                 $resultat->execute();
                                 // $ligne=mysqli_fetch_object($resultat);
-                                $ligne=PDO::FETCH_OBJ($resultat);
+                                $ligne = $resultat->fetch(PDO::FETCH_OBJ);
                                 $_POST['nomImage']=stripslashes($ligne->nomImage);
                                 $_POST['urlImage']=stripslashes($ligne->urlImage);
                             }
@@ -620,7 +620,7 @@ if(isset($_GET['action'])){
                                 $resultat=$base->prepare($requete);
                                 $resultat->execute();
                                 //  $ligne=mysqli_fetch_object($resultat);
-                                $ligne=PDO::FETCH_OBJ($resultat);
+                                $ligne = $resultat->fetch(PDO::FETCH_OBJ);
 
                                  if(isset($ligne->imageRecette))
                                 {
@@ -710,7 +710,7 @@ if(isset($_GET['action'])){
                                 $resultat=$base->prepare($requete);
                                 $resultat->execute();
                             //    $ligne=mysqli_fetch_object($resultat);
-                                $ligne=PDO::FETCH_OBJ($resultat);
+                            $ligne = $resultat->fetch(PDO::FETCH_OBJ);
                                $_POST['nomCategorie']=stripslashes($ligne->nomCategorie);
                            }
                        }   
@@ -731,7 +731,7 @@ if(isset($_GET['action'])){
                                 $resultat=$base->prepare($requete);
                                 $resultat->execute();
                                 // $ligne=mysqli_fetch_object($resultat);
-                                $ligne=PDO::FETCH_OBJ($resultat);
+                                $ligne = $resultat->fetch(PDO::FETCH_OBJ);
 
                                 $requete2="DELETE FROM categorie WHERE idCategorie='".$_GET['idCategorie']."'";
                                 // $resultat2=mysqli_query($base,$requete2);
@@ -828,7 +828,7 @@ if(isset($_GET['action'])){
                                 $resultat=$base->prepare($requete);
                                 $resultat->execute();
                                 // $ligne=mysqli_fetch_object($resultat);
-                                $ligne=PDO::FETCH_OBJ($resultat);
+                                $ligne = $resultat->fetch(PDO::FETCH_OBJ);
                                 $_POST['nomMembre']=stripslashes($ligne->nomMembre);
                                 $_POST['mdpMembre']=stripslashes($ligne->mdpMembre);
                                 $_POST['idPrivilege']=stripslashes($ligne->idPrivilege);
@@ -851,7 +851,7 @@ if(isset($_GET['action'])){
                                 $resultat=$base->prepare($requete);
                                 $resultat->execute();
                                 // $ligne=mysqli_fetch_object($resultat);
-                                $ligne=PDO::FETCH_OBJ($resultat);
+                                $ligne = $resultat->fetch(PDO::FETCH_OBJ);
 
                                 $requete2="DELETE FROM membre WHERE idMembre='".$_GET['idMembre']."'";
                                 // $resultat2=mysqli_query($base,$requete2);
@@ -940,7 +940,7 @@ if(isset($_GET['action'])){
                                 $resultat=$base->prepare($requete);
                                 $resultat->execute();
                                 // $ligne=mysqli_fetch_object($resultat);
-                                $ligne=PDO::FETCH_OBJ($resultat);
+                                $ligne = $resultat->fetch(PDO::FETCH_OBJ);
                                 $_POST['nomRecette']=stripslashes($ligne->nomMembre);
                                 $_POST['nomIngredient']=stripslashes($ligne->mdpMembre);
                             }
@@ -962,7 +962,7 @@ if(isset($_GET['action'])){
                                 $resultat=$base->prepare($requete);
                                 $resultat->execute();
                                 // $ligne=mysqli_fetch_object($resultat);
-                                $ligne=PDO::FETCH_OBJ($resultat);
+                                $ligne = $resultat->fetch(PDO::FETCH_OBJ);
 
                                 $requete2="DELETE FROM ingredientrecette WHERE idRecette=(SELECT idRecette FROM recette WHERE nomRecette='".$_GET['nomRecette']."') AND idIngredient=(SELECT idIngredient FROM ingredient WHERE nomIngredient='".$_GET['nomIngredient']."')";
                                 // $resultat2=mysqli_query($base,$requete2);
@@ -976,6 +976,117 @@ if(isset($_GET['action'])){
             }
         $liste=afficher_ingredientrecette();
         break;//fin case ingredientrecette
+
+        case "origine":
+            $contenu="form_origine.html";
+
+            if(isset($_GET["cas"]))
+            {
+                switch ($_GET["cas"])
+                {
+                    case "ajouter":
+                        $action_form="ajouter";
+                        //si le bouton créer a été activé
+                        if(isset($_POST['submit']))
+                        {
+                            if(empty($_POST['nomOrigine']))
+                            {
+                                $message="<label id =\"warning\">veuillez entrer le nom du origine s'il-vous-plaît</label>";
+                            }
+                            else if(empty($_POST['descriptionOrigine']))
+                            {
+                                $message="<label id =\"warning\">veuillez entrer la description de l'origine s'il-vous-plaît</label>";
+                            }
+                            else
+                            {
+                                //on insert dans la table origine les valeurs des champs nom et description
+                                //addslashes permet de mettre des \ en cas de  '  .
+                                $requete="INSERT INTO origine 
+                                SET nomOrigine='".addslashes($_POST['nomOrigine'])."',
+                                descriptionOrigine='".addslashes($_POST['descriptionOrigine'])."'";
+                                //echo $requete;
+                                //execution de la requete dans la BDD
+                                // $resultat=mysqli_query($base,$requete);
+                                $resultat=$base->prepare($requete);
+                                $resultat->execute();
+                            }
+                        }
+                        else
+                        {
+ 
+                        }
+                    break;//fin case ajouter
+                    
+                    case "modifier":
+                        if(isset($_GET['idOrigine']))
+                        {
+                            //si le bouton enregistrer du formulaire n'a pas été activé
+                            $action_form="modifier&idOrigine=".$_GET['idOrigine']."";
+                            
+                            //si on appuie sur le bouton enregistrer du formulaire
+                            if(isset($_POST['submit'])){
+                                if(empty($_POST['nomOrigine']))
+                                {
+                                    $message="<label id =\"warning\">veuillez entrer le nom de l\'origine s\'il-vous-plaît</label>";
+                                }
+                                else if(empty($_POST['descriptionOrigine']))
+                                {
+                                    $message="<label id =\"warning\">veuillez entrer la description de l\'origine s\'il-vous-plaît</label>";
+                                }
+                                else
+                                {
+                                    //met à jour la ligne de la table recette
+                                    $requete="UPDATE origine SET nomOrigine='".addslashes($_POST['nomOrigine'])."', descriptionOrigine='".addslashes($_POST['descriptionOrigine'])."' WHERE idOrigine='".$_GET['idOrigine']."'";
+                                    // $resultat=mysqli_query($base,$requete);
+                                    $resultat=$base->prepare($requete);
+                                    $resultat->execute();
+                                }
+                            }
+                            else
+                            {
+                                //on recharge le formulaire avec les données
+                                $requete="SELECT * FROM origine WHERE idOrigine='".$_GET['idOrigine']."'";
+                                // $resultat=mysqli_query($base,$requete);
+                                $resultat=$base->prepare($requete);
+                                $resultat->execute();
+                                // $ligne=mysqli_fetch_object($resultat);
+                                $ligne = $resultat->fetch(PDO::FETCH_OBJ);
+                                $_POST['nomOrigine']=stripslashes($ligne->nomOrigine);
+                                $_POST['descriptionOrigine']=stripslashes($ligne->descriptionOrigine);
+                            }
+                        }   
+                    break;//fin case modifier
+ 
+                    case "supprimer":
+                        $action_form="ajouter";
+ 
+                        if(isset($_GET['idOrigine']))
+                        {
+                            
+                            $message="<label id=\"confirme\">Voulez-vous vraiment supprimer l\'origine' ?<a href=\"admin.php?action=origine&cas=supprimer&idOrigine=".$_GET['idOrigine']."&confirme=oui\">OUI</a>&nbsp;&nbsp;<a href=\"admin.php?action=origine\">NON</a></label>";
+ 
+                            if(isset($_GET['confirme']) && $_GET['confirme']=="oui")
+                            {
+                                $requete="SELECT * FROM origine WHERE idOrigine='".$_GET['idOrigine']."'";
+                                // $resultat=mysqli_query($base,$requete);
+                                $resultat=$base->prepare($requete);
+                                $resultat->execute();
+                                // $ligne=mysqli_fetch_object($resultat);
+                                $ligne = $resultat->fetch(PDO::FETCH_OBJ);
+
+                                $requete2="DELETE FROM origine WHERE idOrigine='".$_GET['idOrigine']."'";
+                                // $resultat2=mysqli_query($base,$requete2);
+                                $resultat2=$base->prepare($requete2);
+                                $resultat2->execute();
+                                $message="<label id=\"bravo\">Le origine a bien été supprimé</label>";
+                            }
+                        }
+                    break;//fin case supprimer
+                }
+            }
+        $liste=afficher_origines();
+        break;//fin case origine
+
     }//fin switch
 }// fin if isset
 
