@@ -5,7 +5,7 @@
 // echo strip_tags($text);
 
 
-function security($tab){
+function cleanField($tab){
     
     array_pop($tab);
     array_slice($tab, -1);
