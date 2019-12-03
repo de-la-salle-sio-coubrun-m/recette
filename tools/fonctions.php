@@ -9,62 +9,35 @@ function security($chaine){ // ne devrait pas être appelée depuis le passage e
 }
 
 //===========================pour se loguer=======================================================
-function login($login,$password) //$target
+function login($login,$password)
 {	
-// if(isset($target))
-// 	{
 	$connexion=connect();
-	// $login=security($login);
-  // $password=security($password);
   $password = password_hash($password, PASSWORD_BCRYPT);
-	// switch($target)
-	// 	{
-	// 	case "admin":
-		$requete="SELECT * FROM membre WHERE nomMembre= '" . $login . "' AND mdpMembre=PASSWORD('" . $password . "')";
-    // $resultat=mysqli_query($connexion, $requete) or die
-    $resultat=$connexion->prepare($requete);
-    $resultat->execute() or die;
-    // (mysqli_connect_error());
-    // $nb=mysqli_num_rows($resultat);
-    $nb = $resultat->rowCount();
-		
-		if($nb==0)
-		  {
-		  return false;
-		  }
-		else
-		  { 
-      // $ligne=mysqli_fetch_object($resultat);
-      $ligne = $resultat->fetch(PDO::FETCH_OBJ);
+  $requete="SELECT * FROM membre WHERE nomMembre= '" . $login . "' AND mdpMembre=PASSWORD('" . $password . "')";
+  $resultat=$connexion->prepare($requete);
+  $resultat->execute() or die;
+  $nb = $resultat->rowCount();
+  
+  if($nb==0)
+  {
+    return false;
+  }
+  else
+  { 
+    $ligne = $resultat->fetch(PDO::FETCH_OBJ);
 
-			$_SESSION['idMembre']=$ligne->idMembre;
-			$_SESSION['idPrivilege']=$ligne->idPrivilege;
-			$_SESSION['nomMembre']=$ligne->nomMembre;    
-			// $_SESSION['nom']=$ligne->nom;
-			// $_SESSION['retour_bo']="<a id=\"retour_bo\" href=\"../admin/admin.php?module=intro\"><span class=\"dashicons dashicons-arrow-left-alt\"></span></a>\n";
-			// $_SESSION['connexion']=date('Y-m-d H:i:s');
-			// if($ligne->fichier_compte=="")
-			//   {
-			//   $_SESSION['photo_connecte']="<img id=\"image_connect\" src=\"../icones/icon_compte.png\" alt=\"\" />\n";        
-			//   }
-			// else
-			//   {
-			//   $_SESSION['photo_connecte']="<img id=\"image_connect\" src=\"../medias/profil" . $ligne->id_compte . "." . $ligne->fichier_compte . "\" alt=\"\" />\n";            
-			//   }
-
-      // header("Location:../admin/admin.php?module=intro");
-      if($ligne->idPrivilege == 1 || $ligne->idPrivilege == 2){
-        header("Location:../admin/admin.php");
-      }
-      else {
-        header("Location:../front/index.php");
-      }
-			return true;
-		  }		
-		// break;	
-		// }
-	// mysqli_close($connexion); 	
-	// }
+    $_SESSION['idMembre']=$ligne->idMembre;
+    $_SESSION['idPrivilege']=$ligne->idPrivilege;
+    $_SESSION['nomMembre']=$ligne->nomMembre;    
+    
+    if($ligne->idPrivilege == 1 || $ligne->idPrivilege == 2){
+      header("Location:../admin/admin.php");
+    }
+    else {
+      header("Location:../front/index.php");
+    }
+    return true;
+  }
 }
 
 // ====détecter l'extension du fichier================
