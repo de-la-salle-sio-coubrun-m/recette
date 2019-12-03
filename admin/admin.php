@@ -815,7 +815,8 @@ if(isset($_GET['action'])){
                                 else
                                 {
                                     //met à jour la ligne de la table recette
-                                    $requete="UPDATE membre SET nomMembre='".addslashes($_POST['nomMembre'])."', mdpMembre='".addslashes($_POST['mdpMembre'])."', idPrivilege='".addslashes($_POST['idPrivilege'])."' WHERE idMembre='".$_GET['idMembre']."'";
+                                    $mdpCrypt = password_hash($_POST['mdpMembre'], PASSWORD_BCRYPT);
+                                    $requete="UPDATE membre SET nomMembre='".addslashes($_POST['nomMembre'])."', mdpMembre='".addslashes($mdpCrypt)."', idPrivilege='".addslashes($_POST['idPrivilege'])."' WHERE idMembre='".$_GET['idMembre']."'";
                                     // $resultat=mysqli_query($base,$requete);
                                     $resultat=$base->prepare($requete);
                                     $resultat->execute();
