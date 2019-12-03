@@ -1,7 +1,7 @@
 <?php
 
-session_start();
-include "../tools/fonctions.php";
+// session_start();
+require_once("../tools/fonctions.php");
 $base = connect();
 $action_form="ajouter";
 
