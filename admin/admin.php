@@ -774,9 +774,10 @@ if(isset($_GET['action'])){
                             {
                                 //on insert dans la table membre les valeurs des champs nom et description
                                 //addslashes permet de mettre des \ en cas de  '  .
+                                $mdpCrypt = password_hash($_POST['mdpMembre'], PASSWORD_BCRYPT);
                                 $requete="INSERT INTO membre 
                                 SET nomMembre='".addslashes($_POST['nomMembre'])."',
-                                mdpMembre='".addslashes($_POST['mdpMembre'])."',
+                                mdpMembre='".addslashes($mdpCrypt)."',
                                 idPrivilege='".addslashes($_POST['idPrivilege'])."'";
                                 //echo $requete;
                                 //execution de la requete dans la BDD

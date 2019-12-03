@@ -20,10 +20,7 @@
         
     </header>
     <nav id="menu">
-        <?php
-        /* si le membre est connecte*/
-        if(isset($_SESSION['idMembre']) && ($_SESSION['idPrivilege'] == '1'))
-        {?> 
+       
         <ul>
             <li>
                 <a href="admin.php?action=origine">Gestion des origines</a>
@@ -47,21 +44,12 @@
             <li>
                 <a href="admin.php?action=membre">Gestion des membres</a>
             </li>
-            <?php }else if(isset($_SESSION['idMembre']) && ($_SESSION['idPrivilege'] == '1' || $_SESSION['idPrivilege'] == '2'))
-            {?>
+            
             <li>
                 <a href="admin.php?action=article">Gestion des articles</a>
             </li>	
         </ul>
-        <?php } else
-        {
-            ?>
-            <div class="panel panel-danger">
-                <div class="panel-heading">Erreur : Vous n'avez pas l'accès à cette page. Vous n'êtes pas admin ou vous n'êtes pas connectés !</div>
-            </div>
-            <?php
-        }
-        ?>
+        
     </nav>
     <section>
         <?php if (isset($contenu)){include($contenu);} ?>
