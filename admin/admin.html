@@ -23,7 +23,9 @@
         <?php
         /* si le membre est connecte*/
         if(isset($_SESSION['idMembre']) && ($_SESSION['idPrivilege'] == '1'))
+        
         {?> 
+            
         <ul>
             <li>
                 <a href="admin.php?action=origine">Gestion des origines</a>
@@ -60,7 +62,7 @@
                 <div class="panel-heading">Erreur : Vous n'avez pas l'accès à cette page. Vous n'êtes pas admin ou vous n'êtes pas connectés !</div>
             </div>
             <?php
-        }
+        } echo $_SESSION['idMembre'];
         ?>
     </nav>
     <section>
