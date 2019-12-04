@@ -6,13 +6,17 @@
 
 
 function cleanField($tab){
-    
-    array_pop($tab);
-    array_slice($tab, -1);
-    for($i = 0; $i < sizeof($tab);$i++){
-        $tab[$i] = trim($tab[$i]);
-        $tab[$i] = strip_tags($tab[$i]);
+    unset($tab[array_search($tab['submit'], $tab)]);
+    unset($tab[array_search('ENREGISTRER', $tab)]);
+    foreach ($tab as $key => $value) {
+        $tab[$key] = cleanValue($value);
     }
-
     return $tab;
+}
+
+function cleanValue ($string) {
+    $string = strip_tags($string);
+    $string = addslashes($string);
+    $string = trim($string);
+    return $string;
 }

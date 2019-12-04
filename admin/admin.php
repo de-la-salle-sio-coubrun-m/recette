@@ -2,6 +2,7 @@
 
 session_start();
 include "../tools/fonctions.php";
+include "security.php";
 $base = connect();
 $action_form="ajouter";
 
@@ -206,14 +207,11 @@ if(isset($_GET['action'])){
                             }
                             else
                             {
-                                array_pop($_POST);
-                                array_slice($_POST, -1);
+                                $tab = cleanField($_POST);
                                 $requete= $base->prepare("INSERT INTO ingredient 
                                 (nomIngredient, recolteIngredient, lieuIngredient) VALUE (:nomIngredient, :recolteIngredient, :lieuIngredient)");
                                 
-                                var_dump($_POST);
-                                echo "<hr>";
-                                $requete->execute($_POST);
+                                $requete->execute($tab);
                             }
                         }
                         else
