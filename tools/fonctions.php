@@ -11,25 +11,43 @@ function security($chaine){ // ne devrait pas être appelée depuis le passage e
 //===========================pour se loguer=======================================================
 function login($login,$password)
 {	
-	$connexion=connect();
-  $password = password_hash($password, PASSWORD_BCRYPT);
-  $requete="SELECT * FROM membre WHERE nomMembre= '" . $login . "' AND mdpMembre=PASSWORD('" . $password . "')";
+  echo "je suis la fonction Login <hr>".$password;
+  $connexion=connect();
+  $passwordHashRequest="SELECT mdpMembre FROM membre WHERE nomMembre='" . $login . "'";
+  
+  $res0=$connexion->prepare($passwordHashRequest);
+  $res0->execute();
+  $passwordHash=$res0->fetch();
+  var_dump($passwordHash);
+  
+  if(password_verify($password, $passwordHash['mdpMembre']))
+  {
+    echo "Le mot de passe est bon ";
+
+  } else {
+    echo "les identifiant ne sont pas correcte !";
+  }
+  $requete="SELECT * FROM membre WHERE nomMembre= '" . $login . "' AND mdpMembre='" . $passwordHash['mdpMembre'] . "'";
+
   $resultat=$connexion->prepare($requete);
   $resultat->execute() or die;
   $nb = $resultat->rowCount();
-  
   if($nb==0)
   {
+    echo "je suis if <hr>";
     return false;
   }
   else
   { 
+    echo "je suis else <hr>";
     $ligne = $resultat->fetch(PDO::FETCH_OBJ);
-
+    var_dump($ligne);
     $_SESSION['idMembre']=$ligne->idMembre;
     $_SESSION['idPrivilege']=$ligne->idPrivilege;
     $_SESSION['nomMembre']=$ligne->nomMembre;    
-    
+     $ligne->idMembre."id-menbre<br>";
+    echo $_SESSION['idPrivilege'];
+    echo $_SESSION['nomMembre'];    
     if($ligne->idPrivilege == 1 || $ligne->idPrivilege == 2){
       header("Location:../admin/admin.php");
     }
