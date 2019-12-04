@@ -67,7 +67,7 @@ if(isset($_SESSION['idMembre']) &&  $_SESSION['idPrivilege'] == '1')
 									//addslashes permet de mettre des \ en cas de  '  .
 									$requete="  INSERT INTO recette 
 									SET idOrigine='".addslashes($_POST['idOrigine'])."', nomRecette='".addslashes($_POST['nomRecette'])."', descriptionRecette='".addslashes($_POST['descriptionRecette'])."',dureeCuisson='".($_POST['dureeCuisson'])."', dureePreparation='".($_POST['dureePreparation'])."', recetteRecette='".addslashes($_POST['recetteRecette'])."', effetsRecette='".addslashes($_POST['effetsRecette'])."', idCategorie='".($_POST['idCategorie'])."', idImage='".($_POST['idImage'])."'";
-									echo $requete;
+									
 									//execution de la requete dans la BDD
 									// $resultat=mysqli_query($base,$requete);
 									$resultat=$base->prepare($requete);
@@ -215,8 +215,6 @@ if(isset($_SESSION['idMembre']) &&  $_SESSION['idPrivilege'] == '1')
 									$requete= $base->prepare("INSERT INTO ingredient 
 									(nomIngredient, recolteIngredient, lieuIngredient) VALUE (:nomIngredient, :recolteIngredient, :lieuIngredient)");
 									
-									var_dump($_POST);
-									echo "<hr>";
 									$requete->execute($_POST);
 								}
 							}
@@ -316,7 +314,7 @@ if(isset($_SESSION['idMembre']) &&  $_SESSION['idPrivilege'] == '1')
 									$requete="INSERT INTO image 
 									SET nomImage='".addslashes($_POST['nomImage'])."',
 									urlImage='".addslashes($_POST['urlImage'])."'";
-									echo $requete;
+									
 									//execution de la requete dans la BDD
 									// $resultat=mysqli_query($base,$requete);
 									$resultat=$base->prepare($requete);
@@ -532,11 +530,11 @@ if(isset($_SESSION['idMembre']) &&  $_SESSION['idPrivilege'] == '1')
 								   //addslashes permet de mettre des \ en cas de  '  .
 								   $requete="INSERT INTO categorie 
 								   SET nomCategorie='".addslashes($_POST['nomCategorie'])."'";
-								   //echo $requete;
+								   
 								   //execution de la requete dans la BDD
 								   $resultat=$base->prepare($requete);
 								   $resultat->execute();
-								   //echo $requete;
+								   
 								   $message="<label id=\"bravo\">Le produit a bien été ajouté</label>";
 							   }
 						   }
@@ -641,7 +639,7 @@ if(isset($_SESSION['idMembre']) &&  $_SESSION['idPrivilege'] == '1')
 									SET nomMembre='".addslashes($mdpCrypt)."',
 									mdpMembre='".addslashes($_POST['mdpMembre'])."',
 									idPrivilege='".addslashes($_POST['idPrivilege'])."'";
-									//echo $requete;
+									
 									//execution de la requete dans la BDD
 									// $resultat=mysqli_query($base,$requete);
 									$resultat=$base->prepare($requete);
@@ -757,7 +755,7 @@ if(isset($_SESSION['idMembre']) &&  $_SESSION['idPrivilege'] == '1')
 									$requete="INSERT INTO ingredientrecette 
 									SET idRecette=(SELECT recette.idRecette FROM recette WHERE nomRecette ='".addslashes($_POST['nomRecette'])."'),
 									idIngredient=(SELECT ingredient.idIngredient FROM ingredient WHERE nomIngredient ='".addslashes($_POST['nomIngredient'])."')";
-									echo $requete;
+									
 									//execution de la requete dans la BDD
 									// $resultat=mysqli_query($base,$requete);
 									$resultat=$base->prepare($requete);
@@ -868,7 +866,7 @@ if(isset($_SESSION['idMembre']) &&  $_SESSION['idPrivilege'] == '1')
 									$requete="INSERT INTO origine 
 									SET nomOrigine='".addslashes($_POST['nomOrigine'])."',
 									descriptionOrigine='".addslashes($_POST['descriptionOrigine'])."'";
-									//echo $requete;
+									
 									//execution de la requete dans la BDD
 									// $resultat=mysqli_query($base,$requete);
 									$resultat=$base->prepare($requete);
@@ -955,16 +953,16 @@ if(isset($_SESSION['idMembre']) &&  $_SESSION['idPrivilege'] == '1')
 	}// fin if isset
 }//fin session
 
-elseif (isset($_SESSION['idMembre']) &&  $_SESSION['idPrivilege'] == '1' || $_SESSION['idPrivilege'] == '2') 
+if (isset($_SESSION['idMembre']) && ($_SESSION['idPrivilege'] == '1' || $_SESSION['idPrivilege'] == '2')) 
 {
-    echo $_SESSION['idPrivilege']."ligne 2 <br>";
+    
 if(isset($_GET['action'])){
     switch ($_GET["action"]){
 
-		case "déconnecter":
+		case "deconnecter":
 			//détruit toutes les variables de session
 			session_destroy();
-			header("Location:../index.php");
+			include ("index.php");
 		break; // fin case déconnecter
 		
         case "article":
@@ -1013,7 +1011,7 @@ if(isset($_GET['action'])){
                                 ."', idRecette='"
                                 .addslashes($_POST['idRecette'])
                                 ."'";
-                                echo $requete;
+                                
                                 //execution de la requete dans la BDD
                                 // $resultat=mysqli_query($base,$requete);
                                 $resultat=$base->prepare($requete);
@@ -1115,18 +1113,7 @@ if(isset($_GET['action'])){
 	}// fin if isset
 }//fin elseif
 else{
-    
-echo "je suis le else admin <hr>";            
-?>  
-	<div class="panel panel-danger">                
-		<div class="panel-heading">Erreur : Vous n'êtes pas connecté</div>                
-		<div class="panel-body">                    
-			Connectez-vous pour accéder à votre compte. Si vous n'avez pas encore de compte, vous pouvez dès à présent vous inscrire !<br><br><br>                    
-			<div class="btn-group" role="group">                        
-				<a class="btn btn-danger" href="login.php">Connexion</a>                    
-			</div>                
-		</div>            
-	</div>            
-<?php } //fin else
+    header("Location:../admin/login.php");
+ } //fin else
 	include("admin.html");
 ?>
