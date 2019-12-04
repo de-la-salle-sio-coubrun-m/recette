@@ -1,58 +1,61 @@
 <?php
 
 //================================
-function security($chaine){
+function security($chaine){ // ne devrait pas être appelée depuis le passage en PDO
 	 $base = connect();
-	$security=addcslashes(mysqli_real_escape_string($connexion,$chaine), "%_");
-	mysqli_close($connexion);
+	$security=addcslashes(mysqli_real_escape_string($base,$chaine), "%_");
+	mysqli_close($base);
 	return $security;
 }
 
 //===========================pour se loguer=======================================================
-function login($login,$password,$target)
+function login($login,$password)
 {	
-if(isset($target))
-	{
-	$connexion=connexion("mysqli");
-	$login=security($login);
-	$password=security($password);
-	switch($target)
-		{
-		case "admin":
-		$requete="SELECT * FROM comptes WHERE login= '" . $login . "' AND pass=PASSWORD('" . $password . "')";
-		$resultat=mysqli_query($connexion, $requete) or die(mysqli_connect_error());
-		$nb=mysqli_num_rows($resultat);
-		
-		if($nb==0)
-		  {
-		  return false;
-		  }
-		else
-		  { 
-			$ligne=mysqli_fetch_object($resultat);
+  echo "je suis la fonction Login <hr>".$password;
+  $connexion=connect();
+  $passwordHashRequest="SELECT mdpMembre FROM membre WHERE nomMembre='" . $login . "'";
+  
+  $res0=$connexion->prepare($passwordHashRequest);
+  $res0->execute();
+  $passwordHash=$res0->fetch();
+  var_dump($passwordHash);
+  
+  if(password_verify($password, $passwordHash['mdpMembre']))
+  {
+    echo "Le mot de passe est bon ";
 
-			$_SESSION['id_acces']=$ligne->id_compte;
-			$_SESSION['statut']=$ligne->statut;
-			$_SESSION['prenom']=$ligne->prenom;    
-			$_SESSION['nom']=$ligne->nom;
-			$_SESSION['retour_bo']="<a id=\"retour_bo\" href=\"../admin/admin.php?module=intro\"><span class=\"dashicons dashicons-arrow-left-alt\"></span></a>\n";
-			$_SESSION['connexion']=date('Y-m-d H:i:s');
-			if($ligne->fichier_compte=="")
-			  {
-			  $_SESSION['photo_connecte']="<img id=\"image_connect\" src=\"../icones/icon_compte.png\" alt=\"\" />\n";        
-			  }
-			else
-			  {
-			  $_SESSION['photo_connecte']="<img id=\"image_connect\" src=\"../medias/profil" . $ligne->id_compte . "." . $ligne->fichier_compte . "\" alt=\"\" />\n";            
-			  }
+  } else {
+    echo "les identifiant ne sont pas correcte !";
+  }
+  $requete="SELECT * FROM membre WHERE nomMembre= '" . $login . "' AND mdpMembre='" . $passwordHash['mdpMembre'] . "'";
 
-			header("Location:../admin/admin.php?module=intro");    
-			return true;
-		  }		
-		break;	
-		}
-	mysqli_close($connexion); 	
-	}
+  $resultat=$connexion->prepare($requete);
+  $resultat->execute() or die;
+  $nb = $resultat->rowCount();
+  if($nb==0)
+  {
+    echo "je suis if <hr>";
+    return false;
+  }
+  else
+  { 
+    echo "je suis else <hr>";
+    $ligne = $resultat->fetch(PDO::FETCH_OBJ);
+    var_dump($ligne);
+    $_SESSION['idMembre']=$ligne->idMembre;
+    $_SESSION['idPrivilege']=$ligne->idPrivilege;
+    $_SESSION['nomMembre']=$ligne->nomMembre;    
+     $ligne->idMembre."id-menbre<br>";
+    echo $_SESSION['idPrivilege'];
+    echo $_SESSION['nomMembre'];    
+    if($ligne->idPrivilege == 1 || $ligne->idPrivilege == 2){
+      header("Location:../admin/admin.php");
+    }
+    else {
+      header("Location:../front/index.php");
+    }
+    return true;
+  }
 }
 
 // ====détecter l'extension du fichier================
@@ -262,7 +265,7 @@ function afficher_Ingredient(){
 
 //============== affichage membres
 function afficher_membres(){
-   $base = connect();
+  $base = connect();
   $requete= $base->query("SELECT * FROM membre ORDER BY nomMembre");
   
   
@@ -342,6 +345,32 @@ function afficher_ingredientrecette(){
   }
   
   $liste.="</table>\n";
+  return $liste;
+}
+
+function afficher_origines(){
+  $base = connect();
+  $requete= $base->query("SELECT * FROM origine ORDER BY nomOrigine");
+  
+  
+  $liste="<table id=\"liste\">\n";
+  $liste.="<tr>";
+  $liste.="<th>Nom de l'origine</th>";
+  $liste.="<th>Description de l'origine</th>";
+  $liste.="<th>Actions</th>";
+  $liste.="</tr>";
+  
+ while($ligne= $requete->fetch(PDO::FETCH_OBJ)){
+    $liste.="<tr>";
+    $liste.="<td>" . $ligne->nomOrigine . "</td>";
+    $liste.="<td>" . $ligne->descriptionOrigine . "</td>";
+    $liste.="<td><a href=\"admin.php?action=origine&cas=modifier&idOrigine=".$ligne->idOrigine."\">modifier</a>&nbsp;
+    <a href=\"admin.php?action=origine&cas=supprimer&idOrigine=".$ligne->idOrigine."\">supprimer</a>&nbsp;</td>";
+    $liste.="</tr>";
+  }
+  
+  $liste.="</table>\n";
+  
   return $liste;
 }
 
