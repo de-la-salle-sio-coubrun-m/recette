@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  jeu. 21 nov. 2019 à 11:31
+-- Généré le :  mer. 04 déc. 2019 à 15:39
 -- Version du serveur :  5.7.24
 -- Version de PHP :  7.2.14
 
@@ -39,7 +39,7 @@ CREATE TABLE IF NOT EXISTS `article` (
   PRIMARY KEY (`idArticle`),
   KEY `fkMembre` (`idMembre`),
   KEY `fkRecetteArticle` (`idRecette`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -52,7 +52,7 @@ CREATE TABLE IF NOT EXISTS `categorie` (
   `idCategorie` int(4) NOT NULL AUTO_INCREMENT,
   `nomCategorie` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`idCategorie`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `categorie`
@@ -74,7 +74,15 @@ CREATE TABLE IF NOT EXISTS `etat` (
   `idEtat` int(4) NOT NULL AUTO_INCREMENT,
   `labelEtat` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`idEtat`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+
+--
+-- Déchargement des données de la table `etat`
+--
+
+INSERT INTO `etat` (`idEtat`, `labelEtat`) VALUES
+(1, 'en attente'),
+(2, 'validée');
 
 -- --------------------------------------------------------
 
@@ -110,7 +118,7 @@ CREATE TABLE IF NOT EXISTS `ingredient` (
   `recolteIngredient` varchar(200) DEFAULT NULL,
   `lieuIngredient` varchar(500) DEFAULT NULL,
   PRIMARY KEY (`idIngredient`)
-) ENGINE=InnoDB AUTO_INCREMENT=78 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=81 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `ingredient`
@@ -206,8 +214,19 @@ CREATE TABLE IF NOT EXISTS `ingredientrecette` (
   `idRecette` int(4) NOT NULL,
   `idIngredient` int(4) NOT NULL,
   PRIMARY KEY (`idRecette`,`idIngredient`),
-  KEY `fkIngredient` (`idIngredient`)
+  KEY `idIngredient` (`idIngredient`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Déchargement des données de la table `ingredientrecette`
+--
+
+INSERT INTO `ingredientrecette` (`idRecette`, `idIngredient`) VALUES
+(4, 1),
+(4, 2),
+(4, 28),
+(5, 28),
+(5, 34);
 
 -- --------------------------------------------------------
 
@@ -219,10 +238,19 @@ DROP TABLE IF EXISTS `membre`;
 CREATE TABLE IF NOT EXISTS `membre` (
   `idMembre` int(4) NOT NULL AUTO_INCREMENT,
   `nomMembre` varchar(50) DEFAULT NULL,
+  `mdpMembre` varchar(1000) DEFAULT NULL,
   `idPrivilege` int(4) DEFAULT NULL,
   PRIMARY KEY (`idMembre`),
   KEY `fkPrivilege` (`idPrivilege`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+
+--
+-- Déchargement des données de la table `membre`
+--
+
+INSERT INTO `membre` (`idMembre`, `nomMembre`, `mdpMembre`, `idPrivilege`) VALUES
+(1, 'admin', '$2y$10$dXgsiH1kajYLcmif0uaK..QRnY78qW9Xht4fi6iYg92ohADNF4f46', 1),
+(2, 'auteur', '$2y$10$95n2Ath.wHQ9wxevLMmpn.AxlxOjZh4Eej5IgxrU/d5shMxJLYDPi', 2);
 
 -- --------------------------------------------------------
 
@@ -258,7 +286,15 @@ CREATE TABLE IF NOT EXISTS `privilege` (
   `idPrivilege` int(4) NOT NULL AUTO_INCREMENT,
   `labelPrivilege` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`idPrivilege`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+
+--
+-- Déchargement des données de la table `privilege`
+--
+
+INSERT INTO `privilege` (`idPrivilege`, `labelPrivilege`) VALUES
+(1, 'administrateur'),
+(2, 'auteur');
 
 -- --------------------------------------------------------
 
@@ -284,7 +320,15 @@ CREATE TABLE IF NOT EXISTS `recette` (
   KEY `fkCategorie` (`idCategorie`),
   KEY `fkImage` (`idImage`),
   KEY `fkEtat` (`idEtat`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+
+--
+-- Déchargement des données de la table `recette`
+--
+
+INSERT INTO `recette` (`idRecette`, `idOrigine`, `nomRecette`, `descriptionRecette`, `dureeCuisson`, `dureePreparation`, `recetteRecette`, `effetsRecette`, `idCategorie`, `idImage`, `idEtat`) VALUES
+(4, 1, '12 minutes', '12 minutes', '12 minutes', '12 minutes', '12 minutes', '12 minutes', 2, 1, 1),
+(5, 2, 'test', 'test', 'test', 'test', 'test', 'test', 3, 1, 1);
 
 --
 -- Contraintes pour les tables déchargées
@@ -301,8 +345,8 @@ ALTER TABLE `article`
 -- Contraintes pour la table `ingredientrecette`
 --
 ALTER TABLE `ingredientrecette`
-  ADD CONSTRAINT `fkIngredient` FOREIGN KEY (`idIngredient`) REFERENCES `ingredient` (`idIngredient`),
-  ADD CONSTRAINT `fkRecette` FOREIGN KEY (`idRecette`) REFERENCES `recette` (`idRecette`);
+  ADD CONSTRAINT `fkRecette` FOREIGN KEY (`idRecette`) REFERENCES `recette` (`idRecette`),
+  ADD CONSTRAINT `ingredientrecette_ibfk_1` FOREIGN KEY (`idIngredient`) REFERENCES `ingredient` (`idIngredient`);
 
 --
 -- Contraintes pour la table `membre`
