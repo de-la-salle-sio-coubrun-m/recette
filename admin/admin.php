@@ -14,9 +14,6 @@ if(isset($_SESSION['idMembre']) &&  $_SESSION['idPrivilege'] == '1')
 
 	if(isset($_GET['action'])){
 		switch ($_GET["action"]){
-			case "déconnecter":
-				# code...
-			break; // fin case déconnecter
 			
 			case "recette":
 
@@ -964,6 +961,12 @@ elseif (isset($_SESSION['idMembre']) &&  $_SESSION['idPrivilege'] == '1' || $_SE
 if(isset($_GET['action'])){
     switch ($_GET["action"]){
 
+		case "déconnecter":
+			//détruit toutes les variables de session
+			session_destroy();
+			header("Location:../index.php");
+		break; // fin case déconnecter
+		
         case "article":
             //contenu à afficher
             $contenu="form_article.html";
