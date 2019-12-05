@@ -11,13 +11,29 @@ navigateur lors d'un clic*/
 a,input, textarea{
 	outline:none;
 }
-
+/***************************** H E A D E R **********************************************************************************/
 header{
 	display: flex;
 	justify-content: space-between;
 	margin-top: 3vh;
 	padding: 0 5px;
 }
+
+#logo img{
+	display: inline-block;
+	width: 15vw;
+	height: 15vh;
+}
+
+#logo figcaption{
+	opacity: 0;
+}
+
+#logo a:hover + figcaption{
+	opacity: 1;
+}
+
+/***************************** T A B L E A U  **********************************************************************************/
 
 table {
   border: 2px solid #555;

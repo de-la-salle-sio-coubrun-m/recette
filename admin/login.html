@@ -14,6 +14,7 @@
 	<!-- <img id="captcha" src="../outils/captcha.php" alt="code sécurité" />   -->
 	<!-- <input placeholder="Code de sécurité" type="text" name="captcha" value="<?php if(isset($_POST['captcha'])){echo $_POST['captcha'];} ?>" /> -->
 	<input type="submit" value="Connexion" name="submit" />
+	<?php if(isset($message)){ echo $message ;} ?>
 </form>
 </body>
 </html>
