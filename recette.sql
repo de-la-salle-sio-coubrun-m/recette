@@ -237,7 +237,7 @@ INSERT INTO `ingredientrecette` (`idRecette`, `idIngredient`) VALUES
 DROP TABLE IF EXISTS `membre`;
 CREATE TABLE IF NOT EXISTS `membre` (
   `idMembre` int(4) NOT NULL AUTO_INCREMENT,
-  `nomMembre` varchar(50) DEFAULT NULL,
+  `nomMembre` varchar(50) DEFAULT NULL UNIQUE,
   `mdpMembre` varchar(1000) DEFAULT NULL,
   `idPrivilege` int(4) DEFAULT NULL,
   PRIMARY KEY (`idMembre`),
