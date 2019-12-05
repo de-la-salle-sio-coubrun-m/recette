@@ -1,6 +1,7 @@
 <?php
 session_start();
 include "security.php";
+require("auto_complete.php");
 $action_form="ajouter";
 
 if(isset($_SESSION['idMembre']) &&  $_SESSION['idPrivilege'] == '1')
@@ -366,7 +367,6 @@ if(isset($_SESSION['idMembre']) &&  $_SESSION['idPrivilege'] == '1')
 								$action_form="modifier&idImage=".$_GET['idImage']."";
 								//si on appuie sur le bouton enregistrer du formulaire
 								if(isset($_POST['submit'])){
-									echo "On a submit <br>";
 									if(empty($_POST['nomImage']))
 									{
 										$message="<label id =\"warning\">veuillez entrer le nom de l'image s'il-vous-plaît</label>";
@@ -746,10 +746,10 @@ if(isset($_SESSION['idMembre']) &&  $_SESSION['idPrivilege'] == '1')
 						break;//fin case ajouter
 						
 						case "modifier":
-							if(isset($_GET['nomRecette']))
+							if(isset($_GET['idRecette']) && isset($_GET['idIngredient']))
 							{
 								//si le bouton enregistrer du formulaire n'a pas été activé
-								$action_form="modifier&nomRecette=".$_GET['nomRecette']."";
+								$action_form="modifier&idRecette=".$_GET['idRecette']."";
 								
 								//si on appuie sur le bouton enregistrer du formulaire
 								if(isset($_POST['submit'])){
@@ -764,8 +764,8 @@ if(isset($_SESSION['idMembre']) &&  $_SESSION['idPrivilege'] == '1')
 									else
 									{
 										//met à jour la ligne de la table recette
-										$requete="UPDATE ingredientrecette SET idRecette=(SELECT recette.idRecette FROM recette WHERE nomRecette ='".addslashes($_POST['nomRecette'])."'),
-										idIngredient=(SELECT ingredient.idIngredient FROM ingredient WHERE nomIngredient ='".addslashes($_POST['nomIngredient'])."')";
+										$requete="UPDATE recette SET nomRecette=(SELECT nomRecette FROM recette WHERE idRecette ='".addslashes($_GET['idRecette'])."'),
+										nomIngredient=(SELECT nomIngredient FROM ingredient WHERE idIngredient ='".addslashes($_GET['idIngredient'])."')";
 										// $resultat=mysqli_query($base,$requete);
 										$resultat=$base->prepare($requete);
 										$resultat->execute();
@@ -774,14 +774,10 @@ if(isset($_SESSION['idMembre']) &&  $_SESSION['idPrivilege'] == '1')
 								else
 								{
 									//on recharge le formulaire avec les données
-									$requete="SELECT * FROM ingredientrecette WHERE idRecette=(SELECT idRecette FROM recette WHERE nomRecette='".$_GET['nomRecette']."')";
-									// $resultat=mysqli_query($base,$requete);
-									$resultat=$base->prepare($requete);
-									$resultat->execute();
-									// $ligne=mysqli_fetch_object($resultat);
-									$ligne = $resultat->fetch(PDO::FETCH_OBJ);
-									$_POST['nomRecette']=stripslashes($ligne->nomMembre);
-									$_POST['nomIngredient']=stripslashes($ligne->mdpMembre);
+									$requeteChampRecette=$base->query("SELECT nomRecette FROM recette WHERE idRecette='".$_GET['idRecette']."'")->fetch(PDO::FETCH_OBJ);
+									$requeteChampIngredient=$base->query("SELECT nomIngredient FROM ingredient WHERE idIngredient='".$_GET['idIngredient']."'")->fetch(PDO::FETCH_OBJ);
+									$_POST['nomRecette']=stripslashes($requeteChampRecette->nomRecette);
+									$_POST['nomIngredient']=stripslashes($requeteChampIngredient->nomIngredient);
 								}
 							}   
 						break;//fin case modifier

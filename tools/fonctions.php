@@ -196,6 +196,7 @@ function afficher_images(){
   $liste.="<tr>";
   $liste.="<th>Nom de l'image</th>";
   $liste.="<th>URL de l'image</th>";
+  $liste.="<th>Image </th>";
   $liste.="<th>Actions</th>";
   $liste.="</tr>";
   
@@ -203,6 +204,7 @@ function afficher_images(){
     $liste.="<tr>";
     $liste.="<td>" . $ligne->nomImage . "</td>";
     $liste.="<td>" . $ligne->urlImage . "</td>";
+    $liste.='<td><img src="'.$ligne->urlImage.'"alt="'.$ligne->nomImage.'" /></td>';
     $liste.="<td><a href=\"admin.php?action=image&cas=modifier&idImage=".$ligne->idImage."\">modifier</a>&nbsp;
     <a href=\"admin.php?action=image&cas=supprimer&idImage=".$ligne->idImage."\">supprimer</a>&nbsp;</td>";
     $liste.="</tr>";

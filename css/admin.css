@@ -33,23 +33,7 @@ header{
 	opacity: 1;
 }
 
-/***************************** T A B L E A U  **********************************************************************************/
-
-table {
-  border: 2px solid #555;
-  border-collapse: collapse;
-}
-
-th, td {
-  border: 1px solid #000;
-	border-collapse: collapse;
-	justify-content: center;
-	padding-left: 5px;
-}
-
-th {
-	background-color: lightgray;
-}
+/***************************** N A V  **********************************************************************************/
 
 nav>ul{
 	display: flex;
@@ -60,6 +44,45 @@ nav>ul{
 
 nav>ul>li{
 	padding: 2vw;
+}
+
+
+/***************************** T A B L E A U  **********************************************************************************/
+
+#liste{
+    border:1px solid #d3d3d3;
+    border-collapse: collapse;
+    width: 80%;
+    margin: 40px auto 10px;
+    font-size: 0.85em;
+}
+
+#liste td, #liste th{
+    border:1px solid #d3d3d3;
+    padding: 5px;
+    text-align: left;
+}
+
+#liste th{
+    text-align: center;
+}
+
+#liste td:last-child{
+    width: 70px;
+    text-align: center;
+}
+
+#liste a{
+    color: #000;
+}
+
+#liste img{
+    height: 100px;
+}
+
+#liste img:hover{
+    transform: scale(2);
+    transition: 0.5s ease;
 }
 
 form{
