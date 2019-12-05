@@ -30,10 +30,8 @@ function login($login,$password)
     else {
       header("Location:../front/index.php");
     }
-    return true;
   } else {
-    $message = '<p class="error">Les identifiants ne sont pas corrects !</p>';
-    header("Location:../admin/login.php");
+    return '<label class="error">Les identifiants ne sont pas corrects !</label>';
   }
 }
 

@@ -1,8 +1,6 @@
 <?php
 session_start();
-include "../tools/fonctions.php";
 include "security.php";
-$base = connect();
 $action_form="ajouter";
 
 if(isset($_SESSION['idMembre']) &&  $_SESSION['idPrivilege'] == '1')
