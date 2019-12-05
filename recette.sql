@@ -50,7 +50,7 @@ CREATE TABLE IF NOT EXISTS `article` (
 DROP TABLE IF EXISTS `categorie`;
 CREATE TABLE IF NOT EXISTS `categorie` (
   `idCategorie` int(4) NOT NULL AUTO_INCREMENT,
-  `nomCategorie` varchar(50) DEFAULT NULL,
+  `nomCategorie` varchar(50) DEFAULT NULL UNIQUE,
   PRIMARY KEY (`idCategorie`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
@@ -72,7 +72,7 @@ INSERT INTO `categorie` (`idCategorie`, `nomCategorie`) VALUES
 DROP TABLE IF EXISTS `etat`;
 CREATE TABLE IF NOT EXISTS `etat` (
   `idEtat` int(4) NOT NULL AUTO_INCREMENT,
-  `labelEtat` varchar(50) DEFAULT NULL,
+  `labelEtat` varchar(50) DEFAULT NULL UNIQUE,
   PRIMARY KEY (`idEtat`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
@@ -93,7 +93,7 @@ INSERT INTO `etat` (`idEtat`, `labelEtat`) VALUES
 DROP TABLE IF EXISTS `image`;
 CREATE TABLE IF NOT EXISTS `image` (
   `idImage` int(4) NOT NULL AUTO_INCREMENT,
-  `nomImage` varchar(50) DEFAULT NULL,
+  `nomImage` varchar(50) DEFAULT NULL UNIQUE,
   `urlImage` varchar(500) DEFAULT NULL,
   PRIMARY KEY (`idImage`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
@@ -114,7 +114,7 @@ INSERT INTO `image` (`idImage`, `nomImage`, `urlImage`) VALUES
 DROP TABLE IF EXISTS `ingredient`;
 CREATE TABLE IF NOT EXISTS `ingredient` (
   `idIngredient` int(4) NOT NULL AUTO_INCREMENT,
-  `nomIngredient` varchar(50) DEFAULT NULL,
+  `nomIngredient` varchar(50) DEFAULT NULL UNIQUE,
   `recolteIngredient` varchar(200) DEFAULT NULL,
   `lieuIngredient` varchar(500) DEFAULT NULL,
   PRIMARY KEY (`idIngredient`)
@@ -261,7 +261,7 @@ INSERT INTO `membre` (`idMembre`, `nomMembre`, `mdpMembre`, `idPrivilege`) VALUE
 DROP TABLE IF EXISTS `origine`;
 CREATE TABLE IF NOT EXISTS `origine` (
   `idOrigine` int(4) NOT NULL AUTO_INCREMENT,
-  `nomOrigine` varchar(50) DEFAULT NULL,
+  `nomOrigine` varchar(50) DEFAULT NULL UNIQUE,
   `descriptionOrigine` varchar(500) DEFAULT NULL,
   PRIMARY KEY (`idOrigine`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
@@ -284,7 +284,7 @@ INSERT INTO `origine` (`idOrigine`, `nomOrigine`, `descriptionOrigine`) VALUES
 DROP TABLE IF EXISTS `privilege`;
 CREATE TABLE IF NOT EXISTS `privilege` (
   `idPrivilege` int(4) NOT NULL AUTO_INCREMENT,
-  `labelPrivilege` varchar(50) DEFAULT NULL,
+  `labelPrivilege` varchar(50) DEFAULT NULL UNIQUE,
   PRIMARY KEY (`idPrivilege`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
@@ -306,7 +306,7 @@ DROP TABLE IF EXISTS `recette`;
 CREATE TABLE IF NOT EXISTS `recette` (
   `idRecette` int(4) NOT NULL AUTO_INCREMENT,
   `idOrigine` int(4) NOT NULL,
-  `nomRecette` varchar(100) NOT NULL,
+  `nomRecette` varchar(100) NOT NULL UNIQUE,
   `descriptionRecette` varchar(500) DEFAULT NULL,
   `dureeCuisson` varchar(100) DEFAULT NULL,
   `dureePreparation` varchar(100) DEFAULT NULL,
