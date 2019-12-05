@@ -304,64 +304,54 @@ if(isset($_SESSION['idMembre']) &&  $_SESSION['idPrivilege'] == '1')
 								else
 								{
 									$url = "../asset/imagesRecettes/".$_POST['nomImage'];
-									//on insert dans la table image les valeurs des champs nom et description
-									//addslashes permet de mettre des \ en cas de  '  .
-									$requete="INSERT INTO image 
-									SET nomImage='".addslashes($_POST['nomImage'])."',
-									urlImage='".addslashes($url)."'";
-									
-									//execution de la requete dans la BDD
-									// $resultat=mysqli_query($base,$requete);
-									$resultat=$base->prepare($requete);
-									$resultat->execute();
-							
-									//on récupere le dernier id_produit créé
-									// $dernier_id_cree=mysqli_insert_id($base);
-									$dernier_id_cree=$base->lastinsertID();
+									//si le type du fichier photo est valide
+									if(fichier_type($_FILES['imageRecette']['name'])=="jpg" ||
+									fichier_type($_FILES['imageRecette']['name'])=="png" || 
+									fichier_type($_FILES['imageRecette']['name'])=="gif")
+										{
+										$extension=fichier_type($_FILES['imageRecette']['name']);
+										$chemin_image= $url ."_g." . $extension;
+										$chemin_image2= $url ."_p." . $extension; 
 
-								//si le type du fichier photo est valide
-								if(fichier_type($_FILES['imageRecette']['name'])=="jpg" ||
-								fichier_type($_FILES['imageRecette']['name'])=="png" || 
-								fichier_type($_FILES['imageRecette']['name'])=="gif")
-									{
-									$extension=fichier_type($_FILES['imageRecette']['name']);
-									$chemin_image= $url ."-". $dernier_id_cree . "_g." . $extension;
-									$chemin_image2= $url ."-". $dernier_id_cree . "_p." . $extension; 
-
-									if(is_uploaded_file($_FILES['imageRecette']['tmp_name']))
-										{  							
-										if(copy($_FILES['imageRecette']['tmp_name'], $chemin_image))
-											{ 			
-											$size=GetImageSize($chemin_image);
-											$width = $size[0];
-											$height = $size[1];
-											$rapport=$width/$height;
-											
-											//format paysage
-											if($rapport>1)
-												{
-												$new_width=200;
-												$new_height=200/$rapport;
+										if(is_uploaded_file($_FILES['imageRecette']['tmp_name']))
+											{  							
+											if(copy($_FILES['imageRecette']['tmp_name'], $chemin_image))
+												{ 			
+												$size=GetImageSize($chemin_image);
+												$width = $size[0];
+												$height = $size[1];
+												$rapport=$width/$height;
+												
+												//format paysage
+												if($rapport>1)
+													{
+													$new_width=200;
+													$new_height=200/$rapport;
+													}
+												//format portrait
+												elseif($rapport<1)
+													{
+													$new_width=200*$rapport;
+													$new_height=200;
+													}
+												else{
+													$new_width=200;
+													$new_height=200;
+													}	
+												//redimage(image origine,miniature,
+												//largeur miniature,hauteur miniature,qualité de la miniature)
+												redimage($chemin_image,$chemin_image2,$new_width,$new_height,"70");
+												
 												}
-											//format portrait
-											elseif($rapport<1)
-												{
-												$new_width=200*$rapport;
-												$new_height=200;
-												}
-											else{
-												$new_width=200;
-												$new_height=200;
-												}	
-											//redimage(image origine,miniature,
-											//largeur miniature,hauteur miniature,qualité de la miniature)
-											redimage($chemin_image,$chemin_image2,$new_width,$new_height,"70");
-											
-											}
-										}	
+											}	
 
 									}
 								}
+								$requete="INSERT INTO image 
+									SET nomImage='".addslashes($_POST['nomImage'])."',
+									urlImage='".addslashes($chemin_image2)."'";
+									$resultat=$base->prepare($requete);
+									$resultat->execute();
 							}
 							else
 							{
@@ -370,92 +360,83 @@ if(isset($_SESSION['idMembre']) &&  $_SESSION['idPrivilege'] == '1')
 						break;//fin case ajouter
 						
 						case "modifier":
-							if(isset($_GET['nomImage']))
+							if(isset($_GET['idImage']))
 							{
 								//si le bouton enregistrer du formulaire n'a pas été activé
 								$action_form="modifier&idImage=".$_GET['idImage']."";
-								
 								//si on appuie sur le bouton enregistrer du formulaire
 								if(isset($_POST['submit'])){
+									echo "On a submit <br>";
 									if(empty($_POST['nomImage']))
 									{
 										$message="<label id =\"warning\">veuillez entrer le nom de l'image s'il-vous-plaît</label>";
 									}
-									else if(empty($_POST['urlImage']))
-									{
-										$message="<label id =\"warning\">veuillez entrer l'url de l'image s'il-vous-plaît</label>";
-									}
-									else if(empty($_POST['imageRecette']))
+									else if(empty($_FILES))
 									{
 										$message="<label id =\"warning\">veuillez enregistrer une image' s'il-vous-plaît</label>";
 									}
 									else
 									{
-										//met à jour la ligne de la table recette
-										$requete="UPDATE image SET nomImage='".addslashes($_POST['nomImage'])."', urlImage='".addslashes($_POST['urlImage'])."' WHERE idImage='".$_GET['idImage']."'";
-										// $resultat=mysqli_query($base,$requete);
-										$resultat=$base->prepare($requete);
-										$resultat->execute();
+										$url = "../asset/imagesRecettes/".$_POST['nomImage'];
+										$requete= $base->query("SELECT urlImage FROM image WHERE idImage='".$_GET['idImage']."'")->fetch(PDO::FETCH_OBJ);
+										if(isset($requete->urlImage)){
+											$miniature=$requete->urlImage;
+											$lien_image_g=str_replace("_p","_g",$miniature);
+											@unlink($lien_image_g);
+											@unlink($miniature);
+										}										
 
-										//on récupere le dernier id_produit créé
-								// $dernier_id_cree=mysqli_insert_id($base);
-								$dernier_id_cree=$base->lastinsertID();
-								
-								//si le type du fichier photo est valide
-								if(fichier_type($_FILES['imageRecette']['name'])=="jpg" ||
-								fichier_type($_FILES['imageRecette']['name'])=="png" || 
-								fichier_type($_FILES['imageRecette']['name'])=="gif")
-									{ 
-									$extension=fichier_type($_FILES['imageRecette']['name']);
-									$chemin_image= $_GET['urlImage'] . $dernier_id_cree . "_g." . $extension;
-									$chemin_image2= $_GET['urlImage'] . $dernier_id_cree . "_p." . $extension; 
+										if(fichier_type($_FILES['imageRecette']['name'])=="jpg" ||
+										fichier_type($_FILES['imageRecette']['name'])=="png" || 
+										fichier_type($_FILES['imageRecette']['name'])=="gif")
+											{ 
+											$extension=fichier_type($_FILES['imageRecette']['name']);
+											$chemin_image= $url ."_g." . $extension;
+											$chemin_image2= $url . "_p." . $extension; 
 
-									if(is_uploaded_file($_FILES['imageRecette']['tmp_name']))
-										{  							
-										if(copy($_FILES['imageRecette']['tmp_name'], $chemin_image))
-											{ 			
-											$size=GetImageSize($chemin_image);
-											$width = $size[0];
-											$height = $size[1];
-											$rapport=$width/$height;
-											
-											//format paysage
-											if($rapport>1)
-												{
-												$new_width=200;
-												$new_height=200/$rapport;
-												}
-											//format portrait
-											elseif($rapport<1)
-												{
-												$new_width=200*$rapport;
-												$new_height=200;
-												}
-											else{
-												$new_width=200;
-												$new_height=200;
+											if(is_uploaded_file($_FILES['imageRecette']['tmp_name']))
+												{  							
+												if(copy($_FILES['imageRecette']['tmp_name'], $chemin_image))
+													{ 			
+													$size=GetImageSize($chemin_image);
+													$width = $size[0];
+													$height = $size[1];
+													$rapport=$width/$height;
+													
+													//format paysage
+													if($rapport>1)
+														{
+														$new_width=200;
+														$new_height=200/$rapport;
+														}
+													//format portrait
+													elseif($rapport<1)
+														{
+														$new_width=200*$rapport;
+														$new_height=200;
+														}
+													else{
+														$new_width=200;
+														$new_height=200;
+														}	
+													//redimage(image origine,miniature,
+													//largeur miniature,hauteur miniature,qualité de la miniature)
+													redimage($chemin_image,$chemin_image2,$new_width,$new_height,"70");
+													
+													}
 												}	
-											//redimage(image origine,miniature,
-											//largeur miniature,hauteur miniature,qualité de la miniature)
-											redimage($chemin_image,$chemin_image2,$new_width,$new_height,"70");
-											
-											}
-										}	
 
-									}
+											}
+											$requete="UPDATE image SET nomImage='".addslashes($_POST['nomImage'])."', urlImage='".addslashes($chemin_image2)."' WHERE idImage='".$_GET['idImage']."'";
+											$resultat=$base->prepare($requete);
+											$resultat->execute();
+	
 									}
 								}
 								else
 								{
-									//on recharge le formulaire avec les données
-									$requete="SELECT * FROM image WHERE idImage='".$_GET['idImage']."'";
-									// $resultat=mysqli_query($base,$requete);
-									$resultat=$base->prepare($requete);
-									$resultat->execute();
-									// $ligne=mysqli_fetch_object($resultat);
-									$ligne = $resultat->fetch(PDO::FETCH_OBJ);
+									$ligne= $base->query("SELECT * FROM image WHERE idImage='".$_GET['idImage']."'")->fetch(PDO::FETCH_OBJ);								
 									$_POST['nomImage']=stripslashes($ligne->nomImage);
-									$_POST['urlImage']=stripslashes($ligne->urlImage);
 								}
 							}   
 						break;//fin case modifier
@@ -477,10 +458,11 @@ if(isset($_SESSION['idMembre']) &&  $_SESSION['idPrivilege'] == '1')
 									//  $ligne=mysqli_fetch_object($resultat);
 									$ligne = $resultat->fetch(PDO::FETCH_OBJ);
 
-									 if(isset($ligne->imageRecette))
+									var_dump($ligne);
+									 if(isset($ligne->urlImage))
 									{
 									//on calcule le lien vers la grande photo
-									$miniature=$ligne->imageRecette;
+									$miniature=$ligne->urlImage;
 									$lien_image_g=str_replace("_p","_g",$miniature);
 
 									//on supprime les 2 photos (le @ permet d'éviter un warning si fichier manquant)
