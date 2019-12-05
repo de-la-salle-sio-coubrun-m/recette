@@ -297,39 +297,36 @@ if(isset($_SESSION['idMembre']) &&  $_SESSION['idPrivilege'] == '1')
 								{
 									$message="<label id =\"warning\">veuillez entrer le nom de l'image' s'il-vous-plaît</label>";
 								}
-								else if(empty($_POST['urlImage']))
-								{
-									$message="<label id =\"warning\">veuillez entrer l'url de l'image' s'il-vous-plaît</label>";
-								}
-								else if(empty($_POST['imageRecette']))
+								else if(empty($_FILES))
 								{
 									$message="<label id =\"warning\">veuillez enregistrer une image' s'il-vous-plaît</label>";
 								}
 								else
 								{
+									$url = "../asset/imagesRecettes/".$_POST['nomImage'];
 									//on insert dans la table image les valeurs des champs nom et description
 									//addslashes permet de mettre des \ en cas de  '  .
 									$requete="INSERT INTO image 
 									SET nomImage='".addslashes($_POST['nomImage'])."',
-									urlImage='".addslashes($_POST['urlImage'])."'";
+									urlImage='".addslashes($url)."'";
 									
 									//execution de la requete dans la BDD
 									// $resultat=mysqli_query($base,$requete);
 									$resultat=$base->prepare($requete);
 									$resultat->execute();
 							
-								//on récupere le dernier id_produit créé
-								// $dernier_id_cree=mysqli_insert_id($base);
-								$dernier_id_cree=$base->lastinsertID();
+									//on récupere le dernier id_produit créé
+									// $dernier_id_cree=mysqli_insert_id($base);
+									$dernier_id_cree=$base->lastinsertID();
 
 								//si le type du fichier photo est valide
 								if(fichier_type($_FILES['imageRecette']['name'])=="jpg" ||
 								fichier_type($_FILES['imageRecette']['name'])=="png" || 
 								fichier_type($_FILES['imageRecette']['name'])=="gif")
-									{ 
+									{
 									$extension=fichier_type($_FILES['imageRecette']['name']);
-									$chemin_image= $_GET['urlImage'] . $dernier_id_cree . "_g." . $extension;
-									$chemin_image2= $_GET['urlImage'] . $dernier_id_cree . "_p." . $extension; 
+									$chemin_image= $url ."-". $dernier_id_cree . "_g." . $extension;
+									$chemin_image2= $url ."-". $dernier_id_cree . "_p." . $extension; 
 
 									if(is_uploaded_file($_FILES['imageRecette']['tmp_name']))
 										{  							
