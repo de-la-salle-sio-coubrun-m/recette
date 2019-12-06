@@ -1,55 +1,44 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Les articles</title>
-</head>
-<body>
+<?php $titre = 'Les articles'; ?>
+<form enctype="multipart/form-data" action="admin.php?action=article&cas=<?php if(isset($action_form)){echo $action_form;} ?>" method="POST">
+    <!-- tableau avec les entrées dans la table article de la base de données -->
     
-        <form enctype="multipart/form-data" action="admin.php?action=article&cas=<?php if(isset($action_form)){echo $action_form;} ?>" method="POST">
-            <!-- tableau avec les entrées dans la table article de la base de données -->
-            
-            <div>
-                <label for="titreArticle">Titre de l'article</label>
-                <input autocomplete="off" id="titreArticle" list="hugeList" type="text" name="titreArticle" data-tab="article" value="<?php if(isset($_POST['titreArticle'])){echo $_POST['titreArticle'];} ?>" />
-                <datalist id="hugeList_titreArticle" class="hugeList">
-                </datalist>
-            </div>
+    <div>
+        <label for="titreArticle">Titre de l'article</label>
+        <input autocomplete="off" id="titreArticle" list="hugeList" type="text" name="titreArticle" data-tab="article" value="<?php if(isset($_POST['titreArticle'])){echo $_POST['titreArticle'];} ?>" />
+        <datalist id="hugeList_titreArticle" class="hugeList">
+        </datalist>
+    </div>
+
+    <div>
+        <label for="contenuArticle">Contenu de l'article</label>
+        <textarea autocomplete="off" id="contenuArticle" type="text" name="contenuArticle"><?php if(isset($_POST['contenuArticle'])){echo $_POST['contenuArticle'];} ?> </textarea>
+    </div>
     
-            <div>
-                <label for="contenuArticle">Contenu de l'article</label>
-                <textarea autocomplete="off" id="contenuArticle" type="text" name="contenuArticle"><?php if(isset($_POST['contenuArticle'])){echo $_POST['contenuArticle'];} ?> </textarea>
-            </div>
-            
-            <div>
-                <label for="dateArticle">Date de l'article</label>
-                <input autocomplete="off" id="dateArticle" name="dateArticle" data-tab="article" type="date" value="<?php if(isset($_POST['dateArticle'])){echo $_POST['dateArticle'];} ?>"/> 
-                <datalist id="hugeList_dateArticle" class="hugeList">
-                </datalist>
-            </div>
-            
-            <div>
-                <label for="idMembre">Auteur de l'article</label>
-                <input autocomplete="off" id="idMembre" type="text" name="nomMembre" data-tab="membre" value="<?php if(isset($_POST['idMembre'])){echo $_POST['idMembre'];} ?>" />
-                <datalist id="hugeList_idMembre" class="hugeList">
-                </datalist>
-            </div>
-            
-            <div>
-                <label for="idRecette">Recette de l'article</label>
-                <input autocomplete="off" id="idRecette" type="text" name="nomRecette" data-tab="recette" value="<?php if(isset($_POST['idRecette'])){echo $_POST['idRecette'];} ?>" />
-                <datalist id="hugeList_idRecette" class="hugeList">
-                </datalist>
-            </div>
-            
-            <?php if(isset($message)){echo $message;} ?>
-        
-            <div id="boutons">
-                <input type="submit" name="submit" value="ENREGISTRER" />
-                <input type="reset" name="reset" value="ANNULER" />
-            </div>
-        </form>
-    </body>
-</html>
+    <div>
+        <label for="dateArticle">Date de l'article</label>
+        <input autocomplete="off" id="dateArticle" name="dateArticle" data-tab="article" type="date" value="<?php if(isset($_POST['dateArticle'])){echo $_POST['dateArticle'];} ?>"/> 
+        <datalist id="hugeList_dateArticle" class="hugeList">
+        </datalist>
+    </div>
+    
+    <div>
+        <label for="idMembre">Auteur de l'article</label>
+        <input autocomplete="off" id="idMembre" type="text" name="nomMembre" data-tab="membre" value="<?php if(isset($_POST['idMembre'])){echo $_POST['idMembre'];} ?>" />
+        <datalist id="hugeList_idMembre" class="hugeList">
+        </datalist>
+    </div>
+    
+    <div>
+        <label for="idRecette">Recette de l'article</label>
+        <input autocomplete="off" id="idRecette" type="text" name="nomRecette" data-tab="recette" value="<?php if(isset($_POST['idRecette'])){echo $_POST['idRecette'];} ?>" />
+        <datalist id="hugeList_idRecette" class="hugeList">
+        </datalist>
+    </div>
+    
+    <?php if(isset($message)){echo $message;} ?>
+
+    <div id="boutons">
+        <input type="submit" name="submit" value="ENREGISTRER" />
+        <input type="reset" name="reset" value="ANNULER" />
+    </div>
+</form>

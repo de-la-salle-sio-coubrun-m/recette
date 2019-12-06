@@ -22,6 +22,7 @@ for (var input of inputs ){
                     autocomplete_results_HTML.addEventListener('click', function (e) {
                         e.preventDefault();
                         document.getElementById(inputName).value = this.label;
+                        content.innerHTML = '';
                     });
                     autocomplete_results.appendChild(autocomplete_results_HTML)
                 }

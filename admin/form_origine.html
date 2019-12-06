@@ -1,34 +1,23 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Les origines</title>
-</head>
-<body>
+<?php $titre ='Les origines'; ?>
+<form enctype="multipart/form-data" action="admin.php?action=origine&cas=<?php if(isset($action_form)){echo $action_form;} ?>" method="POST">
+    <!-- tableau avec les entrées dans la table article de la base de données -->
     
-        <form enctype="multipart/form-data" action="admin.php?action=origine&cas=<?php if(isset($action_form)){echo $action_form;} ?>" method="POST">
-            <!-- tableau avec les entrées dans la table article de la base de données -->
-            
-            <div>
-                <label for="nomOrigine">Nom de l'origine</label>
-                <input autocomplete="off" id="nomOrigine" list="hugeList" type="text" name="nomOrigine" data-tab="origine" value="<?php if(isset($_POST['nomOrigine'])){echo $_POST['nomOrigine'];} ?>" />
-                <datalist id="hugeList_nomOrigine" class="hugeList">
-                </datalist>
-            </div>
+    <div>
+        <label for="nomOrigine">Nom de l'origine</label>
+        <input autocomplete="off" id="nomOrigine" list="hugeList" type="text" name="nomOrigine" data-tab="origine" value="<?php if(isset($_POST['nomOrigine'])){echo $_POST['nomOrigine'];} ?>" />
+        <datalist id="hugeList_nomOrigine" class="hugeList">
+        </datalist>
+    </div>
+
+    <div>
+        <label for="descriptionOrigine">Description de l'origine</label>
+        <textarea autocomplete="off" id="descriptionOrigine" type="text" name="descriptionOrigine"><?php if(isset($_POST['descriptionOrigine'])){echo $_POST['descriptionOrigine'];} ?> </textarea>
+    </div>
     
-            <div>
-                <label for="descriptionOrigine">Description de l'origine</label>
-                <textarea autocomplete="off" id="descriptionOrigine" type="text" name="descriptionOrigine"><?php if(isset($_POST['descriptionOrigine'])){echo $_POST['descriptionOrigine'];} ?> </textarea>
-            </div>
-            
-            <?php if(isset($message)){echo $message;} ?>
-        
-            <div id="boutons">
-                <input type="submit" name="submit" value="ENREGISTRER" />
-                <input type="reset" name="reset" value="ANNULER" />
-            </div>
-        </form>
-    </body>
-</html>
+    <?php if(isset($message)){echo $message;} ?>
+
+    <div id="boutons">
+        <input type="submit" name="submit" value="ENREGISTRER" />
+        <input type="reset" name="reset" value="ANNULER" />
+    </div>
+</form>
