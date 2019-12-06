@@ -49,6 +49,49 @@ nav>ul>li{
 }
 
 
+/***************************** F O R M U L A I R E  **********************************************************************************/
+
+form[enctype="multipart/form-data"]{
+	display: flex;
+	justify-content: space-around;
+	flex-wrap: wrap;
+}
+
+form[enctype="multipart/form-data"]>div:not(#boutons){
+	position: relative;
+	padding-bottom: 20px;
+	display: flex;
+	flex-direction: column;
+}
+
+form[enctype="multipart/form-data"] textarea{
+	min-width: 200px;
+	max-width: 200px;
+	min-height: 50px;
+	max-height: 100px;
+}
+
+/***************************** A U T O C O M P L E T E  **********************************************************************************/
+
+.hugeList {
+	position: absolute;
+	top:40px;
+	left: 0;
+	z-index: 5;
+	min-width: 100%;
+	margin-top: -2px;
+	color:  #000;
+}
+.hugeList option{
+	background-color: #fff;
+	padding: 10px 5px;
+	border-right: 2px solid rgba(0, 0, 0, .6);
+	border-bottom: 2px solid rgba(0, 0, 0, .6);
+	border-left: 2px solid rgba(0, 0, 0, .6);
+	text-align: right;
+	cursor: pointer;
+}
+
 /***************************** T A B L E A U  **********************************************************************************/
 
 #liste{
@@ -101,31 +144,7 @@ form>div{
 }
 
 
-/***************************** A U T O C O M P L E T E  **********************************************************************************/
 
-form[enctype="multipart/form-data"]>div{
-	position: relative;
-}
-
-.hugeList {
-	position: absolute;
-	top:21px;
-	left: 30%;
-	z-index: 5;
-	width: 100%;
-	margin-top: -2px;
-	color:  #000;
-}
-.hugeList option{
-	background-color: #fff;
-	width: 70%;
-	padding: 10px 5px;
-	border-right: 2px solid rgba(0, 0, 0, .6);
-	border-bottom: 2px solid rgba(0, 0, 0, .6);
-	border-left: 2px solid rgba(0, 0, 0, .6);
-	text-align: right;
-	cursor: pointer;
-}
 
 /****************************************************************/
 
