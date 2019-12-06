@@ -611,8 +611,8 @@ if(isset($_SESSION['idMembre']) &&  $_SESSION['idPrivilege'] == '1')
                                     //addslashes permet de mettre des \ en cas de  '  .
                                     $mdpCrypt=password_hash($_POST['mdpMembre'], PASSWORD_BCRYPT);
 									$requete="INSERT INTO membre 
-									SET nomMembre='".addslashes($mdpCrypt)."',
-									mdpMembre='".addslashes($_POST['mdpMembre'])."',
+									SET nomMembre='".$_POST['nomMembre']."',
+									mdpMembre='".addslashes($mdpCrypt)."',
 									idPrivilege='".addslashes($_POST['idPrivilege'])."'";
 									
 									//execution de la requete dans la BDD
@@ -651,7 +651,9 @@ if(isset($_SESSION['idMembre']) &&  $_SESSION['idPrivilege'] == '1')
 									{
                                         //met à jour la ligne de la table recette
                                         $mdpCrypt=password_hash($_POST['mdpMembre'], PASSWORD_BCRYPT);
-										$requete="UPDATE membre SET nomMembre='".addslashes($mdpCrypt)."', mdpMembre='".addslashes($_POST['mdpMembre'])."', idPrivilege='".addslashes($_POST['idPrivilege'])."' WHERE idMembre='".$_GET['idMembre']."'";
+										$requete="UPDATE membre SET nomMembre='".$_POST['nomMembre']."',
+										mdpMembre='".addslashes($mdpCrypt)."',
+										idPrivilege='".addslashes($_POST['idPrivilege'])."' WHERE idMembre='".$_GET['idMembre']."'";
 										// $resultat=mysqli_query($base,$requete);
 										$resultat=$base->prepare($requete);
 										$resultat->execute();
@@ -744,10 +746,10 @@ if(isset($_SESSION['idMembre']) &&  $_SESSION['idPrivilege'] == '1')
 						break;//fin case ajouter
 						
 						case "modifier":
-							if(isset($_GET['idRecette']) && $_GET['idIngredient'])
-							{ echo "modif";
+							if(isset($_GET['nomRecette']) && $_GET['nomIngredient'])
+							{ 
 								//si le bouton enregistrer du formulaire n'a pas été activé
-								$action_form="modifier&idRecette=".$_GET['idRecette']."";
+								$action_form="modifier&nomRecette=".$_GET['nomRecette']."&nomIngredient=".$_GET['nomIngredient'];
 								//si on appuie sur le bouton enregistrer du formulaire
 								if(isset($_POST['submit'])){							
 									if(empty($_POST['nomRecette']))
@@ -771,10 +773,20 @@ if(isset($_SESSION['idMembre']) &&  $_SESSION['idPrivilege'] == '1')
 								else
 								{
 									//on recharge le formulaire avec les données
-									$requeteChampRecette=$base->query("SELECT nomRecette FROM recette WHERE idRecette='".$_GET['idRecette']."'")->fetch(PDO::FETCH_OBJ);
-									$requeteChampIngredient=$base->query("SELECT nomIngredient FROM ingredient WHERE idIngredient='".$_GET['idIngredient']."'")->fetch(PDO::FETCH_OBJ);
-									$_POST['nomRecette']=stripslashes($requeteChampRecette->nomRecette);
-									$_POST['nomIngredient']=stripslashes($requeteChampIngredient->nomIngredient);
+									$requeteChampRecette="SELECT nomRecette FROM recette WHERE idRecette=recette.idRecette AND  nomRecette=".$_GET['nomRecette']."'";
+									$resultat=$base->prepare($requeteChampRecette);
+									$resultat->execute();
+									$ligne = $resultat->fetch(PDO::FETCH_OBJ);
+									var_dump($ligne);
+									$_POST['nomRecette']=stripslashes($ligne->nomRecette);
+
+									$requeteChampIngredient="SELECT nomIngredient FROM ingredient WHERE idIngredient=ingredient.idIngredient AND nomIngredient='".$_GET['nomIngredient']."'";
+									$resultat2=$base->prepare($requeteChampIngredient);
+									$resultat2->execute();
+									$ligne2 = $resultat2->fetch(PDO::FETCH_OBJ);
+
+									
+									$_POST['nomIngredient']=stripslashes($ligne2->nomIngredient);
 								}
 							}   
 						break;//fin case modifier
