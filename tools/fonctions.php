@@ -320,8 +320,8 @@ function afficher_ingredientrecette(){
     $liste.="<td>" . $ligne->idIngredient . "</td>";
     $liste.="<td>" . $ligne->nomRecette . "</td>";
     $liste.="<td>" . $ligne->nomIngredient . "</td>";
-    $liste.="<td><a href=\"admin.php?action=ingredientRecette&cas=modifier&idRecette=".$ligne->idRecette."&idIngredient=".$ligne->idIngredient."\">modifier</a>&nbsp;
-    <a href=\"admin.php?action=ingredientRecette&cas=supprimer&idRecette=".$ligne->idRecette."&idIngredient=".$ligne->idIngredient."\">supprimer</a>&nbsp;</td>";
+    $liste.="<td><a href=\"admin.php?action=ingredientRecette&cas=modifier&nomRecette=".$ligne->idRecette."&nomIngredient=".$ligne->idIngredient."\">modifier</a>&nbsp;
+    <a href=\"admin.php?action=ingredientRecette&cas=supprimer&nomRecette=".$ligne->idRecette."&nomIngredient=".$ligne->idIngredient."\">supprimer</a>&nbsp;</td>";
     $liste.="</tr>";
   }
   
