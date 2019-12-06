@@ -11,15 +11,15 @@
 
         <div>
             <label for="nomRecette">Nom de la recette</label>
-            <input id="nomRecette" list="hugeList" type="text" name="nomRecette" value="<?php if(isset($_POST['nomRecette'])){echo $_POST['nomRecette'];} ?>" />
-            <datalist id="hugeList_nomRecette">
+            <input autocomplete="off" id="nomRecette" list="hugeList" type="text" name="nomRecette" data-tab="recette" value="<?php if(isset($_POST['nomRecette'])){echo $_POST['nomRecette'];} ?>" />
+            <datalist id="hugeList_nomRecette" class="hugeList">
             </datalist>
         </div>
 
         <div>
             <label for="nomIngredient">Nom de l'ingrédients</label>
-            <input id="nomIngredient" list="hugeList" type="text" name="nomIngredient" value="<?php if(isset($_POST['nomIngredient'])){echo $_POST['nomIngredient'];} ?>" />
-            <datalist id="hugeList_nomIngredient">
+            <input autocomplete="off" id="nomIngredient" list="hugeList" type="text" name="nomIngredient" data-tab="ingredient" value="<?php if(isset($_POST['nomIngredient'])){echo $_POST['nomIngredient'];} ?>" />
+            <datalist id="hugeList_nomIngredient" class="hugeList">
             </datalist>
         </div>
         

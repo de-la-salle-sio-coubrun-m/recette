@@ -18,14 +18,14 @@
 
         <div>
             <label for="recolteIngredient">Comment se récolte l'ingrédient</label>
-            <input id="recolteIngredient" type="text" name="recolteIngredient" data-tab="ingredient" value="<?php if(isset($_POST['recolteIngredient'])){echo $_POST['recolteIngredient'];} ?>" />
+            <input autocomplete="off" id="recolteIngredient" type="text" name="recolteIngredient" data-tab="ingredient" value="<?php if(isset($_POST['recolteIngredient'])){echo $_POST['recolteIngredient'];} ?>" />
             <datalist id="hugeList_recolteIngredient" class="hugeList">
             </datalist>
         </div>
         
         <div>
             <label for="lieuIngredient">Lieu où trouver l'ingrédient</label>
-            <input id="lieuIngredient" name="lieuIngredient" data-tab="ingredient" value="<?php if(isset($_POST['lieuIngredient'])){echo $_POST['lieuIngredient'];} ?>"/>
+            <input autocomplete="off" id="lieuIngredient" name="lieuIngredient" data-tab="ingredient" value="<?php if(isset($_POST['lieuIngredient'])){echo $_POST['lieuIngredient'];} ?>"/>
             <datalist id="hugeList_lieuIngredient" class="hugeList">
             </datalist>
         </div>

@@ -11,14 +11,15 @@
 
         <div>
             <label for="nomImage">Nom de l'image</label>
-            <input id="nomImage" list="hugeList" type="text" name="nomImage" value="<?php if(isset($_POST['nomImage'])){echo $_POST['nomImage'];} ?>" />
-            <datalist id="hugeList_nomImage">
+            <input autocomplete="off" id="nomImage" list="hugeList" type="text" name="nomImage" data-tab="image" value="<?php if(isset($_POST['nomImage'])){echo $_POST['nomImage'];} ?>" />
+            <datalist id="hugeList_nomImage" class="hugeList">
             </datalist>
         </div>
 
         <div>
             <label for="imageRecette">Photo de la recette</label>
-	        <input id="imageRecette" type="file" name="imageRecette" value="" />
+            <input autocomplete="off" id="imageRecette" type="file" name="imageRecette" value="" />
+            <datalist id="hugeList_imageRecette" class="hugeList"></datalist>
         </div>
         
         <?php if(isset($message)){echo $message;} ?>

@@ -13,14 +13,14 @@
             
             <div>
                 <label for="nomOrigine">Nom de l'origine</label>
-                <input id="nomOrigine" list="hugeList" type="text" name="nomOrigine" data-tab="origine" value="<?php if(isset($_POST['nomOrigine'])){echo $_POST['nomOrigine'];} ?>" />
+                <input autocomplete="off" id="nomOrigine" list="hugeList" type="text" name="nomOrigine" data-tab="origine" value="<?php if(isset($_POST['nomOrigine'])){echo $_POST['nomOrigine'];} ?>" />
                 <datalist id="hugeList_nomOrigine" class="hugeList">
                 </datalist>
             </div>
     
             <div>
                 <label for="descriptionOrigine">Description de l'origine</label>
-                <textarea id="descriptionOrigine" type="text" name="descriptionOrigine"><?php if(isset($_POST['descriptionOrigine'])){echo $_POST['descriptionOrigine'];} ?> </textarea>
+                <textarea autocomplete="off" id="descriptionOrigine" type="text" name="descriptionOrigine"><?php if(isset($_POST['descriptionOrigine'])){echo $_POST['descriptionOrigine'];} ?> </textarea>
             </div>
             
             <?php if(isset($message)){echo $message;} ?>

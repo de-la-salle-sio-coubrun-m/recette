@@ -12,7 +12,7 @@
         
         <div>
             <label for="nomCategorie">Nom de la catégorie</label>
-            <input id="nomCategorie" list="hugeList" type="text" name="nomCategorie" data-tab="categorie" value="<?php if(isset($_POST['nomCategorie'])){echo $_POST['nomCategorie'];} ?>" /> <datalist id="hugeList_nomCategorie" class="hugeList">
+            <input autocomplete="off" id="nomCategorie" list="hugeList" type="text" name="nomCategorie" data-tab="categorie" value="<?php if(isset($_POST['nomCategorie'])){echo $_POST['nomCategorie'];} ?>" /> <datalist id="hugeList_nomCategorie" class="hugeList">
             </datalist>
         </div>
 
