@@ -17,7 +17,6 @@ if(isset($_SESSION['idMembre']) &&  $_SESSION['idPrivilege'] == '1')
 			case "recette":
 
 				//contenu à afficher
-				include('auto_complete.php');
 
 				if(isset($_GET["cas"])){
 					switch ($_GET["cas"]) {
@@ -485,7 +484,6 @@ if(isset($_SESSION['idMembre']) &&  $_SESSION['idPrivilege'] == '1')
 
 			case "categorie":
 			   //contenu à afficher
-			   include('auto_complete.php');
 			   $contenu="form_categorie.html";
 
 			   if(isset($_GET["cas"]))
