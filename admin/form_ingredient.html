@@ -11,21 +11,21 @@
         <!-- tableau avec les entrées dans la table ingredient de la base de données -->
         <div>
             <label for="nomIngredient">Nom de l'ingrédient</label>
-            <input id="nomIngredient" list="hugeList" type="text" name=":nomIngredient" data-tab="ingredient" value="<?php if(isset($_POST['nomIngredient'])){echo $_POST['nomIngredient'];} ?>" />
+            <input autocomplete="off" id="nomIngredient" list="hugeList" type="text" name="nomIngredient" data-tab="ingredient" value="<?php if(isset($_POST['nomIngredient'])){echo $_POST['nomIngredient'];} ?>" />
             <datalist id="hugeList_nomIngredient" class="hugeList">
             </datalist>
         </div>
 
         <div>
             <label for="recolteIngredient">Comment se récolte l'ingrédient</label>
-            <input id="recolteIngredient" type="text" name=":recolteIngredient" data-tab="ingredient" value="<?php if(isset($_POST['recolteIngredient'])){echo $_POST['recolteIngredient'];} ?>" />
+            <input id="recolteIngredient" type="text" name="recolteIngredient" data-tab="ingredient" value="<?php if(isset($_POST['recolteIngredient'])){echo $_POST['recolteIngredient'];} ?>" />
             <datalist id="hugeList_recolteIngredient" class="hugeList">
             </datalist>
         </div>
         
         <div>
             <label for="lieuIngredient">Lieu où trouver l'ingrédient</label>
-            <input id="lieuIngredient" name=":lieuIngredient" data-tab="ingredient" value="<?php if(isset($_POST['lieuIngredient'])){echo $_POST['lieuIngredient'];} ?>"/>
+            <input id="lieuIngredient" name="lieuIngredient" data-tab="ingredient" value="<?php if(isset($_POST['lieuIngredient'])){echo $_POST['lieuIngredient'];} ?>"/>
             <datalist id="hugeList_lieuIngredient" class="hugeList">
             </datalist>
         </div>

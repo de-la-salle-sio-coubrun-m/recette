@@ -9,10 +9,12 @@ for (var input of inputs ){
         var content = this.parentElement.querySelector('.hugeList');
         content.innerHTML = '';
         if (inputVal.length > 0) {
-            fetch('http://localhost/recette/admin/admin.php?action=recette&nomTable='+inputTab+'&nomChamps='+inputName+'&search='+inputVal)
+            console.log('http://localhost/recette/admin/admin.php?action='+inputTab+'&nomTable='+inputTab+'&nomChamps='+inputName+'&search='+inputVal);
+            fetch('http://localhost/recette/admin/admin.php?action='+inputTab+'&nomTable='+inputTab+'&nomChamps='+inputName+'&search='+inputVal)
             .then(function (response) {
                 return response.json();
             }).then(function (liste) {
+                console.log("deuxième then");
                 autocomplete_results = document.getElementById("hugeList_"+inputName);
                 for (i = 0; i < liste.length; i++) {
                     autocomplete_results_HTML = document.createElement('option');
