@@ -27,8 +27,9 @@ if(isset($_SESSION['idMembre']) &&  $_SESSION['idPrivilege'] == '1')
 							
 							$action_form="ajouter";
 							//si le bouton créer a été activé
-							if(isset($_POST['submit'])){
-								if(empty($_POST['idOrigine']))
+							if(isset($_POST['submit'])){																	
+								var_dump($_POST);
+								if(empty($_POST['nomOrigine']))
 								{
 									$message="<label id =\"warning\">veuillez entrer l'id de l'origine de la recette s'il-vous-plaît</label>";
 								}
@@ -195,15 +196,15 @@ if(isset($_SESSION['idMembre']) &&  $_SESSION['idPrivilege'] == '1')
 							$action_form="ajouter";
 							//si le bouton créer a été activé
 							if(isset($_POST['submit'])){
-								if(empty($_POST[':nomIngredient']))
+								if(empty($_POST['nomIngredient']))
 								{
 									$message="<label id =\"warning\">veuillez entrer le nom de l'ingrédient s'il-vous-plaît</label>";
 								}
-								elseif(empty($_POST[':recolteIngredient']))
+								elseif(empty($_POST['recolteIngredient']))
 								{
 									$message="<label id =\"warning\">veuillez entrer la (ou les) méthode(s) d'obtention de l'ingrédients s'il-vous-plaît</label>";
 								}
-								elseif(empty($_POST[':lieuIngredient']))
+								elseif(empty($_POST['lieuIngredient']))
 								{
 									$message="<label id =\"warning\">veuillez entrer le (ou les) lieu(x) ou l'ingredient peut être obtenu s'il-vous-plaît</label>";
 								}
@@ -457,8 +458,6 @@ if(isset($_SESSION['idMembre']) &&  $_SESSION['idPrivilege'] == '1')
 									$resultat->execute();
 									//  $ligne=mysqli_fetch_object($resultat);
 									$ligne = $resultat->fetch(PDO::FETCH_OBJ);
-
-									var_dump($ligne);
 									 if(isset($ligne->urlImage))
 									{
 									//on calcule le lien vers la grande photo
@@ -750,9 +749,8 @@ if(isset($_SESSION['idMembre']) &&  $_SESSION['idPrivilege'] == '1')
 							{ echo "modif";
 								//si le bouton enregistrer du formulaire n'a pas été activé
 								$action_form="modifier&idRecette=".$_GET['idRecette']."";
-								
 								//si on appuie sur le bouton enregistrer du formulaire
-								if(isset($_POST['submit'])){
+								if(isset($_POST['submit'])){							
 									if(empty($_POST['nomRecette']))
 									{
 										$message="<label id =\"warning\">veuillez entrer le nom de la recette s'il-vous-plaît</label>";
