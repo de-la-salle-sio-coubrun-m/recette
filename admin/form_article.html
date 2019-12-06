@@ -31,15 +31,15 @@
             </div>
             
             <div>
-                <label for="idMembre">Auteur de l'article</label>
-                <input autocomplete="off" id="idMembre" type="text" name="nomMembre" data-tab="membre" value="<?php if(isset($_POST['idMembre'])){echo $_POST['idMembre'];} ?>" />
+                <label for="nomMembre">Auteur de l'article</label>
+                <input autocomplete="off" id="nomMembre" type="text" name="nomMembre" data-tab="membre" value="<?php if(isset($_POST['nomMembre'])){echo $_POST['nomMembre'];} ?>" />
                 <datalist id="hugeList_idMembre" class="hugeList">
                 </datalist>
             </div>
             
             <div>
-                <label for="idRecette">Recette de l'article</label>
-                <input autocomplete="off" id="idRecette" type="text" name="nomRecette" data-tab="recette" value="<?php if(isset($_POST['idRecette'])){echo $_POST['idRecette'];} ?>" />
+                <label for="nomRecette">Recette de l'article</label>
+                <input autocomplete="off" id="nomRecette" type="text" name="nomRecette" data-tab="recette" value="<?php if(isset($_POST['nomRecette'])){echo $_POST['nomRecette'];} ?>" />
                 <datalist id="hugeList_idRecette" class="hugeList">
                 </datalist>
             </div>

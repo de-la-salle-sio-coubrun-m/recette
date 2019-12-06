@@ -1,8 +1,9 @@
+<?php $titre = "Gestion des recettes"; ?>
 <form enctype="multipart/form-data" action="admin.php?action=recette&cas=<?php if(isset($action_form)){echo $action_form;} ?>" method="POST">
     <!-- tableau avec les entrées dans la table recette de la base de données -->
     <div>
         <label for="id_origine">Origine de la recette</label>
-        <input autocomplete="off" id="id_origine" list="hugeListOrigine" type="text" name="nomOrigine" data-tab="origine" value="<?php if(isset($_POST['idOrigine'])){echo $_POST['idOrigine'];} ?>"/>
+        <input autocomplete="off" id="id_origine" list="hugeListOrigine" type="text" name="nomOrigine" data-tab="origine" value="<?php if(isset($_POST['nomOrigine'])){echo $_POST['nomOrigine'];} ?>"/>
         <datalist id="hugeList_origineRecette" class="hugeList">
         </datalist>
     </div>
@@ -35,7 +36,7 @@
 
     <div>
         <label for="recetteRecette">La recette</label>
-        <textarea autocomplete="off" id="recetteRecette" type="text" name="recette" ><?php if(isset($_POST['recetteRecette'])){echo $_POST['recetteRecette'];} ?></textarea>
+        <textarea autocomplete="off" id="recetteRecette" type="text" name="recetteRecette" ><?php if(isset($_POST['recetteRecette'])){echo $_POST['recetteRecette'];} ?></textarea>
     </div>
 
     <div>
@@ -48,14 +49,14 @@
     <!-- mettre en forme de liste liée à la bdd -->
     <div>
         <label for="idCategorie">La catégorie</label> 
-        <input id="idCategorie" list="hugeList" type="text" name="nomCategorie" data-tab="categorie" value="<?php if(isset($_POST['idCategorie'])){echo $_POST['idCategorie'];} ?>" />
+        <input id="idCategorie" list="hugeList" type="text" name="nomCategorie" data-tab="categorie" value="<?php if(isset($_POST['nomCategorie'])){echo $_POST['nomCategorie'];} ?>" />
         <datalist id="hugeList_idCategorie" class="hugeList">
         </datalist>
     </div>
 
     <div>
         <label for="idImage">Image de la recette</label>
-        <input id="idImage" type="text" name="idImage" value="" />
+        <input id="idImage" type="text" name="nomImage" value="" />
     </div>
     
     <?php if(isset($message)){echo $message;} ?>
