@@ -301,7 +301,9 @@ function afficher_categories(){
 //============== affichage catégories
 function afficher_ingredientrecette(){
    $base = connect();
-  $requete = $base->query("SELECT nomRecette, nomIngredient, recette.idRecette, ingredient.idIngredient FROM recette, ingredient, ingredientrecette WHERE recette.idRecette = ingredientrecette.idRecette AND ingredientrecette.idIngredient = ingredient.idIngredient ORDER BY nomRecette");
+  $requete = "SELECT nomRecette, nomIngredient, recette.idRecette, ingredient.idIngredient FROM recette, ingredient, ingredientrecette WHERE recette.idRecette = ingredientrecette.idRecette AND ingredientrecette.idIngredient = ingredient.idIngredient ORDER BY nomRecette";
+  $resultat=$base->prepare($requete);
+	$resultat->execute();
     
   $liste="<table id=\"liste\">\n";
   $liste.="<tr>";
@@ -312,7 +314,7 @@ function afficher_ingredientrecette(){
   $liste.="<th>Actions</th>";
   $liste.="</tr>";
   
- while($ligne= $requete->fetch(PDO::FETCH_OBJ)){
+ while($ligne= $resultat->fetch(PDO::FETCH_OBJ)){
     $liste.="<tr>";
     $liste.="<td>" . $ligne->idRecette . "</td>";
     $liste.="<td>" . $ligne->idIngredient . "</td>";

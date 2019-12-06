@@ -17,7 +17,7 @@ if(isset($_SESSION['idMembre']) &&  $_SESSION['idPrivilege'] == '1')
 			case "recette":
 
 				//contenu à afficher
-				include('auto_complete.php');
+				
 
 				if(isset($_GET["cas"])){
 					switch ($_GET["cas"]) {
@@ -485,7 +485,7 @@ if(isset($_SESSION['idMembre']) &&  $_SESSION['idPrivilege'] == '1')
 
 			case "categorie":
 			   //contenu à afficher
-			   include('auto_complete.php');
+			   
 			   $contenu="form_categorie.html";
 
 			   if(isset($_GET["cas"]))
@@ -746,7 +746,7 @@ if(isset($_SESSION['idMembre']) &&  $_SESSION['idPrivilege'] == '1')
 						break;//fin case ajouter
 						
 						case "modifier":
-							if(isset($_GET['idRecette']) && isset($_GET['idIngredient']))
+							if(isset($_GET['idRecette']) && $_GET['idIngredient'])
 							{
 								//si le bouton enregistrer du formulaire n'a pas été activé
 								$action_form="modifier&idRecette=".$_GET['idRecette']."";
@@ -764,8 +764,8 @@ if(isset($_SESSION['idMembre']) &&  $_SESSION['idPrivilege'] == '1')
 									else
 									{
 										//met à jour la ligne de la table recette
-										$requete="UPDATE recette SET nomRecette=(SELECT nomRecette FROM recette WHERE idRecette ='".addslashes($_GET['idRecette'])."'),
-										nomIngredient=(SELECT nomIngredient FROM ingredient WHERE idIngredient ='".addslashes($_GET['idIngredient'])."')";
+										$requete="UPDATE ingredientrecette SET idRecette=(SELECT recette.idRecette FROM recette WHERE nomRecette ='".addslashes($_POST['nomRecette'])."'),
+										idIngredient=(SELECT ingredient.idIngredient FROM ingredient WHERE nomIngredient ='".addslashes($_POST['nomIngredient'])."')";
 										// $resultat=mysqli_query($base,$requete);
 										$resultat=$base->prepare($requete);
 										$resultat->execute();
@@ -784,11 +784,12 @@ if(isset($_SESSION['idMembre']) &&  $_SESSION['idPrivilege'] == '1')
 	 
 						case "supprimer":
 							$action_form="ajouter";
-	 
-							if(isset($_GET['nomRecette']))
+							echo 'test supp';
+							if(isset($_GET['idRecette']) && $_GET['idIngredient'])
 							{
+								echo 'test supp if1';
 								
-								$message="<label id=\"confirme\">Voulez-vous vraiment supprimer l'ingrédient de la recette ?<a href=\"admin.php?action=ingredientRecette&cas=supprimer&nomRecette".$_GET['nomRecette']."&nomIngredient=".$_GET['nomIngredient']."&confirme=oui\">OUI</a>&nbsp;&nbsp;<a href=\"admin.php?action=ingredientRecette\">NON</a></label>";
+								$message="<label id=\"confirme\">Voulez-vous vraiment supprimer l'ingrédient de la recette ?<a href=\"admin.php?action=ingredientRecette&cas=supprimer&idRecette".$_GET['idRecette']."&idIngredient=".$_GET['idIngredient']."&confirme=oui\">OUI</a>&nbsp;&nbsp;<a href=\"admin.php?action=ingredientRecette\">NON</a></label>";
 	 
 								if(isset($_GET['confirme']) && $_GET['confirme']=="oui")
 								{
