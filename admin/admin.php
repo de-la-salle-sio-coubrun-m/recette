@@ -747,7 +747,7 @@ if(isset($_SESSION['idMembre']) &&  $_SESSION['idPrivilege'] == '1')
 						
 						case "modifier":
 							if(isset($_GET['idRecette']) && $_GET['idIngredient'])
-							{
+							{ echo "modif";
 								//si le bouton enregistrer du formulaire n'a pas été activé
 								$action_form="modifier&idRecette=".$_GET['idRecette']."";
 								
