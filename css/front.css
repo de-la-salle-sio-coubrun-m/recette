@@ -52,8 +52,8 @@ object {
 nav li:nth-child(2):hover .sousMenu{
 	visibility: visible;
 	position: absolute;
-	bottom: -50px;
-	left: 85px;
+	bottom: -57px;
+	left: 95px;
 	z-index: 2;
 	height: 70px;
 	width: 50px;
@@ -78,7 +78,6 @@ ____________________________________C A R O U S S E L __________________________
 ____________________________________ P A G E D ' A C C E U I L ______________________________________________________________________________________________________________________*/
 
 #recette{
-	height: 50vh;
 	display: flex;
 }
 
