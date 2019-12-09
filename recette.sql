@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  mer. 04 déc. 2019 à 15:39
+-- Généré le :  lun. 09 déc. 2019 à 15:49
 -- Version du serveur :  5.7.24
 -- Version de PHP :  7.2.14
 
@@ -50,7 +50,7 @@ CREATE TABLE IF NOT EXISTS `article` (
 DROP TABLE IF EXISTS `categorie`;
 CREATE TABLE IF NOT EXISTS `categorie` (
   `idCategorie` int(4) NOT NULL AUTO_INCREMENT,
-  `nomCategorie` varchar(50) DEFAULT NULL UNIQUE,
+  `nomCategorie` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`idCategorie`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
@@ -72,7 +72,7 @@ INSERT INTO `categorie` (`idCategorie`, `nomCategorie`) VALUES
 DROP TABLE IF EXISTS `etat`;
 CREATE TABLE IF NOT EXISTS `etat` (
   `idEtat` int(4) NOT NULL AUTO_INCREMENT,
-  `labelEtat` varchar(50) DEFAULT NULL UNIQUE,
+  `labelEtat` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`idEtat`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
@@ -93,17 +93,20 @@ INSERT INTO `etat` (`idEtat`, `labelEtat`) VALUES
 DROP TABLE IF EXISTS `image`;
 CREATE TABLE IF NOT EXISTS `image` (
   `idImage` int(4) NOT NULL AUTO_INCREMENT,
-  `nomImage` varchar(50) DEFAULT NULL UNIQUE,
+  `nomImage` varchar(50) DEFAULT NULL,
   `urlImage` varchar(500) DEFAULT NULL,
   PRIMARY KEY (`idImage`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `image`
 --
 
 INSERT INTO `image` (`idImage`, `nomImage`, `urlImage`) VALUES
-(1, 'test1', 'test1');
+(1, 'Creamy Bisque', '../asset/imagesRecettes/Creamy Bisque_p.jpg'),
+(13, 'Cannedwich', '../asset/imagesRecettes/Cannedwich_p.jpg'),
+(15, 'Burly Bean Bowl', '../asset/imagesRecettes/Burly Bean Bowl_p.jpg'),
+(16, 'Chilled Food Tin', '../asset/imagesRecettes/Chilled Food Tin_p.png');
 
 -- --------------------------------------------------------
 
@@ -114,11 +117,11 @@ INSERT INTO `image` (`idImage`, `nomImage`, `urlImage`) VALUES
 DROP TABLE IF EXISTS `ingredient`;
 CREATE TABLE IF NOT EXISTS `ingredient` (
   `idIngredient` int(4) NOT NULL AUTO_INCREMENT,
-  `nomIngredient` varchar(50) DEFAULT NULL UNIQUE,
+  `nomIngredient` varchar(50) DEFAULT NULL,
   `recolteIngredient` varchar(200) DEFAULT NULL,
   `lieuIngredient` varchar(500) DEFAULT NULL,
   PRIMARY KEY (`idIngredient`)
-) ENGINE=InnoDB AUTO_INCREMENT=81 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=82 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `ingredient`
@@ -201,7 +204,8 @@ INSERT INTO `ingredient` (`idIngredient`, `nomIngredient`, `recolteIngredient`, 
 (74, 'Sucre', 'Magasin', 'Grande surface'),
 (75, 'Cannelle moulue', 'Magasin', 'Grande surface'),
 (76, 'Miel liquide', 'Magasin', 'Grande surface'),
-(77, 'Semoule de blé fine', 'Magasin', 'Grande surface');
+(77, 'Semoule de blé fine', 'Magasin', 'Grande surface'),
+(81, 'gfe 2', 'mon cul', 'truc');
 
 -- --------------------------------------------------------
 
@@ -226,7 +230,8 @@ INSERT INTO `ingredientrecette` (`idRecette`, `idIngredient`) VALUES
 (4, 2),
 (4, 28),
 (5, 28),
-(5, 34);
+(5, 34),
+(4, 60);
 
 -- --------------------------------------------------------
 
@@ -237,7 +242,7 @@ INSERT INTO `ingredientrecette` (`idRecette`, `idIngredient`) VALUES
 DROP TABLE IF EXISTS `membre`;
 CREATE TABLE IF NOT EXISTS `membre` (
   `idMembre` int(4) NOT NULL AUTO_INCREMENT,
-  `nomMembre` varchar(50) DEFAULT NULL UNIQUE,
+  `nomMembre` varchar(50) DEFAULT NULL,
   `mdpMembre` varchar(1000) DEFAULT NULL,
   `idPrivilege` int(4) DEFAULT NULL,
   PRIMARY KEY (`idMembre`),
@@ -261,7 +266,7 @@ INSERT INTO `membre` (`idMembre`, `nomMembre`, `mdpMembre`, `idPrivilege`) VALUE
 DROP TABLE IF EXISTS `origine`;
 CREATE TABLE IF NOT EXISTS `origine` (
   `idOrigine` int(4) NOT NULL AUTO_INCREMENT,
-  `nomOrigine` varchar(50) DEFAULT NULL UNIQUE,
+  `nomOrigine` varchar(50) DEFAULT NULL,
   `descriptionOrigine` varchar(500) DEFAULT NULL,
   PRIMARY KEY (`idOrigine`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
@@ -284,7 +289,7 @@ INSERT INTO `origine` (`idOrigine`, `nomOrigine`, `descriptionOrigine`) VALUES
 DROP TABLE IF EXISTS `privilege`;
 CREATE TABLE IF NOT EXISTS `privilege` (
   `idPrivilege` int(4) NOT NULL AUTO_INCREMENT,
-  `labelPrivilege` varchar(50) DEFAULT NULL UNIQUE,
+  `labelPrivilege` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`idPrivilege`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
@@ -306,7 +311,7 @@ DROP TABLE IF EXISTS `recette`;
 CREATE TABLE IF NOT EXISTS `recette` (
   `idRecette` int(4) NOT NULL AUTO_INCREMENT,
   `idOrigine` int(4) NOT NULL,
-  `nomRecette` varchar(100) NOT NULL UNIQUE,
+  `nomRecette` varchar(100) NOT NULL,
   `descriptionRecette` varchar(500) DEFAULT NULL,
   `dureeCuisson` varchar(100) DEFAULT NULL,
   `dureePreparation` varchar(100) DEFAULT NULL,
@@ -328,7 +333,7 @@ CREATE TABLE IF NOT EXISTS `recette` (
 
 INSERT INTO `recette` (`idRecette`, `idOrigine`, `nomRecette`, `descriptionRecette`, `dureeCuisson`, `dureePreparation`, `recetteRecette`, `effetsRecette`, `idCategorie`, `idImage`, `idEtat`) VALUES
 (4, 1, '12 minutes', '12 minutes', '12 minutes', '12 minutes', '12 minutes', '12 minutes', 2, 1, 1),
-(5, 2, 'test', 'test', 'test', 'test', 'test', 'test', 3, 1, 1);
+(5, 2, 'test', 'test', 'test', 'test', 'test', 'test', 3, 15, 1);
 
 --
 -- Contraintes pour les tables déchargées
