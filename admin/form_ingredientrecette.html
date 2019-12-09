@@ -10,9 +10,16 @@
 
     <div>
         <label for="nomIngredient">Nom de l'ingrédients</label>
-        <input autocomplete="off" id="nomIngredient" list="hugeList" type="text" name="nomIngredient" data-tab="ingredient" value="<?php if(isset($_POST['nomIngredient'])){echo $_POST['nomIngredient'];} ?>" />
-        <datalist id="hugeList_nomIngredient" class="hugeList">
-        </datalist>
+        <select id="idIngredient" name="idIngredient">
+            <?php 
+            $base = connect();
+            $requete= $base->query("SELECT * FROM ingredient ORDER BY nomIngredient");
+            while($ligne= $requete->fetch(PDO::FETCH_OBJ)){
+                echo'<option value="'.$ligne->idIngredient.'"'.($ligne->idIngredient==$_GET['idIngredient']?" selected": "").'>'.$ligne->nomIngredient.'</option>';
+            }
+            ?>
+        </select>
+        <?php echo '<input type="hidden" value="'.(isset ($_GET['idIngredient'])? $_GET['idIngredient'] : "").'" name="idIngredientAncien">';?>
     </div>
     
     <?php if(isset($message)){echo $message;} ?>

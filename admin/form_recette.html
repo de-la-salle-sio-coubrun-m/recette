@@ -58,6 +58,21 @@
         <label for="idImage">Image de la recette</label>
         <input id="idImage" type="text" name="nomImage" value="" />
     </div>
+
+    <div>
+        
+        <label for="idIngredient">Ingrédients de la recette</label>
+        <select id="idIngredient" name="idIngredient">
+            <?php 
+            $base = connect();
+            $requete= $base->query("SELECT * FROM ingredient ORDER BY nomIngredient");
+            while($ligne= $requete->fetch(PDO::FETCH_OBJ)){
+                echo'<option value="'.$ligne->idIngredient.'"'.($ligne->idIngredient==$_POST['idIngredient']?" selected": "").'>'.$ligne->nomIngredient.'</option>';
+            }
+            ?>
+        </select>
+        <?php echo '<input type="hidden" value="'.(isset ($_POST['idIngredient'])? $_POST['idIngredient'] : "").'" name="idIngredientAncien">';?>
+    </div>
     
     <?php if(isset($message)){echo $message;} ?>
 

@@ -15,7 +15,7 @@ if(isset($_SESSION['idMembre']) &&  $_SESSION['idPrivilege'] == '1')
 		switch ($_GET["action"]){
 			
 			case "recette":
-
+				$titre = "Gestion des recettes";
 				//contenu à afficher
 				
 
@@ -67,12 +67,16 @@ if(isset($_SESSION['idMembre']) &&  $_SESSION['idPrivilege'] == '1')
 									$requete="  INSERT INTO recette 
 									SET idOrigine=(SELECT idOrigine FROM origine WHERE idOrigine = origine.idOrigine AND nomOrigine = '".addslashes($_POST['nomOrigine'])."'), nomRecette='".addslashes($_POST['nomRecette'])."', descriptionRecette='".addslashes($_POST['descriptionRecette'])."',dureeCuisson='".($_POST['dureeCuisson'])."', dureePreparation='".($_POST['dureePreparation'])."', recetteRecette='".addslashes($_POST['recetteRecette'])."', effetsRecette='".addslashes($_POST['effetsRecette'])."', idCategorie=(SELECT idCategorie FROM categorie WHERE idCategorie = categorie.idCategorie AND nomCategorie = '".($_POST['nomCategorie'])."'), idImage=(SELECT idImage FROM image WHERE idImage = image.idImage AND nomImage = '".($_POST['nomImage'])."')";
 									
-									//execution de la requete dans la BDD
-									// $resultat=mysqli_query($base,$requete);
 									$resultat=$base->prepare($requete);
 									$resultat->execute();
-									//on récupere le dernier id_produit créé
-								//$dernier_id_cree=mysqli_insert_id($base);
+
+									$recetteId = $base->lastinsertID();
+
+									$requete2="INSERT INTO ingredientrecette SET idRecette='$recetteId', idIngredient='".$_POST['idIngredient']."'";
+									
+									$resultat2=$base->prepare($requete2);
+									$resultat2->execute();
+									
 								}
 							}
 							else
@@ -132,12 +136,18 @@ if(isset($_SESSION['idMembre']) &&  $_SESSION['idPrivilege'] == '1')
 										// $resultat=mysqli_query($base,$requete);
 										$resultat=$base->prepare($requete);
 										$resultat->execute();
+
+										$requete2="UPDATE ingredientrecette SET idRecette=".$_GET['idRecette'].", idIngredient='".$_POST['idIngredient']."' WHERE ingredientrecette.idRecette ='" .$_GET['idRecette']."' AND idIngredient ='".$_POST['idIngredientAncien']."'";
+										// $resultat=mysqli_query($base,$requete);
+										$resultat2=$base->prepare($requete2);
+										$resultat2->execute();
+										
 									}
 								}
 								else
 								{
 									//on recharge le formulaire avec les données
-									$requete="SELECT * FROM recette WHERE idRecette='".$_GET['idRecette']."'";
+									$requete="SELECT * FROM recette WHERE idRecette='".$_GET['idRecette']."' ";
 									// $resultat=mysqli_query($base,$requete);
 									$resultat=$base->prepare($requete);
 									$resultat->execute();
@@ -150,6 +160,7 @@ if(isset($_SESSION['idMembre']) &&  $_SESSION['idPrivilege'] == '1')
 									$_POST['recetteRecette']=stripslashes($ligne->recetteRecette); 
 									$_POST['effetsRecette']=stripslashes($ligne->effetsRecette); 
 									$_POST['idCategorie']=$ligne->idCategorie;
+									$_POST['idIngredient']=$_GET['idIngredient'];
 									$_POST['idImage']=$ligne->idImage;
 								}
 							}   
@@ -165,16 +176,19 @@ if(isset($_SESSION['idMembre']) &&  $_SESSION['idPrivilege'] == '1')
 
 								if(isset($_GET['confirme']) && $_GET['confirme']=="oui")
 								{
-									$requete="SELECT * FROM recette WHERE idRecette='".$_GET['idRecette']."'";
-									// $resultat=mysqli_query($base,$requete);
-									$resultat=$base->prepare($requete);
-									$resultat->execute();
-									$ligne = $resultat->fetch(PDO::FETCH_OBJ);
 							
-									$requete2="DELETE FROM recette WHERE idRecette='".$_GET['idRecette']."'";
+									$requete2="DELETE FROM recette WHERE recette.idRecette='".$_GET['idRecette']."'";
 									// $resultat2=mysqli_query($base,$requete2);
 									$resultat2=$base->prepare($requete2);
 									$resultat2->execute();
+
+									$requete3="	DELETE FROM ingredientrecette WHERE ingredientrecette.idRecette='".$_GET['idRecette']."'";
+									// $resultat=mysqli_query($base,$requete);
+									$resultat3=$base->prepare($requete3);
+									$resultat3->execute();
+									$ligne = $resultat3->fetch(PDO::FETCH_OBJ);
+
+
 									$message="<label id=\"bravo\">La recette a bien été supprimée</label>";
 								}
 							}
@@ -188,7 +202,7 @@ if(isset($_SESSION['idMembre']) &&  $_SESSION['idPrivilege'] == '1')
 			case "ingredient":
 				//contenu à afficher
 				$contenu="form_ingredient.html";
-
+				$titre = "Gestion des ingrédients";
 				if(isset($_GET["cas"])){
 					switch ($_GET["cas"]) {
 						case "ajouter":
@@ -284,7 +298,7 @@ if(isset($_SESSION['idMembre']) &&  $_SESSION['idPrivilege'] == '1')
 
 			case "image":
 				$contenu="form_image.html";
-
+				$titre = "Gestion des images";
 				if(isset($_GET["cas"]))
 				{
 					switch ($_GET["cas"])
@@ -485,7 +499,7 @@ if(isset($_SESSION['idMembre']) &&  $_SESSION['idPrivilege'] == '1')
 			   //contenu à afficher
 			   
 			   $contenu="form_categorie.html";
-
+			   $titre = "Gestion des catégories";
 			   if(isset($_GET["cas"]))
 			   {
 				   switch ($_GET["cas"]) 
@@ -583,7 +597,7 @@ if(isset($_SESSION['idMembre']) &&  $_SESSION['idPrivilege'] == '1')
 
 			case "membre":
 				$contenu="form_membre.html";
-
+				$titre = "Gestion des membres";
 				if(isset($_GET["cas"]))
 				{
 					switch ($_GET["cas"])
@@ -707,7 +721,7 @@ if(isset($_SESSION['idMembre']) &&  $_SESSION['idPrivilege'] == '1')
 
 			case "ingredientRecette":
 				$contenu="form_ingredientrecette.html";
-
+				$titre = "Gestion des ingrédients des recettes";
 				if(isset($_GET["cas"]))
 				{
 					switch ($_GET["cas"])
@@ -721,7 +735,7 @@ if(isset($_SESSION['idMembre']) &&  $_SESSION['idPrivilege'] == '1')
 								{
 									$message="<label id =\"warning\">veuillez entrer le nom de la recette s'il-vous-plaît</label>";
 								}
-								else if(empty($_POST['nomIngredient']))
+								else if(empty($_POST['idIngredient']))
 								{
 									$message="<label id =\"warning\">veuillez entrer le nom du l'ingrédient s'il-vous-plaît</label>";
 								}
@@ -731,11 +745,12 @@ if(isset($_SESSION['idMembre']) &&  $_SESSION['idPrivilege'] == '1')
 									//addslashes permet de mettre des \ en cas de  '  .
 									$requete="INSERT INTO ingredientrecette 
 									SET idRecette=(SELECT recette.idRecette FROM recette WHERE nomRecette ='".addslashes($_POST['nomRecette'])."'),
-									idIngredient=(SELECT ingredient.idIngredient FROM ingredient WHERE nomIngredient ='".addslashes($_POST['nomIngredient'])."')";
+									idIngredient='".$_POST['idIngredient']."'";
 									
 									//execution de la requete dans la BDD
 									// $resultat=mysqli_query($base,$requete);
 									$resultat=$base->prepare($requete);
+									var_dump($requete);
 									$resultat->execute();
 								}
 							}
@@ -746,47 +761,48 @@ if(isset($_SESSION['idMembre']) &&  $_SESSION['idPrivilege'] == '1')
 						break;//fin case ajouter
 						
 						case "modifier":
-							if(isset($_GET['nomRecette']) && $_GET['nomIngredient'])
+							
 							{ 
 								//si le bouton enregistrer du formulaire n'a pas été activé
-								$action_form="modifier&nomRecette=".$_GET['nomRecette']."&nomIngredient=".$_GET['nomIngredient'];
+								$action_form="modifier&idRecette='".$_GET['idRecette']."'";
 								//si on appuie sur le bouton enregistrer du formulaire
-								if(isset($_POST['submit'])){							
+								echo 'je suis dans le action_form <br>';
+								if(isset($_POST['submit'])){					echo 'je suis dans le submit <br>';
 									if(empty($_POST['nomRecette']))
 									{
 										$message="<label id =\"warning\">veuillez entrer le nom de la recette s'il-vous-plaît</label>";
 									}
-									else if(empty($_POST['nomIngredient']))
+									else if(empty($_POST['idIngredient']))
 									{
 										$message="<label id =\"warning\">veuillez entrer le nom du l'ingrédient s'il-vous-plaît</label>";
 									}
 									else
 									{
 										//met à jour la ligne de la table recette
-										$requete="UPDATE ingredientrecette SET idRecette=(SELECT recette.idRecette FROM recette WHERE nomRecette ='".addslashes($_POST['nomRecette'])."'),
-										idIngredient=(SELECT ingredient.idIngredient FROM ingredient WHERE nomIngredient ='".addslashes($_POST['nomIngredient'])."')";
+										$requete="UPDATE ingredientrecette SET idRecette=".$_GET['idRecette'].",
+										idIngredient=".$_POST['idIngredient']." WHERE idRecette=".$_GET['idRecette']." AND
+										idIngredient=".$_POST['idIngredientAncien']."";
 										// $resultat=mysqli_query($base,$requete);
 										$resultat=$base->prepare($requete);
+										var_dump($requete);
 										$resultat->execute();
+										unset($_POST);
 									}
 								}
 								else
 								{
 									//on recharge le formulaire avec les données
-									$requeteChampRecette="SELECT nomRecette FROM recette WHERE idRecette=recette.idRecette AND  nomRecette=".$_GET['nomRecette']."'";
-									$resultat=$base->prepare($requeteChampRecette);
-									$resultat->execute();
-									$ligne = $resultat->fetch(PDO::FETCH_OBJ);
-									var_dump($ligne);
-									$_POST['nomRecette']=stripslashes($ligne->nomRecette);
-
-									$requeteChampIngredient="SELECT nomIngredient FROM ingredient WHERE idIngredient=ingredient.idIngredient AND nomIngredient='".$_GET['nomIngredient']."'";
-									$resultat2=$base->prepare($requeteChampIngredient);
-									$resultat2->execute();
-									$ligne2 = $resultat2->fetch(PDO::FETCH_OBJ);
-
 									
+									$requete2="SELECT ingredientrecette.idRecette, ingredientrecette.idIngredient, nomRecette, nomIngredient FROM recette, ingredient, ingredientrecette WHERE ingredientrecette.idRecette = recette.idRecette AND ingredientrecette.idIngredient = ingredient.idIngredient AND ingredientrecette.idRecette = '".$_GET['idRecette']."' AND ingredientrecette.idIngredient = '".$_GET['idIngredient']."'";
+									
+									$resultat2=$base->prepare($requete2);
+									$resultat2->execute();
+									
+									$ligne2 = $resultat2->fetch(PDO::FETCH_OBJ);
+									var_dump($resultat2);
+									$_POST['nomRecette']=stripslashes($ligne2->nomRecette);
 									$_POST['nomIngredient']=stripslashes($ligne2->nomIngredient);
+									
 								}
 							}   
 						break;//fin case modifier
@@ -796,25 +812,20 @@ if(isset($_SESSION['idMembre']) &&  $_SESSION['idPrivilege'] == '1')
 							echo 'test supp';
 							if(isset($_GET['idRecette']) && $_GET['idIngredient'])
 							{
-								echo 'test supp if1';
 								
-								$message="<label id=\"confirme\">Voulez-vous vraiment supprimer l'ingrédient de la recette ?<a href=\"admin.php?action=ingredientRecette&cas=supprimer&idRecette".$_GET['idRecette']."&idIngredient=".$_GET['idIngredient']."&confirme=oui\">OUI</a>&nbsp;&nbsp;<a href=\"admin.php?action=ingredientRecette\">NON</a></label>";
-	 
+								
+								$message="<label id=\"confirme\">Voulez-vous vraiment supprimer l'ingrédient de la recette ?<a href=\"admin.php?action=ingredientRecette&cas=supprimer&idRecette=".$_GET['idRecette']."&idIngredient=".$_GET['idIngredient']."&confirme=oui\">OUI</a>&nbsp;&nbsp;<a href=\"admin.php?action=ingredientRecette\">NON</a></label>";
 								if(isset($_GET['confirme']) && $_GET['confirme']=="oui")
-								{
-									$requete="SELECT * FROM ingredientrecette WHERE idRecette=(SELECT idRecette FROM recette WHERE nomRecette='".$_GET['nomRecette']."') AND idIngredient=(SELECT idIngredient FROM ingredient WHERE nomIngredient='".$_GET['nomIngredient']."')";
-									// $resultat=mysqli_query($base,$requete);
-									$resultat=$base->prepare($requete);
-									$resultat->execute();
-									// $ligne=mysqli_fetch_object($resultat);
-									$ligne = $resultat->fetch(PDO::FETCH_OBJ);
+								{ 
+									
+									
 
-									$requete2="DELETE FROM ingredientrecette WHERE idRecette=(SELECT idRecette FROM recette WHERE nomRecette='".$_GET['nomRecette']."') AND idIngredient=(SELECT idIngredient FROM ingredient WHERE nomIngredient='".$_GET['nomIngredient']."')";
-									// $resultat2=mysqli_query($base,$requete2);
+									$requete2="DELETE FROM ingredientrecette WHERE idRecette='".$_GET['idRecette']."' AND idIngredient='".$_GET['idIngredient']."'";
 									$resultat2=$base->prepare($requete2);
 									$resultat2->execute();
 									$message="<label id=\"bravo\">L'ingrédient a bien été supprimé</label>";
 								}
+								
 							}
 						break;//fin case supprimer
 					}
@@ -824,7 +835,7 @@ if(isset($_SESSION['idMembre']) &&  $_SESSION['idPrivilege'] == '1')
 
 			case "origine":
 				$contenu="form_origine.html";
-
+				$titre = "Gestion des origines";
 				if(isset($_GET["cas"]))
 				{
 					switch ($_GET["cas"])
@@ -951,7 +962,7 @@ if(isset($_GET['action'])){
         case "article":
             //contenu à afficher
             $contenu="form_article.html";
-
+			$titre = "Gestion des articles";
             if(isset($_GET["cas"])){
                 switch ($_GET["cas"]) {
                     case "ajouter":

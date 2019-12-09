@@ -24,6 +24,7 @@
     </header>
     <?php include('nav.html'); ?>
     <section>
+        <h2><?php if(isset($titre)){echo $titre;} ?></h2>
         <?php if (isset($contenu)){include($contenu);} ?>
         <?php if(isset($liste)){echo $liste;} ?>
     </section>

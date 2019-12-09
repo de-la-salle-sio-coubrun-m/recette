@@ -117,11 +117,12 @@ function connect () {
   //============== affichage listes
   function afficher_recettes(){
      $base = connect();
-    $requete= $base->query("SELECT * FROM recette ORDER BY nomRecette");
+    $requete= $base->query("SELECT * FROM recette,ingredientrecette WHERE recette.idRecette = ingredientrecette.idRecette ORDER BY nomRecette");
     
     
     $liste="<table id=\"liste\">\n";
     $liste.="<tr>";
+    $liste.="<th>Identifiant de la recette</th>";
     $liste.="<th>Origine de la recette</th>";
     $liste.="<th>Nom de la recette</th>";
     $liste.="<th>Description</th>";
@@ -130,12 +131,14 @@ function connect () {
     $liste.="<th>La recette</th>";
     $liste.="<th>Les effets de la recette</th>";
     $liste.="<th>La catégorie</th>";
+    $liste.="<th>Les ingrédients</th>";
     $liste.="<th>Aperçu</th>";
     $liste.="<th>Actions</th>";
     $liste.="</tr>";
     
    while($ligne= $requete->fetch(PDO::FETCH_OBJ)){
       $liste.="<tr>";
+      $liste.="<td>" . utf8_decode(utf8_encode($ligne->idRecette)) . "</td>";
       $liste.="<td>" . utf8_decode(utf8_encode($ligne->idOrigine)) . "</td>";
       $liste.="<td>" . utf8_decode(utf8_encode($ligne->nomRecette)) . "</td>";
       $liste.="<td>" . utf8_decode(utf8_encode($ligne->descriptionRecette)) . "</td>";
@@ -144,8 +147,9 @@ function connect () {
       $liste.="<td>" . utf8_decode(utf8_encode($ligne->recetteRecette)) . "</td>";
       $liste.="<td>" . utf8_decode(utf8_encode($ligne->effetsRecette)) . "</td>";
       $liste.="<td>" . utf8_decode(utf8_encode($ligne->idCategorie)) . "</td>";
+      $liste.="<td>" . utf8_decode(utf8_encode($ligne->idIngredient)) . "</td>";
       $liste.="<td><img src=\"" . $ligne->idImage . "\"alt=\"". $ligne->nomRecette . "\" /></td>";
-      $liste.="<td><a href=\"admin.php?action=recette&cas=modifier&idRecette=".$ligne->idRecette."\">modifier</a>&nbsp;
+      $liste.="<td><a href=\"admin.php?action=recette&cas=modifier&idRecette=".$ligne->idRecette."&idIngredient=".$ligne->idIngredient."\">modifier</a>&nbsp;
       <a href=\"admin.php?action=recette&cas=supprimer&idRecette=".$ligne->idRecette."\">supprimer</a>&nbsp;</td>";
       $liste.="</tr>";
     }
@@ -320,8 +324,8 @@ function afficher_ingredientrecette(){
     $liste.="<td>" . $ligne->idIngredient . "</td>";
     $liste.="<td>" . $ligne->nomRecette . "</td>";
     $liste.="<td>" . $ligne->nomIngredient . "</td>";
-    $liste.="<td><a href=\"admin.php?action=ingredientRecette&cas=modifier&nomRecette=".$ligne->idRecette."&nomIngredient=".$ligne->idIngredient."\">modifier</a>&nbsp;
-    <a href=\"admin.php?action=ingredientRecette&cas=supprimer&nomRecette=".$ligne->idRecette."&nomIngredient=".$ligne->idIngredient."\">supprimer</a>&nbsp;</td>";
+    $liste.="<td><a href=\"admin.php?action=ingredientRecette&cas=modifier&idRecette=".$ligne->idRecette."&idIngredient=".$ligne->idIngredient."\">modifier</a>&nbsp;
+    <a href=\"admin.php?action=ingredientRecette&cas=supprimer&idRecette=".$ligne->idRecette."&idIngredient=".$ligne->idIngredient."\">supprimer</a>&nbsp;</td>";
     $liste.="</tr>";
   }
   
