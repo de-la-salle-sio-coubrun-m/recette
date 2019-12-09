@@ -3,9 +3,16 @@
     <!-- tableau avec les entrées dans la table recette de la base de données -->
     <div>
         <label for="id_origine">Origine de la recette</label>
-        <input autocomplete="off" id="id_origine" list="hugeListOrigine" type="text" name="nomOrigine" data-tab="origine" value="<?php if(isset($_POST['nomOrigine'])){echo $_POST['nomOrigine'];} ?>"/>
-        <datalist id="hugeList_origineRecette" class="hugeList">
-        </datalist>
+        <select id="idOrigine" name="idOrigine">
+                <?php 
+                $base = connect();
+                $requete= $base->query("SELECT * FROM origine ORDER BY nomOrigine");
+                while($ligne= $requete->fetch(PDO::FETCH_OBJ)){
+                    echo'<option value="'.$ligne->idOrigine.'"'.($ligne->idOrigine==$_POST['idOrigine']?" selected": "").'>'.$ligne->nomOrigine.'</option>';
+                }
+                ?>
+            </select>
+            <?php echo '<input type="hidden" value="'.(isset ($_POST['idOrigine'])? $_POST['idOrigine'] : "").'" name="idOrigineAncien">';?>
     </div>
 
     <div>

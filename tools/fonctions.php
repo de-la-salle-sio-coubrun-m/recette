@@ -117,7 +117,13 @@ function connect () {
   //============== affichage listes
   function afficher_recettes(){
      $base = connect();
-    $requete= $base->query("SELECT * FROM recette,ingredientrecette WHERE recette.idRecette = ingredientrecette.idRecette ORDER BY nomRecette");
+    $requete= $base->query("SELECT * 
+    FROM recette, image,origine, categorie
+    WHERE  recette.idOrigine = origine.idOrigine 
+    AND recette.idCategorie = categorie.idCategorie 
+    AND recette.idImage = image.idImage 
+    ORDER BY nomRecette");
+    
     
     
     $liste="<table id=\"liste\">\n";
@@ -131,24 +137,43 @@ function connect () {
     $liste.="<th>La recette</th>";
     $liste.="<th>Les effets de la recette</th>";
     $liste.="<th>La catégorie</th>";
-    $liste.="<th>Les ingrédients</th>";
+    $liste.="<th> les ingrédients";
+    $liste .="<hr >";
+    $liste.="<li>Les noms ingrédients</li>";
+    $liste .="<hr >";
+    $liste.="<li>Les identifiants ingrédients</li>";
+    $liste .="<hr >";
+    $liste.="</th>";
     $liste.="<th>Aperçu</th>";
     $liste.="<th>Actions</th>";
     $liste.="</tr>";
     
    while($ligne= $requete->fetch(PDO::FETCH_OBJ)){
+     
       $liste.="<tr>";
       $liste.="<td>" . utf8_decode(utf8_encode($ligne->idRecette)) . "</td>";
-      $liste.="<td>" . utf8_decode(utf8_encode($ligne->idOrigine)) . "</td>";
+      $liste.="<td>" . utf8_decode(utf8_encode($ligne->nomOrigine)) . "</td>";
       $liste.="<td>" . utf8_decode(utf8_encode($ligne->nomRecette)) . "</td>";
       $liste.="<td>" . utf8_decode(utf8_encode($ligne->descriptionRecette)) . "</td>";
       $liste.="<td>" . utf8_decode(utf8_encode($ligne->dureeCuisson)) . "</td>";
       $liste.="<td>" . utf8_decode(utf8_encode($ligne->dureePreparation)) . "</td>";
       $liste.="<td>" . utf8_decode(utf8_encode($ligne->recetteRecette)) . "</td>";
       $liste.="<td>" . utf8_decode(utf8_encode($ligne->effetsRecette)) . "</td>";
-      $liste.="<td>" . utf8_decode(utf8_encode($ligne->idCategorie)) . "</td>";
-      $liste.="<td>" . utf8_decode(utf8_encode($ligne->idIngredient)) . "</td>";
-      $liste.="<td><img src=\"" . $ligne->idImage . "\"alt=\"". $ligne->nomRecette . "\" /></td>";
+      $liste.="<td>" . utf8_decode(utf8_encode($ligne->nomCategorie)) . "</td>";
+      $liste.="<td>";
+      $requete2= $base->query("SELECT ingredient.idIngredient, ingredient.nomIngredient
+    FROM recette,ingredientrecette, ingredient 
+    WHERE recette.idRecette = ingredientrecette.idRecette 
+    AND ingredientrecette.idIngredient = ingredient.idIngredient
+    AND ingredientrecette.idRecette = '" .$ligne->idRecette."'
+    ORDER BY nomIngredient");
+      while($ligne2 = $requete2->fetch(PDO::FETCH_OBJ)){
+        $liste.="<li>" . utf8_decode(utf8_encode($ligne2->nomIngredient)) . "</li>";
+        $liste.="<li>" . utf8_decode(utf8_encode($ligne2->idIngredient)) . "</li>";
+        $liste .="<hr >";
+      }
+      $liste.="</td>";
+      $liste.="<td><img src=\"" . $ligne->urlImage . "\"alt=\"". $ligne->nomRecette . "\" /></td>";
       $liste.="<td><a href=\"admin.php?action=recette&cas=modifier&idRecette=".$ligne->idRecette."&idIngredient=".$ligne->idIngredient."\">modifier</a>&nbsp;
       <a href=\"admin.php?action=recette&cas=supprimer&idRecette=".$ligne->idRecette."\">supprimer</a>&nbsp;</td>";
       $liste.="</tr>";
