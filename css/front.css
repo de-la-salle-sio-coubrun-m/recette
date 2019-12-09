@@ -235,6 +235,5 @@ footer a{
 
 #part1, #part2{
 	display: flex;
-	height: 33vh;
 	margin : 0;
 }

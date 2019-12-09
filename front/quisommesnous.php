@@ -1,4 +1,6 @@
 <?php include('header.html'); ?>
+
+<section id="pageWho">
     <h1>Qui sommes-nous ?</h1>
     <div id="part1">
         <img src="../images/Team.svg" alt="Photo de l'équipe" id="photoEquipe"/>
@@ -13,6 +15,7 @@
         </p>
         <img src="../images/lieu.svg" alt="Photo des locaux" id="photoLieu"/>
     </div>
+</section>
     <?php
   include('footer.html');
   ?>
