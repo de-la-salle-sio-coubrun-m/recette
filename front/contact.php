@@ -6,12 +6,15 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="../fontawesome-free-5.11.2-web/css/all.min.css">
     <link rel="stylesheet" href="../css/front.css">
-    <title>Nos Articles</title>
+    <title>Contact</title>
 </head>
 <body>
-    <script src="header.js"></script>
+<?php include('header.html'); ?>
 
-    <script src="footer.js"></script>
+    <div>16, champ de l'USS Enterprise, Bourg-Palette</div>
+    <div>Tél : 05 55 12 34 56</div>
+    <div>onmangebien@lacantina.fr</div>
     
-</body>
-</html>
+    <?php
+  include('footer.html');
+  ?>

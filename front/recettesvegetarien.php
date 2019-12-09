@@ -6,11 +6,11 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="../fontawesome-free-5.11.2-web/css/all.min.css">
     <link rel="stylesheet" href="../css/front.css">
-    <title>Document</title>
+    <title>Recettes Végétarien</title>
 </head>
 <body>
-    <script src="header.js"></script>
+<?php include('header.html'); ?>
 
-    <script src="footer.js"></script>
-</body>
-</html>
+    <?php
+  include('footer.html');
+  ?>

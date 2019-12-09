@@ -21,6 +21,7 @@ include('header.html');
     ?>
   </section>
   
-  <script src="footer.js"></script>
-</body>
-</html>
+  <?php
+  include('footer.html');
+  ?>
+  

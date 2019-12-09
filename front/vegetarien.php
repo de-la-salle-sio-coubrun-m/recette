@@ -9,8 +9,8 @@
     <title>Végétarien</title>
 </head>
 <body>
-    <script src="header.js"></script>
+<?php include('header.html'); ?>
 
-    <script src="footer.js"></script>
-</body>
-</html>
+    <?php
+  include('footer.html');
+  ?>

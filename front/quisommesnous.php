@@ -9,7 +9,7 @@
     <title>Qui Sommes-Nous ?</title>
 </head>
 <body>
-    <script src="header.js"></script>
+<?php include('header.html'); ?>
     <h1>Qui sommes-nous ?</h1>
     <div id="part1">
         <img src="../images/Team.svg" alt="Photo de l'équipe" id="photoEquipe"/>
@@ -20,6 +20,6 @@
         <p>L'équipe du site est constituée de Damien, Mickael et Kevin.</p>
         <img src="../images/lieu.svg" alt="Photo des locaux" id="photoLieu"/>
     </div>
-    <script src="footer.js"></script>
-</body>
-</html>
+    <?php
+  include('footer.html');
+  ?>

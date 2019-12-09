@@ -9,7 +9,7 @@
     <title>Mentions légales</title>
 </head>
 <body>
-    <script src="header.js"></script>
+<?php include('header.html'); ?>
 
     <p>Merci de lire avec attention les différentes modalités d’utilisation du présent site avant d’y parcourir ses pages. En vous connectant sur ce site, vous acceptez sans réserves les présentes modalités. Aussi, conformément à l’article n°6 de la Loi n°2004-575 du 21 Juin 2004 pour la confiance dans l’économie numérique, les responsables du présent site internet www.lacantina.fr sont :</p>
 
@@ -97,6 +97,6 @@
 
     <p>De telles informations sont utilisées exclusivement à des fins de statistiques internes, de manière à améliorer la qualité des services qui vous sont proposés. Les bases de données sont protégées par les dispositions de la loi du 1er juillet 1998 transposant la directive 96/9 du 11 mars 1996 relative à la protection juridique des bases de données.</p>
 
-    <script src="footer.js"></script>
-</body>
-</html>
+    <?php
+  include('footer.html');
+  ?>
