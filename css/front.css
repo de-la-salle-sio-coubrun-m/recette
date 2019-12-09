@@ -6,6 +6,7 @@
 	padding:0;
 	box-sizing:border-box;
 }
+
 /*permet de retirer les bordures mises en automatique par le
 navigateur lors d'un clic*/
 a,input, textarea{
@@ -115,6 +116,23 @@ article:last-child{
 	background-color: lightcoral;
 	padding: 30px;
 
+}
+
+/*_____________________________________________
+__________   Nous Contacter __________
+_____________________________________________*/
+form{
+	display: flex;
+	flex-direction: column;
+}
+
+form>input, form>textarea{
+	margin: 2vh;
+}
+
+#contact{
+	margin: 0 40vw;
+	width: 20vw;
 }
 
 /*____________________________________________________________________________________________________________________________________________________________________________________
