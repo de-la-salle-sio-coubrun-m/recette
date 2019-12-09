@@ -38,6 +38,12 @@ header a{
 	color: #fff;
 }
 
+object {
+	width: 15vw;
+	height: 15vh;
+	pointer-events: none;
+}
+
 nav li:nth-child(2):hover .sousMenu{
 	visibility: visible;
 	position: absolute;
