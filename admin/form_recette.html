@@ -1,6 +1,10 @@
 <?php $titre = "Gestion des recettes"; ?>
 <form enctype="multipart/form-data" action="admin.php?action=recette&cas=<?php if(isset($action_form)){echo $action_form;} ?>" method="POST">
     <!-- tableau avec les entrées dans la table recette de la base de données -->
+    <section>
+        <p>Afin d'ajouter plus d'ingrédients à une recette ou bien des les modifiés ou de les supprimés allez sur la page : </p>
+        <a href="admin.php?action=ingredientRecette">Gestion des ingrédients des recettes</a>
+    </section>
     <div>
         <label for="id_origine">Origine de la recette</label>
         <select id="idOrigine" name="idOrigine">

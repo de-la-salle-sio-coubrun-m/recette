@@ -174,7 +174,7 @@ function connect () {
       }
       $liste.="</td>";
       $liste.="<td><img src=\"" . $ligne->urlImage . "\"alt=\"". $ligne->nomRecette . "\" /></td>";
-      $liste.="<td><a href=\"admin.php?action=recette&cas=modifier&idRecette=".$ligne->idRecette."&idIngredient=".$ligne->idIngredient."\">modifier</a>&nbsp;
+      $liste.="<td><a href=\"admin.php?action=recette&cas=modifier&idRecette=".$ligne->idRecette."\">modifier</a>&nbsp;
       <a href=\"admin.php?action=recette&cas=supprimer&idRecette=".$ligne->idRecette."\">supprimer</a>&nbsp;</td>";
       $liste.="</tr>";
     }
