@@ -18,6 +18,7 @@ include('header.html');
 
       if($parametre){
         $requete= $base->query("SELECT * FROM recette WHERE idCategorie = ". $parametre->idCategorie ." ORDER BY nomRecette");
+        $thumbnail='';
         while($ligne= $requete->fetch(PDO::FETCH_OBJ)){
           $thumbnail = '<figure class="miniRecette">';
           $thumbnail .= '<a href="recette.php?idrecette='.$ligne->idRecette.'">';
@@ -28,6 +29,9 @@ include('header.html');
           $thumbnail .= '</a>';
           $thumbnail .= '</figure>';
           echo $thumbnail;
+        }
+        if(!$thumbnail){
+          echo "Désolé, mais nous n'avons aucune recette dans cette catégorie";
         }
       }
       else{
