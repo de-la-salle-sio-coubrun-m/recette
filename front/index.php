@@ -4,8 +4,9 @@
 ?>
 
     <section id="caroussel">
-
+        <?php include("carousel.php"); ?>
     </section>
+    
     <section id="recette">
         <article class="recetteHome">
             <?php 
