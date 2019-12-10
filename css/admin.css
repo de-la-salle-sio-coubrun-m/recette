@@ -110,8 +110,7 @@ section{
     border-collapse: collapse;
     width: 80%;
     margin: 40px auto 10px;
-	font-size: 0.85em;
-	background-color: gray;
+    font-size: 0.85em;
 }
 
 #liste td, #liste th{
@@ -125,11 +124,7 @@ section{
 		background-color: rgba(200, 200, 200, 0.6);
 }
 
-#liste li{
-	margin: 5px 0;
-}
-
-#liste hr{
+#liste th li{
 	margin: 5px 0;
 }
 
