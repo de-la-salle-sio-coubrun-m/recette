@@ -22,16 +22,30 @@
             
             <div>
                 <label for="nomMembre">Auteur de l'article</label>
-                <input autocomplete="off" id="nomMembre" type="text" name="nomMembre" data-tab="membre" value="<?php if(isset($_POST['nomMembre'])){echo $_POST['nomMembre'];} ?>" />
-                <datalist id="hugeList_idMembre" class="hugeList">
-                </datalist>
+                <select id="idMembre" name="idMembre">
+                    <?php 
+                    $base = connect();
+                    $requete= $base->query("SELECT * FROM membre ORDER BY nomMembre");
+                    while($ligne= $requete->fetch(PDO::FETCH_OBJ)){
+                        echo'<option value="'.$ligne->idMembre.'"'.($ligne->idMembre==$_POST['idMembre']?" selected": "").'>'.$ligne->nomMembre.'</option>';
+                    }
+                    ?>
+                </select>
+                <?php echo '<input type="hidden" value="'.(isset ($_POST['idMembre'])? $_POST['idMembre'] : "").'" name="idMembreAncien">';?>
             </div>
             
             <div>
                 <label for="nomRecette">Recette de l'article</label>
-                <input autocomplete="off" id="nomRecette" type="text" name="nomRecette" data-tab="recette" value="<?php if(isset($_POST['nomRecette'])){echo $_POST['nomRecette'];} ?>" />
-                <datalist id="hugeList_idRecette" class="hugeList">
-                </datalist>
+                <select id="idRecette" name="idRecette">
+                    <?php 
+                    $base = connect();
+                    $requete= $base->query("SELECT * FROM recette ORDER BY nomRecette");
+                    while($ligne= $requete->fetch(PDO::FETCH_OBJ)){
+                        echo'<option value="'.$ligne->idRecette.'"'.($ligne->idRecette==$_POST['idRecette']?" selected": "").'>'.$ligne->nomRecette.'</option>';
+                    }
+                    ?>
+                </select>
+                <?php echo '<input type="hidden" value="'.(isset ($_POST['idRecette'])? $_POST['idRecette'] : "").'" name="idRecetteAncien">';?>
             </div>
             
             <?php if(isset($message)){echo $message;} ?>

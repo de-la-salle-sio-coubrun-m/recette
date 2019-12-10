@@ -60,14 +60,30 @@
     <!-- mettre en forme de liste liée à la bdd -->
     <div>
         <label for="idCategorie">La catégorie</label> 
-        <input id="idCategorie" list="hugeList" type="text" name="nomCategorie" data-tab="categorie" value="<?php if(isset($_POST['nomCategorie'])){echo $_POST['nomCategorie'];} ?>" />
-        <datalist id="hugeList_idCategorie" class="hugeList">
-        </datalist>
+        <select id="idCategorie" name="idCategorie">
+            <?php 
+            $base = connect();
+            $requete= $base->query("SELECT * FROM categorie ORDER BY nomCategorie");
+            while($ligne= $requete->fetch(PDO::FETCH_OBJ)){
+                echo'<option value="'.$ligne->idCategorie.'"'.($ligne->idCategorie==$_POST['idCategorie']?" selected": "").'>'.$ligne->nomCategorie.'</option>';
+            }
+            ?>
+        </select>
+        <?php echo '<input type="hidden" value="'.(isset ($_POST['idCategorie'])? $_POST['idCategorie'] : "").'" name="idCategorieAncien">';?>
     </div>
 
     <div>
         <label for="idImage">Image de la recette</label>
-        <input id="idImage" type="text" name="nomImage" value="" />
+        <select id="idImage" name="idImage">
+            <?php 
+            $base = connect();
+            $requete= $base->query("SELECT * FROM image ORDER BY nomImage");
+            while($ligne= $requete->fetch(PDO::FETCH_OBJ)){
+                echo'<option value="'.$ligne->idImage.'"'.($ligne->idImage==$_POST['idImage']?" selected": "").'>'.$ligne->urlImage.'</option>';
+            }
+            ?>
+        </select>
+        <?php echo '<input type="hidden" value="'.(isset ($_POST['idCategorie'])? $_POST['idCategorie'] : "").'" name="idCategorieAncien">';?>
     </div>
 
     

@@ -3,9 +3,16 @@
 
     <div>
         <label for="nomRecette">Nom de la recette</label>
-        <input autocomplete="off" id="nomRecette" list="hugeList" type="text" name="nomRecette" data-tab="recette" value="<?php if(isset($_POST['nomRecette'])){echo $_POST['nomRecette'];} ?>" />
-        <datalist id="hugeList_nomRecette" class="hugeList">
-        </datalist>
+        <select id="idRecette" name="idRecette">
+            <?php 
+            $base = connect();
+            $requete= $base->query("SELECT * FROM recette ORDER BY nomRecette");
+            while($ligne= $requete->fetch(PDO::FETCH_OBJ)){
+                echo'<option value="'.$ligne->idRecette.'"'.($ligne->idRecette==$_POST['idRecette']?" selected": "").'>'.$ligne->nomRecette.'</option>';
+            }
+            ?>
+        </select>
+        <?php echo '<input type="hidden" value="'.(isset ($_POST['idRecette'])? $_POST['idRecette'] : "").'" name="idRecetteAncien">';?>
     </div>
 
     <div>
