@@ -85,7 +85,6 @@ ____________________________________ P A G E D ' A C C E U I L _________________
 
 #recette>article{
 	width: 50%;
-	background-color: gray;
 	padding: 30px;
 	display: flex;
 	flex-wrap: wrap;
@@ -94,19 +93,16 @@ ____________________________________ P A G E D ' A C C E U I L _________________
 #recette article img{
 	display: inline-block;
 	border: 2px solid #fff;
-	width: 35%;
+	width: auto;
 	height: 30vh;
-}
-
-#recette article p:first-of-type{
-	width: 60%;
-	height: 30vh;
-	margin-left: 5%;
 }
 
 #recette article p{
+	width: 45%;
+	height: 30vh;
+	margin-right: 5%;
 	border:2px solid #fff;
-
+	padding: 15px;
 }
 
 #recette article:last-child{
@@ -116,9 +112,13 @@ ____________________________________ P A G E D ' A C C E U I L _________________
 
 #recette>aside{
 	width: 50%;
-	background-color: lightcoral;
+	background-color: #c99868;
 	padding: 30px;
+}
 
+#recette>aside li{
+	list-style-type: none;
+	padding: 5px 0;
 }
 
 /*_____________________________________________
