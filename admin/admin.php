@@ -28,7 +28,7 @@ if(isset($_SESSION['idMembre']) &&  $_SESSION['idPrivilege'] == '1')
 							$action_form="ajouter";
 							//si le bouton créer a été activé
 							if(isset($_POST['submit'])){
-								echo 'je suis dans le if <br>';
+								
 								if(empty($_POST['idOrigine']))
 								{
 									$message="<label id =\"warning\">veuillez entrer le nom de l'origine de la recette s'il-vous-plaît</label>";
@@ -98,7 +98,7 @@ if(isset($_SESSION['idMembre']) &&  $_SESSION['idPrivilege'] == '1')
 								
 								//si on appuie sur le bouton enregistrer du formulaire
 								if(isset($_POST['submit'])){
-									if(empty($_POST['nomOrigine']))
+									if(empty($_POST['idOrigine']))
 									{
 										$message="<label id =\"warning\">veuillez entrer le nom de l'origine de la recette s'il-vous-plaît</label>";
 									}
@@ -137,13 +137,13 @@ if(isset($_SESSION['idMembre']) &&  $_SESSION['idPrivilege'] == '1')
 									else
 									{
 										//met à jour la ligne de la table recette
-										$requete="UPDATE recette SET idOrigine='".addslashes($_POST['idOrigine'])."', nomRecette='".addslashes($_POST['nomRecette'])."', descriptionRecette='".addslashes($_POST['descriptionRecette'])."',dureeCuisson='".($_POST['dureeCuisson'])."', dureePreparation='".($_POST['dureePreparation'])."', recetteRecette='".addslashes($_POST['recetteRecette'])."', effetsRecette='".addslashes($_POST['effetsRecette'])."', idCategorie='".($_POST['idCategorie'])."', idImage'".($_POST['idImage'])."'";
+										$requete="UPDATE recette SET idOrigine='".addslashes($_POST['idOrigine'])."', nomRecette='".addslashes($_POST['nomRecette'])."', descriptionRecette='".addslashes($_POST['descriptionRecette'])."',dureeCuisson='".($_POST['dureeCuisson'])."', dureePreparation='".($_POST['dureePreparation'])."', recetteRecette='".addslashes($_POST['recetteRecette'])."', effetsRecette='".addslashes($_POST['effetsRecette'])."', idCategorie='".($_POST['idCategorie'])."', idImage='".($_POST['idImage'])."'WHERE idRecette='".$_GET['idRecette']."' ";
 										// $resultat=mysqli_query($base,$requete);
 										$resultat=$base->prepare($requete);
 										$resultat->execute();
-
+										
 										$requete2="UPDATE ingredientrecette SET idRecette=".$_GET['idRecette'].", idIngredient='".$_POST['idIngredient']."' WHERE ingredientrecette.idRecette ='" .$_GET['idRecette']."' AND idIngredient ='".$_POST['idIngredientAncien']."'";
-										// $resultat=mysqli_query($base,$requete);
+										
 										$resultat2=$base->prepare($requete2);
 										$resultat2->execute();
 										
@@ -166,7 +166,7 @@ if(isset($_SESSION['idMembre']) &&  $_SESSION['idPrivilege'] == '1')
 									$_POST['recetteRecette']=stripslashes($ligne->recetteRecette); 
 									$_POST['effetsRecette']=stripslashes($ligne->effetsRecette); 
 									$_POST['idCategorie']=$ligne->idCategorie;
-									$_POST['idIngredient']=$_GET['idIngredient'];
+									// $_POST['idIngredient']=$_GET['idIngredient'];
 									$_POST['idImage']=$ligne->idImage;
 								}
 							}   
@@ -775,8 +775,8 @@ if(isset($_SESSION['idMembre']) &&  $_SESSION['idPrivilege'] == '1')
 								//si le bouton enregistrer du formulaire n'a pas été activé
 								$action_form="modifier&idRecette='".$_GET['idRecette']."'";
 								//si on appuie sur le bouton enregistrer du formulaire
-								echo 'je suis dans le action_form <br>';
-								if(isset($_POST['submit'])){					echo 'je suis dans le submit <br>';
+								
+								if(isset($_POST['submit'])){					
 									if(empty($_POST['idRecette']))
 									{
 										$message="<label id =\"warning\">veuillez entrer le nom de la recette s'il-vous-plaît</label>";
@@ -818,7 +818,7 @@ if(isset($_SESSION['idMembre']) &&  $_SESSION['idPrivilege'] == '1')
 	 
 						case "supprimer":
 							$action_form="ajouter";
-							echo 'test supp';
+							
 							if(isset($_GET['idRecette']) && $_GET['idIngredient'])
 							{
 								
