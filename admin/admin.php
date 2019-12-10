@@ -147,6 +147,7 @@ if(isset($_SESSION['idMembre']) &&  $_SESSION['idPrivilege'] == '1')
 										$resultat2=$base->prepare($requete2);
 										$resultat2->execute();
 										
+										
 									}
 								}
 								else
@@ -737,7 +738,7 @@ if(isset($_SESSION['idMembre']) &&  $_SESSION['idPrivilege'] == '1')
 							//si le bouton créer a été activé
 							if(isset($_POST['submit']))
 							{
-								if(empty($_POST['nomRecette']))
+								if(empty($_POST['idRecette']))
 								{
 									$message="<label id =\"warning\">veuillez entrer le nom de la recette s'il-vous-plaît</label>";
 								}
@@ -750,7 +751,7 @@ if(isset($_SESSION['idMembre']) &&  $_SESSION['idPrivilege'] == '1')
 									//on insert dans la table membre les valeurs des champs nom et description
 									//addslashes permet de mettre des \ en cas de  '  .
 									$requete="INSERT INTO ingredientrecette 
-									SET idRecette=(SELECT recette.idRecette FROM recette WHERE nomRecette ='".addslashes($_POST['nomRecette'])."'),
+									SET idRecette='".$_POST['idRecette']."',
 									idIngredient='".$_POST['idIngredient']."'";
 									
 									//execution de la requete dans la BDD
@@ -774,7 +775,7 @@ if(isset($_SESSION['idMembre']) &&  $_SESSION['idPrivilege'] == '1')
 								//si on appuie sur le bouton enregistrer du formulaire
 								echo 'je suis dans le action_form <br>';
 								if(isset($_POST['submit'])){					echo 'je suis dans le submit <br>';
-									if(empty($_POST['nomRecette']))
+									if(empty($_POST['idRecette']))
 									{
 										$message="<label id =\"warning\">veuillez entrer le nom de la recette s'il-vous-plaît</label>";
 									}
@@ -785,7 +786,7 @@ if(isset($_SESSION['idMembre']) &&  $_SESSION['idPrivilege'] == '1')
 									else
 									{
 										//met à jour la ligne de la table recette
-										$requete="UPDATE ingredientrecette SET idRecette=".$_GET['idRecette'].",
+										$requete="UPDATE ingredientrecette SET idRecette='".$_POST['idRecette']."',
 										idIngredient=".$_POST['idIngredient']." WHERE idRecette=".$_GET['idRecette']." AND
 										idIngredient=".$_POST['idIngredientAncien']."";
 										// $resultat=mysqli_query($base,$requete);
@@ -988,11 +989,11 @@ if(isset($_GET['action'])){
                             {
                                 $message="<label id =\"warning\">veuillez entrer la date du jour s'il-vous-plaît</label>";
                             }
-                            elseif(empty($_POST['nomMembre']))
+                            elseif(empty($_POST['idMembre']))
                             {
                                 $message="<label id =\"warning\">veuillez entrer le nom de l'auteur s'il-vous-plaît</label>";
                             }
-                            elseif(empty($_POST['nomRecette']))
+                            elseif(empty($_POST['idRecette']))
                             {
                                 $message="<label id =\"warning\">veuillez entrer le nom de la recette liée à l'article s'il-vous-plaît</label>";
                             }
@@ -1006,11 +1007,7 @@ if(isset($_GET['action'])){
                                 .addslashes($_POST['contenuArticle'])
                                 ."', dateArticle='"
                                 .addslashes($_POST['dateArticle'])
-                                ."', idMembre=(SELECT idMembre FROM membre WHERE idMembre = membre.idMembre AND nomMembre ='"
-                                .addslashes($_POST['nomMembre'])
-                                ."'), idRecette=(SELECT idRecette FROM recette WHERE idRecette = recette.idRecette AND nomRecette ='"
-                                .addslashes($_POST['nomRecette'])
-                                ."')";
+                                ."', idMembre='".addslashes($_POST['idMembre'])."', idRecette='".addslashes($_POST['idRecette'])."'";
                                 
                                 //execution de la requete dans la BDD
                                 // $resultat=mysqli_query($base,$requete);
@@ -1045,11 +1042,11 @@ if(isset($_GET['action'])){
                             {
                                 $message="<label id =\"warning\">veuillez entrer la date du jour s'il-vous-plaît</label>";
                             }
-                            elseif(empty($_POST['nomMembre']))
+                            elseif(empty($_POST['idMembre']))
                             {
                                 $message="<label id =\"warning\">veuillez entrer le nom de l'auteur s'il-vous-plaît</label>";
                             }
-                            elseif(empty($_POST['nomRecette']))
+                            elseif(empty($_POST['idRecette']))
                             {
                                 $message="<label id =\"warning\">veuillez entrer le nom de la recette liée à l'article s'il-vous-plaît</label>";
                             }
@@ -1062,16 +1059,13 @@ if(isset($_GET['action'])){
 									.addslashes($_POST['contenuArticle'])
 									."', dateArticle='"
 									.addslashes($_POST['dateArticle'])
-									."', idMembre=(SELECT idMembre FROM membre WHERE idMembre = membre.idMembre AND nomMembre ='"
-									.addslashes($_POST['nomMembre'])
-									."'), idRecette=(SELECT idRecette FROM recette WHERE idRecette = recette.idRecette AND nomRecette ='"
-									.addslashes($_POST['nomRecette'])
-									."') WHERE idArticle='"
+									."', idMembre='".addslashes($_POST['idMembre'])."', idRecette='".addslashes($_POST['idRecette'])."' WHERE idArticle='"
 									.addslashes($_GET['idArticle'])
 									."'";
                                     // $resultat=mysqli_query($base,$requete);
                                     $resultat=$base->prepare($requete);
-                                    $resultat->execute();
+									$resultat->execute();
+									
                                 }
                             }
                             else
@@ -1086,8 +1080,8 @@ if(isset($_GET['action'])){
                                 $_POST['titreArticle']=stripslashes($ligne->titreArticle);
                                 $_POST['contenuArticle']=stripslashes($ligne->contenuArticle);
                                 $_POST['dateArticle']=stripslashes($ligne->dateArticle);
-                                $_POST['nomMembre']=stripslashes($ligne->idMembre);
-                                $_POST['nomRecette']=stripslashes($ligne->idRecette);
+                                $_POST['idMembre']=stripslashes($ligne->idMembre);
+                                $_POST['idRecette']=stripslashes($ligne->idRecette);
                             }
                         }   
                     break;//fin case modifier

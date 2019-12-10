@@ -20,9 +20,16 @@
 
     <div>
         <label for="idPrivilege">Privilèges du membre</label>
-        <input autocomplete="off" id="idPrivilege" type="text" name="idPrivilege" data-tab="privilege" value="<?php if(isset($_POST['idPrivilege'])){echo $_POST['idPrivilege'];} ?>" />
-        <datalist id="hugeList_privilegeMembre" class="hugeList">
-        </datalist>
+        <select id="idPrivilege" name="idPrivilege">
+            <?php 
+            $base = connect();
+            $requete= $base->query("SELECT * FROM privilege ORDER BY labelPrivilege");
+            while($ligne= $requete->fetch(PDO::FETCH_OBJ)){
+                echo'<option value="'.$ligne->idPrivilege.'"'.($ligne->idPrivilege==$_POST['idPrivilege']?" selected": "").'>'.$ligne->labelPrivilege.'</option>';
+            }
+            ?>
+        </select>
+        <?php echo '<input type="hidden" value="'.(isset ($_POST['idPrivilege'])? $_POST['idPrivilege'] : "").'" name="idPrivilegeAncien">';?>
     </div>
     
     <?php if(isset($message)){echo $message;} ?>

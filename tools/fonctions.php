@@ -186,7 +186,7 @@ function connect () {
   //============== affichage articles
   function afficher_articles(){
      $base = connect();
-    $requete= $base->query("SELECT * FROM article ORDER BY titreArticle");
+    $requete= $base->query("SELECT * FROM article, recette, membre WHERE article.idRecette = recette.idRecette AND article.idMembre = membre.idMembre ORDER BY titreArticle");
     
     
     $liste="<table id=\"liste\">\n";
@@ -204,8 +204,8 @@ function connect () {
       $liste.="<td>" . $ligne->titreArticle . "</td>";
       $liste.="<td>" . $ligne->contenuArticle . "</td>";
       $liste.="<td>" . $ligne->dateArticle . "</td>";
-      $liste.="<td>" . $ligne->idMembre . "</td>";
-      $liste.="<td>" . $ligne->idRecette . "</td>";
+      $liste.="<td>" . $ligne->nomMembre . "</td>";
+      $liste.="<td>" . $ligne->nomRecette . "</td>";
       $liste.="<td><a href=\"admin.php?action=article&cas=modifier&idArticle=".$ligne->idArticle."\">modifier</a>&nbsp;
       <a href=\"admin.php?action=article&cas=supprimer&idArticle=".$ligne->idArticle."\">supprimer</a>&nbsp;</td>";
       $liste.="</tr>";
@@ -274,7 +274,7 @@ function afficher_Ingredient(){
 //============== affichage membres
 function afficher_membres(){
   $base = connect();
-  $requete= $base->query("SELECT * FROM membre ORDER BY nomMembre");
+  $requete= $base->query("SELECT * FROM membre, privilege WHERE membre.idPrivilege = privilege.idPrivilege ORDER BY nomMembre");
   
   
   $liste="<table id=\"liste\">\n";
@@ -289,7 +289,7 @@ function afficher_membres(){
     $liste.="<tr>";
     $liste.="<td>" . $ligne->nomMembre . "</td>";
     $liste.="<td>" . $ligne->mdpMembre . "</td>";
-    $liste.="<td>" . $ligne->idPrivilege . "</td>";
+    $liste.="<td>" . $ligne->labelPrivilege . "</td>";
     $liste.="<td><a href=\"admin.php?action=membre&cas=modifier&idMembre=".$ligne->idMembre."\">modifier</a>&nbsp;
     <a href=\"admin.php?action=membre&cas=supprimer&idMembre=".$ligne->idMembre."\">supprimer</a>&nbsp;</td>";
     $liste.="</tr>";
