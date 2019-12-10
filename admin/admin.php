@@ -183,16 +183,18 @@ if(isset($_SESSION['idMembre']) &&  $_SESSION['idPrivilege'] == '1')
 								if(isset($_GET['confirme']) && $_GET['confirme']=="oui")
 								{
 							
-									$requete2="DELETE FROM recette WHERE recette.idRecette='".$_GET['idRecette']."'";
-									// $resultat2=mysqli_query($base,$requete2);
-									$resultat2=$base->prepare($requete2);
-									$resultat2->execute();
-
 									$requete3="	DELETE FROM ingredientrecette WHERE ingredientrecette.idRecette='".$_GET['idRecette']."'";
 									// $resultat=mysqli_query($base,$requete);
 									$resultat3=$base->prepare($requete3);
 									$resultat3->execute();
 									$ligne = $resultat3->fetch(PDO::FETCH_OBJ);
+									
+									$requete2="DELETE FROM recette WHERE recette.idRecette='".$_GET['idRecette']."'";
+									// $resultat2=mysqli_query($base,$requete2);
+									$resultat2=$base->prepare($requete2);
+									$resultat2->execute();
+
+									
 
 
 									$message="<label id=\"bravo\">La recette a bien été supprimée</label>";
