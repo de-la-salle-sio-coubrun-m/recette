@@ -965,7 +965,7 @@ if(isset($_GET['action'])){
 		case "deconnecter":
 			//détruit toutes les variables de session
 			session_destroy();
-			include ("index.php");
+			include ("../admin/index.php");
 		break; // fin case déconnecter
 		
         case "article":
