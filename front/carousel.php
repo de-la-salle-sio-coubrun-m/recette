@@ -24,7 +24,6 @@ for ($i=0; $i < $nb; $i++) {
 
 if($i==0){
 	?> <li data-target="#moncaroussel" data-slide-to="<?php echo $i; ?>" class="active"></li> <?php
-	?>  <?php
 }else{
 
 ?>
@@ -61,7 +60,7 @@ if($i==0){
 	?>
 	<div class="carousel-item active">
 
-}
+
 
 	<center><img src="<?php echo $ligne->urlImage; ?>"></center>
 	</div>

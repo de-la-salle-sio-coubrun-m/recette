@@ -13,6 +13,11 @@ a,input, textarea{
 	outline:none;
 }
 
+h2{
+	margin-left: 50px;
+	margin-bottom: 10px;
+}
+
 /***************************** H E A D E R **********************************************************************************/
 header{
 	display: flex;
@@ -71,6 +76,12 @@ form[enctype="multipart/form-data"] textarea{
 	max-height: 100px;
 }
 
+section{
+	display: block;
+	width: 100%;
+	margin: 2%;
+}
+
 /***************************** A U T O C O M P L E T E  **********************************************************************************/
 
 .hugeList {
@@ -109,7 +120,16 @@ form[enctype="multipart/form-data"] textarea{
 }
 
 #liste th{
-    text-align: center;
+		text-align: center;
+		background-color: rgba(200, 200, 200, 0.6);
+}
+
+#liste li{
+	margin: 5px 0;
+}
+
+#liste hr{
+	margin: 5px 0;
 }
 
 #liste td:last-child{
