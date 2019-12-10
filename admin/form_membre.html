@@ -1,11 +1,7 @@
 <?php $titre='Les membres';?>
 <form enctype="multipart/form-data" action="admin.php?action=membre&cas=<?php if(isset($action_form)){echo $action_form;} ?>" method="POST">
     <!-- tableau avec les entrées dans la table membre de la base de données -->
-    <div>
-        <h2>Les codes des privilèges sont :</h2>
-        <p>1 = administrateur</p>
-        <p>2 = auteur </p>
-    </div>
+   
     <div>
         <label for="nomMembre">Nom du membre</label>
         <input autocomplete="off" id="nomMembre" list="hugeList" type="text" name="nomMembre" data-tab="membre" value="<?php if(isset($_POST['nomMembre'])){echo $_POST['nomMembre'];} ?>" />            
@@ -17,7 +13,7 @@
         <label for="mdpMembre">Mdp du membre</label>
         <input autocomplete="off" id="mdpMembre" list="hugeList" type="text" name="mdpMembre" value="<?php if(isset($_POST['mdpMembre'])){echo $_POST['mdpMembre'];} ?>" />
     </div>
-
+    <?php if(!isset($_SESSION['cas']=="modifier")) { echo $_SESSION['cas']; ?>
     <div>
         <label for="idPrivilege">Privilèges du membre</label>
         <select id="idPrivilege" name="idPrivilege">
@@ -31,6 +27,8 @@
         </select>
         <?php echo '<input type="hidden" value="'.(isset ($_POST['idPrivilege'])? $_POST['idPrivilege'] : "").'" name="idPrivilegeAncien">';?>
     </div>
+
+    <?php } ?>
     
     <?php if(isset($message)){echo $message;} ?>
 

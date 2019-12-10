@@ -99,7 +99,8 @@ form[enctype="multipart/form-data"] textarea{
     border-collapse: collapse;
     width: 80%;
     margin: 40px auto 10px;
-    font-size: 0.85em;
+	font-size: 0.85em;
+	background-color: gray;
 }
 
 #liste td, #liste th{
