@@ -22,7 +22,7 @@ if(isset($_SESSION['idMembre']) &&  $_SESSION['idPrivilege'] == '1')
 				if(isset($_GET["cas"])){
 					switch ($_GET["cas"]) {
 
-
+						
 						case "ajouter":
 							
 							$action_form="ajouter";

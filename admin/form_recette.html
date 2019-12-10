@@ -87,7 +87,7 @@
     </div>
 
     
-    <div>
+    <div id="divIngredient">
         <label for="idIngredient">Ingrédients de la recette</label>
         <select id="idIngredient" name="idIngredient">
             <?php 
@@ -100,7 +100,7 @@
         </select>
         <?php echo '<input type="hidden" value="'.(isset ($_POST['idIngredient'])? $_POST['idIngredient'] : "").'" name="idIngredientAncien">';?>
     </div>
-    
+
     <?php if(isset($message)){echo $message;} ?>
 
     <div id="boutons">
