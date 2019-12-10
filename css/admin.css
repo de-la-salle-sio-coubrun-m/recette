@@ -18,6 +18,12 @@ h2{
 	margin-bottom: 10px;
 }
 
+#boutons{
+	margin-left: 50%;
+	width: 100%;
+	height: auto;
+}
+
 /***************************** H E A D E R **********************************************************************************/
 header{
 	display: flex;
