@@ -24,10 +24,8 @@ body{
 }
 
 header{
-	display: flex;
 	justify-content: space-around;
-	background-color: gray;
-	min-height: 20vh;
+	align-items: center;
 	padding-top:30px;
 }
 
@@ -39,8 +37,7 @@ header ul{
 }
 
 header a{
-	border: #fff solid 2px;	
-	color: #fff;
+	color: #000;
 }
 
 object {
@@ -62,14 +59,12 @@ nav li:nth-child(2):hover .sousMenu{
 .sousMenu{
 	flex-direction: column;
 	visibility: hidden;
-	background-color: gray;
 }
 
 /*____________________________________________________________________________________________________________________________________________________________________________________
 ____________________________________C A R O U S S E L ______________________________________________________________________________________________________________________________*/
 
 #caroussel{
-	height: 35vh;
 	background-color: indianred;
 	padding: 2vh 0;
 }
@@ -87,6 +82,7 @@ ____________________________________ P A G E D ' A C C U E I L _________________
 
 #recette{
 	display: flex;
+	flex-wrap: wrap;
 }
 
 
@@ -107,7 +103,6 @@ ____________________________________ P A G E D ' A C C U E I L _________________
 
 #recette article p{
 	width: 45%;
-	height: 30vh;
 	margin-right: 5%;
 	border:2px solid #fff;
 	padding: 15px;
@@ -132,17 +127,14 @@ ____________________________________ P A G E D ' A C C U E I L _________________
 /*_____________________________________________
 __________   Nous Contacter __________
 _____________________________________________*/
-form{
-	display: flex;
-	flex-direction: column;
-}
+
 
 form>input, form>textarea{
 	margin: 2vh;
 }
 
 #contact{
-	margin: 0 40vw;
+	margin: 0 auto;
 	width: 20vw;
 }
 
@@ -191,7 +183,6 @@ ____________________________________F I C H E R E C E T T E ____________________
 }
 
 #ficheRecette ul{
-	height: 30vh;
 	width: 50%;
 	padding-left: 30px;
 }
@@ -220,12 +211,10 @@ ____________________________________ P A G E  A R T I C L E ____________________
 }
 
 .miniArticle{
-	height: 30vh;
 	width: 90%;
-	margin: 2% auto;
-	display: flex;
-	position: relative;
-
+    margin: 2% auto;
+    display: flex;
+    position: relative;
 }
 
 .miniArticle>div{
@@ -246,7 +235,6 @@ footer{
 	background-color: #000;
 	color: #fff;
 	height: 10vh;
-	display: flex;
 	justify-content: center;
 	align-items: center;
 }
@@ -263,17 +251,23 @@ footer a{
 }
 
 /*/////   Q U I   S O M M E S   N O U S   /////*/
-#photoEquipe{
-	margin-right: 10px;
-	width: 50%;
+
+#pageWho {
+	padding: 0 25px;
 }
 
-#photoLieu{
-	margin-left: 10px;
+#pageWho h1{
+	text-align: center;
+	padding: 15px 0;
+}
+#pageWho img{
 	width: 50%;
 }
 
 #part1, #part2{
 	display: flex;
-	margin : 0;
+}
+
+#pageWho p{
+	padding: 15px 25px;
 }

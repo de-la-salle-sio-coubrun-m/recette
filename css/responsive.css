@@ -1,0 +1,62 @@
+@media screen and (max-width: 480px)
+{
+    #caroussel{
+        height: 25vh;
+    }
+
+    #carousel-example-generic img{
+        width: 100%;
+    }
+
+    #recette article img {
+        height: auto;
+        width: 100%;
+    }
+    #recette>article, #recette>aside{
+        width: 100%;
+    }
+
+    #ficheRecette img{
+        width: 90%;
+    }
+
+    #ficheRecette ul{
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    #pageArticle h2 {
+        margin-top: 0;
+    }
+
+    .miniArticle{
+        flex-wrap: wrap;
+    }
+    .miniArticle img{
+        width: 100%;
+    }
+
+    .miniArticle li{
+        margin: 15px 0;
+    }
+
+    #part1{
+        flex-wrap: wrap;
+    }
+
+    #part2{
+        flex-wrap: wrap-reverse; 
+    }
+
+    #pageWho img{
+        width: 100%;
+    }
+
+    #contact{
+        width: 90vw;
+    }
+
+    #contact form>input, form>textarea{
+        width: 90%;
+    }
+}
