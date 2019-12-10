@@ -57,20 +57,24 @@ if(isset($_SESSION['idMembre']) &&  $_SESSION['idPrivilege'] == '1')
 								{
 									$message="<label id =\"warning\">veuillez entrer les effets de la recette s'il-vous-plaît</label>";
 								}
-								elseif(empty($_POST['nomCategorie']))
+								elseif(empty($_POST['idCategorie']))
 								{
 									$message="<label id =\"warning\">veuillez entrer le nom de la catégorie de la recette s'il-vous-plaît</label>";
+								}
+								elseif(empty($_POST['idImage']))
+								{
+									$message="<label id =\"warning\">veuillez entrer le nom de l'image de la recette s'il-vous-plaît</label>";
 								}
 								else
 								{
 									//on insert dans la table recette les valeurs des champs nom et description
 									//addslashes permet de mettre des \ en cas de  '  .
 									$requete="  INSERT INTO recette 
-									SET idOrigine='".addslashes($_POST['idOrigine'])."', nomRecette='".addslashes($_POST['nomRecette'])."', descriptionRecette='".addslashes($_POST['descriptionRecette'])."',dureeCuisson='".($_POST['dureeCuisson'])."', dureePreparation='".($_POST['dureePreparation'])."', recetteRecette='".addslashes($_POST['recetteRecette'])."', effetsRecette='".addslashes($_POST['effetsRecette'])."', idCategorie=(SELECT idCategorie FROM categorie WHERE idCategorie = categorie.idCategorie AND nomCategorie = '".($_POST['nomCategorie'])."'), idImage=(SELECT idImage FROM image WHERE idImage = image.idImage AND nomImage = '".($_POST['nomImage'])."')";
+									SET idOrigine='".addslashes($_POST['idOrigine'])."', nomRecette='".addslashes($_POST['nomRecette'])."', descriptionRecette='".addslashes($_POST['descriptionRecette'])."',dureeCuisson='".($_POST['dureeCuisson'])."', dureePreparation='".($_POST['dureePreparation'])."', recetteRecette='".addslashes($_POST['recetteRecette'])."', effetsRecette='".addslashes($_POST['effetsRecette'])."', idCategorie='".($_POST['idCategorie'])."', idImage='".($_POST['idImage'])."'";
 									
 									$resultat=$base->prepare($requete);
 									$resultat->execute();
-									var_dump($requete);
+									
 									$recetteId = $base->lastinsertID();
 
 									$requete2="INSERT INTO ingredientrecette SET idRecette='$recetteId', idIngredient='".$_POST['idIngredient']."'";
@@ -122,18 +126,18 @@ if(isset($_SESSION['idMembre']) &&  $_SESSION['idPrivilege'] == '1')
 									{
 										$message="<label id =\"warning\">veuillez entrer les effets de la recette s'il-vous-plaît</label>";
 									}
-									elseif(empty($_POST['nomCategorie']))
+									elseif(empty($_POST['idCategorie']))
 									{
 										$message="<label id =\"warning\">veuillez entrer le nom de la catégorie de la recette s'il-vous-plaît</label>";
 									}
-									elseif(empty($_POST['nomImage']))
+									elseif(empty($_POST['idImage']))
 									{
 										$message="<label id =\"warning\">veuillez entrer le nom de l'image de la recette s'il-vous-plaît</label>";
 									}
 									else
 									{
 										//met à jour la ligne de la table recette
-										$requete="UPDATE recette SET idOrigine=(SELECT idOrigine FROM origine WHERE idOrigine = origine.idOrigine AND nomOrigine = '".addslashes($_POST['nomOrigine'])."'), nomRecette='".addslashes($_POST['nomRecette'])."', descriptionRecette='".addslashes($_POST['descriptionRecette'])."',dureeCuisson='".($_POST['dureeCuisson'])."', dureePreparation='".($_POST['dureePreparation'])."', recetteRecette='".addslashes($_POST['recetteRecette'])."', effetsRecette='".addslashes($_POST['effetsRecette'])."', idCategorie=(SELECT idCategorie FROM categorie WHERE idCategorie = categorie.idCategorie AND nomCategorie = '".($_POST['nomCategorie'])."'), idImage=(SELECT idImage FROM image WHERE idImage = image.idImage AND nomImage = '".($_POST['nomImage'])."') WHERE idRecette='".($_GET['idRecette'])."'";
+										$requete="UPDATE recette SET idOrigine='".addslashes($_POST['idOrigine'])."', nomRecette='".addslashes($_POST['nomRecette'])."', descriptionRecette='".addslashes($_POST['descriptionRecette'])."',dureeCuisson='".($_POST['dureeCuisson'])."', dureePreparation='".($_POST['dureePreparation'])."', recetteRecette='".addslashes($_POST['recetteRecette'])."', effetsRecette='".addslashes($_POST['effetsRecette'])."', idCategorie='".($_POST['idCategorie'])."', idImage'".($_POST['idImage'])."'";
 										// $resultat=mysqli_query($base,$requete);
 										$resultat=$base->prepare($requete);
 										$resultat->execute();
@@ -191,6 +195,7 @@ if(isset($_SESSION['idMembre']) &&  $_SESSION['idPrivilege'] == '1')
 
 
 									$message="<label id=\"bravo\">La recette a bien été supprimée</label>";
+									header("Refresh:1; url=admin.php?action=recette");
 								}
 							}
 						break;//fin case supprimer
@@ -751,7 +756,7 @@ if(isset($_SESSION['idMembre']) &&  $_SESSION['idPrivilege'] == '1')
 									//execution de la requete dans la BDD
 									// $resultat=mysqli_query($base,$requete);
 									$resultat=$base->prepare($requete);
-									var_dump($requete);
+									
 									$resultat->execute();
 								}
 							}
@@ -785,7 +790,7 @@ if(isset($_SESSION['idMembre']) &&  $_SESSION['idPrivilege'] == '1')
 										idIngredient=".$_POST['idIngredientAncien']."";
 										// $resultat=mysqli_query($base,$requete);
 										$resultat=$base->prepare($requete);
-										var_dump($requete);
+										
 										$resultat->execute();
 										unset($_POST);
 									}
@@ -800,7 +805,7 @@ if(isset($_SESSION['idMembre']) &&  $_SESSION['idPrivilege'] == '1')
 									$resultat2->execute();
 									
 									$ligne2 = $resultat2->fetch(PDO::FETCH_OBJ);
-									var_dump($resultat2);
+									
 									$_POST['nomRecette']=stripslashes($ligne2->nomRecette);
 									$_POST['nomIngredient']=stripslashes($ligne2->nomIngredient);
 									
@@ -1011,7 +1016,7 @@ if(isset($_GET['action'])){
                                 // $resultat=mysqli_query($base,$requete);
                                 $resultat=$base->prepare($requete);
 								$resultat->execute();
-								var_dump($requete);
+								
                             }
                         }
                         else
