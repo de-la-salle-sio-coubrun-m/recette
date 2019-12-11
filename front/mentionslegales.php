@@ -10,9 +10,9 @@
 
     <p>11 Allee des Sables, Avenue des Epaves, 35999 Tatooine-en-Villaine</p>
 
-    <p>Téléphone : 1053905085</p>
+    <p>Téléphone : 06.36.65.65.65</p>
 
-    <p>Fax : 1053908350</p>
+    <p>Fax : 06.36.65.65.65</p>
 
     <p>Email : contact@lacantina.fr</p>
 
