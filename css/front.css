@@ -13,6 +13,11 @@ a,input, textarea{
 	outline:none;
 }
 
+h1, h2, h3{
+	font-family: 'Libre Baskerville', serif;
+}
+
+
 a{	
 	text-decoration: none;
 	display: inline-block;
@@ -21,6 +26,7 @@ a{
 
 body{
 	font-size: 1.2rem;
+	font-family: 'Roboto', sans-serif;
 }
 
 header{
@@ -45,15 +51,12 @@ object {
 	height: 15vh;
 	pointer-events: none;
 }
+header nav{
+	z-index: 100;
+}
 
-nav li:nth-child(2):hover .sousMenu{
-	visibility: visible;
-	position: absolute;
-	bottom: -57px;
-	left: 95px;
-	z-index: 2;
-	height: 70px;
-	width: 50px;
+header li{
+	background-color: #f8f9fa;
 }
 
 .sousMenu{
@@ -261,3 +264,31 @@ footer a{
 #pageWho p{
 	padding: 15px 25px;
 }
+
+/*_____________________________________________________________________________________________________________________________________________________________________
+____________________________________L O A D E R______________________________________________________________________________________________________________________________*/
+
+.loader{
+	position : fixed;
+	z-index: 9999;
+	top : 0px;
+	left : 0px;
+	height : 100vh;
+	width : 100%;
+	cursor : wait;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: rgb(252, 253, 241);
+}
+
+/* 
+nav li:nth-child(2):hover .sousMenu{
+	visibility: visible;
+	position: absolute;
+	bottom: -57px;
+	left: 95px;
+	z-index: 2;
+	height: 70px;
+	width: 50px;
+} */
