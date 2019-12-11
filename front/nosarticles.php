@@ -1,6 +1,4 @@
-<?php 
-require_once('../tools/fonctions.php');
-include('header.html'); ?>
+<?php include('header.html'); ?>
 
     <section id="pageArticle">
       <h2>Nos articles</h2>

@@ -1,8 +1,4 @@
-<?php 
-require_once('../tools/fonctions.php');
-include('header.html');
-    //$liste.="<td>" . utf8_decode(utf8_encode($ligne->idOrigine)) . "</td>";
-  ?>
+<?php include('header.html');  ?>
   <section id="pageRecette">
     <?php
       $base = connect();

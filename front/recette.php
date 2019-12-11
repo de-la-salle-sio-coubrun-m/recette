@@ -1,5 +1,4 @@
 <?php
-    require_once('../tools/fonctions.php');
     include('header.html');
     $base = connect();
     $recette= $base->query("SELECT * FROM recette WHERE idRecette='".$_GET['idrecette']."'")->fetch(PDO::FETCH_OBJ);

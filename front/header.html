@@ -10,6 +10,7 @@
     <link href="https://fonts.googleapis.com/css?family=Libre+Baskerville|Roboto&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <title>La Cantina</title>
+    <?php require_once('../tools/fonctions.php');?>
 </head>
 <body>
     <header class="d-flex">
@@ -32,7 +33,7 @@
                             $base = connect();
                             $requete= $base->query("SELECT nomCategorie FROM categorie ORDER BY nomCategorie");
                             while($ligne= $requete->fetch(PDO::FETCH_OBJ)){ 
-                            echo '<a class="dropdown-item" href="recettesCategorie.php?categorie='.$ligne->nomCategorie.'">'.$ligne->nomCategorie.'</a>';
+                                echo '<a class="dropdown-item" href="recettesCategorie.php?categorie='.$ligne->nomCategorie.'">'.$ligne->nomCategorie.'</a>';
                             } ?>
                         </div>
                     </li>

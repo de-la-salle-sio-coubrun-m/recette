@@ -1,5 +1,4 @@
-<?php
-    require_once('../tools/fonctions.php');
+<?php 
     include('header.html');
     $base = connect();
     $article= $base->query("SELECT * FROM article WHERE idArticle='".$_GET['idarticle']."'")->fetch(PDO::FETCH_OBJ);
