@@ -2,12 +2,17 @@
     include('header.html');
     $base = connect();
     $recette= $base->query("SELECT * FROM recette WHERE idRecette='".$_GET['idrecette']."'")->fetch(PDO::FETCH_OBJ);
+    $requete = $base->query("SELECT ingredient.nomIngredient FROM recette, ingredientrecette, ingredient 
+    WHERE recette.idRecette = ingredientrecette.idRecette 
+    AND ingredientrecette.idIngredient = ingredient.idIngredient
+    AND ingredientrecette.idRecette = '" .$recette->idRecette."'
+    ORDER BY nomIngredient");
     $image= $base->query("SELECT urlImage FROM image WHERE idImage='".$recette->idImage."'")->fetch(PDO::FETCH_OBJ);
     $image->urlImage = str_replace("_p", "_g", $image->urlImage);
 ?>
 
 <section id="ficheRecette">
-    <h2><?php if(isset($recette)){ echo $recette->nomRecette; }?></h2>
+    <h1><?php if(isset($recette)){ echo $recette->nomRecette; }?></h1>
     <article class="container">
         <div class="row">
             <figure class="col-md-8">
@@ -22,9 +27,17 @@
                 </ul>
             </div>
         </div>
-        <div class="col-md-12">
-            <h3>La recette :</h3>
-            <p><?php if(isset($recette)){ echo $recette->recetteRecette; }?></p>
+        <div class="row">
+            <div class="col-md-6">
+                <h2>Les ingrédients :</h2>
+                <?php while($ingredient = $requete->fetch(PDO::FETCH_OBJ)){
+                    echo '<li>'.$ingredient->nomIngredient.'</li>';
+                }?>
+            </div>
+            <div class="col-md-6">
+                <h2>La recette :</h2>
+                <p mt-2><?php if(isset($recette)){ echo $recette->recetteRecette; }?></p>
+            </div>
         </div>
     </article>
 </section>
