@@ -7,6 +7,13 @@
 	box-sizing:border-box;
 }
 
+@font-face {
+	font-family: "Libre Baskerville";
+	src: local("../asset/fonts/Libre_Baskerville/LibreBaskerville-Italic.ttf") format("truetype"),
+		local("../asset/fonts/Libre_Baskerville/LibreBaskerville-Regular.ttf") format("truetype"),
+		local("../asset/fonts/Libre_Baskerville/LibreBaskerville-Bold.ttf") format("truetype");
+   }
+
 /*permet de retirer les bordures mises en automatique par le
 navigateur lors d'un clic*/
 a,input, textarea{
@@ -14,7 +21,7 @@ a,input, textarea{
 }
 
 h1, h2, h3{
-	font-family: 'Libre Baskerville', serif;
+	font-family: "Libre Baskerville", serif;
 }
 
 
