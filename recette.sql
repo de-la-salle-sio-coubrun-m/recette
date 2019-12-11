@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  mer. 11 déc. 2019 à 08:34
+-- Généré le :  mer. 11 déc. 2019 à 11:32
 -- Version du serveur :  5.7.24
 -- Version de PHP :  7.2.14
 
@@ -39,14 +39,15 @@ CREATE TABLE IF NOT EXISTS `article` (
   PRIMARY KEY (`idArticle`),
   KEY `fkMembre` (`idMembre`),
   KEY `fkRecetteArticle` (`idRecette`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `article`
 --
 
 INSERT INTO `article` (`idArticle`, `titreArticle`, `contenuArticle`, `dateArticle`, `idMembre`, `idRecette`) VALUES
-(5, 'Les boites de conserve un repas sous estimé ', ' Bonjour chère lecteur aujourd\'hui je vais vous parlez de notre sublime \"Chilled Food Tin\" un repas mais bien plus. \r\nParce que se repas en plus de pouvoir vous nourrir lors de vos voyages ou quand vous n\'avez pas envie de faire à manger à l\'avantage d\'être à bas prix. L\'avantage c\'est qu\'une fois cette boite laver vous pouvez l\'utiliser pour faire de multiple chose. Comme d\'un récipient même de décoration de piège, et de plein d\'autre manière si vous laissez votre imagination vous guidez. ', '2019-11-09', 2, 6);
+(5, 'Les boites de conserve un repas sous estimé ', ' Bonjour chère lecteur aujourd\'hui je vais vous parlez de notre sublime \"Chilled Food Tin\" un repas mais bien plus. \r\nParce que se repas en plus de pouvoir vous nourrir lors de vos voyages ou quand vous n\'avez pas envie de faire à manger à l\'avantage d\'être à bas prix. L\'avantage c\'est qu\'une fois cette boite laver vous pouvez l\'utiliser pour faire de multiple chose. Comme d\'un récipient même de décoration de piège, et de plein d\'autre manière si vous laissez votre imagination vous guidez. ', '2019-11-09', 2, 6),
+(7, 'Darkshells Marinières', ' J\'ai enfin essayé les légendaires \"Darkshells Marinières\" dont le monde entier parle... Bah c\'était juste des moules, mais plus chères. Snif.', '2019-12-10', 2, 17);
 
 -- --------------------------------------------------------
 
@@ -59,7 +60,7 @@ CREATE TABLE IF NOT EXISTS `categorie` (
   `idCategorie` int(4) NOT NULL AUTO_INCREMENT,
   `nomCategorie` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`idCategorie`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `categorie`
@@ -68,7 +69,8 @@ CREATE TABLE IF NOT EXISTS `categorie` (
 INSERT INTO `categorie` (`idCategorie`, `nomCategorie`) VALUES
 (1, 'Viande'),
 (2, 'Poisson'),
-(3, 'Végétarien');
+(3, 'Végétarien'),
+(4, 'Végétalien');
 
 -- --------------------------------------------------------
 
@@ -103,7 +105,7 @@ CREATE TABLE IF NOT EXISTS `image` (
   `nomImage` varchar(50) DEFAULT NULL,
   `urlImage` varchar(500) DEFAULT NULL,
   PRIMARY KEY (`idImage`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=46 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `image`
@@ -113,7 +115,33 @@ INSERT INTO `image` (`idImage`, `nomImage`, `urlImage`) VALUES
 (1, 'Creamy Bisque', '../asset/imagesRecettes/Creamy Bisque_p.jpg'),
 (13, 'Cannedwich', '../asset/imagesRecettes/Cannedwich_p.jpg'),
 (15, 'Burly Bean Bowl', '../asset/imagesRecettes/Burly Bean Bowl_p.jpg'),
-(16, 'Chilled Food Tin', '../asset/imagesRecettes/Chilled Food Tin_p.png');
+(16, 'Chilled Food Tin', '../asset/imagesRecettes/Chilled Food Tin_p.png'),
+(17, 'Flame-Roasted Toast', '../asset/imagesRecettes/Flame-Roasted Toast_p.jpg'),
+(18, 'Croque Madame', '../asset/imagesRecettes/Croque Madame_p.jpg'),
+(19, 'Veggie Medley Stew', '../asset/imagesRecettes/Veggie Medley Stew_p.jpg'),
+(20, 'Oil-Drizzled Steamed Fish', '../asset/imagesRecettes/Oil-Drizzled Steamed Fish_p.jpg'),
+(21, 'Stacked Ham Sandwich', '../asset/imagesRecettes/Stacked Ham Sandwich_p.jpg'),
+(22, 'Grilled Wild Barramundi', '../asset/imagesRecettes/Grilled Wild Barramundi_p.jpg'),
+(23, 'Creamy Milk Risotto', '../asset/imagesRecettes/Creamy Milk Risotto_p.jpg'),
+(24, 'Fried Rookie on Rice', '../asset/imagesRecettes/Fried Rookie on Rice_p.jpg'),
+(25, 'Salmon-in-a-Suit', '../asset/imagesRecettes/Salmon-in-a-Suit_p.jpg'),
+(26, 'Crispy Fish Fritterwich', '../asset/imagesRecettes/Crispy Fish Fritterwich_p.jpg'),
+(30, 'Darkshells Marinières', '../asset/imagesRecettes/Darkshells Marinières_p.jpg'),
+(31, 'Sweet & Spicy Cygillan Crab', '../asset/imagesRecettes/Sweet & Spicy Cygillan Crab_p.jpg'),
+(32, 'Kenny\'s Secret Recipe', '../asset/imagesRecettes/Kenny\'s Secret Recipe_p.jpg'),
+(33, 'Oak-Smoked Devil Gar', '../asset/imagesRecettes/Oak-Smoked Devil Gar_p.jpg'),
+(34, 'Excellent Oven-Roasted Trout', '../asset/imagesRecettes/Excellent Oven-Roasted Trout_p.jpg'),
+(35, 'Broiled King-on-a-Stick', '../asset/imagesRecettes/Broiled King-on-a-Stick_p.jpg'),
+(36, 'Hearty Cutlet on Rice', '../asset/imagesRecettes/Hearty Cutlet on Rice_p.jpg'),
+(37, 'Smoked Behemoth', '../asset/imagesRecettes/Smoked Behemoth_p.jpg'),
+(38, 'Sea Bass Sauté', '../asset/imagesRecettes/Sea Bass Sauté_p.jpg'),
+(39, 'Fire-Sauce Fillet', '../asset/imagesRecettes/Fire-Sauce Fillet_p.jpg'),
+(40, 'Blazing Braised Gizzard', '../asset/imagesRecettes/Blazing Braised Gizzard_p.jpg'),
+(41, 'Thick \'n\' Juicy Steak', '../asset/imagesRecettes/Thick \'n\' Juicy Steak_p.jpg'),
+(42, 'Hunters\' Krazy Kebabs', '../asset/imagesRecettes/Hunters\' Krazy Kebabs_p.jpg'),
+(43, 'Toadsteak Drumsticks', '../asset/imagesRecettes/Toadsteak Drumsticks_p.jpg'),
+(44, 'Lestallum Stewed Tripe', '../asset/imagesRecettes/Lestallum Stewed Tripe_p.jpg'),
+(45, 'Taelpar Harvest Galette', '../asset/imagesRecettes/Taelpar Harvest Galette_p.jpg');
 
 -- --------------------------------------------------------
 
@@ -128,7 +156,7 @@ CREATE TABLE IF NOT EXISTS `ingredient` (
   `recolteIngredient` varchar(200) DEFAULT NULL,
   `lieuIngredient` varchar(500) DEFAULT NULL,
   PRIMARY KEY (`idIngredient`)
-) ENGINE=InnoDB AUTO_INCREMENT=82 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=84 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `ingredient`
@@ -212,7 +240,8 @@ INSERT INTO `ingredient` (`idIngredient`, `nomIngredient`, `recolteIngredient`, 
 (75, 'Cannelle moulue', 'Magasin', 'Grande surface'),
 (76, 'Miel liquide', 'Magasin', 'Grande surface'),
 (77, 'Semoule de blé fine', 'Magasin', 'Grande surface'),
-(81, 'gfe 2', 'mon cul', 'truc');
+(82, 'Pain', 'Magasin', 'Grande Surface'),
+(83, 'Orange', 'A la main', 'Oranger');
 
 -- --------------------------------------------------------
 
@@ -233,13 +262,65 @@ CREATE TABLE IF NOT EXISTS `ingredientrecette` (
 --
 
 INSERT INTO `ingredientrecette` (`idRecette`, `idIngredient`) VALUES
-(4, 1),
-(6, 1),
-(4, 2),
-(4, 28),
-(5, 28),
-(5, 34),
-(4, 60);
+(29, 5),
+(11, 6),
+(18, 8),
+(17, 10),
+(19, 10),
+(16, 13),
+(25, 15),
+(19, 17),
+(26, 18),
+(30, 18),
+(14, 21),
+(15, 22),
+(10, 24),
+(21, 25),
+(22, 25),
+(12, 26),
+(16, 29),
+(23, 30),
+(31, 30),
+(13, 31),
+(14, 31),
+(23, 31),
+(7, 32),
+(11, 33),
+(20, 37),
+(24, 37),
+(27, 39),
+(28, 39),
+(23, 42),
+(17, 47),
+(14, 50),
+(18, 50),
+(22, 50),
+(25, 50),
+(26, 50),
+(29, 50),
+(8, 51),
+(13, 51),
+(31, 51),
+(12, 52),
+(24, 53),
+(30, 53),
+(8, 54),
+(24, 55),
+(20, 56),
+(25, 57),
+(26, 57),
+(27, 57),
+(21, 58),
+(11, 59),
+(10, 62),
+(28, 62),
+(30, 63),
+(8, 66),
+(13, 68),
+(7, 73),
+(6, 82),
+(7, 82),
+(31, 83);
 
 -- --------------------------------------------------------
 
@@ -284,9 +365,9 @@ CREATE TABLE IF NOT EXISTS `origine` (
 --
 
 INSERT INTO `origine` (`idOrigine`, `nomOrigine`, `descriptionOrigine`) VALUES
-(1, 'final fantasy XV', 'Final Fantasy XV, annoncé originellement sous le titre Final Fantasy Versus XIII, est un jeu vidéo de la célèbre série Final Fantasy, développé et édité par Square Enix, sorti le 29 novembre 2016 sur les consoles PlayStation 4 et Xbox One. Une Windows Edition et une Royal Edition sont sorties le 6 mars 2018.'),
-(2, 'firefly', 'Firefly est une série télévisée de space western américaine en 14 épisodes, créée par le scénariste et réalisateur Joss Whedon avec sa société de production Mutant Enemy.'),
-(3, 'dune', 'Initié par les romans de Frank Herbert, l\'univers de Dune est à la base d\'une franchise ayant généré un grand nombre d’œuvres dans des domaines très variés.');
+(1, 'Final Fantasy XV', 'Final Fantasy XV, annoncé originellement sous le titre Final Fantasy Versus XIII, est un jeu vidéo de la célèbre série Final Fantasy, développé et édité par Square Enix, sorti le 29 novembre 2016 sur les consoles PlayStation 4 et Xbox One. Une Windows Edition et une Royal Edition sont sorties le 6 mars 2018. '),
+(2, 'Firefly', 'Firefly est une série télévisée de space western américaine en 14 épisodes, créée par le scénariste et réalisateur Joss Whedon avec sa société de production Mutant Enemy. '),
+(3, 'Dune', 'Initié par les romans de Frank Herbert, l\'univers de Dune est à la base d\'une franchise ayant généré un grand nombre d’œuvres dans des domaines très variés. ');
 
 -- --------------------------------------------------------
 
@@ -333,16 +414,38 @@ CREATE TABLE IF NOT EXISTS `recette` (
   KEY `fkCategorie` (`idCategorie`),
   KEY `fkImage` (`idImage`),
   KEY `fkEtat` (`idEtat`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `recette`
 --
 
 INSERT INTO `recette` (`idRecette`, `idOrigine`, `nomRecette`, `descriptionRecette`, `dureeCuisson`, `dureePreparation`, `recetteRecette`, `effetsRecette`, `idCategorie`, `idImage`, `idEtat`) VALUES
-(4, 1, '12 minutes', '12 minutes', '12 minutes', '12 minutes', '12 minutes', '12 minutes', 2, 1, 1),
-(5, 2, 'test', 'test', 'test', 'test', 'test', 'test', 3, 15, 1),
-(6, 1, 'Chilled Food Tin	', 'Un repas facile et rapide', '5 minutes', '6 minutes', 'Tu prends la boîte, tu l\'ouvre, tu l\'as mets sur le feu.\r\n\r\nTu attends 5 minutes et voilà c\'est prêt.', 'Nope', 1, 16, NULL);
+(6, 1, 'Flame-Roasted Toast', 'Quand on a rien d\'autre sous la main...', 'à volonté', 'vraiment pas longtemps', 'Pain -> Feu -> mangez', 'Vous fait littéralement vivre l\'expérience de la pauvreté', 4, 17, NULL),
+(7, 1, 'Croque Madame', 'Le classique, mais avec un oeuf.', 'rapide', 'pas longtemps', 'Après avoir déposé le jambon sur la tartine, avec quelques suppléments si vous le désirez, ajoutez l\'oeuf et c\'est prêt', 'Vous contentera malgré son apparente simplicité', 1, 18, NULL),
+(8, 1, 'Veggie Medley Stew', 'Un bouillon au lait de brebis, avec plein de bonnes choses dedans.', '30 minutes', '10 minutes', 'Mettez le lait à chauffer. Découpez soigneusement les ingrédients. Plongez les ingrédients dans la soupe et régalez vous !', '+20 en attaque et +150 points de vie', 3, 19, NULL),
+(10, 1, 'Oil-Drizzled Steamed Fish', 'Il y a du poisson, ça fume, c\'est bon', '30 minutes', '30 minutes', 'Faites fumer le poisson avec des oignons.', '+60 en attaque, 50 en magie, 200 HP', 2, 20, NULL),
+(11, 1, 'Stacked Ham Sandwich', 'Celle-là, elle est pour les acharnés.', '30 minutes', '1h', 'Vous voyez tous les ingrédients de la recette ? Vous empilez ça sans tout faire tomber, vous ouvrez la bouche le plus grand possible, et vous croquez.', 'Une satisfaction gustative comme vous n\'en n\'avez jamais connue... suivie d\'une indigestion hors-norme.', 1, 21, NULL),
+(12, 1, 'Grilled Wild Barramundi', 'De quoi remplir l\'estomac des amateurs de poisson', '30 minutes', '20 minutes', 'Découpez, grillez, appréciez !', '+80 Attaque, +80 Magie, +500 Santé', 2, 22, NULL),
+(13, 1, 'Creamy Milk Risotto', 'Un risotto qui emplira de bonheur les estomacs les plus accueillants.', '30min', '25min', 'Mettez tout sur le feu. Brassez les champignons et le riz dans le lait jusqu\'à atteindre une texture onctueuse, et servez.', '+600PV, Régénération de santé de +75%, immunise au sort de Métamorphose en Crapaud', 3, 23, NULL),
+(14, 1, 'Fried Rookie on Rice', 'Ce plat vous veut du bien', '30min', '30min', 'Le poivre doit être doux, mais prenez tout de même garde à ne pas trop en verser sur le riz. Une fois l\'oeuf déposé, vous pouvez en verser une pincée de nouveau, si vous le désirez.', '+100 en force, +400PV, immunise au poison', 3, 24, NULL),
+(15, 1, 'Salmon-in-a-Suit', 'Il est mignon ce petit saumon', 'Cru', '30min', 'Vous prenez le saumon, et vous en faite un petit truc mignon.', 'L\'élégance de ce plat se reflétera sur vous.', 2, 25, NULL),
+(16, 1, 'Crispy Fish Fritterwich', 'Ca croque, c\'est doré comme tout... avouez que vous en voulez.', '30min', '30min', 'Malaxez le poisson dans son blé, dorez le tout, assaisonnez, dégustez.', '+160 force, +800HP', 2, 26, NULL),
+(17, 1, 'Darkshells Marinières', 'Bah... c\'est des moules.', '30min', '30min', 'Fumez ces bivalves au saké pour une saveur optimales.', 'Vous permet d\'effectuer des versions de vos techniques d\'une puissance largement supérieures, avec un haut taux de critique.', 2, 30, NULL),
+(18, 1, 'Sweet & Spicy Cygillan Crab', 'Un crabe fort, accompagné de douceur.', '30 minutes', '30 minutes', 'Découpez le crabe, faites le cuire, saupoudrez le de poivre doux, et servez.', 'Résistance au feu +70%', 2, 31, NULL),
+(19, 1, 'Kenny\'s Secret Recipe', 'La recette secrète de l\'ami Kenny... Qui n\'est plus si secrète que ça visiblement.', '30 minutes', '30 minutes', 'Utilisez simplement le saumon, l\'ail, et un peu de magie.', 'Vitalité et Magie +300, Force +400', 2, 32, NULL),
+(20, 1, 'Oak-Smoked Devil Gar', 'Le plus redoutable des poissons, le Devil Gar, vous fera hériter de sa puissance légendaire si vous parvenez à le manger... Mais il faut le pêcher d\'abord.', '30 minutes', '30 minutes', 'D\'abord il faut l\'attraper, c\'est le plus difficile. Mais si vous réalisez cet exploit hors du commun, alors vous pourrez le cuisiner. Nous vous conseillons de le fumer au Chêne de Tenebrae pour l\'allier aux différentes subtilités de saveurs que sa chair peut révéler.', '+2000PV Max, Immunité à la glace, au feu, à l\'électricité', 2, 33, NULL),
+(21, 1, 'Excellent Oven-Roasted Trout', 'C\'est cuit au four. C\'est excellent.', '30 minutes', '30 minutes', 'Une truite platine merlot, c\'est superbe. Mais cuite au bon petit four traditionnel comme ça, ça n\'a pas de prix. L\'échalote est votre amie.', 'Résistance au feu +50%, +2000 PV Max, +350 Force', 2, 34, NULL),
+(22, 1, 'Broiled King-on-a-Stick', 'Une truite royale déchue, votre empire culinaire l\'ayant faite tomber de son trône.', '30min', '30min', 'Une truite royale savamment épicée et cuite avec soin, c\'est tout ce dont vous avez besoin.', 'Vous immunise à tout, sauf à une mort spontanée et imprévisible, évidemment.', 2, 35, NULL),
+(23, 1, 'Hearty Cutlet on Rice', 'Tout est bon dans le griffon.', '30 minutes', '30 minutes', 'Découpez soigneusement la poitrine de griffon en fines tranches (avec le coeur en option). Déposez le sur le riz soigneusement cuit, pourquoi pas accompagné de blé. Assaisonnez à loisir et profitez.', '+250 Force, +1500 Max HP', 1, 36, NULL),
+(24, 1, 'Smoked Behemoth', 'Depuis le temps qu\'il vous embête, vengez vous du béhémoth en le mangeant.', '30 minutes', '30 minutes', 'Fumez la viande de Béhémoth au feu de bois, accompagné de noix.', 'Sprint infini, +400 Force, +1000 PV Max', 1, 37, NULL),
+(25, 1, 'Fire-Sauce Fillet', 'C\'est un filet, mais il est particulièrement caliente.', '30 minutes', '30 minutes', 'Vous cuisinez votre filet de Barramundi comme à votre habitude, puis vous le noyez sous les épices. Ca a pas l\'air comme ça, mais c\'est juste ça. Et le résultat en vaut carrément la chandelle.', 'Force et Magie +200, HP Max +600', 1, 39, NULL),
+(26, 1, 'Blazing Braised Gizzard', 'Qu\'est-ce que ça pique. Mais qu\'est-ce que c\'est bon !', '30 minutes', '30 minutes', 'Une fois le foie bien cuit, versez une bonne dose de poivre et de gingembre. Effet garanti !', 'Magie +300, Récupération de santé +50%', 1, 40, NULL),
+(27, 1, 'Thick \'n\' Juicy Steak', 'Il court, il court, le catobéplas... Il court moins bien désormais.', '30 minutes', '30 minutes', 'Une fois la poitrine de catobéplas soigneusement cuite, parfumez la de gingembre et savourez le mélange des saveurs proprement unique de ce plat.', 'HP Max +1000, sprint infini', 1, 41, NULL),
+(28, 1, 'Hunters\' Krazy Kebabs', 'Etre chasseur est trop difficile pour vous ? Ayez l\'impression de quand même vivre cette vie d\'aventure grâce à ce plat.', '30 minutes', '30 minutes', 'Embrochez les différents aliments les uns après les autres une fois qu\'ils sont tous cuits. Savourez en particulier comme la viande se marie bien aux oignons.', 'Attaque +200, PV +800', 1, 42, NULL),
+(29, 3, 'Toadsteak Drumsticks', 'Ce crapaud géant a de belles cuisses, c\'est pourquoi il vous les faut dans votre assiette.', '30 minutes', '30 minutes', 'Utilisez l\'os de la cuisse pour la cuire avec soin, en la tenant délicatement au dessus du feu. Une fois bien cuit, poivrez le avec soin et dégustez.', '+120 Force, +100 Magie, +500 PV', 1, 43, NULL),
+(30, 1, 'Lestallum Stewed Tripe', 'Mmmh... La bonne tripaille.', '30 minutes', '30 minutes', 'Après avoir extrait les tripes, mélangez les aux tomates et aux noix pour réveiller un goût enfoui profondément en vous.', '+200 Magie, Récupération de santé +75%', 1, 44, NULL),
+(31, 1, 'Taelpar Harvest Galette', 'La récolte a été bonne... C\'est l\'heure de la galette !', '30 minutes', '30 minutes', 'Une orange trempée dans le lait pour accompagner le blé de qualité de cette galette, c\'est tout ce dont vous aviez rêvé sans le savoir.', 'Magie +120, Esprit +400, Santé +1000', 3, 45, NULL);
 
 --
 -- Contraintes pour les tables déchargées
