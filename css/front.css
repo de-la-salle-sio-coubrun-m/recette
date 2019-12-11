@@ -89,7 +89,7 @@ ____________________________________ P A G E D ' A C C U E I L _________________
 
 #recette>article{
 	width: 50%;
-	padding: 30px;
+	padding: 20px 0;
 	display: flex;
 	flex-wrap: wrap;
 }
@@ -97,8 +97,8 @@ ____________________________________ P A G E D ' A C C U E I L _________________
 #recette article img{
 	display: inline-block;
 	border: 2px solid #fff;
-	width: auto;
-	height: 30vh;
+	width: 100%;
+	height: auto;
 }
 
 #recette article p{
@@ -170,32 +170,22 @@ ____________________________________F I C H E R E C E T T E ____________________
 }
 
 #ficheRecette article{
-	display: flex;
-	flex-wrap: wrap;
 	padding: 30px;
 }
 
 #ficheRecette img{
 	display: inline-block;
 	height: auto;
-	width: 45%;
-	border: 2px solid #000;
+	width: 100%;
 }
 
 #ficheRecette ul{
-	width: 50%;
 	padding-left: 30px;
 }
 
 #ficheRecette li{
 	list-style-type: none;
 	padding: 5px 0;
-}
-
-#ficheRecette div{
-	margin-top: 10px;
-	height: 35vh;
-	width: 100%;
 }
 
 
