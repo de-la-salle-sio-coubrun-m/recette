@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  lun. 09 déc. 2019 à 15:49
+-- Généré le :  mer. 11 déc. 2019 à 08:34
 -- Version du serveur :  5.7.24
 -- Version de PHP :  7.2.14
 
@@ -39,7 +39,14 @@ CREATE TABLE IF NOT EXISTS `article` (
   PRIMARY KEY (`idArticle`),
   KEY `fkMembre` (`idMembre`),
   KEY `fkRecetteArticle` (`idRecette`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+
+--
+-- Déchargement des données de la table `article`
+--
+
+INSERT INTO `article` (`idArticle`, `titreArticle`, `contenuArticle`, `dateArticle`, `idMembre`, `idRecette`) VALUES
+(5, 'Les boites de conserve un repas sous estimé ', ' Bonjour chère lecteur aujourd\'hui je vais vous parlez de notre sublime \"Chilled Food Tin\" un repas mais bien plus. \r\nParce que se repas en plus de pouvoir vous nourrir lors de vos voyages ou quand vous n\'avez pas envie de faire à manger à l\'avantage d\'être à bas prix. L\'avantage c\'est qu\'une fois cette boite laver vous pouvez l\'utiliser pour faire de multiple chose. Comme d\'un récipient même de décoration de piège, et de plein d\'autre manière si vous laissez votre imagination vous guidez. ', '2019-11-09', 2, 6);
 
 -- --------------------------------------------------------
 
@@ -227,6 +234,7 @@ CREATE TABLE IF NOT EXISTS `ingredientrecette` (
 
 INSERT INTO `ingredientrecette` (`idRecette`, `idIngredient`) VALUES
 (4, 1),
+(6, 1),
 (4, 2),
 (4, 28),
 (5, 28),
@@ -325,7 +333,7 @@ CREATE TABLE IF NOT EXISTS `recette` (
   KEY `fkCategorie` (`idCategorie`),
   KEY `fkImage` (`idImage`),
   KEY `fkEtat` (`idEtat`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `recette`
@@ -333,7 +341,8 @@ CREATE TABLE IF NOT EXISTS `recette` (
 
 INSERT INTO `recette` (`idRecette`, `idOrigine`, `nomRecette`, `descriptionRecette`, `dureeCuisson`, `dureePreparation`, `recetteRecette`, `effetsRecette`, `idCategorie`, `idImage`, `idEtat`) VALUES
 (4, 1, '12 minutes', '12 minutes', '12 minutes', '12 minutes', '12 minutes', '12 minutes', 2, 1, 1),
-(5, 2, 'test', 'test', 'test', 'test', 'test', 'test', 3, 15, 1);
+(5, 2, 'test', 'test', 'test', 'test', 'test', 'test', 3, 15, 1),
+(6, 1, 'Chilled Food Tin	', 'Un repas facile et rapide', '5 minutes', '6 minutes', 'Tu prends la boîte, tu l\'ouvre, tu l\'as mets sur le feu.\r\n\r\nTu attends 5 minutes et voilà c\'est prêt.', 'Nope', 1, 16, NULL);
 
 --
 -- Contraintes pour les tables déchargées
