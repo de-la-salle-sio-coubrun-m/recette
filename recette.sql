@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  mer. 11 déc. 2019 à 11:32
+-- Généré le :  mer. 11 déc. 2019 à 13:31
 -- Version du serveur :  5.7.24
 -- Version de PHP :  7.2.14
 
@@ -32,22 +32,22 @@ DROP TABLE IF EXISTS `article`;
 CREATE TABLE IF NOT EXISTS `article` (
   `idArticle` int(4) NOT NULL AUTO_INCREMENT,
   `titreArticle` varchar(50) DEFAULT NULL,
-  `contenuArticle` varchar(500) DEFAULT NULL,
+  `contenuArticle` varchar(5000) DEFAULT NULL,
   `dateArticle` date DEFAULT NULL,
   `idMembre` int(4) NOT NULL,
   `idRecette` int(4) NOT NULL,
   PRIMARY KEY (`idArticle`),
   KEY `fkMembre` (`idMembre`),
   KEY `fkRecetteArticle` (`idRecette`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `article`
 --
 
 INSERT INTO `article` (`idArticle`, `titreArticle`, `contenuArticle`, `dateArticle`, `idMembre`, `idRecette`) VALUES
-(5, 'Les boites de conserve un repas sous estimé ', ' Bonjour chère lecteur aujourd\'hui je vais vous parlez de notre sublime \"Chilled Food Tin\" un repas mais bien plus. \r\nParce que se repas en plus de pouvoir vous nourrir lors de vos voyages ou quand vous n\'avez pas envie de faire à manger à l\'avantage d\'être à bas prix. L\'avantage c\'est qu\'une fois cette boite laver vous pouvez l\'utiliser pour faire de multiple chose. Comme d\'un récipient même de décoration de piège, et de plein d\'autre manière si vous laissez votre imagination vous guidez. ', '2019-11-09', 2, 6),
-(7, 'Darkshells Marinières', ' J\'ai enfin essayé les légendaires \"Darkshells Marinières\" dont le monde entier parle... Bah c\'était juste des moules, mais plus chères. Snif.', '2019-12-10', 2, 17);
+(7, 'Darkshells Marinières', ' J\'ai enfin essayé les légendaires \"Darkshells Marinières\" dont le monde entier parle... Bah c\'était juste des moules, mais plus chères. Snif.', '2019-12-10', 2, 17),
+(8, 'Les Boites de Conserve, ce repas sous-estimé', 'Bonjour cher lecteur aujourd\'hui je vais vous parlez de notre sublime Chilled Food Tin, un repas mais bien plus encore.\r\nParce que ce repas en plus de pouvoir vous nourrir lors de vos voyages ou quand vous n\'avez pas envie de faire à manger a l\'avantage d\'être à bas prix. L\'avantage c\'est qu\'une fois cette boite lavée vous pouvez l\'utiliser pour faire de multiples choses. Comme d\'un récipient même de décoration de piège, et de plein d\'autres manières si vous laissez votre imagination vous guider.  ', '2019-12-01', 2, 32);
 
 -- --------------------------------------------------------
 
@@ -240,6 +240,7 @@ INSERT INTO `ingredient` (`idIngredient`, `nomIngredient`, `recolteIngredient`, 
 (75, 'Cannelle moulue', 'Magasin', 'Grande surface'),
 (76, 'Miel liquide', 'Magasin', 'Grande surface'),
 (77, 'Semoule de blé fine', 'Magasin', 'Grande surface'),
+(81, 'gfe 2', 'mon cul', 'truc'),
 (82, 'Pain', 'Magasin', 'Grande Surface'),
 (83, 'Orange', 'A la main', 'Oranger');
 
@@ -291,6 +292,7 @@ INSERT INTO `ingredientrecette` (`idRecette`, `idIngredient`) VALUES
 (27, 39),
 (28, 39),
 (23, 42),
+(32, 46),
 (17, 47),
 (14, 50),
 (18, 50),
@@ -414,7 +416,7 @@ CREATE TABLE IF NOT EXISTS `recette` (
   KEY `fkCategorie` (`idCategorie`),
   KEY `fkImage` (`idImage`),
   KEY `fkEtat` (`idEtat`)
-) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `recette`
@@ -445,7 +447,8 @@ INSERT INTO `recette` (`idRecette`, `idOrigine`, `nomRecette`, `descriptionRecet
 (28, 1, 'Hunters\' Krazy Kebabs', 'Etre chasseur est trop difficile pour vous ? Ayez l\'impression de quand même vivre cette vie d\'aventure grâce à ce plat.', '30 minutes', '30 minutes', 'Embrochez les différents aliments les uns après les autres une fois qu\'ils sont tous cuits. Savourez en particulier comme la viande se marie bien aux oignons.', 'Attaque +200, PV +800', 1, 42, NULL),
 (29, 3, 'Toadsteak Drumsticks', 'Ce crapaud géant a de belles cuisses, c\'est pourquoi il vous les faut dans votre assiette.', '30 minutes', '30 minutes', 'Utilisez l\'os de la cuisse pour la cuire avec soin, en la tenant délicatement au dessus du feu. Une fois bien cuit, poivrez le avec soin et dégustez.', '+120 Force, +100 Magie, +500 PV', 1, 43, NULL),
 (30, 1, 'Lestallum Stewed Tripe', 'Mmmh... La bonne tripaille.', '30 minutes', '30 minutes', 'Après avoir extrait les tripes, mélangez les aux tomates et aux noix pour réveiller un goût enfoui profondément en vous.', '+200 Magie, Récupération de santé +75%', 1, 44, NULL),
-(31, 1, 'Taelpar Harvest Galette', 'La récolte a été bonne... C\'est l\'heure de la galette !', '30 minutes', '30 minutes', 'Une orange trempée dans le lait pour accompagner le blé de qualité de cette galette, c\'est tout ce dont vous aviez rêvé sans le savoir.', 'Magie +120, Esprit +400, Santé +1000', 3, 45, NULL);
+(31, 1, 'Taelpar Harvest Galette', 'La récolte a été bonne... C\'est l\'heure de la galette !', '30 minutes', '30 minutes', 'Une orange trempée dans le lait pour accompagner le blé de qualité de cette galette, c\'est tout ce dont vous aviez rêvé sans le savoir.', 'Magie +120, Esprit +400, Santé +1000', 3, 45, NULL),
+(32, 1, 'Chilled Food Tin', 'Au moins c\'est pas cher...', '10min', '10min', 'Utilisez un ouvre-boite et faites chauffer.', 'Une indigestion, à la limite...', 1, 16, NULL);
 
 --
 -- Contraintes pour les tables déchargées
