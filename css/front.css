@@ -33,6 +33,7 @@ header{
 	justify-content: space-around;
 	align-items: center;
 	padding-top:30px;
+	background-color:#eceff1 ;
 }
 
 header ul{
@@ -68,7 +69,7 @@ header li{
 ____________________________________C A R O U S S E L ______________________________________________________________________________________________________________________________*/
 
 #caroussel{
-	background-color: indianred;
+	background-color: rgba(229, 155, 155, 0.4);
 	padding: 2vh 0;
 }
 
@@ -86,6 +87,7 @@ ____________________________________ P A G E D ' A C C U E I L _________________
 #recette{
 	display: flex;
 	flex-wrap: wrap;
+	background-color: #eceff1;
 }
 
 
@@ -99,7 +101,6 @@ ____________________________________ P A G E D ' A C C U E I L _________________
 
 #recette article img{
 	display: inline-block;
-	border: 2px solid #fff;
 	width: 100%;
 	height: auto;
 }
@@ -107,7 +108,6 @@ ____________________________________ P A G E D ' A C C U E I L _________________
 #recette article p{
 	width: 45%;
 	margin-right: 5%;
-	border:2px solid #fff;
 	padding: 15px;
 }
 
@@ -118,7 +118,7 @@ ____________________________________ P A G E D ' A C C U E I L _________________
 
 #recette>aside{
 	width: 50%;
-	background-color: #c99868;
+	background-color: #c99868a8;
 	padding: 30px;
 }
 
@@ -154,7 +154,7 @@ ____________________________________ P A G E  R E C E T T E ____________________
 .miniRecette{
 	height: 25vh;
 	width: auto;
-	border: 2px solid #000;
+	box-shadow: 17px 5px 5px rgba(0, 0, 0, 0.767);
 	margin: 2%;
 	text-align: center;
 }
@@ -233,7 +233,8 @@ footer{
 }
 
 #reseauxSociaux {
-	margin-right:10px ;
+	margin-right:10px;
+    margin-bottom: 15px;
 }
 #reseauxSociaux a{
 	padding: 5px;
