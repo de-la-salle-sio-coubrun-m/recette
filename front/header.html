@@ -28,9 +28,12 @@
                             Nos recettes
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" href="recettesCategorie.php?categorie=Viande">Viande</a>
-                            <a class="dropdown-item" href="recettesCategorie.php?categorie=Poisson">Poisson</a>
-                            <a class="dropdown-item" href="recettesCategorie.php?categorie=Vegetarien">Végétarien</a>
+                            <?php 
+                            $base = connect();
+                            $requete= $base->query("SELECT nomCategorie FROM categorie ORDER BY nomCategorie");
+                            while($ligne= $requete->fetch(PDO::FETCH_OBJ)){ 
+                            echo '<a class="dropdown-item" href="recettesCategorie.php?categorie='.$ligne->nomCategorie.'">'.$ligne->nomCategorie.'</a>';
+                            } ?>
                         </div>
                     </li>
                     <li class="nav-item">
