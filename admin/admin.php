@@ -188,6 +188,12 @@ if(isset($_SESSION['idMembre']) &&  $_SESSION['idPrivilege'] == '1')
 									$resultat3=$base->prepare($requete3);
 									$resultat3->execute();
 									$ligne = $resultat3->fetch(PDO::FETCH_OBJ);
+
+									$requete4="	DELETE FROM article WHERE article.idRecette='".$_GET['idRecette']."'";
+									// $resultat=mysqli_query($base,$requete);
+									$resultat4=$base->prepare($requete4);
+									$resultat4->execute();
+									$ligne = $resultat4->fetch(PDO::FETCH_OBJ);
 									
 									$requete2="DELETE FROM recette WHERE recette.idRecette='".$_GET['idRecette']."'";
 									// $resultat2=mysqli_query($base,$requete2);
