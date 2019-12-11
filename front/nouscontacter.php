@@ -28,7 +28,11 @@
 
                     $headers = "From:" . $from;
                     //mail($to,$subject,$message,$headers); // ne fonctionne que sur un vrai serveur, pas en local
-                    echo "Message envoyé. Merci " . $first_name . ", nous vous recontacterons bientôt.";
+                    if(!$_POST['first_name'] || !$_POST['last_name'] || !$_POST['email_contact'] || !$_POST['message_contact']){
+                        echo "Veuillez renseigner tous les champs avant de valider.";
+                    }else{
+                        echo "Message envoyé. Merci " . $first_name . ", nous vous recontacterons bientôt.";
+                    }
                 }
                 ?>
 

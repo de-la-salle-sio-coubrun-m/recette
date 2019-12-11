@@ -79,7 +79,7 @@
             $base = connect();
             $requete= $base->query("SELECT * FROM image ORDER BY nomImage");
             while($ligne= $requete->fetch(PDO::FETCH_OBJ)){
-                echo'<option value="'.$ligne->idImage.'"'.($ligne->idImage==$_POST['idImage']?" selected": "").'>'.$ligne->urlImage.'</option>';
+                echo'<option value="'.$ligne->idImage.'"'.($ligne->idImage==$_POST['idImage']?" selected": "").'>'.$ligne->nomImage.'</option>';
             }
             ?>
         </select>
