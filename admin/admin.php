@@ -1033,25 +1033,25 @@ if(isset($_GET['action'])){
                             //si on appuie sur le bouton enregistrer du formulaire
                             if(isset($_POST['submit'])){
                                 if(empty($_POST['titreArticle']))
-                            {
-                                $message="<label id =\"warning\">veuillez entrer le titre de l'article s'il-vous-plaît</label>";
-                            }
-                            elseif(empty($_POST['contenuArticle']))
-                            {
-                                $message="<label id =\"warning\">veuillez entrer le contenude l'article s'il-vous-plaît</label>";
-                            }
-                            elseif(empty($_POST['dateArticle']))
-                            {
-                                $message="<label id =\"warning\">veuillez entrer la date du jour s'il-vous-plaît</label>";
-                            }
-                            elseif(empty($_POST['idMembre']))
-                            {
-                                $message="<label id =\"warning\">veuillez entrer le nom de l'auteur s'il-vous-plaît</label>";
-                            }
-                            elseif(empty($_POST['idRecette']))
-                            {
-                                $message="<label id =\"warning\">veuillez entrer le nom de la recette liée à l'article s'il-vous-plaît</label>";
-                            }
+								{
+									$message="<label id =\"warning\">veuillez entrer le titre de l'article s'il-vous-plaît</label>";
+								}
+								elseif(empty($_POST['contenuArticle']))
+								{
+									$message="<label id =\"warning\">veuillez entrer le contenude l'article s'il-vous-plaît</label>";
+								}
+								elseif(empty($_POST['dateArticle']))
+								{
+									$message="<label id =\"warning\">veuillez entrer la date du jour s'il-vous-plaît</label>";
+								}
+								elseif(empty($_POST['idMembre']))
+								{
+									$message="<label id =\"warning\">veuillez entrer le nom de l'auteur s'il-vous-plaît</label>";
+								}
+								elseif(empty($_POST['idRecette']))
+								{
+									$message="<label id =\"warning\">veuillez entrer le nom de la recette liée à l'article s'il-vous-plaît</label>";
+								}
                                 else
                                 {
                                     //met à jour la ligne de la table recette

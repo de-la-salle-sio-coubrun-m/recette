@@ -86,22 +86,22 @@
         <?php echo '<input type="hidden" value="'.(isset ($_POST['idCategorie'])? $_POST['idCategorie'] : "").'" name="idCategorieAncien">';?>
     </div>
 
-    
-    <div >
-        <label for="idIngredient">Ingrédients de la recette</label>
-        <select id="idIngredient" name="idIngredient">
-            <?php 
-            $base = connect();
-            $requete= $base->query("SELECT * FROM ingredient ORDER BY nomIngredient");
-            while($ligne= $requete->fetch(PDO::FETCH_OBJ)){
-                echo'<option value="'.$ligne->idIngredient.'"'.($ligne->idIngredient==$_POST['idIngredient']?" selected": "").'>'.$ligne->nomIngredient.'</option>';
-            }
-            ?>
-        </select>
-        <?php echo '<input type="hidden" value="'.(isset ($_POST['idIngredient'])? $_POST['idIngredient'] : "").'" name="idIngredientAncien">';?>
-    </div>
+    <?php if(isset($_GET['cas']) != "modifier"){ ?>
+        <div >
+            <label for="idIngredient">Ingrédients de la recette</label>
+            <select id="idIngredient" name="idIngredient">
+                <?php 
+                $base = connect();
+                $requete= $base->query("SELECT * FROM ingredient ORDER BY nomIngredient");
+                while($ligne= $requete->fetch(PDO::FETCH_OBJ)){
+                    echo'<option value="'.$ligne->idIngredient.'"'.($ligne->idIngredient==$_POST['idIngredient']?" selected": "").'>'.$ligne->nomIngredient.'</option>';
+                }
+                ?>
+            </select>
+            <?php echo '<input type="hidden" value="'.(isset ($_POST['idIngredient'])? $_POST['idIngredient'] : "").'" name="idIngredientAncien">';?>
+        </div>
 
-    <?php if(isset($message)){echo $message;} ?>
+    <?php } if(isset($message)){echo $message;} ?>
 
     <div id="boutons">
         <input type="submit" name="submit" value="ENREGISTRER" />
