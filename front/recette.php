@@ -20,10 +20,10 @@
             </figure>
             <div class="col">
                 <ul>
-                    <li>Effets de la recette: <?php if(isset($recette)){ echo $recette->effetsRecette; }?></li>
-                    <li>Durée de la préparation: <?php if(isset($recette)){ echo $recette->dureePreparation; }?></li>
-                    <li>Durée de la cuisson: <?php if(isset($recette)){ echo $recette->dureeCuisson; }?></li>
-                    <li>Description de la recette: <?php if(isset($recette)){ echo $recette->descriptionRecette; }?></li>
+                    <li><span style="text-decoration: underline;">Effets de la recette:</span> <?php if(isset($recette)){ echo $recette->effetsRecette; }?></li>
+                    <li><span style="text-decoration: underline;">Durée de la préparation:</span> <?php if(isset($recette)){ echo $recette->dureePreparation; }?></li>
+                    <li><span style="text-decoration: underline;">Durée de la cuisson:</span> <?php if(isset($recette)){ echo $recette->dureeCuisson; }?></li>
+                    <li><span style="text-decoration: underline;">Description de la recette:</span> <?php if(isset($recette)){ echo $recette->descriptionRecette; }?></li>
                 </ul>
             </div>
         </div>

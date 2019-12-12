@@ -17,9 +17,9 @@
             </figure>
             <div class="col">
                 <ul>
-                    <li>Recette: <?php if(isset($article)){ echo $recette->nomRecette; }?></li>
-                    <li>Auteur de l'article: <?php if(isset($article)){ echo $auteur->nomMembre; }?></li>
-                    <li>Date de publication: <?php if(isset($article)){ echo $article->dateArticle; }?></li>
+                    <li><span style="text-decoration: underline;">Recette:</span> <?php if(isset($article)){ echo $recette->nomRecette; }?></li>
+                    <li><span style="text-decoration: underline;">Auteur de l'article:</span> <?php if(isset($article)){ echo $auteur->nomMembre; }?></li>
+                    <li><span style="text-decoration: underline;">Date de publication:</span> <?php if(isset($article)){ echo $article->dateArticle; }?></li>
                 </ul>
             </div>
             <div>
