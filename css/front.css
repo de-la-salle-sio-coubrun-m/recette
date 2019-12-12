@@ -290,6 +290,41 @@ ____________________________________L O A D E R_________________________________
 	background-color: rgb(252, 253, 241);
 }
 
+/*_____________________________________________________________________________________________________________________________________________________________________
+____________________________________4 0 4______________________________________________________________________________________________________________________________*/
+
+#page404{
+	text-align: center;
+	padding: 15px;
+}
+
+#page404 figure{
+	width: 80%;
+	margin: 10vh auto 3vh;
+}
+
+#page404 img{
+	width: 100%;
+}
+
+#page404 .cta{
+	margin-top: 5vh;
+}
+
+#page404 .cta a{
+	display: inline-block;
+	padding: 15px 25px;
+	border-radius: 15px;
+	background-color: #F47E38;
+	color: #DDDDDF;
+}
+
+#page404 .cta a:hover{
+	background: #DDDDDF;
+	color: #F47E38;
+	transition: all .2 ease;
+}
+
 /* 
 nav li:nth-child(2):hover .sousMenu{
 	visibility: visible;
