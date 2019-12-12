@@ -6,7 +6,7 @@
                 <input placeholder="Prénom" type="text" name="first_name" value="<?php if(isset($_POST['first_name'])){echo $_POST['first_name'];} ?>"  />
                 <input placeholder="Nom" type="text" name="last_name" value="<?php if(isset($_POST['last_name'])){echo $_POST['last_name'];} ?>"  />
                 <input placeholder="Email" type="email" name="email_contact" value="<?php if(isset($_POST['email_contact'])){echo $_POST['email_contact'];} ?>" />
-                <textarea placeholder="Message" name="message_contact" rows="10" cols="50"><?php if(isset($_POST['message_contact'])){echo $_POST['message_contact'];} ?></textarea>
+                <textarea placeholder="Message" name="message_contact" rows="10" ><?php if(isset($_POST['message_contact'])){echo $_POST['message_contact'];} ?></textarea>
                 
                 <!-- <img id="captcha" src="../outils/captcha.php" alt="code sécurité" />  
                 <input placeholder="Code de sécurité" type="text" name="captcha" value="<--?php if(isset($_POST['captcha'])){echo $_POST['captcha'];} ?>" />
