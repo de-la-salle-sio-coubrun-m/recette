@@ -1,7 +1,7 @@
 <?php include('header.html'); ?>
 
-    <section>
-        <div id="contact">
+    <section id="pageContact">
+        <div id="formulaire" class="col-md-8 ">
             <form action="" method="POST">
                 <input placeholder="Prénom" type="text" name="first_name" value="<?php if(isset($_POST['first_name'])){echo $_POST['first_name'];} ?>"  />
                 <input placeholder="Nom" type="text" name="last_name" value="<?php if(isset($_POST['last_name'])){echo $_POST['last_name'];} ?>"  />
@@ -43,6 +43,12 @@
                 <p>Odio, ratione et senectus aliquam. Phasellus sit optio, ducimus, quidem lorem aute, cubilia. Leo! Culpa faucibus! Molestias morbi, class, sit.</p>
             </div> -->
         </div>
+        <article id="coordonne" class="col-md-4">
+            <p><i class="fas fa-map-marker-alt"></i> 16 champ de l'USS Enterprise <br>Bourg-Palette Kanto</p>
+            <p><i class="fas fa-phone-alt"></i> 05 55 12 34 56</p>
+            <p><i class="far fa-envelope"></i> onmangebien <i class="fas fa-at"></i> lacantina.fr</p>
+            <img src="../images/map.png" alt="carte pour retrouver l'adress">
+        </article>
     </section>
 
     <?php
