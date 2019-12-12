@@ -9,9 +9,9 @@
 
 @font-face {
 	font-family: "Libre Baskerville";
-	src: local("../asset/fonts/Libre_Baskerville/LibreBaskerville-Italic.ttf") format("truetype"),
-		local("../asset/fonts/Libre_Baskerville/LibreBaskerville-Regular.ttf") format("truetype"),
-		local("../asset/fonts/Libre_Baskerville/LibreBaskerville-Bold.ttf") format("truetype");
+	src: url("../asset/fonts/Libre_Baskerville/LibreBaskerville-Italic.ttf") format("truetype"),
+		url("../asset/fonts/Libre_Baskerville/LibreBaskerville-Regular.ttf") format("truetype"),
+		url("../asset/fonts/Libre_Baskerville/LibreBaskerville-Bold.ttf") format("truetype");
    }
 
 /*permet de retirer les bordures mises en automatique par le
