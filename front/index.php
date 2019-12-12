@@ -9,6 +9,7 @@
     
     <section id="recette">
         <article class="recetteHome">
+            <h2>Recette aléatoire :</h2>
             <?php 
                 $base = connect();
                 $ligne= $base->query("SELECT * FROM recette ORDER BY RAND() LIMIT 1")->fetch(PDO::FETCH_OBJ);
@@ -23,7 +24,8 @@
                 ?>
         </article>
         <aside>
-            <?php  
+            <h2>Dernier article :</h2>
+            <?php
             $ligne= $base->query("SELECT * FROM article ORDER BY dateArticle DESC LIMIT 1")->fetch(PDO::FETCH_OBJ);
             $thumbnail = '<h3>'.$ligne->titreArticle.'</h3>';
             $thumbnail .= '<ul><li>Date: '.$ligne->dateArticle.'</li>';
