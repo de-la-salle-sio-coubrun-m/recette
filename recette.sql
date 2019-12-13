@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  mer. 11 déc. 2019 à 13:31
+-- Généré le :  ven. 13 déc. 2019 à 11:35
 -- Version du serveur :  5.7.24
 -- Version de PHP :  7.2.14
 
@@ -105,7 +105,7 @@ CREATE TABLE IF NOT EXISTS `image` (
   `nomImage` varchar(50) DEFAULT NULL,
   `urlImage` varchar(500) DEFAULT NULL,
   PRIMARY KEY (`idImage`)
-) ENGINE=InnoDB AUTO_INCREMENT=46 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=55 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `image`
@@ -141,7 +141,13 @@ INSERT INTO `image` (`idImage`, `nomImage`, `urlImage`) VALUES
 (42, 'Hunters\' Krazy Kebabs', '../asset/imagesRecettes/Hunters\' Krazy Kebabs_p.jpg'),
 (43, 'Toadsteak Drumsticks', '../asset/imagesRecettes/Toadsteak Drumsticks_p.jpg'),
 (44, 'Lestallum Stewed Tripe', '../asset/imagesRecettes/Lestallum Stewed Tripe_p.jpg'),
-(45, 'Taelpar Harvest Galette', '../asset/imagesRecettes/Taelpar Harvest Galette_p.jpg');
+(45, 'Taelpar Harvest Galette', '../asset/imagesRecettes/Taelpar Harvest Galette_p.jpg'),
+(49, 'Raviolis de la Sérénité', '../asset/imagesRecettes/Raviolis de la Sérénité_p.jpg'),
+(50, 'Desert Cake', '../asset/imagesRecettes/Desert Cake_p.jpg'),
+(51, 'SGC Blue Jello', '../asset/imagesRecettes/SGC Blue Jello_p.jpg'),
+(52, 'Sneffels Crumble', '../asset/imagesRecettes/Sneffels Crumble_p.jpg'),
+(53, 'Gâteau à la pistache et à la crème de Pera', '../asset/imagesRecettes/Gâteau à la pistache et à la crème de Pera_p.jpg'),
+(54, 'Gâteau de la Causalité', '../asset/imagesRecettes/Gâteau de la Causalité_p.jpg');
 
 -- --------------------------------------------------------
 
@@ -156,7 +162,7 @@ CREATE TABLE IF NOT EXISTS `ingredient` (
   `recolteIngredient` varchar(200) DEFAULT NULL,
   `lieuIngredient` varchar(500) DEFAULT NULL,
   PRIMARY KEY (`idIngredient`)
-) ENGINE=InnoDB AUTO_INCREMENT=84 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=113 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `ingredient`
@@ -242,7 +248,36 @@ INSERT INTO `ingredient` (`idIngredient`, `nomIngredient`, `recolteIngredient`, 
 (77, 'Semoule de blé fine', 'Magasin', 'Grande surface'),
 (81, 'gfe 2', 'mon cul', 'truc'),
 (82, 'Pain', 'Magasin', 'Grande Surface'),
-(83, 'Orange', 'A la main', 'Oranger');
+(83, 'Orange', 'A la main', 'Oranger'),
+(84, 'Huile', 'Magasin', 'Grande Surface'),
+(85, 'Lait', 'Magasin', 'Grande Surface'),
+(86, 'Levure Chimique', 'Magasin', 'Grande Surface'),
+(87, 'Menthe fraîche', 'Magasin', 'Grande Surface'),
+(88, 'Colorant bleu', 'Magasin', 'Grande Surface'),
+(89, 'Get 31', 'Magasin', 'Grande Surface'),
+(90, 'Agar-agar', 'Magasin', 'Grande Surface'),
+(91, 'Farine', 'Magasin', 'Grande Surface'),
+(92, 'Poudre d\'amandes', 'Magasin', 'Grande Surface'),
+(93, 'Beurre', 'Magasin', 'Grande Surface'),
+(94, 'Mûres', 'Magasin', 'Grande Surface'),
+(95, 'Framboises', 'Magasin', 'Grande Surface'),
+(96, 'Gousse de vanille', 'Magasin', 'Grande Surface'),
+(97, 'Sel', 'Magasin', 'Grande Surface'),
+(98, 'Jus de Fraise', 'Magasin', 'Grande Surface'),
+(99, 'Huile végétale', 'Magasin', 'Grande Surface'),
+(100, 'Pâte de pistaches', 'Magasin', 'Grande Surface'),
+(101, 'Pistaches entières nature', 'Magasin', 'Grande Surface'),
+(102, 'Mascarpone', 'Magasin', 'Grande Surface'),
+(103, 'Sucre glace', 'Magasin', 'Grande Surface'),
+(104, 'Bâtonnets d\'orange confite au chocolat', 'Magasin', 'Grande Surface'),
+(105, 'Coulis de fraises', 'Magasin', 'Grande Surface'),
+(106, 'Beurre doux', 'Magasin', 'Grande Surface'),
+(107, 'Biscuits speculoos', 'Magasin', 'Grande Surface'),
+(108, 'Chocolat noir', 'Magasin', 'Grande Surface'),
+(109, 'Crème liquide entière', 'Magasin', 'Grande Surface'),
+(110, 'Cream cheese', 'Magasin', 'Grande Surface'),
+(111, 'Sucre en poudre', 'Magasin', 'Grande Surface'),
+(112, 'Jus d\'orange', 'Magasin', 'Grande Surface');
 
 -- --------------------------------------------------------
 
@@ -319,10 +354,58 @@ INSERT INTO `ingredientrecette` (`idRecette`, `idIngredient`) VALUES
 (30, 63),
 (8, 66),
 (13, 68),
+(33, 69),
+(33, 70),
+(33, 71),
+(33, 72),
 (7, 73),
+(34, 73),
+(37, 73),
+(38, 73),
+(34, 74),
+(35, 74),
+(36, 74),
+(37, 74),
+(34, 75),
+(34, 76),
+(34, 77),
 (6, 82),
 (7, 82),
-(31, 83);
+(31, 83),
+(34, 84),
+(34, 85),
+(34, 86),
+(37, 86),
+(35, 87),
+(35, 88),
+(35, 89),
+(35, 90),
+(36, 91),
+(37, 91),
+(36, 92),
+(36, 93),
+(37, 93),
+(36, 94),
+(36, 95),
+(36, 96),
+(37, 97),
+(38, 97),
+(37, 98),
+(37, 99),
+(37, 100),
+(37, 101),
+(37, 102),
+(38, 102),
+(37, 103),
+(37, 104),
+(37, 105),
+(38, 106),
+(38, 107),
+(38, 108),
+(38, 109),
+(38, 110),
+(38, 111),
+(38, 112);
 
 -- --------------------------------------------------------
 
@@ -338,7 +421,7 @@ CREATE TABLE IF NOT EXISTS `membre` (
   `idPrivilege` int(4) DEFAULT NULL,
   PRIMARY KEY (`idMembre`),
   KEY `fkPrivilege` (`idPrivilege`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `membre`
@@ -346,7 +429,10 @@ CREATE TABLE IF NOT EXISTS `membre` (
 
 INSERT INTO `membre` (`idMembre`, `nomMembre`, `mdpMembre`, `idPrivilege`) VALUES
 (1, 'admin', '$2y$10$dXgsiH1kajYLcmif0uaK..QRnY78qW9Xht4fi6iYg92ohADNF4f46', 1),
-(2, 'auteur', '$2y$10$95n2Ath.wHQ9wxevLMmpn.AxlxOjZh4Eej5IgxrU/d5shMxJLYDPi', 2);
+(2, 'auteur', '$2y$10$95n2Ath.wHQ9wxevLMmpn.AxlxOjZh4Eej5IgxrU/d5shMxJLYDPi', 2),
+(3, 'Kevin', '$2y$10$YSUb8UR9oVslHIB2OBJSxOkHWsurHEGtsromr3S34DSsb7OkLe.iO', 2),
+(4, 'Damien', '$2y$10$EY4QGdA8jjBatM2RBb.v0.SOLlWle2B2wRZnZokXBrGheWglVGHjW', 2),
+(5, 'Mickael', '$2y$10$vgOHMrOkILr0Trcgh5UAtejcURj/jFD7FaFq2ZVOFzNhHZBlSRnZq', 2);
 
 -- --------------------------------------------------------
 
@@ -360,7 +446,7 @@ CREATE TABLE IF NOT EXISTS `origine` (
   `nomOrigine` varchar(50) DEFAULT NULL,
   `descriptionOrigine` varchar(500) DEFAULT NULL,
   PRIMARY KEY (`idOrigine`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `origine`
@@ -369,7 +455,19 @@ CREATE TABLE IF NOT EXISTS `origine` (
 INSERT INTO `origine` (`idOrigine`, `nomOrigine`, `descriptionOrigine`) VALUES
 (1, 'Final Fantasy XV', 'Final Fantasy XV, annoncé originellement sous le titre Final Fantasy Versus XIII, est un jeu vidéo de la célèbre série Final Fantasy, développé et édité par Square Enix, sorti le 29 novembre 2016 sur les consoles PlayStation 4 et Xbox One. Une Windows Edition et une Royal Edition sont sorties le 6 mars 2018. '),
 (2, 'Firefly', 'Firefly est une série télévisée de space western américaine en 14 épisodes, créée par le scénariste et réalisateur Joss Whedon avec sa société de production Mutant Enemy. '),
-(3, 'Dune', 'Initié par les romans de Frank Herbert, l\'univers de Dune est à la base d\'une franchise ayant généré un grand nombre d’œuvres dans des domaines très variés. ');
+(3, 'Dune', 'Initié par les romans de Frank Herbert, l\'univers de Dune est à la base d\'une franchise ayant généré un grand nombre d’œuvres dans des domaines très variés. '),
+(4, 'Stargate', 'Stargate est un univers de science-fiction fondé sur des voyages entre des planètes situées dans différentes galaxies et reliées entre elles par un réseau de Portes des étoiles.'),
+(5, 'Voyage au Centre de la Terre', 'Voyage au centre de la Terre est un roman d\'aventures, écrit en 1864 par Jules Verne. Le roman traite de la découverte d\'un manuscrit runique ancien par un savant allemand qui, avec son neveu et leur guide, entreprennent un voyage vers le centre de la Terre en y entrant par un volcan islandais éteint, le Sneffels.'),
+(6, 'Star Trek', 'Dans l\'univers Star Trek, l\'humanité développe le voyage spatial à vitesse supraluminique. Plus tard, l\'homme s\'unit à d\'autres espèces intelligentes de la galaxie pour former la Fédération des planètes unies. À la suite d\'une intervention extraterrestre, et grâce à la science, l\'humanité surmonte largement ses nombreux vices et faiblesses terrestres, au XXIIIe siècle.'),
+(7, 'Matrix', 'Matrix est un film de science-fiction réalisé en 1999 par les soeurs Wachowski. Il dépeint un futur dystopique dans lequel la réalité perçue par les humains est en fait une simulation virtuelle appelée la Matrice, créée par des machines douées d\'intelligence afin de soumettre la population humaine et de se servir de la chaleur et de l\'activité électrique de leur corps comme source d\'énergie. Le programmeur informatique Neo l\'apprend et est entraîné dans la rébellion contre les machines.'),
+(8, 'Le Hobbit', 'Le Hobbit est un roman de fantasy de l’écrivain britannique J. R. R. Tolkien. Il narre les aventures du hobbit Bilbo, entraîné malgré lui par le magicien Gandalf et une compagnie de treize nains dans leur voyage vers la Montagne Solitaire, à la recherche du trésor gardé par le dragon Smaug.'),
+(9, 'Game of Thrones', 'Le Trône de fer (A Song of Ice and Fire) est une série de romans de fantasy de George R. R. Martin. Trois intrigues principales s\'y entremêlent : plusieurs maisons nobles rivalisent pour l\'obtention du trône du royaume ; dans les contrées glacées, une race de créatures légendaires se réveille ; et la dernière héritière des Targaryen cherche à reconquérir le trône. '),
+(10, 'Narnia', 'Narnia est un monde imaginaire créé par l\'auteur irlandais Clive Staples Lewis dans lequel se déroule une série de sept romans de fantasy : Le Monde de Narnia.\r\nDans l\'univers de Narnia, les animaux parlent, les bêtes mythiques abondent et la magie est courante. La série suit l\'histoire de Narnia, depuis sa création jusqu\'à sa fin, et plus particulièrement les visites de groupes d\'enfants de notre monde.'),
+(11, 'Harry Potter', 'Harry Potter est une série littéraire de fantasy écrite par l\'autrice britannique J. K. Rowling. Les romans racontent les aventures d\'un jeune sorcier nommé Harry Potter et de ses amis Ron Weasley et Hermione Granger à l\'école de sorcellerie Poudlard, dirigée par Albus Dumbledore.'),
+(12, 'Kaamelott', 'Kaamelott est une série télévisée française humoristique et dramatique de fantasy historique créée par Alexandre Astier, Alain Kappauf et Jean-Yves Robin et diffusée entre le 3 janvier 2005 et le 31 octobre 2009 sur M6.'),
+(13, 'Le Seigneur des Anneaux', 'Le Seigneur des anneaux est un roman de J. R. R. Tolkien paru en 1955.\r\nPrenant place dans le monde de la Terre du Milieu, il suit la quête du hobbit Frodo Bessac, qui doit détruire l\'Anneau unique afin que celui-ci ne tombe pas entre les mains de Sauron, le Seigneur des ténèbres. Plusieurs personnages lui viennent en aide, parmi lesquels son serviteur Sam, le mage Gandalf ou encore l\'humain Aragorn, héritier d\'une longue lignée de rois.'),
+(14, 'L\'Histoire Sans Fin', 'L\'Histoire sans fin est un roman allemand de fantasy de Michael Ende publié en 1979. Le roman raconte l\'histoire d\'un jeune garçon qui vole un livre intitulé L\'Histoire Sans Fin, dans une librairie. Au fur et à mesure qu\'il avance dans la lecture du livre, il se retrouve lui-même faisant partie de la quête dont le but est de sauver le monde et les habitants du Pays Fantastique.'),
+(15, 'Dishonored', 'Dishonored est un jeu vidéo qui propose d\'adapter son gameplay en fonction de la philosophie du joueur, soit brutale, soit discrète, soit entre les deux. Le jeu a été développé par le studio lyonnais Arkane Studios puis édité par Bethesda Softworks en 2012.');
 
 -- --------------------------------------------------------
 
@@ -416,7 +514,7 @@ CREATE TABLE IF NOT EXISTS `recette` (
   KEY `fkCategorie` (`idCategorie`),
   KEY `fkImage` (`idImage`),
   KEY `fkEtat` (`idEtat`)
-) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `recette`
@@ -448,7 +546,13 @@ INSERT INTO `recette` (`idRecette`, `idOrigine`, `nomRecette`, `descriptionRecet
 (29, 3, 'Toadsteak Drumsticks', 'Ce crapaud géant a de belles cuisses, c\'est pourquoi il vous les faut dans votre assiette.', '30 minutes', '30 minutes', 'Utilisez l\'os de la cuisse pour la cuire avec soin, en la tenant délicatement au dessus du feu. Une fois bien cuit, poivrez le avec soin et dégustez.', '+120 Force, +100 Magie, +500 PV', 1, 43, NULL),
 (30, 1, 'Lestallum Stewed Tripe', 'Mmmh... La bonne tripaille.', '30 minutes', '30 minutes', 'Après avoir extrait les tripes, mélangez les aux tomates et aux noix pour réveiller un goût enfoui profondément en vous.', '+200 Magie, Récupération de santé +75%', 1, 44, NULL),
 (31, 1, 'Taelpar Harvest Galette', 'La récolte a été bonne... C\'est l\'heure de la galette !', '30 minutes', '30 minutes', 'Une orange trempée dans le lait pour accompagner le blé de qualité de cette galette, c\'est tout ce dont vous aviez rêvé sans le savoir.', 'Magie +120, Esprit +400, Santé +1000', 3, 45, NULL),
-(32, 1, 'Chilled Food Tin', 'Au moins c\'est pas cher...', '10min', '10min', 'Utilisez un ouvre-boite et faites chauffer.', 'Une indigestion, à la limite...', 1, 16, NULL);
+(32, 1, 'Chilled Food Tin', 'Au moins c\'est pas cher...', '10min', '10min', 'Utilisez un ouvre-boite et faites chauffer.', 'Une indigestion, à la limite...', 1, 16, NULL),
+(33, 2, 'Raviolis de la Sérénité', 'Il vous reste encore de ces fraises de l\'abbaye ramenées par Book, l\'occasion pour vous de préparer une fournée de raviolis sucrés pour l\'équipage.', '10 à 12 minutes', '10 minutes', 'Commencez par préparer la pâte à raviolis. Dans un cul-de-poule, mélangez 50cl d\'eau à température ambiante avec les 250g de la farine pour gyoza, et pétrissez la pâte jusqu\'à obtenir une boule homogène. Réservez-la pendant 20 min.\r\n<br><br>\r\nPendant ce temps, réalisez la farce de vos 100g de fraises fraîches qui viendra garnir les raviolis. Commencez par concasser grossièrement les 50g de pistaches. Réservez. Versez ensuite les fraises dans un égouttoir et passez-les délicatement sous un mince filet d\'eau. Une fois rincées, équeutez les fraises et taillez-les en cubes réguliers.\r\n<br><br>\r\nDans un saladier, versez les 100g de confiture de fraise, les cubes de fraise et les pistaches concassées. A l\'aide d\'une cuillère à soupe, mélangez pour obtenir un appareil homogène. Réservez.\r\n<br><br>\r\nReprenez la boule de pâte à raviolis. Fleurez (farinez) le plan de travail et déposez-y la boule. Façonnez-la en un boudin épais que vous couperez en dix morceaux réguliers. Abaissez chaque morceau en un disque d\'une dizaine de centimètres de diamètre.\r\n<br><br>\r\nPrenez un disque dans le creux de votre main et déposez au centre une cuillerée à café de l\'appareil à la fraise. Refermez le disque sur lui-même en le pliant en corolle. Reproduisez l\'opération pour chaque disque. Vos raviolis sont presque prêts.\r\n<br><br>\r\nDéposez-les dans un panier vapeur sur une feuille de papier sulfurisé. Sous le panier vapeur, portez l\'eau à ébullition. Comptez alors 10 min de cuisson. Maintenez l\'ébullition à feu moyen, il ne faut pas que la vapeur soit trop forte. Au terme de la cuisson, retirez du panier vapeur et servez immédiatement !', 'Fera de vous un digne membre de l\'équipage du Serenity', 4, 49, NULL),
+(34, 3, 'Desert Cake', 'Face aux rigueurs du climat d\'Arrakis, il est parfois bon de se sustenter avec un biscuit apportant force et réconfort. Cette recette rend hommage à cette planète de sable et à sa richesse la plus célèbre, l\'Epice.', '30 min', '10 min', 'Préchauffez votre four à 180°C.\r\n<br><br>\r\nVersez les 4 oeufs dans un saladier avec les 150g de sucre. Fouettez le tout et incorporez progressivement 15cl d\'huile, 15cl de lait et 15g de levure chimique. Mélangez bien jusqu\'à l\'obtention d\'un appareil homogène. Incorporez les 320g de semoule de blé et la demi-cuillère à café de cannelle moulue. Réservez quelques instants.\r\n<br><br>\r\nBeurrez un moule à gâteau et versez-y la préparation. Enfournez pour 30 min.\r\n<br><br>\r\nPendant ce temps, réalisez le sirop qui viendra imbiber le gâteau. Dans une casserole, versez 40cl d\'eau, 200g de sucre et une cuillère à soupe de miel liquide. Portez à ébullition, puis laissez réduire à feu moyen pendant 5 min. Réservez le sirop hors du feu.\r\n<br><br>\r\nUne fois le gâteau sorti du four, démoulez-le. Nappez-le de sirop au miel. Le gâteau est prêt à être dégusté, n\'hésitez pas à le servir avec un café bien fort, comme on le fait sur Arrakis !', 'Vous rendra aussi sec que les politiciens d\'Arrakis.', 3, 50, NULL),
+(35, 4, 'SGC Blue Jello', 'Voici comment préparer le type de dessert que le colonel O\'Neill, le major Carter ou encore le docteur McKay adorent consommer au mess des officiers du SGC...', '40min puis 1h de repos', '5 min', 'Commencez par bien rincer la demi-botte de menthe fraîche. Dans une casserole, portez 60cl d\'eau à ébullition et plongez-y la menthe. Maintenez à petite ébullition pendant 20 min, le temps que la menthe infuse bien le liquide.\r\n<br><br>\r\nEnsuite, filtrez l\'eau de cuisson et ôtez la menthe. Remettez l\'eau filtrée dans la casserole et ajoutez 2 gouttes de colorant bleu, 2cl de Get 31, 400g de sucre et 2g d\'agar-agar. Portez à ébullition et comptez 10min de cuisson, tout en mélangeant à l\'aide d\'un fouet.\r\n<br><br>\r\nEnlevez la casserole du feu et, à l\'aide d\'un mixeur plongeant, mixez le tout une dizaine de seconde. Vous pouvez débarrasser le liquide dans les récipients de service et laisser refroidir. Une fois à température ambiante, réservez-les au réfrigérateur pendant au moins 1h, le temps de bien laisser prendre la gelée. Une fois bien fraîche et bien prise, vous pouvez déguster !', 'A une chance non-négligeable de vous rendre bleu. Et gélatineux.', 4, 51, NULL),
+(36, 5, 'Sneffels Crumble', '\"J\'ai peur de ce que nous allons peut-être découvrir et j\'espère que nous nous en sortirons vivants. Il me tarde déjà de goûter à nouveau à ces fabuleux desserts aux fruits que l\'on nous prépare ici.\"\r\n<br>\r\nJournal de voyage. Le 28 juin 1863. AL.', '20 min', '15 min', 'Préchauffez votre four à 200°C.\r\n<br><br>\r\nCommencez par préparer la pâte à crumble. Dans un grand bol, versez 60g de sucre, 60g de farine, 60g de poudre d\'amandes et 60g de beurre. Du bout des doigts, mélangez ces éléments jusqu\'à obtenir un appareil sablé irrégulier. Etalez alors les morceaux de pâte à crumble sur une plaque. Réservez au réfrigérateur pendant 10min.\r\n<br><br>\r\nRincez rapidement les fruits (mûres et framboises), égouttez-les et réservez-les. Dans une casserole à feu doux, versez les 80g de sucre restant et réalisez un caramel à sec. Dès que le sucre a pris une belle couleur brune, incorporez-y les fruits et laissez cuire quelques minutes à feu doux. Fendez la gousse de vanille en deux et grattez-la. Déposez les graines de vanilles sur les fruits. Mélangez délicatement le tout à l\'aide d\'une spatule pour que le caramel enrobe bien les fruits. Réservez hors du feu.\r\n<br><br>\r\nPassez à la dernière étape de la préparation, le montage : dans un plat allant au four, versez les fruits caramélisés. Sortez le crumble du réfrigérateur et recouvrez-en les fruits. Enfournez 20 à 25min jusqu\'à l\'obtention d\'une belle croûte d\'un brun doré.\r\n<br><br>\r\nDégustez ce crumble encore chaud ou tiède.', 'Vous rendra plus ardent que le feu d\'un volcan.', 3, 52, NULL),
+(37, 6, 'Gâteau à la pistache et à la crème de Pera', 'Bien que vous n\'y compreniez pas grand-chose, il semblerait que votre habileté en matière d\'interactions sociales avec l\'équipage se soit grandement améliorée : preuve en est, vous vous êtes découvert une veritable passion pourla pâtisserie et ce n\'est ni le Capitaine Janeway ni Neelix qui s\'en plaindront...', '55 min', '15 min', 'Préchauffez votre four à 180°C.\r\n<br><br>\r\nCommencez par réaliser votre appareil à gâteau. Dans un grand cul-de-poule, mélangez les 250g de farine, 220g de sucre, 1,5 sachet de levure chimique et 1 pincée de sel. Réservez quelques instants.\r\n<br><br>\r\nSéparez les blancs des jaunes de vos 8 oeufs dans deux culs-de-poule. Montez les blancs en neige très ferme, réservez. Ajoutez aux jaunes d\'oeufs les 15cl de jus de fraise et les 15cl d\'huile végétale. Fouettez ce mélange, puis incorporez-y le mélange d\'ingrédients secs réservé. Incorporez les 40g de pâte de pistaches puis les blancs d\'oeufs en neige. Réservez quelques instants.\r\n<br><br>\r\nFaites chauffer une poêle à feu moyen, et faites-y torréfier les 50g de pistaches entières nature 2min à sec, puis ajoutez les 10g de beurre et le sucre restant (20g). Laissez cuire 4min supplémentaires et débarrassez les pistaches sur une feuille de papier absorbant. Ajoutez-les à l\'appareil à gâteau.\r\n<br><br>\r\nBeurrez un moule à manqué de fond amovible et versez-y la préparation. Enfournez pour 55min puis sortez le gâteau du four. Attendez qu\'il soit tiède pour le démouler.\r\n<br><br>\r\nPréparez le glaçage au mascarpone. Déposez les 100g de mascarpone dans un cul-de-poule. Ajoutez 60g de beurre et, à l\'aide d\'un batteur électrique, fouettez énergiquement le tout pendant 1min jusqu\'à obtention d\'un mélange homogène. A vitesse réduite, incorporez alors 200g de sucre glace au mélange pour avoir un glaçage blanc et bien brillant.\r\n<br><br>\r\nDéposez ce glaçage en une belle couche sur le gâteau froid. Lissez le glaçage le plus possible, avec une rigueur toute vulcaine, et déposez les bâtonnets d\'orange confite tout autour du gâteau. Réservez au réfrigérateur pendant 45min.\r\n<br><br>\r\nDressage : servez ce gâteau une fois le glaçage pris, et pensez à dessiner une onde à sa surface en utilisant 15cl de coulis de fraises. Longue vie et prospérité !', 'Vous fera vivre une vie longue et prospère.', 3, 53, NULL),
+(38, 7, 'Gâteau de la Causalité', 'Et si avec un simple gâteau, vous étiez en mesure de modifier le cours des choses, d\'altérer l\'Illusion tout en préservant les apparences ? Si vous étiez en mesure de jouer sur chaque ligne de son programme pour qu\'elle provoque un nouvel effet à celui ou celle qui le dégusterait ? Voilà comment créer un gâteau au chocolat capable de faire palpiter le coeur de celui ou celle qui le porterait à ses lèvres, un gâteau au chocolat qui vous ferait toucher le tissu de l\'univers.', '45min', '20min', 'Préchauffez votre four à 180°C.\r\n<br><br>\r\nDans un bol au bain-marie, faites fondre 100g de beurre et réservez-le.\r\n<br><br>\r\nDans un grand bol, mixez ou concassez 300g de biscuits speculoos. Incorporez le beurre fondu et mélangez bien.\r\n<br><br>\r\nDans un moule à manqué, étalez le mélange et tassez-le bien. Enfournez pour 12 min de cuisson. Réservez.\r\n<br><br>\r\nPassez à la préparation d\'une ganache au chocolat. Concassez 125g de chocolat noir et déposez les morceaux dans un grand bol. Faites bouillir 30cl de crème liquide et versez-la sur le chocolat tout en remuant, jusqu\'à ce que le mélange soit homogène. Vous voilà avec une belle ganache au chocolat noir !\r\n<br><br>\r\nEnfin, préparez l\'appareil à cheesecake. Dans un grand bol, mélangez 300g de cream cheese, 100g de mascarpone et la ganache.\r\n<br><br>\r\nSéparez les blancs des jaunes de vos 3 oeufs. Faites blanchir les jaunes avec 125g de sucre et incorporez-les peu à peu au mélange chocolaté.\r\n<br><br>\r\nBattez les blancs en neige avec 1 pincée de sel puis incorporez-les à la préparation. Mélangez bien, tout en ajustant le jus d\'une orange.\r\n<br><br>\r\nVersez la crème dans le moule et enfournez de nouveau pour 30min. Sortez le moule du four, laissez le cheesecake refroidir pendant 20min avant de le mettre au réfrigérateur pour au moins 6h.\r\n<br><br>\r\nDressage : servez le cheesecake en tranches épaisses et délectez-vous de ses saveurs orgasmiques !', 'Vous fera voir à travers l\'illusion des machines', 3, 54, NULL);
 
 --
 -- Contraintes pour les tables déchargées
