@@ -8,8 +8,8 @@
                 <input placeholder="Email" type="email" name="email_contact" value="<?php if(isset($_POST['email_contact'])){echo $_POST['email_contact'];} ?>" />
                 <textarea placeholder="Message" name="message_contact" ><?php if(isset($_POST['message_contact'])){echo $_POST['message_contact'];} ?></textarea>
                 
-                <img id="captcha" src="../outils/captcha.php" alt="code sécurité" />  
-                <input placeholder="Code de sécurité" type="text" name="captcha" value="<--?php if(isset($_POST['captcha'])){echo $_POST['captcha'];} ?>" />
+                <img id="captcha" src="../tools/captcha.php" alt="code sécurité" />  
+                <input placeholder="Code de sécurité" type="text" name="captcha" value="<?php if(isset($_POST['captcha'])){echo $_POST['captcha'];} ?>" />
                 
                 <label><a href="#pol_conf">voir la politique de confidentialité</a></label>
                 
