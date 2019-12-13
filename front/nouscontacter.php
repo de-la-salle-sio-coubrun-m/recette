@@ -8,12 +8,12 @@
                 <input placeholder="Email" type="email" name="email_contact" value="<?php if(isset($_POST['email_contact'])){echo $_POST['email_contact'];} ?>" />
                 <textarea placeholder="Message" name="message_contact" ><?php if(isset($_POST['message_contact'])){echo $_POST['message_contact'];} ?></textarea>
                 
-                <!-- <img id="captcha" src="../outils/captcha.php" alt="code sécurité" />  
-                <input placeholder="Code de sécurité" type="text" name="captcha" value="<--?php if(isset($_POST['captcha'])){echo $_POST['captcha'];} ?>" />
+                <img id="captcha" src="../tools/captcha.php" alt="code sécurité" />  
+                <input placeholder="Code de sécurité" type="text" name="captcha" value="<?php if(isset($_POST['captcha'])){echo $_POST['captcha'];} ?>" />
                 
-                <label><a href="#pol_conf">voir la politique de confidentialité</a></label> -->
+                <label><a href="#pol_conf">voir la politique de confidentialité</a></label>
                 
-                <!--?php if(isset($message)){echo $message;} ?-->
+                <?php if(isset($message)){echo $message;} ?>
                 
                 <input type="submit" name="submit" value="ENVOYER" />
 
@@ -37,11 +37,11 @@
                 ?>
 
             </form>
-            <!-- <div class="pol_conf">
+            <div class="pol_conf">
                 <a href="front.php?page=contact#contact">X</a>
                 <p>Ac ridiculus aptent lacinia? Incididunt porro expedita integer, ipsum? Cumque explicabo, atque, cupidatat consequatur cillum hac. Mus ultricies laborum faucibus.</p>
                 <p>Odio, ratione et senectus aliquam. Phasellus sit optio, ducimus, quidem lorem aute, cubilia. Leo! Culpa faucibus! Molestias morbi, class, sit.</p>
-            </div> -->
+            </div>
         </div>
         <article id="coordonne" class="col-md-4">
             <p><i class="fas fa-map-marker-alt"></i> 16 champ de l'USS Enterprise <br>Bourg-Palette Kanto</p>
