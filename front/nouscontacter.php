@@ -1,32 +1,37 @@
-<?php session_start();
-include('header.html'); 
-if(isset($_POST['submit'])){
-    $to = "kazumixxx69@gmail.com";
-    $from = $_POST['email_contact'];
-    $first_name = $_POST['first_name'];
-    $last_name = $_POST['last_name'];
-    $subject = "Form submission";
-    //$message = $first_name . " " . $last_name . "wrote the following :\n\n" . $_POST['message_contact'];
+<?php 
+    session_start();
+    include('header.html');
 
-    $headers = "From:" . $from;
-    //mail($to,$subject,$message,$headers); // ne fonctionne que sur un vrai serveur, pas en local
-    
-    if(!$_POST['first_name'] || !$_POST['last_name'] || !$_POST['email_contact'] || !$_POST['message_contact']){
-        echo "Veuillez renseigner tous les champs avant de valider.";
-    } 
-    elseif(empty($_POST['captcha']) || 
-    (isset($_SESSION['captcha']) && $_SESSION['captcha']!=$_POST['captcha']))
-    {
-        $message="<label id=\"warning\">Captcha pas bien !</label>\n";
+    if(isset($_POST['submit'])){
+        $to = "kazumixxx69@gmail.com";
+        $from = $_POST['email_contact'];
+        $first_name = $_POST['first_name'];
+        $last_name = $_POST['last_name'];
+        $subject = "Form submission";
+        //$message = $first_name . " " . $last_name . "wrote the following :\n\n" . $_POST['message_contact'];
+
+        $headers = "From:" . $from;
+        //mail($to,$subject,$message,$headers); // ne fonctionne que sur un vrai serveur, pas en local
+        
+        var_dump($_POST);
+        if(!$_POST['first_name'] || !$_POST['last_name'] || !$_POST['email_contact'] || !$_POST['message_contact']){
+            $message= '<label class="erreur">Veuillez renseigner tous les champs avant de valider.</label>';
+        }
+        elseif(!isset($_POST['checkbox'])){
+            $message= '<label class="erreur">Veuillez accepter que l\'on utilise vos informations pour vous recontactez sinon nous ne pouvons pas donner suite à votre message.</label>';
+        }
+        elseif(empty($_POST['captcha']) || 
+        (isset($_SESSION['captcha']) && $_SESSION['captcha']!=$_POST['captcha']))
+        {
+            $message="<label class=\"erreur\">Captcha pas bien !</label>\n";
+        }
+        else{
+            $message='<label class="merci">Message envoyé. Merci ' . $first_name . ', nous vous recontacterons bientôt.</label>';
+        }
     }
-    else{
-        echo "Message envoyé. Merci " . $first_name . ", nous vous recontacterons bientôt.";
-    }
-}
-?>
-
-
-    <section id="pageContact">
+    ?>
+    <section id="pageContact">                
+        <?php if(isset($message)){echo $message;} ?>
         <div id="formulaire" class="col-md-8 ">
             <form action="" method="POST">
                 <input placeholder="Prénom" type="text" name="first_name" value="<?php if(isset($_POST['first_name'])){echo $_POST['first_name'];} ?>"  />
@@ -37,21 +42,15 @@ if(isset($_POST['submit'])){
                 <img id="captcha" src="../tools/captcha.php" alt="code sécurité" />
                 <input placeholder="Code de sécurité" type="text" name="captcha" value="<?php if(isset($_POST['captcha'])){echo $_POST['captcha'];} ?>" />
                 
-                <label><a id="pol" href="#pol_conf">voir la politique de confidentialité</a></label>
-                
-                <?php if(isset($message)){echo $message;} ?>
+                <div id="box">
+                    <input type="checkbox" name="checkbox">
+                    <p>En soumettant ce formulaire, j'accepte que les information saisies soient exploitées pour permettre de me recontacter.</p>
+                </div>
                 
                 <input type="submit" name="submit" value="ENVOYER" />
 
-                
-                
-
             </form>
-            <div id="pol_conf">
-                <a href="nouscontacter.php"><i class="far fa-times-circle"></i></a>
-                <p>Ac ridiculus aptent lacinia? Incididunt porro expedita integer, ipsum? Cumque explicabo, atque, cupidatat consequatur cillum hac. Mus ultricies laborum faucibus.</p>
-                <p>Odio, ratione et senectus aliquam. Phasellus sit optio, ducimus, quidem lorem aute, cubilia. Leo! Culpa faucibus! Molestias morbi, class, sit.</p>
-            </div>
+            
         </div>
         <article id="coordonne" class="col-md-4">
             <p><i class="fas fa-map-marker-alt"></i> 16 champ de l'USS Enterprise <br>Bourg-Palette Kanto</p>

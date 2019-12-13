@@ -150,7 +150,21 @@ _____________________________________________*/
 	position: relative;
 }
 
-form>input, form>textarea, form img, form label{
+#pageContact>label{
+	width: 100%;
+	text-align: center;
+	border-radius: 15%;
+}
+
+#pageContact .erreur{
+	background-color: lightcoral;
+}
+
+#pageContact .merci{
+	background-color: lightgreen;
+}
+
+form>input, form>textarea, form img, form>label{
 	display: block;
 	margin: 2vh 15%;
 }
@@ -161,26 +175,18 @@ form>textarea{
 	max-height: 400px;
 }
 
-#pol_conf{
-	opacity: 0;
-	position: fixed;
-	padding: 4vw;
-	top: 50%;
-	left: 50%;
-	z-index: 5;
-	background-color: rgba(229, 155, 155, 1);
-	transform: translate(-50%, -50%);
-	text-align: left;
+
+#box{
+	display: flex;
+	align-items: center;
+	margin-left: 15%;
 }
 
-#pol{
-	color: #000;
+#box p{
+	width: 90%;
+	margin-left: 15px;
 }
 
-#pol_conf:target{
-	opacity: 1;
-	transition: 0.5s opacity;
-}
 
 /*_______________________________________________________________________________________________________________________________________________________________________________
 ____________________________________ P A G E  R E C E T T E ______________________________________________________________________________________________________*/
