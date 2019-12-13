@@ -32,7 +32,7 @@ h2{
 a{	
 	text-decoration: none;
 	display: inline-block;
-	padding: 5px 15px;
+	/* padding: 5px 15px; */
 }
 
 body{
@@ -145,12 +145,12 @@ _____________________________________________*/
 #pageContact{
 	display: flex;
 	flex-wrap: wrap;
-	align-items: center;
 	min-height: 70vh;
 	padding: 5vh;
+	position: relative;
 }
 
-form>input, form>textarea{
+form>input, form>textarea, form img, form label{
 	display: block;
 	margin: 2vh 15%;
 }
@@ -161,9 +161,25 @@ form>textarea{
 	max-height: 400px;
 }
 
-#captcha{
-	display: none;
-	width: 50%;
+#pol_conf{
+	opacity: 0;
+	position: fixed;
+	padding: 4vw;
+	top: 50%;
+	left: 50%;
+	z-index: 5;
+	background-color: rgba(229, 155, 155, 1);
+	transform: translate(-50%, -50%);
+	text-align: left;
+}
+
+#pol{
+	color: #000;
+}
+
+#pol_conf:target{
+	opacity: 1;
+	transition: 0.5s opacity;
 }
 
 /*____________________________________________________________________________________________________________________________________________________________________________________

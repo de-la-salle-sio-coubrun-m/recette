@@ -11,7 +11,7 @@
                 <img id="captcha" src="../tools/captcha.php" alt="code sécurité" />  
                 <input placeholder="Code de sécurité" type="text" name="captcha" value="<?php if(isset($_POST['captcha'])){echo $_POST['captcha'];} ?>" />
                 
-                <label><a href="#pol_conf">voir la politique de confidentialité</a></label>
+                <label><a id="pol" href="#pol_conf">voir la politique de confidentialité</a></label>
                 
                 <?php if(isset($message)){echo $message;} ?>
                 
@@ -37,8 +37,8 @@
                 ?>
 
             </form>
-            <div class="pol_conf">
-                <a href="front.php?page=contact#contact">X</a>
+            <div id="pol_conf">
+                <a href="nouscontacter.php"><i class="far fa-times-circle"></i></a>
                 <p>Ac ridiculus aptent lacinia? Incididunt porro expedita integer, ipsum? Cumque explicabo, atque, cupidatat consequatur cillum hac. Mus ultricies laborum faucibus.</p>
                 <p>Odio, ratione et senectus aliquam. Phasellus sit optio, ducimus, quidem lorem aute, cubilia. Leo! Culpa faucibus! Molestias morbi, class, sit.</p>
             </div>
