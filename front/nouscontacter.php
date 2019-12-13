@@ -1,5 +1,30 @@
 <?php session_start();
-include('header.html'); ?>
+include('header.html'); 
+if(isset($_POST['submit'])){
+    $to = "kazumixxx69@gmail.com";
+    $from = $_POST['email_contact'];
+    $first_name = $_POST['first_name'];
+    $last_name = $_POST['last_name'];
+    $subject = "Form submission";
+    //$message = $first_name . " " . $last_name . "wrote the following :\n\n" . $_POST['message_contact'];
+
+    $headers = "From:" . $from;
+    //mail($to,$subject,$message,$headers); // ne fonctionne que sur un vrai serveur, pas en local
+    
+    if(!$_POST['first_name'] || !$_POST['last_name'] || !$_POST['email_contact'] || !$_POST['message_contact']){
+        echo "Veuillez renseigner tous les champs avant de valider.";
+    } 
+    elseif(empty($_POST['captcha']) || 
+    (isset($_SESSION['captcha']) && $_SESSION['captcha']!=$_POST['captcha']))
+    {
+        $message="<label id=\"warning\">Captcha pas bien !</label>\n";
+    }
+    else{
+        echo "Message envoyé. Merci " . $first_name . ", nous vous recontacterons bientôt.";
+    }
+}
+?>
+
 
     <section id="pageContact">
         <div id="formulaire" class="col-md-8 ">
@@ -18,31 +43,8 @@ include('header.html'); ?>
                 
                 <input type="submit" name="submit" value="ENVOYER" />
 
-                <?php
-                if(isset($_POST['submit'])){
-                    $to = "kazumixxx69@gmail.com";
-                    $from = $_POST['email_contact'];
-                    $first_name = $_POST['first_name'];
-                    $last_name = $_POST['last_name'];
-                    $subject = "Form submission";
-                    $message = $first_name . " " . $last_name . "wrote the following :\n\n" . $_POST['message_contact'];
-
-                    $headers = "From:" . $from;
-                    //mail($to,$subject,$message,$headers); // ne fonctionne que sur un vrai serveur, pas en local
-                    var_dump($_POST, $_SESSION['captcha']);
-                    if(!$_POST['first_name'] || !$_POST['last_name'] || !$_POST['email_contact'] || !$_POST['message_contact']){
-                        echo "Veuillez renseigner tous les champs avant de valider.";
-                    } 
-                    elseif(empty($_POST['captcha']) || 
-		            (isset($_SESSION['captcha']) && $_SESSION['captcha']!=$_POST['captcha']))
-                    {
-                        $message="<label id=\"warning\">Captcha pas bien !</label>\n";
-                    }
-                    else{
-                        echo "Message envoyé. Merci " . $first_name . ", nous vous recontacterons bientôt.";
-                    }
-                }
-                ?>
+                
+                
 
             </form>
             <div id="pol_conf">
