@@ -12,7 +12,7 @@ $nca = count($carac);//On determine le nombre de lettres possible
 // putenv('GDFONTPATH=' . realpath('.'));
 
 // Nom de la police à utiliser
-$font =__DIR__ .  "/adler.ttf";
+$font =__DIR__ ."/LibreBaskerville-Regular.ttf";
  
  //On determine les tailles de limage
  $x = $ncarac*30+20;
