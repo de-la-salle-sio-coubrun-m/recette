@@ -13,7 +13,7 @@
         $headers = "From:" . $from;
         //mail($to,$subject,$message,$headers); // ne fonctionne que sur un vrai serveur, pas en local
         
-        var_dump($_POST);
+        
         if(!$_POST['first_name'] || !$_POST['last_name'] || !$_POST['email_contact'] || !$_POST['message_contact']){
             $message= '<label class="erreur">Veuillez renseigner tous les champs avant de valider.</label>';
         }
