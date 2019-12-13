@@ -75,12 +75,12 @@ if(isset($_SESSION['idMembre']) &&  $_SESSION['idPrivilege'] == '1')
 									$resultat=$base->prepare($requete);
 									$resultat->execute();
 									
-									$recetteId = $base->lastinsertID();
+									// $recetteId = $base->lastinsertID();
 
-									$requete2="INSERT INTO ingredientrecette SET idRecette='$recetteId', idIngredient='".$_POST['idIngredient']."'";
+									// $requete2="INSERT INTO ingredientrecette SET idRecette='$recetteId', idIngredient='".$_POST['idIngredient']."'";
 									
-									$resultat2=$base->prepare($requete2);
-									$resultat2->execute();
+									// $resultat2=$base->prepare($requete2);
+									// $resultat2->execute();
 									
 								}
 							}
