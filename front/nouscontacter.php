@@ -1,4 +1,5 @@
-<?php include('header.html'); ?>
+<?php session_start();
+include('header.html'); ?>
 
     <section id="pageContact">
         <div id="formulaire" class="col-md-8 ">
@@ -8,7 +9,7 @@
                 <input placeholder="Email" type="email" name="email_contact" value="<?php if(isset($_POST['email_contact'])){echo $_POST['email_contact'];} ?>" />
                 <textarea placeholder="Message" name="message_contact" ><?php if(isset($_POST['message_contact'])){echo $_POST['message_contact'];} ?></textarea>
                 
-                <img id="captcha" src="../tools/captcha.php" alt="code sécurité" />  
+                <img id="captcha" src="../tools/captcha.php" alt="code sécurité" />
                 <input placeholder="Code de sécurité" type="text" name="captcha" value="<?php if(isset($_POST['captcha'])){echo $_POST['captcha'];} ?>" />
                 
                 <label><a id="pol" href="#pol_conf">voir la politique de confidentialité</a></label>
@@ -28,9 +29,16 @@
 
                     $headers = "From:" . $from;
                     //mail($to,$subject,$message,$headers); // ne fonctionne que sur un vrai serveur, pas en local
+                    var_dump($_POST, $_SESSION['captcha']);
                     if(!$_POST['first_name'] || !$_POST['last_name'] || !$_POST['email_contact'] || !$_POST['message_contact']){
                         echo "Veuillez renseigner tous les champs avant de valider.";
-                    }else{
+                    } 
+                    elseif(empty($_POST['captcha']) || 
+		            (isset($_SESSION['captcha']) && $_SESSION['captcha']!=$_POST['captcha']))
+                    {
+                        $message="<label id=\"warning\">Captcha pas bien !</label>\n";
+                    }
+                    else{
                         echo "Message envoyé. Merci " . $first_name . ", nous vous recontacterons bientôt.";
                     }
                 }
