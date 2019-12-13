@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.4
+-- version 4.7.4
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  ven. 13 déc. 2019 à 14:08
--- Version du serveur :  5.7.24
--- Version de PHP :  7.2.14
+-- Généré le :  ven. 13 déc. 2019 à 16:07
+-- Version du serveur :  5.7.19
+-- Version de PHP :  5.6.31
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -60,7 +60,7 @@ CREATE TABLE IF NOT EXISTS `categorie` (
   `idCategorie` int(4) NOT NULL AUTO_INCREMENT,
   `nomCategorie` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`idCategorie`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `categorie`
@@ -105,7 +105,7 @@ CREATE TABLE IF NOT EXISTS `image` (
   `nomImage` varchar(50) DEFAULT NULL,
   `urlImage` varchar(500) DEFAULT NULL,
   PRIMARY KEY (`idImage`)
-) ENGINE=InnoDB AUTO_INCREMENT=60 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=90 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `image`
@@ -152,7 +152,32 @@ INSERT INTO `image` (`idImage`, `nomImage`, `urlImage`) VALUES
 (56, 'Cake au citron des 7 Royaumes', '../asset/imagesRecettes/Cake au citron des 7 Royaumes_p.jpg'),
 (57, 'Queen Loukoums', '../asset/imagesRecettes/Queen Loukoums_p.jpg'),
 (58, 'Les Patacitrouilles du Poudlard Express', '../asset/imagesRecettes/Les Patacitrouilles du Poudlard Express_p.jpg'),
-(59, 'Tarte à la mélasse', '../asset/imagesRecettes/Tarte à la mélasse_p.jpg');
+(59, 'Tarte à la mélasse', '../asset/imagesRecettes/Tarte à la mélasse_p.jpg'),
+(60, 'Chaleureuse Tarte aux Myrtilles', '../asset/imagesRecettes/Chaleureuse Tarte aux Myrtilles_p.jpg'),
+(63, 'Bretzel Sans Fin', '../asset/imagesRecettes/Bretzel Sans Fin_p.jpg'),
+(64, 'Sen Bao', '../asset/imagesRecettes/Sen Bao_p.jpg'),
+(65, 'Tuxedo Cake', '../asset/imagesRecettes/Tuxedo Cake_p.jpg'),
+(66, 'Brioche de Versailles', '../asset/imagesRecettes/Brioche de Versailles_p.jpg'),
+(67, 'Dorayaki de Nobu', '../asset/imagesRecettes/Dorayaki de Nobu_p.jpg'),
+(68, 'Clafoutis de Barbe Noire', '../asset/imagesRecettes/Clafoutis de Barbe Noire_p.jpg'),
+(69, 'Fire Ball', '../asset/imagesRecettes/Fire Ball_p.jpg'),
+(70, 'Royal Tarte', '../asset/imagesRecettes/Royal Tarte_p.jpg'),
+(71, 'Barres Effet Chocolat', '../asset/imagesRecettes/Barres Effet Chocolat_p.jpg'),
+(72, 'Dharma Peanut Butter', '../asset/imagesRecettes/Dharma Peanut Butter_p.jpg'),
+(73, 'P\'tits Biscuits', '../asset/imagesRecettes/P\'tits Biscuits_p.jpg'),
+(74, 'Homer\'s Favorite Donut', '../asset/imagesRecettes/Homer\'s Favorite Donut_p.jpg'),
+(75, 'Ha Ha Ha Puddin\'', '../asset/imagesRecettes/Ha Ha Ha Puddin\'_p.jpg'),
+(76, 'Oeil d\'Agamotto', '../asset/imagesRecettes/Oeil d\'Agamotto_p.jpg'),
+(77, 'Cowabunga Pizza', '../asset/imagesRecettes/Cowabunga Pizza_p.jpg'),
+(78, 'Ivy Treat', '../asset/imagesRecettes/Ivy Treat_p.jpg'),
+(79, 'Anti-Palladium Shake', '../asset/imagesRecettes/Anti-Palladium Shake_p.jpg'),
+(80, 'Les Pancakes de la Victoire', '../asset/imagesRecettes/Les Pancakes de la Victoire_p.jpg'),
+(84, 'Pumpkin Pie de Tiron', '../asset/imagesRecettes/Pumpkin Pie de Tiron_p.jpg'),
+(85, 'Carrot Cake de la tante Tillie', '../asset/imagesRecettes/Carrot Cake de la tante Tillie_p.jpg'),
+(86, 'The Cake', '../asset/imagesRecettes/The Cake_p.jpg'),
+(87, 'Peach Cannoli', '../asset/imagesRecettes/Peach Cannoli_p.jpg'),
+(88, 'Glace au sel de mer', '../asset/imagesRecettes/Glace au sel de mer_p.jpg'),
+(89, 'Tartelettes de Dunwall', '../asset/imagesRecettes/Tartelettes de Dunwall_p.jpg');
 
 -- --------------------------------------------------------
 
@@ -620,7 +645,7 @@ CREATE TABLE IF NOT EXISTS `recette` (
   KEY `fkCategorie` (`idCategorie`),
   KEY `fkImage` (`idImage`),
   KEY `fkEtat` (`idEtat`)
-) ENGINE=InnoDB AUTO_INCREMENT=47 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=48 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `recette`
@@ -658,7 +683,8 @@ INSERT INTO `recette` (`idRecette`, `idOrigine`, `nomRecette`, `descriptionRecet
 (35, 4, 'SGC Blue Jello', 'Voici comment préparer le type de dessert que le colonel O\'Neill, le major Carter ou encore le docteur McKay adorent consommer au mess des officiers du SGC...', '40min puis 1h de repos', '5 min', 'Commencez par bien rincer la demi-botte de menthe fraîche. Dans une casserole, portez 60cl d\'eau à ébullition et plongez-y la menthe. Maintenez à petite ébullition pendant 20 min, le temps que la menthe infuse bien le liquide.\r\n<br><br>\r\nEnsuite, filtrez l\'eau de cuisson et ôtez la menthe. Remettez l\'eau filtrée dans la casserole et ajoutez 2 gouttes de colorant bleu, 2cl de Get 31, 400g de sucre et 2g d\'agar-agar. Portez à ébullition et comptez 10min de cuisson, tout en mélangeant à l\'aide d\'un fouet.\r\n<br><br>\r\nEnlevez la casserole du feu et, à l\'aide d\'un mixeur plongeant, mixez le tout une dizaine de seconde. Vous pouvez débarrasser le liquide dans les récipients de service et laisser refroidir. Une fois à température ambiante, réservez-les au réfrigérateur pendant au moins 1h, le temps de bien laisser prendre la gelée. Une fois bien fraîche et bien prise, vous pouvez déguster !', 'A une chance non-négligeable de vous rendre bleu. Et gélatineux.', 4, 51, NULL),
 (36, 5, 'Sneffels Crumble', '\"J\'ai peur de ce que nous allons peut-être découvrir et j\'espère que nous nous en sortirons vivants. Il me tarde déjà de goûter à nouveau à ces fabuleux desserts aux fruits que l\'on nous prépare ici.\"\r\n<br>\r\nJournal de voyage. Le 28 juin 1863. AL.', '20 min', '15 min', 'Préchauffez votre four à 200°C.\r\n<br><br>\r\nCommencez par préparer la pâte à crumble. Dans un grand bol, versez 60g de sucre, 60g de farine, 60g de poudre d\'amandes et 60g de beurre. Du bout des doigts, mélangez ces éléments jusqu\'à obtenir un appareil sablé irrégulier. Etalez alors les morceaux de pâte à crumble sur une plaque. Réservez au réfrigérateur pendant 10min.\r\n<br><br>\r\nRincez rapidement les fruits (mûres et framboises), égouttez-les et réservez-les. Dans une casserole à feu doux, versez les 80g de sucre restant et réalisez un caramel à sec. Dès que le sucre a pris une belle couleur brune, incorporez-y les fruits et laissez cuire quelques minutes à feu doux. Fendez la gousse de vanille en deux et grattez-la. Déposez les graines de vanilles sur les fruits. Mélangez délicatement le tout à l\'aide d\'une spatule pour que le caramel enrobe bien les fruits. Réservez hors du feu.\r\n<br><br>\r\nPassez à la dernière étape de la préparation, le montage : dans un plat allant au four, versez les fruits caramélisés. Sortez le crumble du réfrigérateur et recouvrez-en les fruits. Enfournez 20 à 25min jusqu\'à l\'obtention d\'une belle croûte d\'un brun doré.\r\n<br><br>\r\nDégustez ce crumble encore chaud ou tiède.', 'Vous rendra plus ardent que le feu d\'un volcan.', 3, 52, NULL),
 (37, 6, 'Gâteau à la pistache et à la crème de Pera', 'Bien que vous n\'y compreniez pas grand-chose, il semblerait que votre habileté en matière d\'interactions sociales avec l\'équipage se soit grandement améliorée : preuve en est, vous vous êtes découvert une veritable passion pourla pâtisserie et ce n\'est ni le Capitaine Janeway ni Neelix qui s\'en plaindront...', '55 min', '15 min', 'Préchauffez votre four à 180°C.\r\n<br><br>\r\nCommencez par réaliser votre appareil à gâteau. Dans un grand cul-de-poule, mélangez les 250g de farine, 220g de sucre, 1,5 sachet de levure chimique et 1 pincée de sel. Réservez quelques instants.\r\n<br><br>\r\nSéparez les blancs des jaunes de vos 8 oeufs dans deux culs-de-poule. Montez les blancs en neige très ferme, réservez. Ajoutez aux jaunes d\'oeufs les 15cl de jus de fraise et les 15cl d\'huile végétale. Fouettez ce mélange, puis incorporez-y le mélange d\'ingrédients secs réservé. Incorporez les 40g de pâte de pistaches puis les blancs d\'oeufs en neige. Réservez quelques instants.\r\n<br><br>\r\nFaites chauffer une poêle à feu moyen, et faites-y torréfier les 50g de pistaches entières nature 2min à sec, puis ajoutez les 10g de beurre et le sucre restant (20g). Laissez cuire 4min supplémentaires et débarrassez les pistaches sur une feuille de papier absorbant. Ajoutez-les à l\'appareil à gâteau.\r\n<br><br>\r\nBeurrez un moule à manqué de fond amovible et versez-y la préparation. Enfournez pour 55min puis sortez le gâteau du four. Attendez qu\'il soit tiède pour le démouler.\r\n<br><br>\r\nPréparez le glaçage au mascarpone. Déposez les 100g de mascarpone dans un cul-de-poule. Ajoutez 60g de beurre et, à l\'aide d\'un batteur électrique, fouettez énergiquement le tout pendant 1min jusqu\'à obtention d\'un mélange homogène. A vitesse réduite, incorporez alors 200g de sucre glace au mélange pour avoir un glaçage blanc et bien brillant.\r\n<br><br>\r\nDéposez ce glaçage en une belle couche sur le gâteau froid. Lissez le glaçage le plus possible, avec une rigueur toute vulcaine, et déposez les bâtonnets d\'orange confite tout autour du gâteau. Réservez au réfrigérateur pendant 45min.\r\n<br><br>\r\nDressage : servez ce gâteau une fois le glaçage pris, et pensez à dessiner une onde à sa surface en utilisant 15cl de coulis de fraises. Longue vie et prospérité !', 'Vous fera vivre une vie longue et prospère.', 3, 53, NULL),
-(38, 7, 'Gâteau de la Causalité', 'Et si avec un simple gâteau, vous étiez en mesure de modifier le cours des choses, d\'altérer l\'Illusion tout en préservant les apparences ? Si vous étiez en mesure de jouer sur chaque ligne de son programme pour qu\'elle provoque un nouvel effet à celui ou celle qui le dégusterait ? Voilà comment créer un gâteau au chocolat capable de faire palpiter le coeur de celui ou celle qui le porterait à ses lèvres, un gâteau au chocolat qui vous ferait toucher le tissu de l\'univers.', '45min', '20min', 'Préchauffez votre four à 180°C.\r\n<br><br>\r\nDans un bol au bain-marie, faites fondre 100g de beurre et réservez-le.\r\n<br><br>\r\nDans un grand bol, mixez ou concassez 300g de biscuits speculoos. Incorporez le beurre fondu et mélangez bien.\r\n<br><br>\r\nDans un moule à manqué, étalez le mélange et tassez-le bien. Enfournez pour 12 min de cuisson. Réservez.\r\n<br><br>\r\nPassez à la préparation d\'une ganache au chocolat. Concassez 125g de chocolat noir et déposez les morceaux dans un grand bol. Faites bouillir 30cl de crème liquide et versez-la sur le chocolat tout en remuant, jusqu\'à ce que le mélange soit homogène. Vous voilà avec une belle ganache au chocolat noir !\r\n<br><br>\r\nEnfin, préparez l\'appareil à cheesecake. Dans un grand bol, mélangez 300g de cream cheese, 100g de mascarpone et la ganache.\r\n<br><br>\r\nSéparez les blancs des jaunes de vos 3 oeufs. Faites blanchir les jaunes avec 125g de sucre et incorporez-les peu à peu au mélange chocolaté.\r\n<br><br>\r\nBattez les blancs en neige avec 1 pincée de sel puis incorporez-les à la préparation. Mélangez bien, tout en ajustant le jus d\'une orange.\r\n<br><br>\r\nVersez la crème dans le moule et enfournez de nouveau pour 30min. Sortez le moule du four, laissez le cheesecake refroidir pendant 20min avant de le mettre au réfrigérateur pour au moins 6h.\r\n<br><br>\r\nDressage : servez le cheesecake en tranches épaisses et délectez-vous de ses saveurs orgasmiques !', 'Vous fera voir à travers l\'illusion des machines', 3, 54, NULL);
+(38, 7, 'Gâteau de la Causalité', 'Et si avec un simple gâteau, vous étiez en mesure de modifier le cours des choses, d\'altérer l\'Illusion tout en préservant les apparences ? Si vous étiez en mesure de jouer sur chaque ligne de son programme pour qu\'elle provoque un nouvel effet à celui ou celle qui le dégusterait ? Voilà comment créer un gâteau au chocolat capable de faire palpiter le coeur de celui ou celle qui le porterait à ses lèvres, un gâteau au chocolat qui vous ferait toucher le tissu de l\'univers.', '45min', '20min', 'Préchauffez votre four à 180°C.\r\n<br><br>\r\nDans un bol au bain-marie, faites fondre 100g de beurre et réservez-le.\r\n<br><br>\r\nDans un grand bol, mixez ou concassez 300g de biscuits speculoos. Incorporez le beurre fondu et mélangez bien.\r\n<br><br>\r\nDans un moule à manqué, étalez le mélange et tassez-le bien. Enfournez pour 12 min de cuisson. Réservez.\r\n<br><br>\r\nPassez à la préparation d\'une ganache au chocolat. Concassez 125g de chocolat noir et déposez les morceaux dans un grand bol. Faites bouillir 30cl de crème liquide et versez-la sur le chocolat tout en remuant, jusqu\'à ce que le mélange soit homogène. Vous voilà avec une belle ganache au chocolat noir !\r\n<br><br>\r\nEnfin, préparez l\'appareil à cheesecake. Dans un grand bol, mélangez 300g de cream cheese, 100g de mascarpone et la ganache.\r\n<br><br>\r\nSéparez les blancs des jaunes de vos 3 oeufs. Faites blanchir les jaunes avec 125g de sucre et incorporez-les peu à peu au mélange chocolaté.\r\n<br><br>\r\nBattez les blancs en neige avec 1 pincée de sel puis incorporez-les à la préparation. Mélangez bien, tout en ajustant le jus d\'une orange.\r\n<br><br>\r\nVersez la crème dans le moule et enfournez de nouveau pour 30min. Sortez le moule du four, laissez le cheesecake refroidir pendant 20min avant de le mettre au réfrigérateur pour au moins 6h.\r\n<br><br>\r\nDressage : servez le cheesecake en tranches épaisses et délectez-vous de ses saveurs orgasmiques !', 'Vous fera voir à travers l\'illusion des machines', 3, 54, NULL),
+(47, 8, 'Gâteau au miel des Béornides', 'Voici une recette nourrissante qui respire la bonne odeur de printemps vu Val d\'Anduin et réconforte toute une compagnie avant qu\'elle ne poursuive sa périlleuse route vers Erebor.', '40 min', '20 min', 'Préchauffez votre four à 180°C et placez un cul-de-poule au réfrigérateur.\r\n<br/><br/>\r\nCommencez par beurrer un moule à manqué, puis préparez l\'appareil à moelleux. Séparer les jaunes des blancs de vos 4 oeufs dans deux saladiers. A l\'aide d\'un batteur électrique, montez les blancs en neige avec une pincée de sel et réservez.\r\n<br/><br/>\r\nAjoutez 200g de sucre aux jaunes d\'oeufs. Fouettez énergiquement jusqu\'à ce que le mélange devienne mousseux et presque blanc. Tout en mélangeant, incorporez 200g de farine, 150g de beurre fondu, un sachet de levure, 3 cuillères à soupe de miel d\'acacia et les blancs montés. L\'idée est d\'obtenir un appareil homogène : monter les blancs en neige et ajouter la levure servira à apporter de la légèreté et du moelleux au gâteau.\r\n<br/><br/>\r\nVersez l\'appareil dans un moule à cake et enfournez pour 40min.\r\n<br/><br/>\r\nPendant la cuisson, préparez la crème fouettée au miel. Versez la crème fleurette dans le cul-de-poule que vous aviez mis à refroidir au réfrigérateur. A l\'aide d\'un fouet ou d\'un batteur électrique, fouettez la crème tout en incorporant 2 cuillères à soupe de miel liquide lentement, en un mince filet. Une fois la crème au miel fouettée, déposez-la à la surface du gâteau pas encore démoulé, en une belle épaisseur.\r\n<br/><br/>\r\nDressage : saupoudrez de zeste de citron râpé ou de caramel concassé et servez de généreuses parts.', 'A une chance non-négligeable de vous octroyer une taille de hobbit.', 3, 55, NULL);
 
 --
 -- Contraintes pour les tables déchargées
