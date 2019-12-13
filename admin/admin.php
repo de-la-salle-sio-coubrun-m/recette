@@ -142,10 +142,10 @@ if(isset($_SESSION['idMembre']) &&  $_SESSION['idPrivilege'] == '1')
 										$resultat=$base->prepare($requete);
 										$resultat->execute();
 										
-										$requete2="UPDATE ingredientrecette SET idRecette=".$_GET['idRecette'].", idIngredient='".$_POST['idIngredient']."' WHERE ingredientrecette.idRecette ='" .$_GET['idRecette']."' AND idIngredient ='".$_POST['idIngredientAncien']."'";
+										// $requete2="UPDATE ingredientrecette SET idRecette=".$_GET['idRecette'].", idIngredient='".$_POST['idIngredient']."' WHERE ingredientrecette.idRecette ='" .$_GET['idRecette']."' AND idIngredient ='".$_POST['idIngredientAncien']."'";
 										
-										$resultat2=$base->prepare($requete2);
-										$resultat2->execute();
+										// $resultat2=$base->prepare($requete2);
+										// $resultat2->execute();
 										
 										
 									}
