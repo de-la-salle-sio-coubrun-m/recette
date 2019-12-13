@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  ven. 13 déc. 2019 à 11:35
+-- Généré le :  ven. 13 déc. 2019 à 14:08
 -- Version du serveur :  5.7.24
 -- Version de PHP :  7.2.14
 
@@ -39,7 +39,7 @@ CREATE TABLE IF NOT EXISTS `article` (
   PRIMARY KEY (`idArticle`),
   KEY `fkMembre` (`idMembre`),
   KEY `fkRecetteArticle` (`idRecette`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `article`
@@ -105,7 +105,7 @@ CREATE TABLE IF NOT EXISTS `image` (
   `nomImage` varchar(50) DEFAULT NULL,
   `urlImage` varchar(500) DEFAULT NULL,
   PRIMARY KEY (`idImage`)
-) ENGINE=InnoDB AUTO_INCREMENT=55 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=60 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `image`
@@ -147,7 +147,12 @@ INSERT INTO `image` (`idImage`, `nomImage`, `urlImage`) VALUES
 (51, 'SGC Blue Jello', '../asset/imagesRecettes/SGC Blue Jello_p.jpg'),
 (52, 'Sneffels Crumble', '../asset/imagesRecettes/Sneffels Crumble_p.jpg'),
 (53, 'Gâteau à la pistache et à la crème de Pera', '../asset/imagesRecettes/Gâteau à la pistache et à la crème de Pera_p.jpg'),
-(54, 'Gâteau de la Causalité', '../asset/imagesRecettes/Gâteau de la Causalité_p.jpg');
+(54, 'Gâteau de la Causalité', '../asset/imagesRecettes/Gâteau de la Causalité_p.jpg'),
+(55, 'Gâteau au miel des Béornides', '../asset/imagesRecettes/Gâteau au miel des Béornides_p.jpg'),
+(56, 'Cake au citron des 7 Royaumes', '../asset/imagesRecettes/Cake au citron des 7 Royaumes_p.jpg'),
+(57, 'Queen Loukoums', '../asset/imagesRecettes/Queen Loukoums_p.jpg'),
+(58, 'Les Patacitrouilles du Poudlard Express', '../asset/imagesRecettes/Les Patacitrouilles du Poudlard Express_p.jpg'),
+(59, 'Tarte à la mélasse', '../asset/imagesRecettes/Tarte à la mélasse_p.jpg');
 
 -- --------------------------------------------------------
 
@@ -161,8 +166,9 @@ CREATE TABLE IF NOT EXISTS `ingredient` (
   `nomIngredient` varchar(50) DEFAULT NULL,
   `recolteIngredient` varchar(200) DEFAULT NULL,
   `lieuIngredient` varchar(500) DEFAULT NULL,
-  PRIMARY KEY (`idIngredient`)
-) ENGINE=InnoDB AUTO_INCREMENT=113 DEFAULT CHARSET=utf8;
+  PRIMARY KEY (`idIngredient`),
+  UNIQUE KEY `nomIngredient` (`nomIngredient`)
+) ENGINE=InnoDB AUTO_INCREMENT=214 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `ingredient`
@@ -277,7 +283,106 @@ INSERT INTO `ingredient` (`idIngredient`, `nomIngredient`, `recolteIngredient`, 
 (109, 'Crème liquide entière', 'Magasin', 'Grande Surface'),
 (110, 'Cream cheese', 'Magasin', 'Grande Surface'),
 (111, 'Sucre en poudre', 'Magasin', 'Grande Surface'),
-(112, 'Jus d\'orange', 'Magasin', 'Grande Surface');
+(112, 'Jus d\'orange', 'Magasin', 'Grande Surface'),
+(113, 'Levure Patissière', 'Magasin', 'Grande Surface'),
+(114, 'Miel d\'acacia', 'Magasin', 'Grande Surface'),
+(115, 'Crème fleurette entière', 'Magasin', 'Grande Surface'),
+(116, 'Citron vert', 'Magasin', 'Grande Surface'),
+(117, 'Caramel concassé', 'Magasin', 'Grande Surface'),
+(118, 'Citron jaune', 'Magasin', 'Grande Surface'),
+(119, 'Lemon curd', 'Magasin', 'Grande Surface'),
+(120, 'Huile de pépins de raisin', 'Magasin', 'Grande Surface'),
+(121, 'Eau de rose', 'Magasin', 'Grande Surface'),
+(122, 'Jus de citron', 'Magasin', 'Grande Surface'),
+(123, 'Colorant rose', 'Magasin', 'Grande Surface'),
+(124, 'Pâte brisée', 'Magasin', 'Grande Surface'),
+(125, 'Potiron', 'Magasin', 'Grande Surface'),
+(126, 'Pomme', 'Magasin', 'Grande Surface'),
+(127, 'Noisettes', 'Magasin', 'Grande Surface'),
+(128, 'Jaune d\'oeuf', 'Magasin', 'Grande Surface'),
+(129, 'Pâte sablée', 'Magasin', 'Grande Surface'),
+(130, 'Golden Syrup', 'Magasin', 'Grande Surface'),
+(131, 'Mélasse', 'Magasin', 'Grande Surface'),
+(132, 'Chapelure fine', 'Magasin', 'Grande Surface'),
+(133, 'Noix de coco râpée', 'Magasin', 'Grande Surface'),
+(134, 'Pâte feuilletée', 'Magasin', 'Grande Surface'),
+(135, 'Sirop d\'érable', 'Magasin', 'Grande Surface'),
+(136, 'Sucre vanillé', 'Magasin', 'Grande Surface'),
+(137, 'Amandes effilées grillées', 'Magasin', 'Grande Surface'),
+(138, 'Compote de pomme', 'Magasin', 'Grande Surface'),
+(139, 'Sucre semoule', 'Magasin', 'Grande Surface'),
+(141, 'Confiture de myrtille', 'Magasin', 'Grande Surface'),
+(142, 'Myrtilles fraîches', 'Magasin', 'Grande Surface'),
+(143, 'Crème fraîche', 'Magasin', 'Grande Surface'),
+(144, 'Lavande', 'Magasin', 'Grande Surface'),
+(145, 'Poudre de noisettes', 'Magasin', 'Grande Surface'),
+(146, 'Sel fin', 'Magasin', 'Grande Surface'),
+(147, 'Levure déshydratée', 'Magasin', 'Grande Surface'),
+(148, 'Sucre fin', 'Magasin', 'Grande Surface'),
+(149, 'Bicarbonate alimentaire', 'Magasin', 'Grande Surface'),
+(150, 'Levure boulangère sèche', 'Magasin', 'Grande Surface'),
+(151, 'Farine type 45', 'Magasin', 'Grande Surface'),
+(152, 'Haricots azukis', 'Magasin', 'Grande Surface'),
+(153, 'Beurre pommade', 'Magasin', 'Grande Surface'),
+(154, 'Colorant rouge', 'Magasin', 'Grande Surface'),
+(155, 'Beurre mou', 'Magasin', 'Grande Surface'),
+(156, 'Cristaux de sucre', 'Magasin', 'Grande Surface'),
+(157, 'Anko', 'Magasin', 'Grande Surface'),
+(158, 'Pâte à tartiner', 'Magasin', 'Grande Surface'),
+(159, 'Confiture', 'Magasin', 'Grande Surface'),
+(160, 'Cerises dénoyautées', 'Magasin', 'Grande Surface'),
+(161, 'Sucre roux', 'Magasin', 'Grande Surface'),
+(162, 'Rhum pâtissier', 'Magasin', 'Grande Surface'),
+(163, 'Poire', 'Magasin', 'Grande Surface'),
+(164, 'Eau', 'Magasin', 'Grande Surface'),
+(165, 'Kirsch', 'Magasin', 'Grande Surface'),
+(166, 'Chocolat au lait', 'Magasin', 'Grande Surface'),
+(167, 'Lait concentré sucré', 'Magasin', 'Grande Surface'),
+(168, 'Riz soufflé au chocolat', 'Magasin', 'Grande Surface'),
+(169, 'Cacahuètes nature', 'Magasin', 'Grande Surface'),
+(170, 'Huile d\'arachide', 'Magasin', 'Grande Surface'),
+(171, 'Cassonade', 'Magasin', 'Grande Surface'),
+(172, 'Farine de blé', 'Magasin', 'Grande Surface'),
+(173, 'Gingembre moulu', 'Magasin', 'Grande Surface'),
+(174, 'Quatre-épices', 'Magasin', 'Grande Surface'),
+(175, 'Blanc d\'oeuf', 'Magasin', 'Grande Surface'),
+(176, 'Sucre glace tamisé', 'Magasin', 'Grande Surface'),
+(177, 'Colorant violet', 'Magasin', 'Grande Surface'),
+(178, 'Noix de pécan', 'Magasin', 'Grande Surface'),
+(179, 'Sucre brun', 'Magasin', 'Grande Surface'),
+(180, 'Huile de friture', 'Magasin', 'Grande Surface'),
+(181, 'Essence de rose', 'Magasin', 'Grande Surface'),
+(182, 'Topping paillettes', 'Magasin', 'Grande Surface'),
+(183, 'Pain sec concassé', 'Magasin', 'Grande Surface'),
+(184, 'Coulis de myrtilles', 'Magasin', 'Grande Surface'),
+(185, 'Colorant vert', 'Magasin', 'Grande Surface'),
+(186, 'Huile de colza', 'Magasin', 'Grande Surface'),
+(187, 'Glace royale', 'Magasin', 'Grande Surface'),
+(188, 'Piment d\'Espelette', 'Magasin', 'Grande Surface'),
+(189, 'Mangues mûres', 'Magasin', 'Grande Surface'),
+(190, 'Chocolat blanc', 'Magasin', 'Grande Surface'),
+(191, 'Banane', 'Magasin', 'Grande Surface'),
+(192, 'Marshmallow', 'Magasin', 'Grande Surface'),
+(193, 'Thé matcha', 'Magasin', 'Grande Surface'),
+(194, 'Crème glacée à la vanille', 'Magasin', 'Grande Surface'),
+(195, 'Lait entier', 'Magasin', 'Grande Surface'),
+(196, 'Raisins', 'Magasin', 'Grande Surface'),
+(197, 'Poudre de cacao amer', 'Magasin', 'Grande Surface'),
+(198, 'Pâte sablée abaissée', 'Magasin', 'Grande Surface'),
+(199, 'Chair de Potiron', 'Magasin', 'Grande Surface'),
+(200, 'Eau gazeuse', 'Magasin', 'Grande Surface'),
+(201, 'Farine fluide', 'Magasin', 'Grande Surface'),
+(202, 'Rhum brun', 'Magasin', 'Grande Surface'),
+(204, 'Carottes finement râpées', 'Magasin', 'Grande Surface'),
+(205, 'Cointreau', 'Magasin', 'Grande Surface'),
+(206, 'Pâte d\'amande rouge', 'Magasin', 'Grande Surface'),
+(207, 'Pêche mûre et saine', 'Magasin', 'Grande Surface'),
+(208, 'Extrait de vanille', 'Magasin', 'Grande Surface'),
+(209, 'Fleur de sel', 'Magasin', 'Grande Surface'),
+(210, 'Abricot mûr', 'Magasin', 'Grande Surface'),
+(211, 'Branche de romarin', 'Magasin', 'Grande Surface'),
+(212, 'Fécule de maïs', 'Magasin', 'Grande Surface'),
+(213, 'Fonds de tartelette en pâte sucrée', 'Magasin', 'Grande Surface');
 
 -- --------------------------------------------------------
 
@@ -290,6 +395,7 @@ CREATE TABLE IF NOT EXISTS `ingredientrecette` (
   `idRecette` int(4) NOT NULL,
   `idIngredient` int(4) NOT NULL,
   PRIMARY KEY (`idRecette`,`idIngredient`),
+  UNIQUE KEY `idRecette` (`idRecette`,`idIngredient`),
   KEY `idIngredient` (`idIngredient`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -514,7 +620,7 @@ CREATE TABLE IF NOT EXISTS `recette` (
   KEY `fkCategorie` (`idCategorie`),
   KEY `fkImage` (`idImage`),
   KEY `fkEtat` (`idEtat`)
-) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=47 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `recette`
